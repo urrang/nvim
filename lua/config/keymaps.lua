@@ -49,6 +49,14 @@ map('n', '<leader>ff', '<cmd>Telescope find_files<cr>', { desc = "Find files"})
 
 map('n', '<leader>fw', '<cmd>Telescope grep_string<cr>', { desc = 'Find word' })
 map('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', { desc = 'Find by Grep' })
+map('n', '<leader>/', function()
+    -- You can pass additional configuration to telescope to change theme, layout, etc.
+    require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+        winblend = 10,
+        previewer = false,
+    })
+end, { desc = '[/] Fuzzy search current buffer'})
+
 -- vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 
 -- Diagnostic keymaps
