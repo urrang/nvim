@@ -4,6 +4,10 @@ local map = vim.keymap.set
 
 map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
+-- Center when moving half a page down/up
+map('n', "<C-d>", "<C-d>zz")
+map('n', "<C-u>", "<C-u>zz")
+
 -- Remap for dealing with word wrap
 map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
