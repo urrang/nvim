@@ -15,5 +15,13 @@ return {
       -- "gc" to comment visual regions/lines
     { 'numToStr/Comment.nvim', opts = {} },
 
+    {
+      'lukas-reineke/indent-blankline.nvim',
+      -- opts = {
+      --   -- char = '|',
+      --   show_trailing_blankline_indent = false,
+      -- },
+    },
+
     {'ThePrimeagen/vim-be-good'}
 }

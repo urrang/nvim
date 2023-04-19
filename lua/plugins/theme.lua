@@ -57,7 +57,7 @@ return {
             require 'nordic'.setup({
                 italic_comments = false,
                 bold_keywords = false,
-                theme = 'onedark'
+                -- theme = 'onedark'
             })
 
             vim.cmd.colorscheme 'nordic'
