@@ -1,29 +1,18 @@
 return {
-    -- Fuzzy Finder (files, lsp, etc)
-    { 'nvim-telescope/telescope.nvim', version = '*', dependencies = { 'nvim-lua/plenary.nvim' } },
-
-    -- Fuzzy Finder Algorithm which requires local dependencies to be built.
-    -- Only load if `make` is available. Make sure you have the system
-    -- requirements installed.
-    {
-        'nvim-telescope/telescope-fzf-native.nvim',
-        -- NOTE: If you are having trouble with this installation,
-        --       refer to the README for telescope-fzf-native for more instructions.
-        build = 'make',
-        cond = function()
-        return vim.fn.executable 'make' == 1
-        end,
-    },
-    config = function()
-        -- See `:help telescope` and `:help telescope.setup()`
-        require('telescope').setup {
+    "nvim-telescope/telescope.nvim",
+    dependencies = {{
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make"
+    }},
+    opts = function()
+        local options = {
             defaults = {
-                mappings = {
-                    i = {
-                    ['<C-u>'] = false,
-                    ['<C-d>'] = false,
-                    },
-                },
+                vimgrep_arguments = {"rg", "-L", "--color=never", "--no-heading", "--with-filename", "--line-number",
+                                     "--column", "--smart-case"},
+                prompt_prefix = "   ",
+                selection_caret = "  ",
+                entry_prefix = "  ",
+                initial_mode = "insert",
                 selection_strategy = "reset",
                 sorting_strategy = "ascending",
                 layout_strategy = "horizontal",
@@ -31,16 +20,41 @@ return {
                     horizontal = {
                         prompt_position = "top",
                         preview_width = 0.55,
-                        results_width = 0.8,
+                        results_width = 0.8
                     },
                     vertical = {
-                        mirror = false,
+                        mirror = false
                     },
                     width = 0.87,
                     height = 0.80,
-                    preview_cutoff = 120,
+                    preview_cutoff = 120
                 },
+                file_sorter = require("telescope.sorters").get_fuzzy_file,
+                file_ignore_patterns = {"node_modules"},
+                generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+                path_display = {"truncate"},
+                winblend = 0,
+                border = {},
+                borderchars = {"─", "│", "─", "│", "╭", "╮", "╯", "╰"},
+                color_devicons = true,
+                set_env = {
+                    ["COLORTERM"] = "truecolor"
+                }, -- default = nil,
+                file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+                grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+                qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+                -- Developer configurations: Not meant for general override
+                --   buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
+                mappings = {
+                    n = {
+                        ["q"] = require("telescope.actions").close
+                    }
+                }
             },
+
+            extensions_list = {"themes", "terms"}
         }
+        require("telescope").load_extension "fzf"
+        return options
     end
 }
