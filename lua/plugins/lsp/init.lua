@@ -9,7 +9,7 @@ return {
             { 'j-hui/fidget.nvim', opts = {} },
         },
         config = function()
-            local cfg = require("custom.plugins.lsp.lsp-config")
+            local cfg = require("plugins.lsp.lsp-config")
             local mason_lspconfig = require("mason-lspconfig")
 			local lspconfig = require("lspconfig")
 
