@@ -4,9 +4,10 @@ return { -- Set lualine as statusline
     opts = {
         options = {
             icons_enabled = false,
-            theme = 'onedark',
-            component_separators = '|',
+            theme = 'auto',
+            component_separators = '',
             section_separators = '',
+            disabled_filetypes = { "alpha", "dashboard" },
         },
     },
 }
