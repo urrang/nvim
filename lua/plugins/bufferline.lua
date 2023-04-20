@@ -23,6 +23,11 @@ return {
                         text_align = "left",
                     },
                 },
+                hover = {
+                    enabled = true,
+                    delay = 200,
+                    reveal = { 'close' }
+                }
         },
     }
 }

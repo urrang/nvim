@@ -1,4 +1,8 @@
 -- See `:help vim.o`
+vim.wo.wrap = false
+
+vim.wo.number = true
+vim.wo.relativenumber = true
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '

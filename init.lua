@@ -2,6 +2,7 @@ require("config.options")
 require("config.lazy")
 require("config.keymaps")
 require("config.autocmds")
+-- require("config.neovide")
 
 -- Enable telescope fzf native, if installed
 -- pcall(require('telescope').load_extension, 'fzf')

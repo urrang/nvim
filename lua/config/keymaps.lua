@@ -2,6 +2,10 @@
 
 local map = vim.keymap.set
 
+map('n', '<A-h>', '^')
+map('n', '<A-l>', '$')
+
+
 map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- Center when moving half a page down/up
