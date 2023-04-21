@@ -1,20 +1,21 @@
 -- https://github.com/AlexvZyl/.dotfiles/blob/main/.config/nvim/lua/alex/ui/lualine.lua
+-- https://github.com/avocadeys/NVCat/blob/main/lua/plugins/lualine.lua
 
 -- Get the lsp of the current buffer, when using native lsp.
-local function get_native_lsp()
-    local buf_ft = get_current_filetype()
-    local clients = vim.lsp.get_active_clients()
-    if next(clients) == nil then
-        return 'None'
-    end
-    for _, client in ipairs(clients) do
-        local filetypes = client.config.filetypes
-        if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-            return client.name
-        end
-    end
-    return 'None'
-end
+-- local function get_native_lsp()
+--     local buf_ft = get_current_filetype()
+--     local clients = vim.lsp.get_active_clients()
+--     if next(clients) == nil then
+--         return 'None'
+--     end
+--     for _, client in ipairs(clients) do
+--         local filetypes = client.config.filetypes
+--         if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+--             return client.name
+--         end
+--     end
+--     return 'None'
+-- end
 
 -- Display the difference in commits between local and head.
 -- local Job = require 'plenary.job'
@@ -60,6 +61,10 @@ end
 return {
     'nvim-lualine/lualine.nvim',
     event = 'VeryLazy',
+    dependencies = {
+        { 'nvim-tree/nvim-web-devicons', opt = true },
+        'avocadeys/nvim-lualine-components',
+    },
     -- See `:help lualine.txt`
     -- config = {
 
@@ -162,25 +167,31 @@ return {
                         colored = true,
                     },
                 },
+                -- lualine_y = {
+                --     {
+                --         get_native_lsp,
+                --         icon = {
+                --             '  ',
+                --             align = 'left',
+                --             color = {
+                --                 fg = c.orange.bright,
+                --                 gui = 'bold'
+                --             }
+                --         }
+                --     },
+                -- },
                 lualine_y = {
                     {
-                        get_native_lsp,
-                        icon = {
-                            '  ',
-                            align = 'left',
-                            color = {
-                                fg = c.orange.bright,
-                                gui = 'bold'
-                            }
-                        }
+                      'lsp_servers'
                     },
                 },
                 lualine_z = {
-                    'progress',
+                    -- 'progress',
                     {
-                      'location', separator = {
-                        right = ''
-                      },
+                        'location',
+                        separator = {
+                            left = '', right = ''
+                        },
                     },
                 }
             }
