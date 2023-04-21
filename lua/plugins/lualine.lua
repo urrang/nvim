@@ -59,6 +59,7 @@ end
 
 return {
     'nvim-lualine/lualine.nvim',
+    event = 'VeryLazy',
     -- See `:help lualine.txt`
     -- config = {
 
@@ -78,14 +79,18 @@ return {
         local options = {
             icons_enabled = false,
             theme = 'auto',
-            component_separators = '',
-            section_separators = '',
+            -- component_separators = '',
+            component_separators = "",
+            section_separators = "",
             disabled_filetypes = {"alpha", "dashboard"},
             sections = {
                 lualine_a = {
                     {
                         'mode',
                         -- icon = { ' ' },
+                        separator = {
+                            left = '', right = ''
+                        },
                     },
                 },
                 lualine_b = {},
@@ -170,6 +175,14 @@ return {
                         }
                     },
                 },
+                lualine_z = {
+                    'progress',
+                    {
+                      'location', separator = {
+                        right = ''
+                      },
+                    },
+                }
             }
         }
 
