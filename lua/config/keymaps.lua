@@ -68,3 +68,6 @@ map('n', '[d', vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic mes
 map('n', ']d', vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
 map('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
 map('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+
+vim.keymap.set("v", "<Tab>", ">gv", { silent = true })
+vim.keymap.set("v", "<S-Tab>", "<gv", { silent = true })
