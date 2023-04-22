@@ -13,15 +13,25 @@ return {
     { 'folke/which-key.nvim', opts = {} },
 
       -- "gc" to comment visual regions/lines
-    { 'numToStr/Comment.nvim', opts = {} },
-
     {
-      'lukas-reineke/indent-blankline.nvim',
-      -- opts = {
-      --   -- char = '|',
-      --   show_trailing_blankline_indent = false,
-      -- },
+      'numToStr/Comment.nvim',
+      event = "VeryLazy",
+      opts = {
+        -- toggler = {
+        --   line = '<leader>kc',
+        --   block = '<leader>kb',
+        -- },
+      }
     },
 
-    {'ThePrimeagen/vim-be-good'}
+    { 'lukas-reineke/indent-blankline.nvim', opts = {} },
+    {
+      'smolck/command-completion.nvim',
+      event = "VeryLazy",
+      opts = {}
+    },
+    {
+      'ThePrimeagen/vim-be-good',
+      event = "VeryLazy",
+    }
 }

@@ -92,10 +92,11 @@ return {
                 lualine_a = {
                     {
                         'mode',
+                        separator = { left = '', right = '' },
                         -- icon = { ' ' },
-                        separator = {
-                            left = '', right = ''
-                        },
+                        -- separator = {
+                        --     left = '', right = ''
+                        -- },
                     },
                 },
                 lualine_b = {},
@@ -189,9 +190,9 @@ return {
                     -- 'progress',
                     {
                         'location',
-                        separator = {
-                            left = '', right = ''
-                        },
+                        -- separator = {
+                        --     left = '', right = ''
+                        -- },
                     },
                 }
             }

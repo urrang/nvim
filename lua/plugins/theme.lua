@@ -75,6 +75,12 @@ return {
             require 'nordic'.setup({
                 italic_comments = false,
                 bold_keywords = false,
+                override = {
+                    ['@variable.builtin'] = { italic = false },
+                    ['@namespace'] = { italic = false },
+                    ['@text.emphasis'] = { italic = false },
+                    ['@parameter'] = { italic = false }
+                }
                 -- theme = 'onedark'
             })
 
