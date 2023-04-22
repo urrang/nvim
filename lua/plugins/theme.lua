@@ -21,16 +21,34 @@ return {
         config = function()
             require('catppuccin').setup({
                 flavour = "frappe",
+                no_italic = true,
+                no_bold = true,
+                integrations = {
+                    cmp = true,
+                    gitsigns = true,
+                    nvimtree = true,
+                    telescope = true,
+                    notify = true,
+                    -- bufferline = true,
+                    fidget = true,
+                    hop = true,
+                    -- lualine = true,
+                    noice = true,
+                    which_key = true,
+                    -- harboon = true,
+
+                    -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+                },
             })
 
-            -- vim.cmd.colorscheme 'catppuccin'
+            vim.cmd.colorscheme 'catppuccin'
         end
     },
     {
         'folke/tokyonight.nvim',
         config = function()
             require("tokyonight").setup({
-                style = "night",
+                style = "storm",
                 terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
                 styles = {
                     -- Style to be applied to different syntax groups
@@ -60,7 +78,7 @@ return {
                 -- theme = 'onedark'
             })
 
-            vim.cmd.colorscheme 'nordic'
+            -- vim.cmd.colorscheme 'nordic'
         end
     }
 }
