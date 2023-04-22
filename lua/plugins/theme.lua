@@ -25,21 +25,43 @@ return {
                 no_bold = true,
                 integrations = {
                     cmp = true,
+                    lsp_saga = true,
                     gitsigns = true,
-                    nvimtree = true,
+                    neotree = true,
                     telescope = true,
                     notify = true,
-                    -- bufferline = true,
+                    noice = true,
                     fidget = true,
+                    native_lsp = {
+                        enabled = true,
+                        virtual_text = {
+                            errors = { "italic" },
+                            hints = { "italic" },
+                            warnings = { "italic" },
+                            information = { "italic" },
+                        },
+                        underlines = {
+                            errors = { "underline" },
+                            hints = { "underline" },
+                            warnings = { "underline" },
+                            information = { "underline" },
+                        },
+                    },
+
+                    -- bufferline = true,
                     hop = true,
                     -- lualine = true,
-                    noice = true,
                     which_key = true,
                     -- harboon = true,
 
                     -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
                 },
             })
+
+            -- local colors = require("catppuccin.palettes").get_palette()
+            -- require("catppuccin.lib.highlighter").syntax {
+            --     FloatBorder = { fg = colors.overlay2, bg = colors.mantle },
+            -- }
 
             vim.cmd.colorscheme 'catppuccin'
         end

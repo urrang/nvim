@@ -79,11 +79,11 @@ return {
     --     })
     -- },
     opts = function()
-        local c = require('nordic.colors')
+        -- local c = require('nordic.colors')
 
         local options = {
             icons_enabled = false,
-            theme = 'auto',
+            theme = 'catppuccin',
             -- component_separators = '',
             component_separators = "",
             section_separators = "",
@@ -105,7 +105,7 @@ return {
                         'branch',
                         icon = {
                             '',
-                            color = { fg = c.orange.bright, gui = 'bold' },
+                            -- color = { fg = c.orange.bright, gui = 'bold' },
                         },
                         separator = ' ',
                     },
@@ -121,11 +121,11 @@ return {
                             modified = ' ',
                             removed = ' '
                         },
-                        diff_color = {
-                            added = { fg = c.gray4, gui = 'bold' },
-                            modified = { fg = c.gray4, gui = 'bold' },
-                            removed = { fg = c.gray4, gui = 'bold' },
-                        }
+                        -- diff_color = {
+                        --     added = { fg = c.gray4, gui = 'bold' },
+                        --     modified = { fg = c.gray4, gui = 'bold' },
+                        --     removed = { fg = c.gray4, gui = 'bold' },
+                        -- }
                         -- icon = {
                             -- ' ',
                             -- color = { fg = c.orange.base },
@@ -136,10 +136,10 @@ return {
                         icon = {
                             '  ',
                             align = 'left',
-                            color = {
-                                fg = c.orange.bright,
-                                gui = 'bold'
-                            }
+                            -- color = {
+                            --     fg = c.orange.bright,
+                            --     gui = 'bold'
+                            -- }
                         }
                     },
                 },
@@ -159,12 +159,12 @@ return {
                             hint = '󱤅 ',
                             other = '󰠠 ',
                         },
-                        diagnostics_color = {
-                            error = { fg=c.error, gui='bold' },
-                            warn =  { fg=c.warn, gui='bold'  },
-                            info =  { fg=c.info, gui='bold'  },
-                            hint =  { fg=c.hint, gui='bold'  },
-                        },
+                        -- diagnostics_color = {
+                        --     error = { fg=c.error, gui='bold' },
+                        --     warn =  { fg=c.warn, gui='bold'  },
+                        --     info =  { fg=c.info, gui='bold'  },
+                        --     hint =  { fg=c.hint, gui='bold'  },
+                        -- },
                         colored = true,
                     },
                 },
