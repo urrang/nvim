@@ -7,21 +7,21 @@ return {
     opts = function()
         local colors = require("catppuccin.palettes").get_palette()
         local TelescopeColor = {
-            TelescopeMatching = { fg = colors.flamingo },
-            TelescopeSelection = { fg = colors.text, bg = colors.surface0, bold = true },
+            TelescopeMatching = { fg = nil },
+            TelescopeSelection = { fg = colors.flamingo, bg = colors.crust, bold = true },
 
-            TelescopePromptTitle = { fg = colors.pink },
-            TelescopePromptPrefix = { bg = colors.surface0 },
-            TelescopePromptNormal = { bg = colors.surface0 },
-            TelescopePromptBorder = { bg = colors.surface0, fg = colors.surface0 },
+            TelescopePromptTitle = { fg = colors.surface0 },
+            TelescopePromptPrefix = { bg = colors.mantle },
+            TelescopePromptNormal = { bg = colors.mantle },
+            TelescopePromptBorder = { bg = colors.mantle, fg = colors.mantle },
 
             TelescopeResultsTitle = { fg = colors.mantle },
             TelescopeResultsNormal = { bg = colors.mantle },
             TelescopeResultsBorder = { bg = colors.mantle, fg = colors.mantle },
 
-            TelescopePreviewTitle = { fg = colors.mantle },
-            TelescopePreviewNormal = { bg = colors.mantle },
-            TelescopePreviewBorder = { bg = colors.mantle, fg = colors.mantle },
+            TelescopePreviewTitle = { fg = colors.crust },
+            TelescopePreviewNormal = { bg = colors.crust },
+            TelescopePreviewBorder = { bg = colors.crust, fg = colors.crust },
             -- TelescopePromptTitle = { bg = colors.pink, fg = colors.mantle },
             -- TelescopeResultsTitle = { fg = colors.mantle },
             -- TelescopePreviewTitle = { bg = colors.green, fg = colors.mantle },
@@ -36,6 +36,10 @@ return {
         return {
             defaults = {
                 -- border = false,
+                prompt_prefix = "   ",
+                selection_caret = "  ",
+                entry_prefix = "  ",
+
                 initial_mode = "insert",
                 selection_strategy = "reset",
                 sorting_strategy = "ascending",
