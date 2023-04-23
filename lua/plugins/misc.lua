@@ -19,6 +19,18 @@ return {
     },
 
     { "windwp/nvim-autopairs", opts = {} },
+    {
+      "windwp/nvim-ts-autotag",
+      dependencies = "nvim-treesitter/nvim-treesitter",
+      config = function ()
+        require('nvim-ts-autotag').setup({
+          -- your config
+        })
+      end,
+      lazy = true,
+      event = "VeryLazy"
+    },
+    { "mg979/vim-visual-multi" },
     -- {
     --   'j-hui/fidget.nvim',
     --   opts = {

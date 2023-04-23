@@ -21,4 +21,24 @@ vim.opt.rtp:prepend(lazypath)
 --    as they will be available in your neovim runtime.
 require('lazy').setup('plugins', {
   -- defaults = { lazy = true },
+  install = { colorscheme = { "catppuccin" } },
+  performance = {
+    cache = {
+      enabled = true,
+      -- disable_events = {},
+    },
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        "matchit",
+        "matchparen",
+        "netrwPlugin",
+        "rplugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
+  },
 })

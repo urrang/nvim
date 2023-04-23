@@ -5,20 +5,6 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 M.capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-M.mason_packages = {
-    "css-lsp",
-    -- "eslint-lsp",
-    "html-lsp",
-    "json-lsp",
-    "lua-language-server",
-    "markdownlint",
-    -- "prettier",
-    -- "tailwindcss-language-server",
-    "typescript-language-server",
-    -- "gopls",
-    -- "editorconfig-checker"
-}
-
 M.servers = {
     -- gopls = {},
     -- rust_analyzer = {},
@@ -54,6 +40,8 @@ M.servers = {
     cssls = {},
     html = {},
     svelte = {},
+    angularls = {},
+    emmet_ls = {},
     -- tailwindcss = {}
     -- eslint = {}
 
