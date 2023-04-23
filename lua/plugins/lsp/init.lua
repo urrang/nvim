@@ -20,7 +20,6 @@ return {
         'neovim/nvim-lspconfig',
         -- event = "BufReadPre",
         dependencies = {
-            -- "hrsh7th/cmp-nvim-lsp",
             { 'williamboman/mason.nvim', config = true },
             'williamboman/mason-lspconfig.nvim',
             {
