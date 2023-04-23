@@ -49,7 +49,8 @@ map("i", "jj", "<ESC>", opts)
 -- See `:help telescope.builtin`
 map('n', '<leader><space>', '<cmd>Telescope buffers<cr>', { desc = "Open buffers"})
 map('n', '<leader>?', '<cmd>Telescope oldfiles<cr>', { desc = "Recent files"})
-map('n', '<leader>ff', '<cmd>Telescope find_files<cr>', { desc = "Find files"})
+-- map('n', '<leader>ff', '<cmd>Telescope find_files<cr>', { desc = "Find files"})
+map('n', '<leader>ff', '<cmd>lua require("telescope").extensions.smart_open.smart_open()<CR>', { desc = "Find files"})
 
 map('n', '<leader>fw', '<cmd>Telescope grep_string<cr>', { desc = 'Find word' })
 map('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', { desc = 'Find by Grep' })

@@ -25,7 +25,8 @@ return {
                 'rust',
                 'lua',
                 'vimdoc',
-                'vim'
+                'vim',
+                'svelte',
             },
 
             autotag = {
