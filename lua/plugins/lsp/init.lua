@@ -22,14 +22,14 @@ return {
         dependencies = {
             { 'williamboman/mason.nvim', config = true },
             'williamboman/mason-lspconfig.nvim',
-            {
-                'j-hui/fidget.nvim',
-                opts = {
-                    window = {
-                        blend = 0
-                    }
-                }
-            },
+            -- {
+            --     'j-hui/fidget.nvim',
+            --     opts = {
+            --         window = {
+            --             blend = 0
+            --         }
+            --     }
+            -- },
         },
         config = function()
             local cfg = require("plugins.lsp.lsp-config")

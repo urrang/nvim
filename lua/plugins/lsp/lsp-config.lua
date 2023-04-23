@@ -22,10 +22,38 @@ M.mason_packages = {
 M.servers = {
     -- gopls = {},
     -- rust_analyzer = {},
-    tsserver = {},
+
+    -- typescript-language-server ?
+    tsserver = {
+        settings = {
+            typescript = {
+                inlayHints = {
+                    includeInlayParameterNameHints = "literal",
+                    includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                    includeInlayFunctionParameterTypeHints = false,
+                    includeInlayVariableTypeHints = false,
+                    includeInlayPropertyDeclarationTypeHints = false,
+                    includeInlayFunctionLikeReturnTypeHints = true,
+                    includeInlayEnumMemberValueHints = true,
+                },
+            },
+            javascript = {
+                inlayHints = {
+                    includeInlayParameterNameHints = "all",
+                    includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                    includeInlayFunctionParameterTypeHints = true,
+                    includeInlayVariableTypeHints = true,
+                    includeInlayPropertyDeclarationTypeHints = true,
+                    includeInlayFunctionLikeReturnTypeHints = true,
+                    includeInlayEnumMemberValueHints = true,
+                },
+            }
+        },
+    },
     jsonls = {},
     cssls = {},
     html = {},
+    svelte = {},
     -- tailwindcss = {}
     -- eslint = {}
 
@@ -49,21 +77,21 @@ M.servers = {
 -- }
 
 M.setup = function()
-    vim.diagnostic.config({
-		virtual_text = false,
-		float = {
-			focusable = false,
-			style = "minimal",
-			border = "rounded",
-			source = "always",
-			header = "",
-			prefix = "",
-		},
-		signs = true,
-		underline = true,
-		update_in_insert = true,
-		severity_sort = false,
-	})
+    -- vim.diagnostic.config({
+	-- 	virtual_text = false,
+	-- 	float = {
+	-- 		focusable = false,
+	-- 		style = "minimal",
+	-- 		border = "rounded",
+	-- 		source = "always",
+	-- 		header = "",
+	-- 		prefix = "",
+	-- 	},
+	-- 	signs = true,
+	-- 	underline = true,
+	-- 	update_in_insert = true,
+	-- 	severity_sort = false,
+	-- })
 
     -- show diagnostics in hover window
 	vim.api.nvim_create_autocmd("CursorHold", {
@@ -71,9 +99,9 @@ M.setup = function()
 			local opts = {
 				focusable = false,
 				close_events = { "BufLeave", "CursorMoved", "InsertEnter" },
-				border = "rounded",
-				source = "always",
-				prefix = " ",
+				-- border = "rounded",
+				-- source = "always",
+				-- prefix = " ",
 				scope = "cursor",
 			}
 			vim.diagnostic.open_float(nil, opts)

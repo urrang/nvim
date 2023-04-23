@@ -18,6 +18,16 @@ return {
       config = true,
     },
 
+    { "windwp/nvim-autopairs", opts = {} },
+    -- {
+    --   'j-hui/fidget.nvim',
+    --   opts = {
+    --     window = {
+    --       blend = 0
+    --     }
+    --   }
+    -- },
+
     {
       'petertriho/nvim-scrollbar',
       opts = {
