@@ -31,10 +31,12 @@ return {
     'hrsh7th/nvim-cmp',
     dependencies = {
         'hrsh7th/cmp-nvim-lsp',
+        'hrsh7th/cmp-path',
         'L3MON4D3/LuaSnip',
         'saadparwaiz1/cmp_luasnip',
         'windwp/nvim-autopairs',
     },
+    event = 'InsertEnter',
     opts = function()
         local cmp = require 'cmp'
         local luasnip = require 'luasnip'
@@ -72,6 +74,18 @@ return {
                     luasnip.lsp_expand(args.body)
                 end,
             },
+            duplicates = {
+                nvim_lsp = 1,
+                luasnip = 1,
+                cmp_tabnine = 1,
+                buffer = 1,
+                path = 1,
+            },
+            -- What does this do? Found in AstroNvim config
+            -- confirm_opts = {
+            --     behavior = cmp.ConfirmBehavior.Replace,
+            --     select = false,
+            -- },
             window = {
                 -- completion = cmp.config.window.bordered(),
                 completion = {
