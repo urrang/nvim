@@ -87,6 +87,10 @@ return {
                 },
             },
             mapping = cmp.mapping.preset.insert {
+                ["<C-k>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+                ["<C-j>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
+                ["<Esc>"] = cmp.mapping.close(),
+
                 ['<C-d>'] = cmp.mapping.scroll_docs(-4),
                 ['<C-f>'] = cmp.mapping.scroll_docs(4),
                 ['<C-Space>'] = cmp.mapping.complete {},
@@ -113,9 +117,11 @@ return {
                     end
                 end, { 'i', 's' }),
             },
-            sources = {
-                { name = 'nvim_lsp' },
-                { name = 'luasnip' },
+            sources = cmp.config.sources {
+                { name = "nvim_lsp", priority = 1000 },
+                { name = "luasnip", priority = 750 },
+                { name = "buffer", priority = 500 },
+                { name = "path", priority = 250 },
             },
         }
     end
