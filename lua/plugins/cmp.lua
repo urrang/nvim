@@ -49,6 +49,14 @@ return {
         )
 
         cmp.setup {
+            -- matching.disallow_fuzzy_matching
+            -- matching.disallow_prefix_unmatching
+
+            -- window.completion.side_padding
+            -- window.completion.scrollbar
+
+
+
             completion = {
                 completeopt = 'menu,menuone,noinsert'
             },
@@ -63,6 +71,20 @@ return {
                 expand = function(args)
                     luasnip.lsp_expand(args.body)
                 end,
+            },
+            window = {
+                -- completion = cmp.config.window.bordered(),
+                completion = {
+                    scrollbar = false,
+                    border = 'rounded',
+                    winhighlight = 'Normal:Normal,FloatBorder:CmpBorder,CursorLine:CmpSelectedItem,Search:None',
+                    -- side_padding = 0
+                },
+                documentation = {
+                    scrollbar = false,
+                    border = 'rounded',
+                    winhighlight = 'Normal:Normal,FloatBorder:CmpBorder,CursorLine:CmpSelectedItem,Search:None',
+                },
             },
             mapping = cmp.mapping.preset.insert {
                 ['<C-d>'] = cmp.mapping.scroll_docs(-4),

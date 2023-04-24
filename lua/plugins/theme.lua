@@ -56,12 +56,16 @@ return {
 
                     -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
                 },
-                -- custom_highlights = function(colors)
-                --     return {
-                --         CmpItemAbbrMatch = { fg = colors.peach, style = { "bold" } },
-                --         CmpItemAbbrMatchFuzzy = { fg = colors.peach, style = { "bold" } },
-                --     }
-                -- end
+                custom_highlights = function(colors)
+                    return {
+                        CmpBorder = { fg = colors.surface2 },
+
+                        -- CmpItemMenu = { bg = colors.pink },
+                        CmpSelectedItem = { fg = colors.crust, bg = colors.blue },
+                        CmpItemAbbrMatch = { fg = colors.blue, style = { "bold" } },
+		                CmpItemAbbrMatchFuzzy = { fg = colors.blue, style = { "bold" } },
+                    }
+                end
             })
 
             -- local colors = require("catppuccin.palettes").get_palette()
