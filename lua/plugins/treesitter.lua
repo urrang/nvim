@@ -20,6 +20,7 @@ return {
                 'html',
                 'json',
                 'markdown',
+                'markdown_inline',
                 'go',
                 'python',
                 'rust',
@@ -27,6 +28,7 @@ return {
                 'vimdoc',
                 'vim',
                 'svelte',
+
             },
 
             autotag = {

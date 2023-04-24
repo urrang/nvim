@@ -5,24 +5,29 @@ return {
 		event = 'VeryLazy',
         dependencies = {
             { 'catppuccin/nvim' },
+            {'nvim-tree/nvim-web-devicons'},
+            {'nvim-treesitter/nvim-treesitter'}
         },
-        config = function()
-            require("lspsaga").setup({
-				symbol_in_winbar = {
-					enable = false,
-				},
-                ui = {
-                    kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
-                },
-			})
-        end
+        config = true,
+        -- config = function()
+        --     require('lspsaga').setup({
+		-- 		symbol_in_winbar = {
+		-- 			enable = false,
+		-- 		},
+        --         ui = {
+        --             kind = require('catppuccin.groups.integrations.lsp_saga').custom_kind(),
+        --         },
+		-- 	})
+        -- end
     },
+    { 'williamboman/mason.nvim', config = true },
     {
         'neovim/nvim-lspconfig',
         -- event = "BufReadPre",
         dependencies = {
-            { 'williamboman/mason.nvim', config = true },
+            -- { 'williamboman/mason.nvim', config = true },
             'williamboman/mason-lspconfig.nvim',
+            'glepnir/lspsaga.nvim',
             -- {
             --     'j-hui/fidget.nvim',
             --     opts = {
