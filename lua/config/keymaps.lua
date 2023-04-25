@@ -17,18 +17,6 @@ map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 
--- Move to window using the <ctrl> hjkl keys
-map("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
-map("n", "<C-j>", "<C-w>j", { desc = "Go to lower window" })
-map("n", "<C-k>", "<C-w>k", { desc = "Go to upper window" })
-map("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
-
--- Resize window using <ctrl> arrow keys
-map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
-map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
-map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
-map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
-
 -- Move Lines
 map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move down" })
 map("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "Move up" })
@@ -70,5 +58,38 @@ map('n', ']d', vim.diagnostic.goto_next, { desc = "Go to next diagnostic message
 map('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
 map('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
+-- Tab moves indent
 vim.keymap.set("v", "<Tab>", ">gv", { silent = true })
 vim.keymap.set("v", "<S-Tab>", "<gv", { silent = true })
+vim.keymap.set("i", "<S-Tab>", "<C-d>", { silent = true })
+
+-- Window/buffer stuff
+
+map('n', '<leader>ws', '<cmd>vsplit<CR>', { desc = 'Split window' })
+map('n', '<leader>w1', '<C-w>h', { desc = 'Focus left window' })
+map('n', '<leader>w2', '<C-w>l', { desc = 'Focus right window' })
+map('n', '<leader>ww', '<C-w>w', { desc = 'Cycle between windows' })
+
+-- map('n', '<leader>wbn', '<cmd>bnext<CR>', { desc = 'Next buffer' })
+-- map('n', '<leader>wbp', '<cmd>bprevious<CR>', { desc = 'Previous buffer' })
+
+-- Move to window using the <ctrl> hjkl keys
+map("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
+map("n", "<C-j>", "<C-w>j", { desc = "Go to lower window" })
+map("n", "<C-k>", "<C-w>k", { desc = "Go to upper window" })
+map("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
+
+
+-- TODO: resizing
+
+-- Resize window using <ctrl> arrow keys
+-- map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
+-- map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
+-- map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
+-- map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
+
+
+-- map("n", "<leader>wk", "<cmd>resize +10<cr>", { desc = "Increase window height" })
+-- map("n", "<leader>wj", "<cmd>resize -10<cr>", { desc = "Decrease window height" })
+-- map("n", "<leader>wh", "<cmd>vertical resize -10<cr>", { desc = "Decrease window width" })
+-- map("n", "<leader>wl", "<cmd>vertical resize +10<cr>", { desc = "Increase window width" })
