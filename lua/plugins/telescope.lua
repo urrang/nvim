@@ -5,7 +5,9 @@ return {
         build = "make"
     }},
     opts = function()
+        local actions = require "telescope.actions"
         local colors = require("catppuccin.palettes").get_palette()
+
         local TelescopeColor = {
             TelescopeMatching = { fg = nil },
             TelescopeSelection = { fg = colors.flamingo, bg = colors.crust, bold = true },
@@ -57,6 +59,26 @@ return {
                     -- height = 0.80,
                     -- preview_cutoff = 120
                 },
+                preview = {
+                    hide_on_startup = true -- hide previewer when picker starts
+                },
+                mappings = {
+                    i = {
+                        ['<C-p>'] = require('telescope.actions.layout').toggle_preview,
+                        ["<C-j>"] = actions.move_selection_next,
+                        ["<C-k>"] = actions.move_selection_previous,
+                    },
+                    n = {
+                        ['<C-p>'] = require('telescope.actions.layout').toggle_preview,
+                        ["<C-j>"] = actions.move_selection_next,
+                        ["<C-k>"] = actions.move_selection_previous,
+                    }
+                }
+            },
+            pickers = {
+                buffers = {
+                    initial_mode = 'normal'
+                }
             }
         }
     end
