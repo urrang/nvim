@@ -1,11 +1,4 @@
 return {
-    -- {
-    --     'navarasu/onedark.nvim',
-    --     priority = 1000,
-    --     config = function()
-    --         vim.cmd.colorscheme 'onedark'
-    --     end,
-    -- },
     {
         'Mofiqul/vscode.nvim',
         config = function()
@@ -58,6 +51,17 @@ return {
                 },
                 custom_highlights = function(colors)
                     return {
+                        -- ['@variable.builtin'] = { fg = colors.mauve },
+                        -- ['@method'] = { fg = colors.flamingo },
+                        -- ['@method.call'] = { fg = colors.flamingo },
+                        -- ['@function.call'] = { fg = colors.flamingo },
+                        -- ['@property'] = { fg = colors.text },
+
+                        -- ['@variable.builtin'] = { fg = colors.blue },
+                        -- ['@method'] = { fg = colors.yellow },
+                        -- ['@method.call'] = { fg = colors.yellow },
+                        -- ['@function.call'] = { fg = colors.yellow },
+
                         CmpBorder = { fg = colors.surface2 },
 
                         -- CmpItemMenu = { bg = colors.pink },
@@ -119,4 +123,7 @@ return {
             -- vim.cmd.colorscheme 'nordic'
         end
     },
+    { 'rmehri01/onenord.nvim' },
+    { 'delafthi/nord-nvim '},
+
 }

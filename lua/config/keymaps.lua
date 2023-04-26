@@ -8,6 +8,14 @@ map('n', '<A-l>', '$')
 
 map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
+map("n", "<leader>tv",
+    function()
+        local result = vim.treesitter.get_captures_at_cursor(0)
+        print(vim.inspect(result))
+    end,
+    { noremap = true, silent = false }
+)
+
 -- Center when moving half a page down/up
 map('n', "<C-d>", "<C-d>zz")
 map('n', "<C-u>", "<C-u>zz")
