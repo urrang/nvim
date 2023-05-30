@@ -123,7 +123,24 @@ return {
             -- vim.cmd.colorscheme 'nordic'
         end
     },
-    { 'rmehri01/onenord.nvim' },
-    { 'delafthi/nord-nvim '},
-
+    {
+        'eddyekofo94/gruvbox-flat.nvim',
+        priority = 1000,
+        enabled = true,
+        config = function()
+            vim.cmd([[colorscheme gruvbox-flat]])
+        end,
+    },
+    {
+        'morhetz/gruvbox'
+    },
+    {
+        'sainnhe/everforest'
+    },
+    {
+        'sainnhe/gruvbox-material'
+    },
+    {
+        'sainnhe/sonokai'
+    }
 }
