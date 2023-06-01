@@ -85,6 +85,15 @@ return {
             icons_enabled = false,
             theme = 'catppuccin',
             -- component_separators = '',
+
+            -- https://twitter.com/Adib_Hanna/status/1663056846955991040/photo/1
+            -- custom_areas = {
+            --     left = function ()
+            --         return {
+            --             { text = "  ", = "#ffffff" }
+            --         }
+            --     end
+            -- },
             component_separators = "",
             section_separators = "",
             disabled_filetypes = {"alpha", "dashboard"},
