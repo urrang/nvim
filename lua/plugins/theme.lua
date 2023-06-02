@@ -51,7 +51,17 @@ return {
                 },
                 custom_highlights = function(colors)
                     return {
-                        -- ['@variable.builtin'] = { fg = colors.mauve },
+                        ['@variable.builtin'] = { fg = colors.mauve },
+                        ['@type.qualifier'] = { fg = colors.mauve },
+                        ['@parameter'] = { fg = colors.text },
+
+                        ['cssDefinition'] = { fg = colors.text },
+                        ['cssCustomProp'] = { fg = colors.text },
+                        ['cssValueLength'] = { fg = colors.green },
+                        -- ['cssAttrRegion'] = { fg = colors.text },
+                        -- ['cssUnitDecorators'] = { fg = colors.yellow },
+                        -- ['cssColor'] = { fg = colors.red },
+
                         -- ['@method'] = { fg = colors.flamingo },
                         -- ['@method.call'] = { fg = colors.flamingo },
                         -- ['@function.call'] = { fg = colors.flamingo },
@@ -69,7 +79,12 @@ return {
                         CmpItemAbbrMatch = { fg = colors.blue, style = { "bold" } },
 		                CmpItemAbbrMatchFuzzy = { fg = colors.blue, style = { "bold" } },
                     }
-                end
+                end,
+                -- color_overrides = {
+                --     all = {
+                --         base = "#1E1E1E"
+                --     }
+                -- }
             })
 
             -- local colors = require("catppuccin.palettes").get_palette()
@@ -80,28 +95,7 @@ return {
             vim.cmd.colorscheme 'catppuccin'
         end
     },
-    {
-        'folke/tokyonight.nvim',
-        config = function()
-            require("tokyonight").setup({
-                style = "storm",
-                terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
-                styles = {
-                    -- Style to be applied to different syntax groups
-                    -- Value is any valid attr-list value for `:help nvim_set_hl`
-                    comments = { italic = true },
-                    keywords = { italic = true },
-                    functions = {},
-                    variables = {},
-                    -- Background styles. Can be "dark", "transparent" or "normal"
-                    sidebars = "dark", -- style for sidebars, see below
-                    floats = "dark", -- style for floating windows
-                },
-            })
-
-            -- vim.cmd.colorscheme 'tokyonight'
-        end
-    },
+    {'ribru17/bamboo.nvim'},
     {
         -- https://github.com/AlexvZyl/nordic.nvim
         'AlexvZyl/nordic.nvim',
@@ -124,14 +118,6 @@ return {
         end
     },
     {
-        'eddyekofo94/gruvbox-flat.nvim',
-        priority = 1000,
-        enabled = true,
-        config = function()
-            vim.cmd([[colorscheme gruvbox-flat]])
-        end,
-    },
-    {
         'morhetz/gruvbox'
     },
     {
@@ -152,6 +138,14 @@ return {
                 disable_italics = true,
                 -- disable_background = true,
             })
+        end
+    },
+    {'lunarvim/darkplus.nvim'},
+    {
+        'shaunsingh/nord.nvim',
+        config = function()
+            vim.g.nord_italic = false
+            vim.g.nord_bold = false
         end
     }
 }

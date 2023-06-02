@@ -5,6 +5,7 @@ return {
         event = { "BufReadPost", "BufNewFile" },
         dependencies = {
             'nvim-treesitter/nvim-treesitter-textobjects',
+            'nvim-treesitter/playground'
         },
         opts = {
             highlight = { enable = true },

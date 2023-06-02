@@ -1,9 +1,31 @@
+local leader_map = function(key, cmd, label)
+    return { '<leader>' .. key, '<cmd>' .. cmd .. '<cr>', desc = label }
+end
+
 return {
     "nvim-telescope/telescope.nvim",
     dependencies = {{
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make"
     }},
+    keys = {
+        leader_map('<space>', 'Telescope buffers', 'Find buffer'),
+        leader_map('?', 'Telescope oldfiles', 'Find recent files'),
+        leader_map('ff', 'lua require("telescope").extensions.smart_open.smart_open()', 'Find files'),
+        leader_map('fg', 'Telescope live_grep', 'Find by Grep'),
+        -- leader_map('fd', )
+        {
+            '<leader>/',
+            function()
+                require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+                    winblend = 5,
+                    previewer = false,
+                })
+            end,
+            desc = 'Find in current buffer'
+        }
+        -- { '<leader>fs', '<cmd>Telescope lsp_document_symbols ignore_symbols=variable,enum,constant,class,property<cr>', desc = "Find symbols" }
+    },
     opts = function()
         local actions = require "telescope.actions"
         local colors = require("catppuccin.palettes").get_palette()

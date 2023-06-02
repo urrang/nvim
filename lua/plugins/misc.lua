@@ -1,24 +1,16 @@
--- You can add your own plugins here or in other files in this directory!
---  I promise not to create any merge conflicts in this directory :)
---
--- See the kickstart.nvim README for more information
 return {
-    -- Git related plugins
-    'tpope/vim-fugitive',
-    'tpope/vim-rhubarb',
-
     -- Detect tabstop and shiftwidth automatically
-    'tpope/vim-sleuth',
+    -- 'tpope/vim-sleuth',
 
     { 'folke/which-key.nvim', opts = {} },
 
-    {
-      "simrat39/symbols-outline.nvim",
-      keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
-      opts ={
-        autofold_depth = 1,
-      },
-    },
+    -- {
+    --   "simrat39/symbols-outline.nvim",
+    --   keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
+    --   opts ={
+    --     autofold_depth = 1,
+    --   },
+    -- },
 
     { "windwp/nvim-autopairs", opts = {} },
     {
@@ -27,11 +19,18 @@ return {
       config = function ()
         require('nvim-ts-autotag').setup({
           filetypes = {
-            'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx', 'rescript',
+            'html',
+            'javascript',
+            'typescript',
+            'javascriptreact',
+            'typescriptreact',
+            'svelte',
+            'vue',
+            'tsx',
+            'jsx',
+            'rescript',
             'xml',
-            'php',
             'markdown',
-            'astro', 'glimmer', 'handlebars', 'hbs'
           },
           skip_tags = {
             'area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'slot',
@@ -43,14 +42,6 @@ return {
       event = "VeryLazy"
     },
     { "mg979/vim-visual-multi" },
-    -- {
-    --   'j-hui/fidget.nvim',
-    --   opts = {
-    --     window = {
-    --       blend = 0
-    --     }
-    --   }
-    -- },
 
     {
       'petertriho/nvim-scrollbar',
@@ -71,14 +62,22 @@ return {
       'numToStr/Comment.nvim',
       event = "VeryLazy",
       opts = {
-        -- toggler = {
-        --   line = '<leader>kc',
-        --   block = '<leader>kb',
-        -- },
+        toggler = {
+          line = '<leader>kc',
+        },
       }
     },
 
-    { 'lukas-reineke/indent-blankline.nvim', opts = {} },
+    {
+      'lukas-reineke/indent-blankline.nvim',
+      opts = {
+        char = '▏',
+        show_trailing_blankline_indent = false,
+        show_first_indent_level = false,
+        use_treesitter = true,
+        show_current_context = false,
+      }
+    },
     {
       'smolck/command-completion.nvim',
       event = "VeryLazy",
