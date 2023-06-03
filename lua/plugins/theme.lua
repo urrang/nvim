@@ -45,15 +45,18 @@ return {
                     hop = true,
                     -- lualine = true,
                     which_key = true,
-                    -- harboon = true,
+                    -- harpoon = true,
 
                     -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
                 },
+                -- transparent_background = true,
                 custom_highlights = function(colors)
                     return {
                         ['@variable.builtin'] = { fg = colors.mauve },
                         ['@type.qualifier'] = { fg = colors.mauve },
-                        ['@parameter'] = { fg = colors.text },
+                        -- ['@parameter'] = { fg = colors.yellow },
+                        ['@property'] = { fg = colors.text },
+                        -- ['@type'] = { fg = "#BFE7E0" },
 
                         ['cssDefinition'] = { fg = colors.text },
                         ['cssCustomProp'] = { fg = colors.text },
@@ -95,7 +98,6 @@ return {
             vim.cmd.colorscheme 'catppuccin'
         end
     },
-    {'ribru17/bamboo.nvim'},
     {
         -- https://github.com/AlexvZyl/nordic.nvim
         'AlexvZyl/nordic.nvim',
@@ -103,6 +105,7 @@ return {
         priority = 1000,
         config = function()
             require 'nordic'.setup({
+                transparent_bg = true,
                 italic_comments = false,
                 bold_keywords = false,
                 override = {
@@ -118,34 +121,33 @@ return {
         end
     },
     {
-        'morhetz/gruvbox'
-    },
-    {
-        'sainnhe/everforest'
-    },
-    {
-        'sainnhe/gruvbox-material'
-    },
-    {
-        'sainnhe/sonokai'
-    },
-    {
         'rose-pine/neovim',
         name = 'rose-pine',
         config = function()
             require('rose-pine').setup({
-                variant = 'moon',
+                -- variant = 'moon',
                 disable_italics = true,
-                -- disable_background = true,
+                disable_background = true,
             })
         end
     },
-    {'lunarvim/darkplus.nvim'},
     {
-        'shaunsingh/nord.nvim',
-        config = function()
-            vim.g.nord_italic = false
-            vim.g.nord_bold = false
-        end
-    }
+        "folke/tokyonight.nvim",
+        opts = {
+            style = "storm", --  `moon`, a darker variant `night`,
+            transparent = true,
+            styles = {
+                -- Style to be applied to different syntax groups
+                -- Value is any valid attr-list value for `:help nvim_set_hl`
+                comments = { italic = false },
+                keywords = { italic = false },
+                functions = {},
+                variables = {},
+                -- Background styles. Can be "dark", "transparent" or "normal"
+                sidebars = "dark", -- style for sidebars, see below
+                floats = "dark", -- style for floating windows
+            },
+        }
+    },
+
 }
