@@ -104,8 +104,7 @@ M.on_attach = function(_, bufnr)
 
     -- Good
     nmap('<leader>rn', vim.lsp.buf.rename, 'Rename')
-    nmap('<leader>ca', '<cmd>Lspsaga code_action<CR>', 'Code Action')
-    nmap('<leader>bd', '<cmd>Lspsaga show_buf_diagnostics<CR>', 'Buffer diagnostics')
+    -- nmap('<leader>ca', '<cmd>Lspsaga code_action<CR>', 'Code Action')
 
     -- Use Lspsaga?
     nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
@@ -113,15 +112,10 @@ M.on_attach = function(_, bufnr)
     nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
     nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
 
-    -- Replace Symbols outline plugin?
-    -- nmap('<leader>o', '<cmd>Lspsaga outline<CR>', 'Show symbols')
-
 
     -- Idk
 
-    -- nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-    nmap('<leader>sl', '<cmd>Lspsaga show_line_diagnostics<CR>', 'Line diagnostics')
-    nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
+    nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
     -- nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 

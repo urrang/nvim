@@ -13,6 +13,7 @@ return {
         leader_map('?', 'Telescope oldfiles', 'Find recent files'),
         leader_map('ff', 'lua require("telescope").extensions.smart_open.smart_open()', 'Find files'),
         leader_map('fg', 'Telescope live_grep', 'Find by Grep'),
+        -- leader_map('fr', require('telescope.builtin').lsp_references(), 'Find references'),
         -- leader_map('fd', )
         {
             '<leader>/',
