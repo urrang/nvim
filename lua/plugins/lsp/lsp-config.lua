@@ -11,30 +11,30 @@ M.servers = {
 
     -- typescript-language-server ?
     tsserver = {
-        settings = {
-            typescript = {
-                inlayHints = {
-                    includeInlayParameterNameHints = "literal",
-                    includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                    includeInlayFunctionParameterTypeHints = false,
-                    includeInlayVariableTypeHints = false,
-                    includeInlayPropertyDeclarationTypeHints = false,
-                    includeInlayFunctionLikeReturnTypeHints = true,
-                    includeInlayEnumMemberValueHints = true,
-                },
-            },
-            javascript = {
-                inlayHints = {
-                    includeInlayParameterNameHints = "all",
-                    includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                    includeInlayFunctionParameterTypeHints = true,
-                    includeInlayVariableTypeHints = true,
-                    includeInlayPropertyDeclarationTypeHints = true,
-                    includeInlayFunctionLikeReturnTypeHints = true,
-                    includeInlayEnumMemberValueHints = true,
-                },
-            }
-        },
+        -- settings = {
+        --     typescript = {
+        --         inlayHints = {
+        --             includeInlayParameterNameHints = "literal",
+        --             includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+        --             includeInlayFunctionParameterTypeHints = false,
+        --             includeInlayVariableTypeHints = false,
+        --             includeInlayPropertyDeclarationTypeHints = false,
+        --             includeInlayFunctionLikeReturnTypeHints = true,
+        --             includeInlayEnumMemberValueHints = true,
+        --         },
+        --     },
+        --     javascript = {
+        --         inlayHints = {
+        --             includeInlayParameterNameHints = "all",
+        --             includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+        --             includeInlayFunctionParameterTypeHints = true,
+        --             includeInlayVariableTypeHints = true,
+        --             includeInlayPropertyDeclarationTypeHints = true,
+        --             includeInlayFunctionLikeReturnTypeHints = true,
+        --             includeInlayEnumMemberValueHints = true,
+        --         },
+        --     }
+        -- },
     },
     jsonls = {},
     cssls = {},
@@ -42,8 +42,6 @@ M.servers = {
     svelte = {},
     angularls = {},
     emmet_ls = {},
-    -- tailwindcss = {}
-    -- eslint = {}
 
     lua_ls = {
         Lua = {
@@ -52,17 +50,6 @@ M.servers = {
         },
     },
 }
-
--- M.lsp_servers = {
---     "tsserver",
---     "lua_ls",
---     -- "eslint",
---     "jsonls",
---     "cssls",
---     "html",
---     -- "tailwindcss",
---     -- "gopls",
--- }
 
 M.setup = function()
     -- vim.diagnostic.config({

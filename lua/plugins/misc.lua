@@ -4,6 +4,21 @@ return {
 
     { 'folke/which-key.nvim', opts = {} },
 
+    {
+      'AckslD/nvim-neoclip.lua',
+      requires = {
+        -- you'll need at least one of these
+        {'nvim-telescope/telescope.nvim'},
+        -- {'ibhagwan/fzf-lua'},
+      },
+      config = function()
+        require('neoclip').setup({
+          default_register = '+';
+        })
+        require('telescope').load_extension('neoclip')
+      end,
+    },
+
     -- {
     --   "simrat39/symbols-outline.nvim",
     --   keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },

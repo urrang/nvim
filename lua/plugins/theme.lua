@@ -2,9 +2,17 @@ return {
     {
         'Mofiqul/vscode.nvim',
         config = function()
+            local c = require('vscode.colors').get_colors()
+
             require('vscode').setup({
                 transparent = false,
                 disable_nvimtree_bg = true,
+                group_overrides = {
+                    ['@variable.builtin'] = { fg = c.vscBlue },
+                    ['@keyword'] = { fg = c.vscBlue },
+                    ['@conditional.ternary'] = { fg = c.vscFront },
+                    ['@parameter'] = { fg = '#6FBFF9' }, -- c.vscMediumBlue },
+                }
             })
             -- vim.cmd.colorscheme 'vscode'
         end
@@ -105,14 +113,17 @@ return {
         priority = 1000,
         config = function()
             require 'nordic'.setup({
-                transparent_bg = true,
+                transparent_bg = false,
                 italic_comments = false,
                 bold_keywords = false,
                 override = {
                     ['@variable.builtin'] = { italic = false },
                     ['@namespace'] = { italic = false },
                     ['@text.emphasis'] = { italic = false },
-                    ['@parameter'] = { italic = false }
+                    -- ['@parameter'] = { italic = false },
+
+                    ['@property'] = { fg = '#BBC3D4' },
+                    ['@parameter'] = { fg = '#8FBCBB', italic = false },
                 }
                 -- theme = 'onedark'
             })
@@ -147,7 +158,32 @@ return {
                 sidebars = "dark", -- style for sidebars, see below
                 floats = "dark", -- style for floating windows
             },
+            on_highlights = function(hl, c)
+                hl['@property'] = { fg = '#C0CAF5' }
+            end
         }
     },
 
+    {
+        'gbprod/nord.nvim',
+        config = function()
+            require("nord").setup({
+                transparent = true, -- Enable this to disable setting the background color
+                terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
+                diff = { mode = "bg" }, -- enables/disables colorful backgrounds when used in diff mode. values : [bg|fg]
+                borders = true, -- Enable the border between verticaly split windows visible
+                errors = { mode = "bg" }, -- Display mode for errors and diagnostics
+
+                on_highlights = function(hl, colors)
+                    hl['@keyword'] = { fg = '#B48EAD' }
+                    hl['@number'] = { fg = '#D08770' }
+                    hl['@parameter'] = { fg = '#EBCB8B' }
+
+
+                    hl['@punctuation.bracket'] = { fg = '#949cbb' }
+                    hl['@punctuation.delimiter'] = { fg = '#949cbb' }
+                end,
+            })
+        end
+    },
 }
