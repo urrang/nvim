@@ -7,14 +7,29 @@ return {
     {
       'AckslD/nvim-neoclip.lua',
       requires = {
-        -- you'll need at least one of these
         {'nvim-telescope/telescope.nvim'},
-        -- {'ibhagwan/fzf-lua'},
+      },
+      event = "VeryLazy",
+      keys = {
+        { "<leader>cb", "<cmd>Telescope neoclip<cr>", desc = "Clipboard history" },
       },
       config = function()
         require('neoclip').setup({
-          default_register = '+';
+          default_register = '+',
+          keys = {
+            telescope = {
+              i = {
+                select = '<c-c>',
+                paste_behind = '<cr>',
+              },
+              n = {
+                select = '<c-c>',
+                paste_behind = '<cr>',
+              },
+            },
+          }
         })
+
         require('telescope').load_extension('neoclip')
       end,
     },
@@ -56,7 +71,10 @@ return {
       lazy = true,
       event = "VeryLazy"
     },
-    { "mg979/vim-visual-multi" },
+    {
+      "mg979/vim-visual-multi",
+      event = "VeryLazy",
+    },
 
     {
       'petertriho/nvim-scrollbar',
