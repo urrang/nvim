@@ -68,6 +68,7 @@ map('n', '<leader>w2', '<C-w>l', { desc = 'Focus right window' })
 map('n', '<leader>ww', '<C-w>w', { desc = 'Cycle between windows' })
 
 map('n', '<leader>bc', '<cmd>bd<CR>', { desc = 'Close buffer' })
+map('n', '<leader>bb', '<cmd>bnext<CR>', { desc = 'Cycle buffers' })
 map('n', '<leader>bn', '<cmd>bnext<CR>', { desc = 'Next buffer' })
 map('n', '<leader>bp', '<cmd>bprevious<CR>', { desc = 'Previous buffer' })
 

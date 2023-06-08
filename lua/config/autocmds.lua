@@ -16,3 +16,17 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
     if vim.bo[event.buf].filetype == 'help' then vim.cmd.only() end
   end,
 })
+
+vim.api.nvim_create_autocmd('CursorHold', {
+  callback = function()
+    local opts = {
+      focusable = false,
+      close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter' },
+      -- border = 'rounded',
+      -- source = 'always',
+      -- prefix = ' ',
+      scope = 'cursor',
+    }
+    vim.diagnostic.open_float(nil, opts)
+  end,
+})
