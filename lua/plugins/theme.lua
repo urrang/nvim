@@ -62,9 +62,18 @@ return {
                     return {
                         ['@variable.builtin'] = { fg = colors.mauve },
                         ['@type.qualifier'] = { fg = colors.mauve },
-                        ['@parameter'] = { fg = colors.sapphire },
+                        ['@parameter'] = { fg = colors.sky },
                         ['@property'] = { fg = colors.text },
+                        ['@operator'] = { fg = colors.subtext1 },
+                        ['@punctuation.bracket'] = { fg = colors.subtext1 },
+                        ['@punctuation.delimiter'] = { fg = colors.subtext1 },
                         -- ['@type'] = { fg = "#BFE7E0" },
+
+                        ['@number'] = { fg = colors.maroon },
+                        ['@boolean'] = { fg = colors.maroon },
+
+
+
 
                         ['cssDefinition'] = { fg = colors.text },
                         ['StorageClass'] = { fg = colors.text },
@@ -72,6 +81,11 @@ return {
                         ['cssValueLength'] = { fg = colors.green },
                         ['cssUnitDecorators'] = { fg = colors.green },
                         ['cssColor'] = { fg = colors.green },
+
+                        ['cssValueNumber'] = { fg = colors.maroon },
+                        ['cssAttrRegion'] = { fg = colors.maroon },
+                        ['cssFunction'] = { fg = colors.text },
+                        ['Constant'] = { fg = colors.maroon },
 
                         -- ['Special'] = { fg = colors.green },
                         -- ['Type'] = { fg = colors.green },
@@ -197,4 +211,14 @@ return {
             })
         end
     },
+
+    {
+        'rebelot/kanagawa.nvim',
+        opts = {
+            commentStyle = { italic = false },
+            keywordStyle = { italic = false },
+            statementStyle = { bold = false },
+
+        }
+    }
 }
