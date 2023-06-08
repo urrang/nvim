@@ -62,13 +62,24 @@ return {
                     return {
                         ['@variable.builtin'] = { fg = colors.mauve },
                         ['@type.qualifier'] = { fg = colors.mauve },
-                        -- ['@parameter'] = { fg = colors.yellow },
+                        ['@parameter'] = { fg = colors.sapphire },
                         ['@property'] = { fg = colors.text },
                         -- ['@type'] = { fg = "#BFE7E0" },
 
                         ['cssDefinition'] = { fg = colors.text },
+                        ['StorageClass'] = { fg = colors.text },
                         ['cssCustomProp'] = { fg = colors.text },
                         ['cssValueLength'] = { fg = colors.green },
+                        ['cssUnitDecorators'] = { fg = colors.green },
+                        ['cssColor'] = { fg = colors.green },
+
+                        -- ['Special'] = { fg = colors.green },
+                        -- ['Type'] = { fg = colors.green },
+                        -- ['Identifier'] = { fg = colors.green },
+                        -- ['CmpItemKindVariable'] = { fg = colors.green },
+                        ['@lsp.type.interface'] = { link = 'Type' },
+                        ['@lsp.type.enumMember'] = { fg = colors.text },
+
                         -- ['cssAttrRegion'] = { fg = colors.text },
                         -- ['cssUnitDecorators'] = { fg = colors.yellow },
                         -- ['cssColor'] = { fg = colors.red },
