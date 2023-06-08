@@ -52,6 +52,10 @@ return {
             symbol_in_winbar = {
                 enable = false
             },
+            ui = {
+                title = false,
+                border = 'none',
+            }
         }
     },
 

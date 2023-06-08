@@ -4,17 +4,26 @@ end
 
 return {
     "nvim-telescope/telescope.nvim",
-    dependencies = {{
-        "nvim-telescope/telescope-fzf-native.nvim",
-        build = "make"
-    }},
+    dependencies = {
+        {
+            "nvim-telescope/telescope-fzf-native.nvim",
+            build = "make"
+        },
+        {
+            'danielfalk/smart-open.nvim',
+            dependencies = { 'kkharji/sqlite.lua' }
+        },
+        { 'stevearc/aerial.nvim' },
+    },
     keys = {
         leader_map('<space>', 'Telescope buffers', 'Find buffer'),
         leader_map('?', 'Telescope oldfiles', 'Find recent files'),
         leader_map('ff', 'lua require("telescope").extensions.smart_open.smart_open({cwd_only = true})', 'Find files'),
         leader_map('fg', 'Telescope live_grep', 'Find by Grep'),
+        -- leader_map('fs', 'Telescope lsp_document_symbols', 'Find symbols'),
+        leader_map('fs', 'Telescope aerial', 'Find symbols'),
         -- leader_map('fr', require('telescope.builtin').lsp_references(), 'Find references'),
-        -- leader_map('fd', )
+
         {
             '<leader>/',
             function()
@@ -28,6 +37,12 @@ return {
         -- { '<leader>fs', '<cmd>Telescope lsp_document_symbols ignore_symbols=variable,enum,constant,class,property<cr>', desc = "Find symbols" }
     },
     opts = function()
+        local telescope = require('telescope')
+        require('aerial').setup({})
+
+        telescope.load_extension('aerial')
+        telescope.load_extension('smart_open')
+
         local actions = require "telescope.actions"
         local colors = require("catppuccin.palettes").get_palette()
 
@@ -105,57 +120,4 @@ return {
             }
         }
     end
-    -- opts = function()
-    --     local options = {
-    --         defaults = {
-    --             vimgrep_arguments = {"rg", "-L", "--color=never", "--no-heading", "--with-filename", "--line-number",
-    --                                  "--column", "--smart-case"},
-    --             prompt_prefix = "   ",
-    --             selection_caret = "  ",
-    --             entry_prefix = "  ",
-    --             initial_mode = "insert",
-    --             selection_strategy = "reset",
-    --             sorting_strategy = "ascending",
-    --             layout_strategy = "horizontal",
-    --             layout_config = {
-    --                 horizontal = {
-    --                     prompt_position = "top",
-    --                     preview_width = 0.55,
-    --                     results_width = 0.8
-    --                 },
-    --                 vertical = {
-    --                     mirror = false
-    --                 },
-    --                 width = 0.87,
-    --                 height = 0.80,
-    --                 preview_cutoff = 120
-    --             },
-    --             file_sorter = require("telescope.sorters").get_fuzzy_file,
-    --             file_ignore_patterns = {"node_modules"},
-    --             generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
-    --             path_display = {"truncate"},
-    --             winblend = 0,
-    --             border = {},
-    --             borderchars = {"─", "│", "─", "│", "╭", "╮", "╯", "╰"},
-    --             color_devicons = true,
-    --             set_env = {
-    --                 ["COLORTERM"] = "truecolor"
-    --             }, -- default = nil,
-    --             file_previewer = require("telescope.previewers").vim_buffer_cat.new,
-    --             grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
-    --             qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
-    --             -- Developer configurations: Not meant for general override
-    --             --   buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
-    --             mappings = {
-    --                 n = {
-    --                     ["q"] = require("telescope.actions").close
-    --                 }
-    --             }
-    --         },
-
-    --         extensions_list = {"themes", "terms"}
-    --     }
-    --     require("telescope").load_extension "fzf"
-    --     return options
-    -- end
 }

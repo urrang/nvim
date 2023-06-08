@@ -3,7 +3,10 @@ return {
     -- 'tpope/vim-sleuth',
 
     { 'folke/which-key.nvim', opts = {} },
-
+    {
+      'rmagatti/auto-session',
+      opts = {}
+    },
     {
       'AckslD/nvim-neoclip.lua',
       requires = {
@@ -34,15 +37,6 @@ return {
       end,
     },
 
-    -- {
-    --   "simrat39/symbols-outline.nvim",
-    --   keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
-    --   opts ={
-    --     autofold_depth = 1,
-    --   },
-    -- },
-
-    { "windwp/nvim-autopairs", opts = {} },
     {
       "windwp/nvim-ts-autotag",
       dependencies = "nvim-treesitter/nvim-treesitter",
