@@ -92,6 +92,7 @@ return {
 
 
                         -- new new
+
                         ['Type'] = { fg = colors.sapphire },
                         ['StorageClass'] = { fg = colors.sapphire },
                         ['Structure'] = { fg = colors.sapphire },
@@ -106,6 +107,7 @@ return {
                         ['@function.call'] = { fg = '#DCDCAF' },
 
                         ['@keyword.function'] = { fg = colors.mauve },
+                        ['@keyword.export'] = { fg = colors.mauve },
                         ['@keyword'] = { fg = colors.mauve },
 
                         --
