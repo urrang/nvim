@@ -105,8 +105,8 @@ return {
                         ['@method.call'] = { fg = '#DCDCAF' },
                         ['@function.call'] = { fg = '#DCDCAF' },
 
-                        ['@keyword.function'] = { fg = colors.blue },
-                        ['@keyword'] = { fg = colors.blue },
+                        ['@keyword.function'] = { fg = colors.mauve },
+                        ['@keyword'] = { fg = colors.mauve },
 
                         --
 
