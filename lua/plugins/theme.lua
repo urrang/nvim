@@ -61,8 +61,8 @@ return {
                 -- transparent_background = true,
                 custom_highlights = function(colors)
                     return {
-                        ['@variable.builtin'] = { fg = colors.mauve },
-                        ['@type.qualifier'] = { fg = colors.mauve },
+                        -- ['@variable.builtin'] = { fg = colors.mauve },
+                        -- ['@type.qualifier'] = { fg = colors.mauve },
                         ['@parameter'] = { fg = colors.sky },
                         ['@property'] = { fg = colors.text },
                         ['@operator'] = { fg = colors.subtext1 },
@@ -75,6 +75,40 @@ return {
 
 
 
+                        -- new
+                        -- ['@parameter'] = { fg = colors.yellow },
+                        -- ['@type'] = { fg = colors.sapphire },
+                        -- ['@type.builtin'] = { fg = colors.sapphire },
+
+                        -- ['@method'] = { fg = colors.sapphire },
+                        -- ['@method.call'] = { fg = colors.sapphire },
+
+                        -- ['@method'] = { fg = '#DCDCAF' },
+                        -- ['@method.call'] = { fg = '#DCDCAF' },
+
+                        ['@variable.builtin'] = { fg = colors.blue },
+                        ['@type.qualifier'] = { fg = colors.blue },
+                        -- end new
+
+
+                        -- new new
+                        ['Type'] = { fg = colors.sapphire },
+                        ['StorageClass'] = { fg = colors.sapphire },
+                        ['Structure'] = { fg = colors.sapphire },
+                        ['@type'] = { fg = colors.sapphire },
+                        ['@type.builtin'] = { fg = colors.sapphire },
+
+
+
+                        ['Function'] = { fg = colors.yellow },
+                        ['@method'] = { fg = colors.yellow },
+                        ['@method.call'] = { fg = colors.yellow },
+                        ['@function.call'] = { fg = colors.yellow },
+
+                        ['@keyword.function'] = { fg = colors.blue },
+                        ['@keyword'] = { fg = colors.blue },
+
+                        --
 
                         ['cssDefinition'] = { fg = colors.text },
                         ['StorageClass'] = { fg = colors.text },
