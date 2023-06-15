@@ -10,6 +10,7 @@ return {
                 group_overrides = {
                     ['@variable.builtin'] = { fg = c.vscBlue },
                     ['@keyword'] = { fg = c.vscBlue },
+                    ['@keyword.return'] = { fg = c.vscPink },
                     ['@conditional.ternary'] = { fg = c.vscFront },
                     ['@parameter'] = { fg = '#6FBFF9' }, -- c.vscMediumBlue },
                 }
@@ -117,8 +118,8 @@ return {
                     }
                 end,
                 -- color_overrides = {
-                --     all = {
-                --         base = "#1E1E1E"
+                --     frappe = {
+                --         base = "#2E3440"
                 --     }
                 -- }
             })
@@ -171,7 +172,11 @@ return {
         "folke/tokyonight.nvim",
         opts = {
             style = "storm", --  `moon`, a darker variant `night`,
-            transparent = true,
+            -- transparent = true,
+            groups = {
+                background = '#2E3440',
+                background_nc = '#2E3440',
+            },
             styles = {
                 -- Style to be applied to different syntax groups
                 -- Value is any valid attr-list value for `:help nvim_set_hl`
@@ -193,12 +198,14 @@ return {
         'gbprod/nord.nvim',
         config = function()
             require("nord").setup({
-                transparent = true, -- Enable this to disable setting the background color
+                -- transparent = true, -- Enable this to disable setting the background color
                 terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
                 diff = { mode = "bg" }, -- enables/disables colorful backgrounds when used in diff mode. values : [bg|fg]
                 borders = true, -- Enable the border between verticaly split windows visible
                 errors = { mode = "bg" }, -- Display mode for errors and diagnostics
-
+                styles = {
+                    comments = { italic = false },
+                },
                 on_highlights = function(hl, colors)
                     hl['@keyword'] = { fg = '#B48EAD' }
                     hl['@number'] = { fg = '#D08770' }
@@ -207,18 +214,27 @@ return {
 
                     hl['@punctuation.bracket'] = { fg = '#949cbb' }
                     hl['@punctuation.delimiter'] = { fg = '#949cbb' }
+
+                    --
+                    hl['@conditional'] = { fg = '#B48EAD' }
+                    hl['@keyword.return'] = { fg = '#B48EAD' }
+
+                    -- hl['@keyword'] = { fg = '#81A1C1' }
                 end,
             })
         end
     },
 
     {
-        'rebelot/kanagawa.nvim',
-        opts = {
-            commentStyle = { italic = false },
-            keywordStyle = { italic = false },
-            statementStyle = { bold = false },
-
-        }
-    }
+        "neanias/everforest-nvim",
+        version = false,
+        lazy = false,
+        priority = 1000, -- make sure to load this before all the other start plugins
+        -- Optional; default configuration will be used if setup isn't called.
+        config = function()
+        require("everforest").setup({
+        -- Your config here
+        })
+        end,
+    },
 }

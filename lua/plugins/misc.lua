@@ -3,10 +3,9 @@ return {
     -- 'tpope/vim-sleuth',
 
     { 'folke/which-key.nvim', opts = {} },
-    {
-      'rmagatti/auto-session',
-      opts = {}
-    },
+    { 'rmagatti/auto-session', opts = {} },
+    { 'tenxsoydev/karen-yank.nvim', config = true },
+
     {
       'AckslD/nvim-neoclip.lua',
       requires = {
