@@ -63,7 +63,7 @@ return {
                     return {
                         -- ['@variable.builtin'] = { fg = colors.mauve },
                         -- ['@type.qualifier'] = { fg = colors.mauve },
-                        ['@parameter'] = { fg = colors.sky },
+                        ['@parameter'] = { fg = '#bccdf5' },
                         ['@property'] = { fg = colors.text },
                         ['@operator'] = { fg = colors.subtext1 },
                         ['@punctuation.bracket'] = { fg = colors.subtext1 },
@@ -93,18 +93,18 @@ return {
 
                         -- new new
 
-                        ['Type'] = { fg = colors.sapphire },
-                        ['StorageClass'] = { fg = colors.sapphire },
-                        ['Structure'] = { fg = colors.sapphire },
-                        ['@type'] = { fg = colors.sapphire },
-                        ['@type.builtin'] = { fg = colors.sapphire },
+                        ['Type'] = { fg = colors.yellow },
+                        ['StorageClass'] = { fg = colors.yellow },
+                        ['Structure'] = { fg = colors.yellow },
+                        ['@type'] = { fg = colors.yellow },
+                        ['@type.builtin'] = { fg = colors.yellow },
 
 
 
-                        ['Function'] = { fg = '#DCDCAF' },
-                        ['@method'] = { fg = '#DCDCAF' },
-                        ['@method.call'] = { fg = '#DCDCAF' },
-                        ['@function.call'] = { fg = '#DCDCAF' },
+                        ['Function'] = { fg = colors.sky },
+                        ['@method'] = { fg = colors.sky },
+                        ['@method.call'] = { fg = colors.sky },
+                        ['@function.call'] = { fg = colors.sky },
 
                         ['@keyword.function'] = { fg = colors.mauve },
                         ['@keyword.export'] = { fg = colors.mauve },
