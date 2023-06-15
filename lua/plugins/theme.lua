@@ -100,10 +100,10 @@ return {
 
 
 
-                        ['Function'] = { fg = colors.yellow },
-                        ['@method'] = { fg = colors.yellow },
-                        ['@method.call'] = { fg = colors.yellow },
-                        ['@function.call'] = { fg = colors.yellow },
+                        ['Function'] = { fg = '#DCDCAF' },
+                        ['@method'] = { fg = '#DCDCAF' },
+                        ['@method.call'] = { fg = '#DCDCAF' },
+                        ['@function.call'] = { fg = '#DCDCAF' },
 
                         ['@keyword.function'] = { fg = colors.blue },
                         ['@keyword'] = { fg = colors.blue },
