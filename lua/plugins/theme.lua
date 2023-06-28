@@ -109,12 +109,24 @@ return {
                         -- ['@method.call'] = { fg = colors.yellow },
                         -- ['@function.call'] = { fg = colors.yellow },
 
+
                         CmpBorder = { fg = colors.surface2 },
 
                         -- CmpItemMenu = { bg = colors.pink },
                         CmpSelectedItem = { fg = colors.crust, bg = colors.blue },
                         CmpItemAbbrMatch = { fg = colors.blue, style = { "bold" } },
 		                CmpItemAbbrMatchFuzzy = { fg = colors.blue, style = { "bold" } },
+
+                        SagaBorder = { fg = colors.surface2 },
+
+                        FloatBorder = { fg = colors.surface2, bg = colors.base },
+                        NormalFloat = { bg = colors.base },
+                        -- NormalFloatBorder = { fg = colors.surface2, bg = colors.base },
+
+                        DiagnosticFloatingError = { bg = colors.base },
+                        DiagnosticFloatingWarn = { bg = colors.base },
+                        DiagnosticFloatingInfo = { bg = colors.base },
+                        DiagnosticFloatingHint = { bg = colors.base },
                     }
                 end,
                 -- color_overrides = {
@@ -172,11 +184,11 @@ return {
         "folke/tokyonight.nvim",
         opts = {
             style = "storm", --  `moon`, a darker variant `night`,
-            -- transparent = true,
-            groups = {
-                background = '#2E3440',
-                background_nc = '#2E3440',
-            },
+            transparent = true,
+            -- groups = {
+            --     background = '#1F252B',
+            --     background_nc = '#1F252B',
+            -- },
             styles = {
                 -- Style to be applied to different syntax groups
                 -- Value is any valid attr-list value for `:help nvim_set_hl`
@@ -190,7 +202,10 @@ return {
             },
             on_highlights = function(hl, c)
                 hl['@property'] = { fg = '#C0CAF5' }
-            end
+            end,
+            -- on_colors = function(colors)
+            --     colors.bg = '#1F252B'
+            -- end,
         }
     },
 

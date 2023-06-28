@@ -54,11 +54,6 @@ return {
             -- matching.disallow_fuzzy_matching
             -- matching.disallow_prefix_unmatching
 
-            -- window.completion.side_padding
-            -- window.completion.scrollbar
-
-
-
             completion = {
                 completeopt = 'menu,menuone,noinsert'
             },
@@ -92,13 +87,14 @@ return {
                     scrollbar = false,
                     border = 'rounded',
                     winhighlight = 'Normal:Normal,FloatBorder:CmpBorder,CursorLine:CmpSelectedItem,Search:None',
-                    -- side_padding = 0
+                    -- side_padding = 2.5
                 },
-                documentation = {
-                    scrollbar = false,
-                    border = 'rounded',
-                    winhighlight = 'Normal:Normal,FloatBorder:CmpBorder,CursorLine:CmpSelectedItem,Search:None',
-                },
+                documentation = false
+                -- documentation = {
+                --     scrollbar = false,
+                --     border = 'rounded',
+                --     winhighlight = 'Normal:Normal,FloatBorder:CmpBorder,CursorLine:CmpSelectedItem,Search:None',
+                -- },
             },
             mapping = cmp.mapping.preset.insert {
                 ["<C-k>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
@@ -131,7 +127,7 @@ return {
                     end
                 end, { 'i', 's' }),
             },
-            sources = cmp.config.sources {
+            sources = {
                 { name = "nvim_lsp", priority = 1000 },
                 { name = "luasnip", priority = 750 },
                 { name = "buffer", priority = 500 },

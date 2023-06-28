@@ -3,6 +3,7 @@ return {
 	config = function()
 		require("noice").setup({
 			-- add any options here
+			lsp_doc_border = true
 		})
 	end,
 	dependencies = {

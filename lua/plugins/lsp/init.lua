@@ -41,7 +41,7 @@ return {
             },
             ui = {
                 title = false,
-                border = 'none',
+                -- border = 'none',
             }
         }
     },

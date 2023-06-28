@@ -48,14 +48,25 @@ vim.o.termguicolors = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 
+
+vim.diagnostic.config {
+    float = { border = "rounded" },
+}
+
 -- local lsp = vim.lsp
 -- lsp.handlers['textDocument/hover'] = lsp.with(
 --   lsp.handlers.hover,
---   { border = 'rounded', max_width = max_width, max_height = max_height }
+--   { border = 'rounded' }
 -- )
 
 -- lsp.handlers['textDocument/signatureHelp'] = lsp.with(lsp.handlers.signature_help, {
 --   border = 'rounded',
---   max_width = max_width,
---   max_height = max_height,
 -- })
+
+-- vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+--     vim.lsp.handlers['signature_help'], {
+--         border = 'single',
+--         close_events = {"CursorMoved", "BufHidden", "InsertCharPre"},
+--     }
+-- )
+
