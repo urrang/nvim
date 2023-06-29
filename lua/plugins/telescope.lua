@@ -6,7 +6,7 @@ return {
     "nvim-telescope/telescope.nvim",
     dependencies = {
         {
-            "nvim-telescope/telescope-fzf-native.nvim",
+            "nvim-telescope/telescope-fzy-native.nvim",
             build = "make"
         },
         {
@@ -40,6 +40,7 @@ return {
         local telescope = require('telescope')
         require('aerial').setup({})
 
+        telescope.load_extension('fzy_native')
         telescope.load_extension('aerial')
         telescope.load_extension('smart_open')
 

@@ -32,9 +32,9 @@ M.on_attach = function(_, bufnr)
 
     nmap('<leader>rn', vim.lsp.buf.rename, 'Rename')
     nmap('<leader>ca', '<cmd>Lspsaga code_action<CR>', 'Code Action')
-    nmap('<leader>gd', vim.lsp.buf.definition, 'Goto Definition')
     nmap('<leader>gp', '<cmd>Lspsaga peek_definition<cr>', 'Peek Definition')
-    nmap('K', '<cmd>Lspsaga hover_doc<CR>', 'Hover Documentation')
+    nmap('gd', vim.lsp.buf.definition, 'Goto Definition')
+    nmap('gh', '<cmd>Lspsaga hover_doc<CR>', 'Hover Documentation')
 end
 
 return M

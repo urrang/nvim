@@ -5,6 +5,14 @@ return {
     { 'folke/which-key.nvim', opts = {} },
     { 'rmagatti/auto-session', opts = {} },
     { 'tenxsoydev/karen-yank.nvim', config = true },
+    { 'max397574/better-escape.nvim', opts = {} },
+    { 'nmac427/guess-indent.nvim', opts = {} },
+    {
+      'nvim-pack/nvim-spectre',
+      dependencies = { 'nvim-lua/plenary.nvim' },
+      event = "VeryLazy",
+      opts = {}
+    },
 
     -- Currently using noice because of some input lag with this one. See:
     -- https://github.com/ray-x/lsp_signature.nvim/issues/276

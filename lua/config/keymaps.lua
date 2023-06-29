@@ -34,14 +34,17 @@ map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
 map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
 map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
--- Move to start/end of line
-map("n", "<C-h>", "^")
-map("n", "<C-l>", "$")
+
+map("n", "H", "^")
+map("n", "L", "$")
+map('n', 'J', '5j')
+map('n', 'K', '5k')
+map('n', '<C-j>', 'J', { noremap = true })
 
 -- quitting insert mode
-map("i", "jk", "<ESC>", opts)
-map("i", "kj", "<ESC>", opts)
-map("i", "jj", "<ESC>", opts)
+-- map("i", "jk", "<ESC>", opts)
+-- map("i", "kj", "<ESC>", opts)
+-- map("i", "jj", "<ESC>", opts)
 
 -- Ctrl+V for pasting from system clipboard
 -- map("i", "<c-v>", "<c-r>+", opts)
@@ -55,7 +58,7 @@ map('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagnostics list
 -- Tab moves indent
 map('v', '<Tab>', '>gv', { silent = true })
 map('v', '<S-Tab>', '<gv', { silent = true })
-map('i', '<S-Tab>', '<C-d>', { silent = true })
+-- map('i', '<S-Tab>', '<C-d>', { silent = true })
 map('n', '<Tab>', '>>', { silent = true })
 map('n', '<S-Tab>', '<<', { silent = true })
 
