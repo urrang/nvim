@@ -2,9 +2,19 @@
 
 local map = vim.keymap.set
 
-map('n', '<A-h>', '^')
-map('n', '<A-l>', '$')
+-- Save/save all with Ctrl + s/S
+map({ 'n', 'i'}, '<C-s>', '<cmd>w<cr>', { silent = true })
 
+-- Move with Ctrl + arrow keys in insert mode
+map('i', '<C-h>', '<Left>')
+map('i', '<C-j>', '<Down>')
+map('i', '<C-k>', '<Up>')
+map('i', '<C-l>', '<Right>')
+
+-- Intend on paste
+-- map('n', 'p', ']p')
+
+-- Show highlight group, for theme overriding
 map('n', '<leader>cg', '<cmd>TSHighlightCapturesUnderCursor<cr>')
 
 map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
@@ -27,12 +37,12 @@ map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 
 -- Move Lines
-map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move down" })
-map("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "Move up" })
-map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
-map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
-map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
-map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
+-- map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move down" })
+-- map("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "Move up" })
+-- map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
+-- map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
+-- map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
+-- map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
 
 map("n", "H", "^")

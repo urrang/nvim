@@ -53,7 +53,6 @@ return {
         cmp.setup {
             -- matching.disallow_fuzzy_matching
             -- matching.disallow_prefix_unmatching
-
             completion = {
                 completeopt = 'menu,menuone,noinsert'
             },

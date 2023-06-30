@@ -144,6 +144,15 @@ return {
             vim.cmd.colorscheme 'catppuccin'
         end
     },
+    -- {
+    --     'sainnhe/gruvbox-material',
+    --     config = function()
+    --       vim.o.background = "dark"
+    --       vim.g.gruvbox_material_background = "hard"
+    --       -- vim.g.gruvbox_material_transparent_background = 1
+    --       vim.cmd.colorscheme 'gruvbox-material'
+    --     end,
+    -- },
     {
         -- https://github.com/AlexvZyl/nordic.nvim
         'AlexvZyl/nordic.nvim',

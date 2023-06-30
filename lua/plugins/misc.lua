@@ -96,17 +96,6 @@ return {
       }
     },
 
-      -- "gc" to comment visual regions/lines
-    {
-      'numToStr/Comment.nvim',
-      event = "VeryLazy",
-      opts = {
-        toggler = {
-          line = '<leader>kc',
-        },
-      }
-    },
-
     {
       'lukas-reineke/indent-blankline.nvim',
       opts = {

@@ -16,11 +16,12 @@ M.servers = {
     html = {},
     svelte = {},
     angularls = {},
-    emmet_ls = {},
+    -- emmet_ls = {},
     lua_ls = {
         Lua = {
             workspace = { checkThirdParty = false },
             telemetry = { enable = false },
+            diagnostics = { globals = { 'vim' } }
         },
     },
 }

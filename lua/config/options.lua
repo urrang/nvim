@@ -1,6 +1,8 @@
 -- See `:help vim.o`
 vim.wo.wrap = false
 
+vim.o.laststatus = 3 -- Max status line full width 
+
 vim.wo.number = true
 vim.wo.relativenumber = true
 
@@ -12,9 +14,6 @@ vim.opt.shiftwidth = 4
 
 -- Set highlight on search
 vim.o.hlsearch = false
-
--- Make line numbers default
-vim.wo.number = true
 
 -- Enable mouse mode
 vim.o.mouse = 'a'

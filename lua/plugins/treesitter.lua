@@ -19,6 +19,7 @@ return {
                 'javascript',
                 'tsx',
                 'html',
+                'css',
                 'json',
                 'markdown',
                 'markdown_inline',
