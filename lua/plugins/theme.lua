@@ -33,6 +33,7 @@ return {
                     telescope = true,
                     notify = true,
                     noice = true,
+					alpha = true,
                     -- fidget = true,
                     native_lsp = {
                         enabled = true,

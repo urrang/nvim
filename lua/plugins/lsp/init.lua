@@ -36,11 +36,9 @@ return {
             null_ls.setup({
                 sources = {
                     null_ls.builtins.formatting.prettierd,
+					null_ls.builtins.formatting.stylua,
                 }
             })
-            -- sources = {
-            --     require('null-ls').builtins.formatting.prettierd,
-            -- }
         end,
         keys = {
             { '<leader>fo', vim.lsp.buf.format, desc = 'Format file' },
