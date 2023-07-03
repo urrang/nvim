@@ -3,7 +3,7 @@ vim.o.hidden = false
 
 vim.wo.wrap = false
 
-vim.o.laststatus = 3 -- Max status line full width 
+vim.o.laststatus = 3 -- Max status line full width
 
 vim.wo.number = true
 vim.wo.relativenumber = true
@@ -49,10 +49,9 @@ vim.o.termguicolors = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 
-
-vim.diagnostic.config {
-    float = { border = "rounded" },
-}
+vim.diagnostic.config({
+	float = { border = 'rounded' },
+})
 
 -- local lsp = vim.lsp
 -- lsp.handlers['textDocument/hover'] = lsp.with(
@@ -68,4 +67,3 @@ vim.diagnostic.config {
 --     vim.lsp.handlers['signature_help'], {
 --         border = 'single',
 --         close_events = {"CursorMoved", "BufHidden", "InsertCharPre"}, })
-
