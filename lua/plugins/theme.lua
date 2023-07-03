@@ -118,6 +118,7 @@ return {
 		                CmpItemAbbrMatchFuzzy = { fg = colors.blue, style = { "bold" } },
 
                         SagaBorder = { fg = colors.surface2 },
+                        -- MiniIndentscopeSymbol = { fg = colors.yellow },
 
                         FloatBorder = { fg = colors.surface2, bg = colors.base },
                         NormalFloat = { bg = colors.base },

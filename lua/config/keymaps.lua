@@ -2,6 +2,9 @@
 
 local map = vim.keymap.set
 
+-- Clear search highlight on escape
+map('n', '<Esc>', ':noh<CR><Esc>', { noremap = true, silent = true })
+
 -- Save/save all with Ctrl + s/S
 map({ 'n', 'i'}, '<C-s>', '<cmd>w<cr>', { silent = true })
 
@@ -45,11 +48,11 @@ map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 -- map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
 
-map("n", "H", "^")
-map("n", "L", "$")
-map('n', 'J', '5j')
-map('n', 'K', '5k')
-map('n', '<C-j>', 'J', { noremap = true })
+map({ 'n', 'v' }, "H", "^")
+map({ 'n', 'v' }, "L", "$")
+map({ 'n', 'v' }, 'J', '5j')
+map({ 'n', 'v' }, 'K', '5k')
+map({ 'n', 'v' }, '<C-j>', 'J', { noremap = true })
 
 -- quitting insert mode
 -- map("i", "jk", "<ESC>", opts)

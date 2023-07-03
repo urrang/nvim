@@ -1,51 +1,6 @@
 -- https://github.com/AlexvZyl/.dotfiles/blob/main/.config/nvim/lua/alex/ui/lualine.lua
 -- https://github.com/avocadeys/NVCat/blob/main/lua/plugins/lualine.lua
 
--- Get the lsp of the current buffer, when using native lsp.
--- local function get_native_lsp()
---     local buf_ft = get_current_filetype()
---     local clients = vim.lsp.get_active_clients()
---     if next(clients) == nil then
---         return 'None'
---     end
---     for _, client in ipairs(clients) do
---         local filetypes = client.config.filetypes
---         if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
---             return client.name
---         end
---     end
---     return 'None'
--- end
-
--- Display the difference in commits between local and head.
--- local Job = require 'plenary.job'
--- local function get_git_compare()
-
---     -- Get the path of the current directory.
---     local curr_dir = vim.api.nvim_buf_get_name(0):match("(.*"..'/'..")")
-
---     -- Run job to get git.
---     local result = Job:new({
---       command = 'git',
---       cwd = curr_dir,
---       args = { 'rev-list', '--left-right', '--count', 'HEAD...@{upstream}' },
---     }):sync(100)[1]
-
---     -- Process the result.
---     if type(result) ~= 'string' then return '' end
---     local ok, ahead, behind = pcall(string.match, result, "(%d+)%s*(%d+)")
---     if not ok then return '' end
-
---     -- No file, so no git.
---     if get_current_buftype() == 'nofile' then
---         return ''
---     end
-
---     -- Format for lualine.
---     return ' '.. behind .. '  ' .. ahead
-
--- end
-
 -- Show git status.
 local function diff_source()
     local gitsigns = vim.b.gitsigns_status_dict
@@ -65,19 +20,6 @@ return {
         { 'nvim-tree/nvim-web-devicons', opt = true },
         'avocadeys/nvim-lualine-components',
     },
-    -- See `:help lualine.txt`
-    -- config = {
-
-    --     require('lualine').setup({
-    --         options = {
-    --             icons_enabled = false,
-    --             theme = 'auto',
-    --             component_separators = '',
-    --             section_separators = '',
-    --             disabled_filetypes = {"alpha", "dashboard"}
-    --         }
-    --     })
-    -- },
     opts = function()
         -- local c = require('nordic.colors')
 

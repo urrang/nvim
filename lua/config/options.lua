@@ -1,4 +1,6 @@
 -- See `:help vim.o`
+vim.o.hidden = false
+
 vim.wo.wrap = false
 
 vim.o.laststatus = 3 -- Max status line full width 
@@ -65,7 +67,5 @@ vim.diagnostic.config {
 -- vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
 --     vim.lsp.handlers['signature_help'], {
 --         border = 'single',
---         close_events = {"CursorMoved", "BufHidden", "InsertCharPre"},
---     }
--- )
+--         close_events = {"CursorMoved", "BufHidden", "InsertCharPre"}, })
 

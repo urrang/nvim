@@ -28,6 +28,25 @@ return {
         end
     },
     {
+        'jose-elias-alvarez/null-ls.nvim',
+        event = { 'BufReadPre', 'BufNewFile' },
+        dependencies = { 'williamboman/mason.nvim' },
+        config = function()
+            local null_ls = require('null-ls')
+            null_ls.setup({
+                sources = {
+                    null_ls.builtins.formatting.prettierd,
+                }
+            })
+            -- sources = {
+            --     require('null-ls').builtins.formatting.prettierd,
+            -- }
+        end,
+        keys = {
+            { '<leader>fo', vim.lsp.buf.format, desc = 'Format file' },
+        }
+    },
+    {
         'glepnir/lspsaga.nvim',
 		event = 'VeryLazy',
         dependencies = {

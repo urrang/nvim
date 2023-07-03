@@ -30,3 +30,16 @@ vim.api.nvim_create_autocmd('CursorHold', {
     vim.diagnostic.open_float(nil, opts)
   end,
 })
+
+-- vim.api.nvim_create_autocmd('UIEnter', {
+--   callback = function()
+--     if vim.bo.filetype ~= '' then -- Check if the buffer has a filetype
+--       return
+--     end
+--     -- If it doesn't we check if it's empty
+--     if vim.api.nvim_buf_get_lines(0, 0, -1, false)[1] == '' then
+--       vim.cmd('Alpha')
+--       -- vim.cmd('SessionRestore')
+--     end
+--   end,
+-- })
