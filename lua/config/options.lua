@@ -1,5 +1,4 @@
 -- See `:help vim.o`
-vim.o.hidden = false
 
 vim.wo.wrap = false
 
