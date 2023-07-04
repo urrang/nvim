@@ -1,8 +1,9 @@
 local get_header = function(plugin_text)
 	local datetime = os.date(' %d.%m   %H:%M')
 	local v = vim.version();
-	local version_text = ' ' .. v.major .. '.' .. v.minor .. '.' .. v.patch
-	local bottom_text = datetime .. '\t' .. version_text .. '\t' .. (plugin_text or '')
+	local version_text = 'Version: ' .. v.major .. '.' .. v.minor .. '.' .. v.patch
+	-- local bottom_text = datetime .. '\t' .. version_text .. '\t' .. (plugin_text or '')
+	local bottom_text = version_text .. '    ' .. (plugin_text or '')
 
 	return {
 		'												   ',
@@ -93,7 +94,8 @@ return {
 				local footer = '⚡Neovim ' .. version .. ' loaded ' .. stats.count .. ' plugins in ' .. ms .. 'ms'
 				dashboard.section.footer.val = footer
 
-				local plugin_text = stats.count .. ' plugins in ' .. ms .. 'ms'
+				-- local plugin_text = stats.count .. ' plugins loaded in ' .. ms .. 'ms'
+				local plugin_text = 'Plugins: ' .. stats.count .. '    Load: ' .. ms .. 'ms'
 				dashboard.section.header.val = get_header(plugin_text)
 				pcall(vim.cmd.AlphaRedraw)
 			end,
