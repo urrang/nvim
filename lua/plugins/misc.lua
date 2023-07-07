@@ -111,7 +111,16 @@ return {
 			},
 		},
 	},
-
+	{
+		'akinsho/toggleterm.nvim',
+		opts = {
+			direction = 'float',
+			open_mapping = [[<leader>tt]],
+			float_opts = {
+				border = 'rounded'
+			}
+		}
+	},
 	{
 		'lukas-reineke/indent-blankline.nvim',
 		opts = {

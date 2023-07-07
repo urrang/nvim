@@ -6,6 +6,7 @@ return {
 		dependencies = {
 			'nvim-treesitter/nvim-treesitter-textobjects',
 			'nvim-treesitter/playground',
+			'JoosepAlviste/nvim-ts-context-commentstring',
 		},
 		opts = {
 			highlight = { enable = true },
@@ -30,6 +31,10 @@ return {
 				'vimdoc',
 				'vim',
 				'svelte',
+			},
+
+			context_commentstring = {
+				enable = true,
 			},
 
 			autotag = {
@@ -123,4 +128,3 @@ return {
 		end,
 	},
 }
-
