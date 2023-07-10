@@ -17,4 +17,7 @@ return {
 	event = 'VeryLazy',
 	dependencies = { 'nvim-lua/plenary.nvim' },
 	opts = {},
+	-- setup = function ()
+	-- 	require('buffer_manager').setup({})
+	-- end,
 }

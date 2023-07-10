@@ -103,7 +103,7 @@ return {
 		opts = {
 			handle = {
 				text = ' ',
-				blend = 0,      -- Integer between 0 and 100. 0 for fully opaque and 100 to full transparent. Defaults to 30.
+				blend = 50,      -- Integer between 0 and 100. 0 for fully opaque and 100 to full transparent. Defaults to 30.
 				color = '#737994',
 				color_nr = nil, -- cterm
 				highlight = 'CursorColumn',
