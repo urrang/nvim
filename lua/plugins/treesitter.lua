@@ -35,6 +35,7 @@ return {
 
 			context_commentstring = {
 				enable = true,
+				enable_autocmd = false
 			},
 
 			autotag = {
@@ -121,8 +122,6 @@ return {
 				},
 			},
 		},
-
-		---@param opts TSConfig
 		config = function(_, opts)
 			require('nvim-treesitter.configs').setup(opts)
 		end,

@@ -48,8 +48,6 @@ return {
 		cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
 
 		cmp.setup({
-			-- matching.disallow_fuzzy_matching
-			-- matching.disallow_prefix_unmatching
 			completion = {
 				completeopt = 'menu,menuone,noinsert',
 			},
@@ -72,25 +70,13 @@ return {
 				buffer = 1,
 				path = 1,
 			},
-			-- What does this do? Found in AstroNvim config
-			-- confirm_opts = {
-			--     behavior = cmp.ConfirmBehavior.Replace,
-			--     select = false,
-			-- },
 			window = {
-				-- completion = cmp.config.window.bordered(),
 				completion = {
 					scrollbar = false,
 					border = 'rounded',
 					winhighlight = 'Normal:Normal,FloatBorder:CmpBorder,CursorLine:CmpSelectedItem,Search:None',
-					-- side_padding = 2.5
 				},
 				documentation = false,
-				-- documentation = {
-				--     scrollbar = false,
-				--     border = 'rounded',
-				--     winhighlight = 'Normal:Normal,FloatBorder:CmpBorder,CursorLine:CmpSelectedItem,Search:None',
-				-- },
 			},
 			mapping = cmp.mapping.preset.insert({
 				['<C-k>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),

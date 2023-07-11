@@ -1,18 +1,15 @@
 return {
-	-- Detect tabstop and shiftwidth automatically
-	-- 'tpope/vim-sleuth',
-
 	{ 'folke/which-key.nvim',         opts = {} },
 	{ 'folke/persistence.nvim',       opts = {} },
 	{ 'tenxsoydev/karen-yank.nvim',   config = true },
 	{ 'max397574/better-escape.nvim', opts = {} },
-	-- { 'nmac427/guess-indent.nvim',    opts = {} },
-	{
-		'nvim-pack/nvim-spectre',
-		dependencies = { 'nvim-lua/plenary.nvim' },
-		event = 'VeryLazy',
-		opts = {},
-	},
+
+	-- {
+	-- 	'nvim-pack/nvim-spectre',
+	-- 	dependencies = { 'nvim-lua/plenary.nvim' },
+	-- 	event = 'VeryLazy',
+	-- 	opts = {},
+	-- },
 
 	-- Currently using noice because of some input lag with this one. See:
 	-- https://github.com/ray-x/lsp_signature.nvim/issues/276
@@ -94,10 +91,14 @@ return {
 		event = 'VeryLazy',
 	},
 	{
-		'mg979/vim-visual-multi',
-		event = 'VeryLazy',
+		'numToStr/Comment.nvim',
+		dependencies = {'JoosepAlviste/nvim-ts-context-commentstring'},
+		config = function()
+			require('Comment').setup({
+				pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+			})
+		end,
 	},
-
 	{
 		'petertriho/nvim-scrollbar',
 		opts = {
@@ -114,8 +115,8 @@ return {
 	{
 		'akinsho/toggleterm.nvim',
 		opts = {
+			open_mapping = '<F10>',
 			direction = 'float',
-			open_mapping = [[<leader>tt]],
 			float_opts = {
 				border = 'rounded'
 			}
@@ -147,9 +148,5 @@ return {
 		'smolck/command-completion.nvim',
 		event = 'VeryLazy',
 		opts = {},
-	},
-	{
-		'ThePrimeagen/vim-be-good',
-		event = 'VeryLazy',
 	},
 }

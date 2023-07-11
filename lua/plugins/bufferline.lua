@@ -1,4 +1,3 @@
--- https://neovimcraft.com/plugin/noib3/cokeline.nvim/index.html#nail_care-showoff-of-user-configs
 return {
 	'akinsho/bufferline.nvim',
 	event = 'VeryLazy',
