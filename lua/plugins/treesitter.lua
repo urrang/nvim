@@ -31,6 +31,7 @@ return {
 				'vimdoc',
 				'vim',
 				'svelte',
+				'prisma',
 			},
 
 			context_commentstring = {
