@@ -5,6 +5,9 @@ local map = vim.keymap.set
 -- Clear search highlight on escape
 map('n', '<Esc>', ':noh<CR><Esc>', { noremap = true, silent = true })
 
+-- Stay at word under cursor when using * 
+map('n', '*', '*N', { noremap = true, silent = true })
+
 -- Save/save all with Ctrl + s/S
 map({ 'n', 'i' }, '<C-s>', '<cmd>w<cr>', { silent = true })
 

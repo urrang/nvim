@@ -14,7 +14,7 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 
 -- Set highlight on search
-vim.o.hlsearch = false
+-- vim.o.hlsearch = false
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
