@@ -10,7 +10,6 @@ return {
 		'lewis6991/gitsigns.nvim',
 		event = 'VeryLazy',
 		opts = {
-			-- See `:help gitsigns.txt`
 			signs = {
 				add = { text = '+' },
 				change = { text = '~' },
@@ -19,11 +18,21 @@ return {
 				changedelete = { text = '~' },
 			},
 		},
+		keys = {
+			{ '<leader>gb', '<cmd>Gitsigns blame_line<cr>', 'Git blame' }
+		}
 	},
 	{
 		'sindrets/diffview.nvim',
 		event = 'VeryLazy',
 		opts = {},
 	},
-	{ 'NeogitOrg/neogit', dependencies = 'nvim-lua/plenary.nvim', config = true }
+	{
+		'NeogitOrg/neogit',
+		dependencies = 'nvim-lua/plenary.nvim',
+		opts = {},
+		keys = {
+			{ '<leader>gg', '<cmd>Neogit<cr>', 'Neogit' },
+		}
+	}
 }
