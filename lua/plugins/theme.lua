@@ -25,8 +25,8 @@ return {
 				flavour = 'frappe',
 				no_italic = true,
 				no_bold = true,
-				integrations = {
-					cmp = true,
+				integrations = { cmp = true,
+					neogit = true,
 					lsp_saga = true,
 					gitsigns = true,
 					neotree = true,
@@ -34,7 +34,7 @@ return {
 					notify = true,
 					noice = true,
 					alpha = true,
-					-- fidget = true,
+					flash = true,
 					native_lsp = {
 						enabled = true,
 						virtual_text = {
@@ -51,9 +51,6 @@ return {
 						},
 					},
 
-					-- bufferline = true,
-					hop = true,
-					-- lualine = true,
 					which_key = true,
 					-- harpoon = true,
 

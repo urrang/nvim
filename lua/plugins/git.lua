@@ -25,5 +25,5 @@ return {
 		event = 'VeryLazy',
 		opts = {},
 	},
-	-- 'tpope/vim-rhubarb',
+	{ 'NeogitOrg/neogit', dependencies = 'nvim-lua/plenary.nvim', config = true }
 }

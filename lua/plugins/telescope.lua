@@ -113,6 +113,11 @@ return {
 				buffers = {
 					initial_mode = 'normal',
 				},
+				live_grep = {
+					preview = {
+						hide_on_startup = false
+					}
+				}
 			},
 		}
 	end,
