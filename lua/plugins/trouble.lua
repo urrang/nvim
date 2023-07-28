@@ -2,7 +2,8 @@ return {
 	'folke/trouble.nvim',
 	dependencies = { 'nvim-tree/nvim-web-devicons' },
 	keys = {
-		{ '<leader>x', '<cmd>TroubleToggle document_diagnostics<cr>', 'Show problems' },
+		-- { '<leader>x', '<cmd>TroubleToggle document_diagnostics<cr>', 'Show problems' },
+		{ '<leader>dl', '<cmd>TroubleToggle document_diagnostics<cr>', 'Show problems' },
 	},
 	opts = {
 		auto_close = true,
