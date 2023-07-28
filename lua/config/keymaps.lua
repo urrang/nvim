@@ -38,33 +38,20 @@ map('n', '<C-u>', '<C-u>zz')
 map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
--- Move Lines
--- map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move down" })
--- map("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "Move up" })
--- map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
--- map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
--- map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
--- map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
-
 map({ 'n', 'v' }, 'H', '^')
 map({ 'n', 'v' }, 'L', '$')
 map({ 'n', 'v' }, 'J', '5j')
 map({ 'n', 'v' }, 'K', '5k')
 map({ 'n', 'v' }, '<C-j>', 'J', { noremap = true })
 
--- quitting insert mode
--- map("i", "jk", "<ESC>", opts)
--- map("i", "kj", "<ESC>", opts)
--- map("i", "jj", "<ESC>", opts)
-
 -- Ctrl+V for pasting from system clipboard
 -- map("i", "<c-v>", "<c-r>+", opts)
 
 -- Diagnostic keymaps
-map('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
-map('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-map('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+map('n', '<leader>dp', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
+map('n', '<leader>dn', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
+-- map('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+-- map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- Tab moves indent
 map('v', '<Tab>', '>gv', { silent = true })
@@ -73,7 +60,7 @@ map('v', '<S-Tab>', '<gv', { silent = true })
 map('n', '<Tab>', '>>', { silent = true })
 map('n', '<S-Tab>', '<<', { silent = true })
 
--- Window/buffer stuff
+-- Window/buffer/tab stuff
 map('n', '<leader>ws', '<cmd>vsplit<CR>', { desc = 'Split window' })
 map('n', '<leader>wc', '<C-w>c', { desc = 'Close window' })
 map('n', '<leader>w1', '<C-w>h', { desc = 'Focus left window' })
@@ -84,6 +71,9 @@ map('n', '<leader>bc', '<cmd>bd<CR>', { desc = 'Close buffer' })
 map('n', '<leader>bb', '<cmd>bnext<CR>', { desc = 'Cycle buffers' })
 map('n', '<leader>bn', '<cmd>bnext<CR>', { desc = 'Next buffer' })
 map('n', '<leader>bp', '<cmd>bprevious<CR>', { desc = 'Previous buffer' })
+
+map('n', '<leader>tt', '<cmd>tabNext<CR>', { desc = 'Cycle tabs' })
+map('n', '<leader>tc', '<cmd>tabclose<CR>', { desc = 'Close tab' })
 
 -- Resize windows using shift + arrow keys
 map('n', '<S-Up>', '<cmd>resize +2<cr>', { desc = 'Increase window height' })
