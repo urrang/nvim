@@ -144,9 +144,9 @@ return {
 			},
 		},
 	},
-	{
-		'smolck/command-completion.nvim',
-		event = 'VeryLazy',
-		opts = {},
-	},
+	-- {
+	-- 	'smolck/command-completion.nvim',
+	-- 	event = 'VeryLazy',
+	-- 	opts = {},
+	-- },
 }

@@ -1,5 +1,7 @@
 -- See `:help vim.o`
 
+vim.o.cmdheight = 0
+
 vim.wo.wrap = false
 
 vim.o.laststatus = 3 -- Max status line full width

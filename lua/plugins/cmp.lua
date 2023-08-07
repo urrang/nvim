@@ -32,6 +32,7 @@ return {
 	dependencies = {
 		'hrsh7th/cmp-nvim-lsp',
 		'hrsh7th/cmp-path',
+		'hrsh7th/cmp-cmdline',
 		'L3MON4D3/LuaSnip',
 		'saadparwaiz1/cmp_luasnip',
 		{ 'windwp/nvim-autopairs', opts = {} },
@@ -46,6 +47,34 @@ return {
 		local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 
 		cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+
+		-- cmp.setup.cmdline('/', {
+		-- 	mapping = cmp.mapping.preset.cmdline(),
+		-- 	sources = {
+		-- 		{ name = 'buffer' },
+		-- 	},
+		-- })
+
+		cmp.setup.cmdline(':', {
+			mapping = cmp.mapping.preset.cmdline({
+				['<C-k>'] = cmp.mapping.select_prev_item(),
+				['<C-j>'] = cmp.mapping.select_next_item(),
+				['<Esc>'] = cmp.mapping.close(),
+			}),
+			completion = {
+				completeopt = 'menu,menuone,noinsert,noselect'
+			},
+			sources = cmp.config.sources({
+				{ name = 'path' },
+			}, {
+				{
+					name = 'cmdline',
+					option = {
+						ignore_cmds = { 'Man', '!' },
+					},
+				},
+			}),
+		})
 
 		cmp.setup({
 			completion = {
