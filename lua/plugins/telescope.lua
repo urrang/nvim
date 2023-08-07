@@ -24,6 +24,11 @@ return {
 		leader_map('fs', 'Telescope aerial', 'Find symbols'),
 		-- leader_map('fr', require('telescope.builtin').lsp_references(), 'Find references'),
 
+		leader_map('f1', 'Telescope find_files', 'test1'),
+		leader_map('f2', 'lua require("telescope.builtin").find_files{ path_display = { "smart" } }', 'test2'),
+		leader_map('f3', 'lua require("telescope.builtin").lsp_references{ show_line = false, trim_text = true }', 'test3'),
+		-- trim_text
+
 		{
 			'<leader>/',
 			function()
@@ -48,8 +53,9 @@ return {
 		local colors = require('catppuccin.palettes').get_palette()
 
 		local TelescopeColor = {
-			TelescopeMatching = { fg = nil },
-			TelescopeSelection = { fg = colors.flamingo, bg = colors.crust, bold = true },
+			-- TelescopeMatching = { fg = colors.blue },
+			-- TelescopeSelection = { fg = colors.flamingo, bg = colors.crust, bold = true },
+			TelescopeSelection = { fg = colors.text, bg = colors.surface0, bold = true },
 
 			TelescopePromptTitle = { fg = colors.surface0 },
 			TelescopePromptPrefix = { bg = colors.mantle },
@@ -93,6 +99,10 @@ return {
 						mirror = false,
 					},
 				},
+				path_display = function(opts, path)
+					local tail = require('telescope.utils').path_tail(path)
+					return string.format('%s (%s)', tail, path), { { { 1, #tail }, 'Constant' } }
+				end,
 				preview = {
 					hide_on_startup = true, -- hide previewer when picker starts
 				},

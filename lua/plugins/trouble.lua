@@ -8,7 +8,7 @@ return {
 	opts = {
 		auto_close = true,
 		height = 15,
-		group = false,
+		-- group = false,
 		indent_lines = false,
 	},
 }
