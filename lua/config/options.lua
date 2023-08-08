@@ -1,10 +1,11 @@
 -- See `:help vim.o`
 
 vim.o.cmdheight = 0
+vim.o.pumheight = 15 -- max number of items in popup menus
 
 vim.wo.wrap = false
 
-vim.o.laststatus = 3 -- Max status line full width
+vim.o.laststatus = 3 -- status line full width
 
 vim.wo.number = true
 vim.wo.relativenumber = true

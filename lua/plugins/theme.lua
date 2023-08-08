@@ -15,7 +15,6 @@ return {
 					['@parameter'] = { fg = '#6FBFF9' }, -- c.vscMediumBlue },
 				},
 			})
-			-- vim.cmd.colorscheme 'vscode'
 		end,
 	},
 	{
@@ -25,7 +24,8 @@ return {
 				flavour = 'frappe',
 				no_italic = true,
 				no_bold = true,
-				integrations = { cmp = true,
+				integrations = {
+					cmp = true,
 					neogit = true,
 					lsp_saga = true,
 					gitsigns = true,
@@ -53,10 +53,7 @@ return {
 
 					which_key = true,
 					-- harpoon = true,
-
-					-- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
 				},
-				-- transparent_background = true,
 				custom_highlights = function(colors)
 					return {
 						['@variable.builtin'] = { fg = colors.mauve },
@@ -122,34 +119,17 @@ return {
 						DiagnosticFloatingWarn = { bg = colors.base },
 						DiagnosticFloatingInfo = { bg = colors.base },
 						DiagnosticFloatingHint = { bg = colors.base },
+
+						MsgArea = { bg = colors.mantle }, -- cmdline
 					}
 				end,
-				-- color_overrides = {
-				--     frappe = {
-				--         base = "#2E3440"
-				--     }
-				-- }
 			})
-
-			-- local colors = require("catppuccin.palettes").get_palette()
-			-- require("catppuccin.lib.highlighter").syntax {
-			--     FloatBorder = { fg = colors.overlay2, bg = colors.mantle },
-			-- }
 
 			vim.cmd.colorscheme('catppuccin')
 		end,
 	},
-	-- {
-	--     'sainnhe/gruvbox-material',
-	--     config = function()
-	--       vim.o.background = "dark"
-	--       vim.g.gruvbox_material_background = "hard"
-	--       -- vim.g.gruvbox_material_transparent_background = 1
-	--       vim.cmd.colorscheme 'gruvbox-material'
-	--     end,
-	-- },
+	{ 'antonk52/lake.nvim' },
 	{
-		-- https://github.com/AlexvZyl/nordic.nvim
 		'AlexvZyl/nordic.nvim',
 		lazy = false,
 		priority = 1000,
@@ -167,20 +147,6 @@ return {
 					['@property'] = { fg = '#BBC3D4' },
 					['@parameter'] = { fg = '#8FBCBB', italic = false },
 				},
-				-- theme = 'onedark'
-			})
-
-			-- vim.cmd.colorscheme 'nordic'
-		end,
-	},
-	{
-		'rose-pine/neovim',
-		name = 'rose-pine',
-		config = function()
-			require('rose-pine').setup({
-				-- variant = 'moon',
-				disable_italics = true,
-				disable_background = true,
 			})
 		end,
 	},
@@ -189,70 +155,17 @@ return {
 		opts = {
 			style = 'storm', --  `moon`, a darker variant `night`,
 			transparent = true,
-			-- groups = {
-			--     background = '#1F252B',
-			--     background_nc = '#1F252B',
-			-- },
 			styles = {
-				-- Style to be applied to different syntax groups
-				-- Value is any valid attr-list value for `:help nvim_set_hl`
 				comments = { italic = false },
 				keywords = { italic = false },
 				functions = {},
 				variables = {},
-				-- Background styles. Can be "dark", "transparent" or "normal"
-				sidebars = 'dark', -- style for sidebars, see below
-				floats = 'dark', -- style for floating windows
+				sidebars = 'dark',
+				floats = 'dark',
 			},
-			on_highlights = function(hl, c)
+			on_highlights = function(hl, _)
 				hl['@property'] = { fg = '#C0CAF5' }
 			end,
-			-- on_colors = function(colors)
-			--     colors.bg = '#1F252B'
-			-- end,
 		},
-	},
-
-	{
-		'gbprod/nord.nvim',
-		config = function()
-			require('nord').setup({
-				-- transparent = true, -- Enable this to disable setting the background color
-				terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
-				diff = { mode = 'bg' }, -- enables/disables colorful backgrounds when used in diff mode. values : [bg|fg]
-				borders = true, -- Enable the border between verticaly split windows visible
-				errors = { mode = 'bg' }, -- Display mode for errors and diagnostics
-				styles = {
-					comments = { italic = false },
-				},
-				on_highlights = function(hl, colors)
-					hl['@keyword'] = { fg = '#B48EAD' }
-					hl['@number'] = { fg = '#D08770' }
-					hl['@parameter'] = { fg = '#EBCB8B' }
-
-					hl['@punctuation.bracket'] = { fg = '#949cbb' }
-					hl['@punctuation.delimiter'] = { fg = '#949cbb' }
-
-					--
-					hl['@conditional'] = { fg = '#B48EAD' }
-					hl['@keyword.return'] = { fg = '#B48EAD' }
-
-					-- hl['@keyword'] = { fg = '#81A1C1' }
-				end,
-			})
-		end,
-	},
-
-	{
-		'neanias/everforest-nvim',
-		version = false,
-		lazy = false,
-		priority = 1000, -- make sure to load this before all the other start plugins
-		-- Optional; default configuration will be used if setup isn't called.
-		config = function()
-			require('everforest').setup({
-				-- Your config here
-			})
-		end,
 	},
 }

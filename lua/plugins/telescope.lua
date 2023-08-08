@@ -72,13 +72,11 @@ return {
 			-- TelescopePromptTitle = { bg = colors.pink, fg = colors.mantle },
 			-- TelescopeResultsTitle = { fg = colors.mantle },
 			-- TelescopePreviewTitle = { bg = colors.green, fg = colors.mantle },
-
-			-- mantle = dark, surface0
 		}
 
-		for hl, col in pairs(TelescopeColor) do
-			vim.api.nvim_set_hl(0, hl, col)
-		end
+		-- for hl, col in pairs(TelescopeColor) do
+		-- 	vim.api.nvim_set_hl(0, hl, col)
+		-- end
 
 		return {
 			defaults = {
