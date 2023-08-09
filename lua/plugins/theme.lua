@@ -128,7 +128,6 @@ return {
 			vim.cmd.colorscheme('catppuccin')
 		end,
 	},
-	{ 'antonk52/lake.nvim' },
 	{
 		'AlexvZyl/nordic.nvim',
 		lazy = false,
