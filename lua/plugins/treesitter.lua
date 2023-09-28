@@ -7,6 +7,7 @@ return {
 			'nvim-treesitter/nvim-treesitter-textobjects',
 			'nvim-treesitter/playground',
 			'JoosepAlviste/nvim-ts-context-commentstring',
+			{ 'elgiano/nvim-treesitter-angular', branch = 'topic/jsx-fix' },
 		},
 		opts = {
 			highlight = { enable = true },
@@ -36,7 +37,7 @@ return {
 
 			context_commentstring = {
 				enable = true,
-				enable_autocmd = false
+				enable_autocmd = false,
 			},
 
 			autotag = {

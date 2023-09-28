@@ -3,7 +3,10 @@ return {
 	{ 'folke/persistence.nvim',       opts = {} },
 	{ 'tenxsoydev/karen-yank.nvim',   config = true },
 	{ 'max397574/better-escape.nvim', opts = {} },
-
+	{
+		'stevearc/dressing.nvim',
+		opts = {},
+	},
 	-- {
 	-- 	'nvim-pack/nvim-spectre',
 	-- 	dependencies = { 'nvim-lua/plenary.nvim' },
@@ -92,7 +95,7 @@ return {
 	},
 	{
 		'numToStr/Comment.nvim',
-		dependencies = {'JoosepAlviste/nvim-ts-context-commentstring'},
+		dependencies = { 'JoosepAlviste/nvim-ts-context-commentstring' },
 		config = function()
 			require('Comment').setup({
 				pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
@@ -104,7 +107,7 @@ return {
 		opts = {
 			handle = {
 				text = ' ',
-				blend = 50,      -- Integer between 0 and 100. 0 for fully opaque and 100 to full transparent. Defaults to 30.
+				blend = 50,     -- Integer between 0 and 100. 0 for fully opaque and 100 to full transparent. Defaults to 30.
 				color = '#737994',
 				color_nr = nil, -- cterm
 				highlight = 'CursorColumn',

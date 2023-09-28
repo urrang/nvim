@@ -22,8 +22,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-	{ 'tenxsoydev/karen-yank.nvim',   config = true },
-	{ 'max397574/better-escape.nvim', opts = {} },
+	{ 'tenxsoydev/karen-yank.nvim', config = true },
 	{
 		'folke/flash.nvim',
 		event = 'VeryLazy',
@@ -82,6 +81,8 @@ require('lazy').setup({
 -- Keymaps
 local map = vim.keymap.set
 
+map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+
 -- Stay at word under cursor when using *
 map('n', '*', '*N', { noremap = true, silent = true })
 
@@ -90,8 +91,6 @@ map('i', '<C-h>', '<Left>')
 map('i', '<C-j>', '<Down>')
 map('i', '<C-k>', '<Up>')
 map('i', '<C-l>', '<Right>')
-
-map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- Center when moving half a page down/up
 map('n', '<C-d>', '<C-d>zz')
@@ -106,6 +105,13 @@ map({ 'n', 'v' }, 'L', '$')
 map({ 'n', 'v' }, 'J', '5j')
 map({ 'n', 'v' }, 'K', '5k')
 map({ 'n', 'v' }, '<C-j>', 'J', { noremap = true })
+
+-- Tab moves indent
+map('v', '<Tab>', '>gv', { silent = true })
+map('v', '<S-Tab>', '<gv', { silent = true })
+-- map('i', '<S-Tab>', '<C-d>', { silent = true })
+map('n', '<Tab>', '>>', { silent = true })
+map('n', '<S-Tab>', '<<', { silent = true })
 
 -- Autocmd
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
