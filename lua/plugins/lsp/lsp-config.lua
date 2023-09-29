@@ -36,7 +36,7 @@ M.on_attach = function(_, bufnr)
 	nmap('<leader>gp', '<cmd>Lspsaga peek_definition<cr>', 'Peek Definition')
 	nmap('gd', vim.lsp.buf.definition, 'Goto Definition')
 	nmap('gr', vim.lsp.buf.references, 'Find all references')
-	nmap('gh', '<cmd>Lsjsaga hover_doc<CR>', 'Hover Documentation')
+	nmap('gh', '<cmd>Lspsaga hover_doc<CR>', 'Hover Documentation')
 end
 
 return M
