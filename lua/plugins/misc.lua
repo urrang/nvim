@@ -1,91 +1,150 @@
--- You can add your own plugins here or in other files in this directory!
---  I promise not to create any merge conflicts in this directory :)
---
--- See the kickstart.nvim README for more information
 return {
-    -- Git related plugins
-    'tpope/vim-fugitive',
-    'tpope/vim-rhubarb',
+	{ 'folke/which-key.nvim',         opts = {} },
+	{ 'folke/persistence.nvim',       opts = {} },
+	{ 'max397574/better-escape.nvim', opts = {} },
+	-- { 'tenxsoydev/karen-yank.nvim',   config = true },
+	{
+		'stevearc/dressing.nvim',
+		opts = {},
+	},
+	{
+		'tpope/vim-surround',
+		setup = function()
+			require('vim-fugitive').setup({})
+		end,
+	},
 
-    -- Detect tabstop and shiftwidth automatically
-    'tpope/vim-sleuth',
+	-- Currently using noice because of some input lag with this one. See:
+	-- https://github.com/ray-x/lsp_signature.nvim/issues/276
+	-- https://github.com/hrsh7th/nvim-cmp/issues/1613
+	-- { 'ray-x/lsp_signature.nvim', config = true },
 
-    { 'folke/which-key.nvim', opts = {} },
+	{
+		'AckslD/nvim-neoclip.lua',
+		requires = {
+			{ 'nvim-telescope/telescope.nvim' },
+		},
+		event = 'VeryLazy',
+		keys = {
+			{ '<leader>cb', '<cmd>Telescope neoclip<cr>', desc = 'Clipboard history' },
+		},
+		config = function()
+			require('neoclip').setup({
+				default_register = '+',
+				keys = {
+					telescope = {
+						i = {
+							select = '<c-c>',
+							paste_behind = '<cr>',
+						},
+						n = {
+							select = '<c-c>',
+							paste_behind = '<cr>',
+						},
+					},
+				},
+			})
 
-    {
-      "simrat39/symbols-outline.nvim",
-      keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
-      opts ={
-        autofold_depth = 1,
-      },
-    },
+			require('telescope').load_extension('neoclip')
+		end,
+	},
 
-    { "windwp/nvim-autopairs", opts = {} },
-    {
-      "windwp/nvim-ts-autotag",
-      dependencies = "nvim-treesitter/nvim-treesitter",
-      config = function ()
-        require('nvim-ts-autotag').setup({
-          filetypes = {
-            'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx', 'rescript',
-            'xml',
-            'php',
-            'markdown',
-            'astro', 'glimmer', 'handlebars', 'hbs'
-          },
-          skip_tags = {
-            'area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'slot',
-            'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr','menuitem'
-          }
-        })
-      end,
-      lazy = true,
-      event = "VeryLazy"
-    },
-    { "mg979/vim-visual-multi" },
-    -- {
-    --   'j-hui/fidget.nvim',
-    --   opts = {
-    --     window = {
-    --       blend = 0
-    --     }
-    --   }
-    -- },
-
-    {
-      'petertriho/nvim-scrollbar',
-      opts = {
-        handle = {
-          text = " ",
-          blend = 0, -- Integer between 0 and 100. 0 for fully opaque and 100 to full transparent. Defaults to 30.
-          color = "#737994",
-          color_nr = nil, -- cterm
-          highlight = "CursorColumn",
-          hide_if_all_visible = true, -- Hides handle if all lines are visible
-        },
-      }
-    },
-
-      -- "gc" to comment visual regions/lines
-    {
-      'numToStr/Comment.nvim',
-      event = "VeryLazy",
-      opts = {
-        -- toggler = {
-        --   line = '<leader>kc',
-        --   block = '<leader>kb',
-        -- },
-      }
-    },
-
-    { 'lukas-reineke/indent-blankline.nvim', opts = {} },
-    {
-      'smolck/command-completion.nvim',
-      event = "VeryLazy",
-      opts = {}
-    },
-    {
-      'ThePrimeagen/vim-be-good',
-      event = "VeryLazy",
-    }
+	{
+		'windwp/nvim-ts-autotag',
+		dependencies = 'nvim-treesitter/nvim-treesitter',
+		config = function()
+			require('nvim-ts-autotag').setup({
+				filetypes = {
+					'html',
+					'javascript',
+					'typescript',
+					'javascriptreact',
+					'typescriptreact',
+					'svelte',
+					'vue',
+					'tsx',
+					'jsx',
+					'rescript',
+					'xml',
+					'markdown',
+				},
+				skip_tags = {
+					'area',
+					'base',
+					'br',
+					'col',
+					'command',
+					'embed',
+					'hr',
+					'img',
+					'slot',
+					'input',
+					'keygen',
+					'link',
+					'meta',
+					'param',
+					'source',
+					'track',
+					'wbr',
+					'menuitem',
+				},
+			})
+		end,
+		lazy = true,
+		event = 'VeryLazy',
+	},
+	{
+		'numToStr/Comment.nvim',
+		dependencies = { 'JoosepAlviste/nvim-ts-context-commentstring' },
+		config = function()
+			require('Comment').setup({
+				pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+			})
+		end,
+	},
+	{
+		'petertriho/nvim-scrollbar',
+		opts = {
+			handle = {
+				text = ' ',
+				blend = 50,
+				color = '#737994',
+				color_nr = nil,
+				highlight = 'CursorColumn',
+				hide_if_all_visible = true,
+			},
+		},
+	},
+	{
+		'akinsho/toggleterm.nvim',
+		opts = {
+			open_mapping = '<F10>',
+			direction = 'float',
+			float_opts = {
+				border = 'rounded',
+			},
+		},
+	},
+	{
+		'lukas-reineke/indent-blankline.nvim',
+		opts = {
+			char = '▏',
+			show_trailing_blankline_indent = false,
+			show_first_indent_level = false,
+			use_treesitter = true,
+			show_current_context = false,
+			filetype_exclude = {
+				'help',
+				'alpha',
+				'dashboard',
+				'neo-tree',
+				'Trouble',
+				'lazy',
+				'mason',
+				'notify',
+				'toggleterm',
+				'lazyterm',
+			},
+		},
+	},
 }

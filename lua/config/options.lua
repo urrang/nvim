@@ -1,5 +1,11 @@
 -- See `:help vim.o`
+
+vim.o.cmdheight = 0
+vim.o.pumheight = 15 -- max number of items in popup menus
+
 vim.wo.wrap = false
+
+vim.o.laststatus = 3 -- status line full width
 
 vim.wo.number = true
 vim.wo.relativenumber = true
@@ -8,12 +14,12 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+
+vim.opt.splitright = true
 
 -- Set highlight on search
-vim.o.hlsearch = false
-
--- Make line numbers default
-vim.wo.number = true
+-- vim.o.hlsearch = false
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
@@ -47,14 +53,21 @@ vim.o.termguicolors = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 
+vim.diagnostic.config({
+	float = { border = 'rounded' },
+})
+
 -- local lsp = vim.lsp
 -- lsp.handlers['textDocument/hover'] = lsp.with(
 --   lsp.handlers.hover,
---   { border = 'rounded', max_width = max_width, max_height = max_height }
+--   { border = 'rounded' }
 -- )
 
 -- lsp.handlers['textDocument/signatureHelp'] = lsp.with(lsp.handlers.signature_help, {
 --   border = 'rounded',
---   max_width = max_width,
---   max_height = max_height,
 -- })
+
+-- vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+--     vim.lsp.handlers['signature_help'], {
+--         border = 'single',
+--         close_events = {"CursorMoved", "BufHidden", "InsertCharPre"}, })
