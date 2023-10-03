@@ -7,6 +7,12 @@ return {
 		'stevearc/dressing.nvim',
 		opts = {},
 	},
+	{
+		'tpope/vim-surround',
+		setup = function()
+			require('vim-fugitive').setup({})
+		end,
+	},
 	-- {
 	-- 	'nvim-pack/nvim-spectre',
 	-- 	dependencies = { 'nvim-lua/plenary.nvim' },
@@ -121,9 +127,9 @@ return {
 			open_mapping = '<F10>',
 			direction = 'float',
 			float_opts = {
-				border = 'rounded'
-			}
-		}
+				border = 'rounded',
+			},
+		},
 	},
 	{
 		'lukas-reineke/indent-blankline.nvim',
