@@ -5,7 +5,7 @@ local map = vim.keymap.set
 -- Clear search highlight on escape
 map('n', '<Esc>', ':noh<CR><Esc>', { noremap = true, silent = true })
 
--- Stay at word under cursor when using * 
+-- Stay at word under cursor when using *
 map('n', '*', '*N', { noremap = true, silent = true })
 
 -- Save/save all with Ctrl + s/S
@@ -16,6 +16,16 @@ map('i', '<C-h>', '<Left>')
 map('i', '<C-j>', '<Down>')
 map('i', '<C-k>', '<Up>')
 map('i', '<C-l>', '<Right>')
+
+-- Use register d for deleted text to avoid overriding
+-- system clipboard. Paste with leader + p
+local keys = { 'd', 'D', 'c', 'C', 'x', 'X' }
+for _, key in ipairs(keys) do
+	map({  'n', 'v' }, key, '"d' .. key, { noremap = true })
+end
+
+map('n', '<leader>p', '"dp', { desc = 'Paste deleted text' })
+map('n', '<leader>P', '"dP', { desc = 'Paste deleted text' })
 
 -- Intend on paste
 -- map('n', 'p', ']p')

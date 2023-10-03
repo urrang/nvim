@@ -22,7 +22,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local plugins = require('vscode/plugins')
+local plugins = require('vscode/vscode_plugins')
 require('lazy').setup(plugins)
 
 -- Keymaps
@@ -31,22 +31,13 @@ local vscode_cmd = function(cmd)
 	return '<Cmd>call VSCodeCall("' .. cmd .. '")<CR>'
 end
 
--- Focus buffers with <leader> [1-9]
-for i = 1, 9 do
-	-- map('n', '<leader>' .. i, '<Cmd>call VSCodeCall("workbench.action.openEditorAtIndex' .. i .. '")<CR>')
-	map('n', '<leader>' .. i, vscode_cmd('workbench.action.openEditorAtIndex' .. i))
-end
+-- Clear search highlight on escape
+map('n', '<Esc>', ':noh<CR><Esc>', { noremap = true, silent = true })
 
-map('n', '<leader>G', vscode_cmd('workbench.scm.focus'))
-map('n', '<leader>E', vscode_cmd('workbench.files.action.focusFilesExplorer'))
-map('n', '<leader>A', vscode_cmd('workbench.action.toggleActivityBarVisibility'))
+-- Change word with enter
+map('n', '<CR>', 'ciw')
 
-map({ 'n', 'v' }, '<A-k>', vscode_cmd('editor.action.moveLinesUpAction'))
-map({ 'n', 'v' }, '<A-j>', vscode_cmd('editor.action.moveLinesDownAction'))
-
-map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-
--- Stay at word under cursor when using *
+-- Stay at word under cursor when usig *
 map('n', '*', '*N', { noremap = true, silent = true })
 
 -- Move with Ctrl + arrow keys in insert mode
@@ -55,12 +46,9 @@ map('i', '<C-j>', '<Down>')
 map('i', '<C-k>', '<Up>')
 map('i', '<C-l>', '<Right>')
 
-map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-
 -- Tab moves indent
 map('v', '<Tab>', '>gv', { silent = true })
 map('v', '<S-Tab>', '<gv', { silent = true })
--- map('i', '<S-Tab>', '<C-d>', { silent = true })
 map('n', '<Tab>', '>>', { silent = true })
 map('n', '<S-Tab>', '<<', { silent = true })
 
@@ -78,18 +66,27 @@ map({ 'n', 'v' }, 'J', '5j')
 map({ 'n', 'v' }, 'K', '5k')
 map({ 'n', 'v' }, '<C-j>', 'J', { noremap = true })
 
--- Put deleted/changed content into register d
--- map('n', 'dd', '"ddd', { noremap = true })
-
+-- Use register d for deleted text to avoid overriding system clipboard
 local keys = { 'd', 'D', 'c', 'C', 'x', 'X' }
 for _, key in ipairs(keys) do
-	map('n', key, '"d' .. key, { noremap = true })
+	map({  'n', 'v' }, key, '"d' .. key, { noremap = true })
 end
 
--- Paste fr m register d
-map('n', '<A-p', '"dp')
-map('n', '<A-P', '"dP')
-map('n', '<leader>pd', '"dp')
+-- Pase from register d (deleted text)
+map('n', '<leader>p', '"dp', { desc = 'Paste deleted text' })
+map('n', '<leader>P', '"dP', { desc = 'Paste deleted text' })
+
+-- VS Code commands
+for i = 1, 9 do
+	map('n', '<leader>' .. i, vscode_cmd('workbench.action.openEditorAtIndex' .. i))
+end
+
+map('n', '<leader>G', vscode_cmd('workbench.scm.focus'))
+map('n', '<leader>E', vscode_cmd('workbench.files.action.focusFilesExplorer'))
+map('n', '<leader>A', vscode_cmd('workbench.action.toggleActivityBarVisibility'))
+
+map({ 'n', 'v' }, '<A-j>', vscode_cmd('editor.action.moveLinesDownAction'))
+map({ 'n', 'v' }, '<A-j>', vscode_cmd('editor.action.moveLinesDownAction'))
 
 -- Autocmd
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })

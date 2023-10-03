@@ -1,8 +1,8 @@
 return {
 	{ 'folke/which-key.nvim',         opts = {} },
 	{ 'folke/persistence.nvim',       opts = {} },
-	{ 'tenxsoydev/karen-yank.nvim',   config = true },
 	{ 'max397574/better-escape.nvim', opts = {} },
+	-- { 'tenxsoydev/karen-yank.nvim',   config = true },
 	{
 		'stevearc/dressing.nvim',
 		opts = {},
@@ -13,12 +13,6 @@ return {
 			require('vim-fugitive').setup({})
 		end,
 	},
-	-- {
-	-- 	'nvim-pack/nvim-spectre',
-	-- 	dependencies = { 'nvim-lua/plenary.nvim' },
-	-- 	event = 'VeryLazy',
-	-- 	opts = {},
-	-- },
 
 	-- Currently using noice because of some input lag with this one. See:
 	-- https://github.com/ray-x/lsp_signature.nvim/issues/276
@@ -113,11 +107,11 @@ return {
 		opts = {
 			handle = {
 				text = ' ',
-				blend = 50,     -- Integer between 0 and 100. 0 for fully opaque and 100 to full transparent. Defaults to 30.
+				blend = 50,
 				color = '#737994',
-				color_nr = nil, -- cterm
+				color_nr = nil,
 				highlight = 'CursorColumn',
-				hide_if_all_visible = true, -- Hides handle if all lines are visible
+				hide_if_all_visible = true,
 			},
 		},
 	},
@@ -153,9 +147,4 @@ return {
 			},
 		},
 	},
-	-- {
-	-- 	'smolck/command-completion.nvim',
-	-- 	event = 'VeryLazy',
-	-- 	opts = {},
-	-- },
 }
