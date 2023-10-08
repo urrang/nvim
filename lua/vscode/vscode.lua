@@ -72,9 +72,12 @@ for _, key in ipairs(keys) do
 	map({  'n', 'v' }, key, '"d' .. key, { noremap = true })
 end
 
--- Pase from register d (deleted text)
+-- Paste from register d (deleted text)
 map('n', '<leader>p', '"dp', { desc = 'Paste deleted text' })
 map('n', '<leader>P', '"dP', { desc = 'Paste deleted text' })
+
+-- Console log variable under cursor
+map('n', '<leader>cl', "yiwoconsole.log('<Esc>pa', <Esc>pa);<Esc>", { desc = 'Log variable under cursor'})
 
 -- VS Code commands
 for i = 1, 9 do
@@ -84,6 +87,13 @@ end
 map('n', '<leader>G', vscode_cmd('workbench.scm.focus'))
 map('n', '<leader>E', vscode_cmd('workbench.files.action.focusFilesExplorer'))
 map('n', '<leader>A', vscode_cmd('workbench.action.toggleActivityBarVisibility'))
+
+map('n', '<leader>x', vscode_cmd('editor.action.marker.next'), { desc = 'Go to next error' })
+map('n', '<leader>X', vscode_cmd('editor.action.marker.prev'), { desc = 'Go to previous error' })
+
+map('n', 'gh', vscode_cmd('editor.action.showHover'))
+map('n', 'gr', vscode_cmd('references-view.findReferences'));
+map('n', 'gd', vscode_cmd('editor.action.revealDefinition'));
 
 map({ 'n', 'v' }, '<A-j>', vscode_cmd('editor.action.moveLinesDownAction'))
 map({ 'n', 'v' }, '<A-j>', vscode_cmd('editor.action.moveLinesDownAction'))
