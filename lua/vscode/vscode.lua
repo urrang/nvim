@@ -98,6 +98,8 @@ map('n', 'gd', vscode_cmd('editor.action.revealDefinition'));
 map({ 'n', 'v' }, '<A-j>', vscode_cmd('editor.action.moveLinesDownAction'))
 map({ 'n', 'v' }, '<A-j>', vscode_cmd('editor.action.moveLinesDownAction'))
 
+map('n', '<C-a>', '0ggvG')
+
 -- Autocmd
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {

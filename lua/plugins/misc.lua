@@ -1,6 +1,6 @@
 return {
-	{ 'folke/which-key.nvim',         opts = {} },
-	{ 'folke/persistence.nvim',       opts = {} },
+	{ 'folke/which-key.nvim', opts = {} },
+	{ 'folke/persistence.nvim', opts = {} },
 	{ 'max397574/better-escape.nvim', opts = {} },
 	-- { 'tenxsoydev/karen-yank.nvim',   config = true },
 	{
