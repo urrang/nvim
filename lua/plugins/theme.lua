@@ -87,6 +87,8 @@ return {
 						['@lsp.type.interface'] = { link = 'Type' },
 						['@lsp.type.enumMember'] = { fg = colors.text },
 
+						['@keyword.html'] = { fg = colors.sky },
+
 						-- ['cssAttrRegion'] = { fg = colors.text },
 						-- ['cssUnitDecorators'] = { fg = colors.yellow },
 						-- ['cssColor'] = { fg = colors.red },
@@ -121,6 +123,9 @@ return {
 						DiagnosticFloatingHint = { bg = colors.base },
 
 						MsgArea = { bg = colors.mantle }, -- cmdline
+
+						-- Smart-open file path
+						Directory = { fg = colors.overlay1 },
 					}
 				end,
 			})

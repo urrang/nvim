@@ -24,11 +24,6 @@ return {
 		leader_map('fs', 'Telescope aerial', 'Find symbols'),
 		-- leader_map('fr', require('telescope.builtin').lsp_references(), 'Find references'),
 
-		leader_map('f1', 'Telescope find_files', 'test1'),
-		leader_map('f2', 'lua require("telescope.builtin").find_files{ path_display = { "smart" } }', 'test2'),
-		leader_map('f3', 'lua require("telescope.builtin").lsp_references{ show_line = false, trim_text = true }', 'test3'),
-		-- trim_text
-
 		{
 			'<leader>/',
 			function()
