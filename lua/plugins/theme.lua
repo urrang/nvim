@@ -1,4 +1,6 @@
 return {
+	{ 'mikesmithgh/gruvsquirrel.nvim' },
+	{ 'rose-pine/neovim' },
 	{
 		'Mofiqul/vscode.nvim',
 		config = function()
@@ -56,13 +58,13 @@ return {
 				},
 				custom_highlights = function(colors)
 					return {
-						['@variable.builtin'] = { fg = colors.mauve },
+						-- ['@variable.builtin'] = { fg = colors.mauve },
 						['@type.qualifier'] = { fg = colors.mauve },
 						['@parameter'] = { fg = colors.sky },
 						['@property'] = { fg = colors.text },
 						['@operator'] = { fg = colors.subtext1 },
-						['@punctuation.bracket'] = { fg = colors.subtext1 },
-						['@punctuation.delimiter'] = { fg = colors.subtext1 },
+						-- ['@punctuation.bracket'] = { fg = colors.subtext1 },
+						-- ['@punctuation.delimiter'] = { fg = colors.subtext1 },
 						-- ['@type'] = { fg = "#BFE7E0" },
 
 						['@number'] = { fg = colors.maroon },
@@ -158,7 +160,7 @@ return {
 		'folke/tokyonight.nvim',
 		opts = {
 			style = 'storm', --  `moon`, a darker variant `night`,
-			transparent = true,
+			-- transparent = true,
 			styles = {
 				comments = { italic = false },
 				keywords = { italic = false },
