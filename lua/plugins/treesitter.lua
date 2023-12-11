@@ -1,3 +1,5 @@
+vim.g.skip_ts_context_commentstring_module = true
+
 return {
 	{
 		'nvim-treesitter/nvim-treesitter',
@@ -7,14 +9,10 @@ return {
 			'nvim-treesitter/nvim-treesitter-textobjects',
 			'nvim-treesitter/playground',
 			'JoosepAlviste/nvim-ts-context-commentstring',
-			{ 'elgiano/nvim-treesitter-angular', branch = 'topic/jsx-fix' },
 		},
 		opts = {
 			highlight = { enable = true },
 			indent = { enable = true },
-
-			-- REVISIT: from LazyVim, figure out what it does and if we want it
-			-- context_commentstring = { enable = true, enable_autocmd = false },
 
 			ensure_installed = {
 				'typescript',
@@ -26,18 +24,11 @@ return {
 				'markdown',
 				'markdown_inline',
 				'go',
-				'python',
 				'rust',
 				'lua',
 				'vimdoc',
 				'vim',
 				'svelte',
-				'prisma',
-			},
-
-			context_commentstring = {
-				enable = true,
-				enable_autocmd = false,
 			},
 
 			autotag = {
@@ -52,30 +43,21 @@ return {
 					'vue',
 					'tsx',
 					'jsx',
-					'rescript',
 					'css',
 					'lua',
 					'xml',
-					'php',
 					'markdown',
 				},
 			},
 
-			-- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
 			auto_install = false,
 
 			incremental_selection = {
 				enable = true,
 				keymaps = {
-					-- init_selection = 'v',
 					node_incremental = 'v',
 					node_decremental = 'V',
 					scope_incremental = '<c-s>',
-
-					-- init_selection = '<c-space>',
-					-- node_incremental = '<c-space>',
-					-- scope_incremental = '<c-s>',
-					-- node_decremental = '<M-space>',
 				},
 			},
 
@@ -126,6 +108,10 @@ return {
 		},
 		config = function(_, opts)
 			require('nvim-treesitter.configs').setup(opts)
+			require('ts_context_commentstring').setup({
+				enable_autocmd = false
+			})
+
 		end,
 	},
 }

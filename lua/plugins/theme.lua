@@ -1,6 +1,10 @@
 return {
-	{ 'mikesmithgh/gruvsquirrel.nvim' },
-	{ 'rose-pine/neovim' },
+	{
+		-- Figure out why vars etc are blue..
+		'kvrohit/rasmus.nvim',
+		config = function()
+		end
+	},
 	{
 		'Mofiqul/vscode.nvim',
 		config = function()
@@ -100,7 +104,9 @@ return {
 						-- ['@function.call'] = { fg = colors.flamingo },
 						-- ['@property'] = { fg = colors.text },
 
-						-- ['@variable.builtin'] = { fg = colors.blue },
+						['@variable.builtin'] = { fg = colors.mauve },
+						['@conditional']  = { fg = colors.red },
+						['@keyword'] = { fg = colors.mauve },
 						-- ['@method'] = { fg = colors.yellow },
 						-- ['@method.call'] = { fg = colors.yellow },
 						-- ['@function.call'] = { fg = colors.yellow },
@@ -140,6 +146,8 @@ return {
 		lazy = false,
 		priority = 1000,
 		config = function()
+			local palette = require 'nordic.colors'
+
 			require('nordic').setup({
 				transparent_bg = false,
 				italic_comments = false,
@@ -150,7 +158,7 @@ return {
 					['@text.emphasis'] = { italic = false },
 					-- ['@parameter'] = { italic = false },
 
-					['@property'] = { fg = '#BBC3D4' },
+					['@property'] = { fg = palette.white0 },
 					['@parameter'] = { fg = '#8FBCBB', italic = false },
 				},
 			})

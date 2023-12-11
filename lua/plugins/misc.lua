@@ -127,24 +127,32 @@ return {
 	},
 	{
 		'lukas-reineke/indent-blankline.nvim',
+		main = "ibl",
 		opts = {
-			char = '▏',
-			show_trailing_blankline_indent = false,
-			show_first_indent_level = false,
-			use_treesitter = true,
-			show_current_context = false,
-			filetype_exclude = {
-				'help',
-				'alpha',
-				'dashboard',
-				'neo-tree',
-				'Trouble',
-				'lazy',
-				'mason',
-				'notify',
-				'toggleterm',
-				'lazyterm',
+			indent = {
+				char = '▏',
 			},
+			-- show_trailing_blankline_indent = false,
+			-- show_first_indent_level = false,
+			-- use_treesitter = true,
+			-- show_current_context = false,
+			scope = {
+				enabled = false
+			},
+			exclude = {
+				filetypes = {
+					'help',
+					'alpha',
+					'dashboard',
+					'neo-tree',
+					'Trouble',
+					'lazy',
+					'mason',
+					'notify',
+					'toggleterm',
+					'lazyterm',
+				}
+			}
 		},
 	},
 }
