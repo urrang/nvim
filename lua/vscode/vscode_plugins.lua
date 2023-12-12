@@ -1,5 +1,4 @@
 return {
-	{ 'max397574/better-escape.nvim', opts = {} },
 	{
 		'tpope/vim-surround',
 		setup = function()

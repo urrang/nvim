@@ -1,5 +1,6 @@
-
+---------------------------------------------
 -- Options
+---------------------------------------------
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -8,7 +9,12 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.undofile = true
 
--- Lazy
+
+---------------------------------------------
+-- Plugins
+---------------------------------------------
+
+-- Init Lazy (plugin manager)
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -20,27 +26,32 @@ if not vim.loop.fs_stat(lazypath) then
 		lazypath,
 	})
 end
+
 vim.opt.rtp:prepend(lazypath)
 
+-- Load plugins
 local plugins = require('vscode/vscode_plugins')
 require('lazy').setup(plugins)
 
+
+---------------------------------------------
 -- Keymaps
+---------------------------------------------
 local map = vim.keymap.set
 local vscode_cmd = function(cmd)
 	return '<Cmd>call VSCodeCall("' .. cmd .. '")<CR>'
 end
 
--- Clear search highlight on escape
+-- Clear search highlight when pressing escape
 map('n', '<Esc>', ':noh<CR><Esc>', { noremap = true, silent = true })
 
--- Change word with enter
+-- Change word with Enter
 map('n', '<CR>', 'ciw')
 
 -- Stay at word under cursor when usig *
 map('n', '*', '*N', { noremap = true, silent = true })
 
--- Move with Ctrl + arrow keys in insert mode
+-- Move cursor in insert mode with Ctrl + hjkl
 map('i', '<C-h>', '<Left>')
 map('i', '<C-j>', '<Down>')
 map('i', '<C-k>', '<Up>')
@@ -52,29 +63,24 @@ map('v', '<S-Tab>', '<gv', { silent = true })
 map('n', '<Tab>', '>>', { silent = true })
 map('n', '<S-Tab>', '<<', { silent = true })
 
--- Center when moving half a page down/up
-map('n', '<C-d>', '<C-d>zz')
-map('n', '<C-u>', '<C-u>zz')
-
 -- Remap for dealing with word wrap
 map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
+-- Go to start or end of line (ignoring whitespace) with shift + H/L
 map({ 'n', 'v' }, 'H', '^')
 map({ 'n', 'v' }, 'L', '$')
+
+-- Go 5 lines up/down with shift + J/K
+-- Should probably consider Ctrl + J/K instead, to avoid overriding existing keymaps
 map({ 'n', 'v' }, 'J', '5j')
 map({ 'n', 'v' }, 'K', '5k')
+
+-- Since we used shift + J above, remap it's default behavior (join lines) to Ctrl + J
 map({ 'n', 'v' }, '<C-j>', 'J', { noremap = true })
 
--- Use register d for deleted text to avoid overriding system clipboard
-local keys = { 'd', 'D', 'c', 'C', 'x', 'X' }
-for _, key in ipairs(keys) do
-	map({  'n', 'v' }, key, '"d' .. key, { noremap = true })
-end
-
--- Paste from register d (deleted text)
-map('n', '<leader>p', '"dp', { desc = 'Paste deleted text' })
-map('n', '<leader>P', '"dP', { desc = 'Paste deleted text' })
+-- Select whole file with Ctrl + A
+map('n', '<C-a>', '0ggvG')
 
 -- Console log variable under cursor
 map('n', '<leader>cl', "yiwoconsole.log('<Esc>pa', <Esc>pa);<Esc>", { desc = 'Log variable under cursor'})
@@ -98,9 +104,37 @@ map('n', 'gd', vscode_cmd('editor.action.revealDefinition'));
 map({ 'n', 'v' }, '<A-j>', vscode_cmd('editor.action.moveLinesDownAction'))
 map({ 'n', 'v' }, '<A-j>', vscode_cmd('editor.action.moveLinesDownAction'))
 
-map('n', '<C-a>', '0ggvG')
 
+--[[
+	The following keymaps are a bit weird. 
+
+	I've set up vim to use the unnamedplus (system register) for clipboard stuff. 
+	This means anything i yank (copy) goes into the system clipboard. 
+	Unfortunately that also includes anything I delete or change (using d, c and x). 
+
+	To avoid overriding the content of my clipboard whenever I delete text, 
+	these keymaps make d/c/x put content into the 'd' register instead. 
+	I then have keymaps for pasting from the 'd' register with <leader> p/P (after/before cursor)
+
+	This is a bit of a hack, and you may be better of just learning to use register effeciently..
+--]]
+
+-- Use register d for deleted text to avoid overriding system clipboard
+local keys = { 'd', 'D', 'c', 'C', 'x', 'X' }
+for _, key in ipairs(keys) do
+	map({  'n', 'v' }, key, '"d' .. key, { noremap = true })
+end
+
+-- Paste from register d (deleted text)
+map('n', '<leader>p', '"dp', { desc = 'Paste deleted text' })
+map('n', '<leader>P', '"dP', { desc = 'Paste deleted text' })
+
+
+---------------------------------------------
 -- Autocmd
+---------------------------------------------
+
+-- Highlight copied text for a short duration after a yank operation
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
 	callback = function()
