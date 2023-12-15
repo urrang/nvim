@@ -15,8 +15,7 @@ M.servers = {
 	html = {},
 	svelte = {},
 	angularls = {},
-	prismals = {},
-	-- emmet_ls = {},
+	emmet_language_server = {},
 	lua_ls = {
 		Lua = {
 			workspace = { checkThirdParty = false },

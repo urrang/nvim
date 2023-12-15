@@ -11,6 +11,9 @@ map('n', '*', '*N', { noremap = true, silent = true })
 -- Save/save all with Ctrl + s/S
 map({ 'n', 'i' }, '<C-s>', '<cmd>w<cr>', { silent = true })
 
+-- Change word under cursor with enter
+map('n', '<CR>', 'ciw')
+
 -- Move with Ctrl + arrow keys in insert mode
 map('i', '<C-h>', '<Left>')
 map('i', '<C-j>', '<Down>')

@@ -104,9 +104,10 @@ return {
 						-- ['@function.call'] = { fg = colors.flamingo },
 						-- ['@property'] = { fg = colors.text },
 
-						['@variable.builtin'] = { fg = colors.mauve },
+						['@variable.builtin'] = { fg = colors.text },
 						['@conditional']  = { fg = colors.red },
 						['@keyword'] = { fg = colors.mauve },
+						['@keyword.export'] = { fg = colors.mauve },
 						-- ['@method'] = { fg = colors.yellow },
 						-- ['@method.call'] = { fg = colors.yellow },
 						-- ['@function.call'] = { fg = colors.yellow },
