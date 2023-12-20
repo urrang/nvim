@@ -1,6 +1,6 @@
 return {
-	{ 'folke/which-key.nvim', opts = {} },
-	{ 'folke/persistence.nvim', opts = {} },
+	{ 'folke/which-key.nvim',         event = 'VeryLazy', opts = {} },
+	{ 'folke/persistence.nvim',       opts = {} },
 	{ 'max397574/better-escape.nvim', opts = {} },
 	-- { 'tenxsoydev/karen-yank.nvim',   config = true },
 	{
@@ -118,8 +118,9 @@ return {
 	{
 		'akinsho/toggleterm.nvim',
 		opts = {
-			open_mapping = '<F10>',
-			direction = 'float',
+			open_mapping = '<c-t>',
+			direction = 'vertical',
+			size = 50,
 			float_opts = {
 				border = 'rounded',
 			},
@@ -129,16 +130,8 @@ return {
 		'lukas-reineke/indent-blankline.nvim',
 		main = "ibl",
 		opts = {
-			indent = {
-				char = '▏',
-			},
-			-- show_trailing_blankline_indent = false,
-			-- show_first_indent_level = false,
-			-- use_treesitter = true,
-			-- show_current_context = false,
-			scope = {
-				enabled = false
-			},
+			indent = { char = '▏' },
+			scope = { enabled = false },
 			exclude = {
 				filetypes = {
 					'help',

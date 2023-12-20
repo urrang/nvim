@@ -1,9 +1,30 @@
 return {
+	{ 'sainnhe/sonokai' },
+	{
+		'sainnhe/gruvbox-material',
+		setup = function()
+			vim.g.gruvbox_material_foreground = 'mix'
+		end,
+	},
+	{
+		'ellisonleao/gruvbox.nvim',
+		config = function()
+			require('gruvbox').setup({
+				contrast = 'soft',
+				italic = {
+					strings = false,
+					emphasis = false,
+					comments = false,
+					folds = false,
+				},
+				bold = false,
+			})
+		end,
+	},
 	{
 		-- Figure out why vars etc are blue..
 		'kvrohit/rasmus.nvim',
-		config = function()
-		end
+		config = function() end,
 	},
 	{
 		'Mofiqul/vscode.nvim',
@@ -27,7 +48,7 @@ return {
 		'catppuccin/nvim',
 		config = function()
 			require('catppuccin').setup({
-				flavour = 'frappe',
+				flavour = 'macchiato',
 				no_italic = true,
 				no_bold = true,
 				integrations = {
@@ -62,17 +83,25 @@ return {
 				},
 				custom_highlights = function(colors)
 					return {
-						-- ['@variable.builtin'] = { fg = colors.mauve },
 						['@type.qualifier'] = { fg = colors.mauve },
-						['@parameter'] = { fg = colors.sky },
+						['@parameter'] = { fg = colors.text },
 						['@property'] = { fg = colors.text },
 						['@operator'] = { fg = colors.subtext1 },
-						-- ['@punctuation.bracket'] = { fg = colors.subtext1 },
-						-- ['@punctuation.delimiter'] = { fg = colors.subtext1 },
-						-- ['@type'] = { fg = "#BFE7E0" },
+						['@type'] = { fg = colors.teal },
+						['Type'] = { fg = colors.teal },
 
-						['@number'] = { fg = colors.maroon },
-						['@boolean'] = { fg = colors.maroon },
+						['@conditional'] = { fg = colors.mauve },
+						['@keyword'] = { fg = colors.mauve },
+						['@keyword.export'] = { fg = colors.mauve },
+						['@constructor.typescript'] = { fg = colors.mauve },
+						['@type.typescript'] = { fg = colors.text }, -- imports, anything else?
+
+						['@variable.builtin'] = { fg = colors.red },
+						['@constant.builtin'] = { fg = colors.peach },
+						['@function.builtin'] = { fg = colors.blue },
+
+						['@number'] = { fg = colors.peach },
+						['@boolean'] = { fg = colors.peach },
 
 						['cssDefinition'] = { fg = colors.text },
 						['StorageClass'] = { fg = colors.text },
@@ -86,31 +115,11 @@ return {
 						['cssFunction'] = { fg = colors.text },
 						['Constant'] = { fg = colors.maroon },
 
-						-- ['Special'] = { fg = colors.green },
-						-- ['Type'] = { fg = colors.green },
-						-- ['Identifier'] = { fg = colors.green },
-						-- ['CmpItemKindVariable'] = { fg = colors.green },
 						['@lsp.type.interface'] = { link = 'Type' },
+						['@lsp.type.class.typescript'] = { link = 'Type' },
 						['@lsp.type.enumMember'] = { fg = colors.text },
 
 						['@keyword.html'] = { fg = colors.sky },
-
-						-- ['cssAttrRegion'] = { fg = colors.text },
-						-- ['cssUnitDecorators'] = { fg = colors.yellow },
-						-- ['cssColor'] = { fg = colors.red },
-
-						-- ['@method'] = { fg = colors.flamingo },
-						-- ['@method.call'] = { fg = colors.flamingo },
-						-- ['@function.call'] = { fg = colors.flamingo },
-						-- ['@property'] = { fg = colors.text },
-
-						['@variable.builtin'] = { fg = colors.text },
-						['@conditional']  = { fg = colors.red },
-						['@keyword'] = { fg = colors.mauve },
-						['@keyword.export'] = { fg = colors.mauve },
-						-- ['@method'] = { fg = colors.yellow },
-						-- ['@method.call'] = { fg = colors.yellow },
-						-- ['@function.call'] = { fg = colors.yellow },
 
 						CmpBorder = { fg = colors.surface2 },
 
@@ -126,6 +135,8 @@ return {
 						NormalFloat = { bg = colors.base },
 						-- NormalFloatBorder = { fg = colors.surface2, bg = colors.base },
 
+						DiagnosticDeprecated = { style = { 'underline' } },
+
 						DiagnosticFloatingError = { bg = colors.base },
 						DiagnosticFloatingWarn = { bg = colors.base },
 						DiagnosticFloatingInfo = { bg = colors.base },
@@ -137,6 +148,14 @@ return {
 						Directory = { fg = colors.overlay1 },
 					}
 				end,
+				color_overrides = {
+					all = {
+						text = '#c0caf5',
+					},
+					-- macchiato = {
+					-- 	base = '#25292E' -- github dark
+					-- }
+				},
 			})
 
 			vim.cmd.colorscheme('catppuccin')
@@ -147,7 +166,7 @@ return {
 		lazy = false,
 		priority = 1000,
 		config = function()
-			local palette = require 'nordic.colors'
+			local palette = require('nordic.colors')
 
 			require('nordic').setup({
 				transparent_bg = false,
@@ -180,6 +199,7 @@ return {
 			},
 			on_highlights = function(hl, _)
 				hl['@property'] = { fg = '#C0CAF5' }
+				hl['@parameter'] = { fg = '#C0CAF5' }
 			end,
 		},
 	},

@@ -4,8 +4,13 @@ return {
 		'neovim/nvim-lspconfig',
 		event = { 'BufReadPre', 'BufNewFile' },
 		dependencies = {
-			{ 'williamboman/mason.nvim',          config = true },
+			{ 'williamboman/mason.nvim', config = true },
 			{ 'williamboman/mason-lspconfig.nvim' },
+			{
+				'ray-x/lsp_signature.nvim',
+				event = 'VeryLazy',
+				opts = { hint_enable = false }
+			},
 		},
 		config = function()
 			local cfg = require('plugins.lsp.lsp-config')
@@ -46,7 +51,7 @@ return {
 	},
 	{
 		'glepnir/lspsaga.nvim',
-		event = 'VeryLazy',
+		event = 'LspAttach',
 		dependencies = {
 			{ 'catppuccin/nvim' },
 			{ 'nvim-tree/nvim-web-devicons' },

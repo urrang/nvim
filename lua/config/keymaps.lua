@@ -12,7 +12,7 @@ map('n', '*', '*N', { noremap = true, silent = true })
 map({ 'n', 'i' }, '<C-s>', '<cmd>w<cr>', { silent = true })
 
 -- Change word under cursor with enter
-map('n', '<CR>', 'ciw')
+map('n', '<CR>', '"dciw')
 
 -- Move with Ctrl + arrow keys in insert mode
 map('i', '<C-h>', '<Left>')
@@ -34,7 +34,8 @@ map('n', '<leader>P', '"dP', { desc = 'Paste deleted text' })
 -- map('n', 'p', ']p')
 
 -- Show highlight group, for theme overriding
-map('n', '<leader>cg', '<cmd>TSHighlightCapturesUnderCursor<cr>')
+map('n', '<leader>cg', '<cmd>Inspect<cr>')
+-- map('n', '<leader>cg', '<cmd>TSHighlightCapturesUnderCursor<cr>')
 
 map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
