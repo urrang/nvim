@@ -1,3 +1,33 @@
+-- macchiato palette with brightness * 0.94 and hue * 0.9 (hue only changed on some colors)
+local custom_catppuccin = {
+	rosewater = "#e5cec9",
+	flamingo = "#e2baba",
+	pink = "#e6b2d8",
+	mauve = "#ba96e7",
+	maroon = "#e09096",
+	peach = "#e69f77",
+	yellow = "#e0c795",
+	teal = "#83c8be",
+	sky = "#88cad5",
+	sapphire = "#75b8d6",
+	blue = "#82a3e5",
+	lavender = "#acb2e9",
+	green = "#a1cd93",
+	red = "#df8895",
+	text = "#c2cae6",
+	subtext1 = "#b1b7d3",
+	subtext0 = "#9fa5bf",
+	overlay2 = "#8e93ac",
+	overlay1 = "#7c8198",
+	overlay0 = "#6a6f85",
+	surface2 = "#585c71",
+	surface1 = "#474b5e",
+	surface0 = "#35384a",
+	base = "#242637",
+	mantle = "#1e202d",
+	crust = "#181924",
+}
+
 return {
 	{ 'sainnhe/sonokai' },
 	{
@@ -149,12 +179,8 @@ return {
 					}
 				end,
 				color_overrides = {
-					all = {
-						text = '#c0caf5',
-					},
-					-- macchiato = {
-					-- 	base = '#25292E' -- github dark
-					-- }
+					all = { text = '#c0caf5' },
+					macchiato = custom_catppuccin,
 				},
 			})
 
