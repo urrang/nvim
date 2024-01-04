@@ -37,7 +37,7 @@ return {
 		'saadparwaiz1/cmp_luasnip',
 		{ 'windwp/nvim-autopairs', opts = {} },
 	},
-	event = 'InsertEnter',
+	event = 'VeryLazy',
 	opts = function()
 		local cmp = require('cmp')
 		local luasnip = require('luasnip')

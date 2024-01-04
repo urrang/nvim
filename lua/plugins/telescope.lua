@@ -4,6 +4,7 @@ end
 
 return {
 	'nvim-telescope/telescope.nvim',
+	event = 'VeryLazy',
 	dependencies = {
 		{
 			'nvim-telescope/telescope-fzy-native.nvim',

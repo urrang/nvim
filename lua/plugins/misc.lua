@@ -1,47 +1,61 @@
 return {
-	{ 'folke/which-key.nvim',         event = 'VeryLazy', opts = {} },
-	{ 'folke/persistence.nvim',       opts = {} },
-	{ 'max397574/better-escape.nvim', opts = {} },
-	-- { 'tenxsoydev/karen-yank.nvim',   config = true },
+	{ 
+		'folke/which-key.nvim',
+		event = 'VeryLazy',
+		opts = {} 
+	},
+	{ 
+		'folke/persistence.nvim',
+		lazy = true,
+		-- event = 'VeryLazy',
+		opts = {}
+	},
+	{ 
+		'max397574/better-escape.nvim', 
+		event = 'VeryLazy',
+		opts = {} 
+	},
 	{
 		'stevearc/dressing.nvim',
+		event = 'VeryLazy',
 		opts = {},
 	},
 	{
 		'tpope/vim-surround',
+		event = 'VeryLazy',
 		setup = function()
 			require('vim-fugitive').setup({})
 		end,
 	},
-	{
-		'AckslD/nvim-neoclip.lua',
-		requires = {
-			{ 'nvim-telescope/telescope.nvim' },
-		},
-		event = 'VeryLazy',
-		keys = {
-			{ '<leader>cb', '<cmd>Telescope neoclip<cr>', desc = 'Clipboard history' },
-		},
-		config = function()
-			require('neoclip').setup({
-				default_register = '+',
-				keys = {
-					telescope = {
-						i = {
-							select = '<c-c>',
-							paste_behind = '<cr>',
-						},
-						n = {
-							select = '<c-c>',
-							paste_behind = '<cr>',
-						},
-					},
-				},
-			})
-
-			require('telescope').load_extension('neoclip')
-		end,
-	},
+	-- {
+	-- 	'AckslD/nvim-neoclip.lua',
+	-- 	requires = {
+	-- 		{ 'nvim-telescope/telescope.nvim' },
+	-- 	},
+	-- 	event = 'VeryLazy',
+	-- 	keys = {
+	-- 		{ '<leader>cb', '<cmd>Telescope neoclip<cr>', desc = 'Clipboard history' },
+	-- 	},
+	-- 	config = function()
+	-- 		require('neoclip').setup({
+	-- 			default_register = '+',
+	-- 			keys = {
+	-- 				telescope = {
+	-- 					i = {
+	-- 						select = '<c-c>',
+	-- 						paste_behind = '<cr>',
+	-- 					},
+	-- 					n = {
+	-- 						select = '<c-c>',
+	-- 						paste_behind = '<cr>',
+	-- 					},
+	-- 				},
+	-- 			},
+	-- 		})
+	--
+	-- 		require('telescope').load_extension('neoclip')
+	-- 	end,
+	-- },
 
 	{
 		'windwp/nvim-ts-autotag',
@@ -90,6 +104,7 @@ return {
 	{
 		'numToStr/Comment.nvim',
 		dependencies = { 'JoosepAlviste/nvim-ts-context-commentstring' },
+		event = 'VeryLazy',
 		config = function()
 			require('Comment').setup({
 				pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
@@ -98,6 +113,7 @@ return {
 	},
 	{
 		'petertriho/nvim-scrollbar',
+		event = 'VeryLazy',
 		opts = {
 			handle = {
 				text = ' ',
@@ -109,20 +125,21 @@ return {
 			},
 		},
 	},
-	{
-		'akinsho/toggleterm.nvim',
-		opts = {
-			open_mapping = '<c-t>',
-			direction = 'vertical',
-			size = 50,
-			float_opts = {
-				border = 'rounded',
-			},
-		},
-	},
+	-- {
+	-- 	'akinsho/toggleterm.nvim',
+	-- 	opts = {
+	-- 		open_mapping = '<c-t>',
+	-- 		direction = 'vertical',
+	-- 		size = 50,
+	-- 		float_opts = {
+	-- 			border = 'rounded',
+	-- 		},
+	-- 	},
+	-- },
 	{
 		'lukas-reineke/indent-blankline.nvim',
-		main = "ibl",
+		event = 'VeryLazy',
+		main = 'ibl',
 		opts = {
 			indent = { char = '▏' },
 			scope = { enabled = false },

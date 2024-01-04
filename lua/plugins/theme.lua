@@ -29,51 +29,6 @@ local custom_catppuccin = {
 }
 
 return {
-	{ 'sainnhe/sonokai' },
-	{
-		'sainnhe/gruvbox-material',
-		setup = function()
-			vim.g.gruvbox_material_foreground = 'mix'
-		end,
-	},
-	{
-		'ellisonleao/gruvbox.nvim',
-		config = function()
-			require('gruvbox').setup({
-				contrast = 'soft',
-				italic = {
-					strings = false,
-					emphasis = false,
-					comments = false,
-					folds = false,
-				},
-				bold = false,
-			})
-		end,
-	},
-	{
-		-- Figure out why vars etc are blue..
-		'kvrohit/rasmus.nvim',
-		config = function() end,
-	},
-	{
-		'Mofiqul/vscode.nvim',
-		config = function()
-			local c = require('vscode.colors').get_colors()
-
-			require('vscode').setup({
-				transparent = false,
-				disable_nvimtree_bg = true,
-				group_overrides = {
-					['@variable.builtin'] = { fg = c.vscBlue },
-					['@keyword'] = { fg = c.vscBlue },
-					['@keyword.return'] = { fg = c.vscPink },
-					['@conditional.ternary'] = { fg = c.vscFront },
-					['@parameter'] = { fg = '#6FBFF9' }, -- c.vscMediumBlue },
-				},
-			})
-		end,
-	},
 	{
 		'catppuccin/nvim',
 		config = function()
@@ -88,8 +43,6 @@ return {
 					gitsigns = true,
 					neotree = true,
 					telescope = true,
-					notify = true,
-					noice = true,
 					alpha = true,
 					flash = true,
 					native_lsp = {
@@ -191,46 +144,68 @@ return {
 			vim.cmd.colorscheme('catppuccin')
 		end,
 	},
-	{
-		'AlexvZyl/nordic.nvim',
-		lazy = false,
-		priority = 1000,
-		config = function()
-			local palette = require('nordic.colors')
+	-- {
+	-- 	'Mofiqul/vscode.nvim',
+	-- 	config = function()
+	-- 		local c = require('vscode.colors').get_colors()
+	--
+	-- 		require('vscode').setup({
+	-- 			transparent = false,
+	-- 			disable_nvimtree_bg = true,
+	-- 			group_overrides = {
+	-- 				['@variable.builtin'] = { fg = c.vscBlue },
+	-- 				['@keyword'] = { fg = c.vscBlue },
+	-- 				['@keyword.return'] = { fg = c.vscPink },
+	-- 				['@conditional.ternary'] = { fg = c.vscFront },
+	-- 				['@parameter'] = { fg = '#6FBFF9' }, -- c.vscMediumBlue },
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- },
 
-			require('nordic').setup({
-				transparent_bg = false,
-				italic_comments = false,
-				bold_keywords = false,
-				override = {
-					['@variable.builtin'] = { italic = false },
-					['@namespace'] = { italic = false },
-					['@text.emphasis'] = { italic = false },
-					-- ['@parameter'] = { italic = false },
 
-					['@property'] = { fg = palette.white0 },
-					['@parameter'] = { fg = '#8FBCBB', italic = false },
-				},
-			})
-		end,
-	},
-	{
-		'folke/tokyonight.nvim',
-		opts = {
-			style = 'storm', --  `moon`, a darker variant `night`,
-			-- transparent = true,
-			styles = {
-				comments = { italic = false },
-				keywords = { italic = false },
-				functions = {},
-				variables = {},
-				sidebars = 'dark',
-				floats = 'dark',
-			},
-			on_highlights = function(hl, _)
-				hl['@property'] = { fg = '#C0CAF5' }
-				hl['@parameter'] = { fg = '#C0CAF5' }
-			end,
-		},
-	},
+	-- {
+	-- 	'AlexvZyl/nordic.nvim',
+	-- 	lazy = false,
+	-- 	priority = 1000,
+	-- 	config = function()
+	-- 		local palette = require('nordic.colors')
+	--
+	-- 		require('nordic').setup({
+	-- 			transparent_bg = false,
+	-- 			italic_comments = false,
+	-- 			bold_keywords = false,
+	-- 			override = {
+	-- 				['@variable.builtin'] = { italic = false },
+	-- 				['@namespace'] = { italic = false },
+	-- 				['@text.emphasis'] = { italic = false },
+	-- 				-- ['@parameter'] = { italic = false },
+	--
+	-- 				['@property'] = { fg = palette.white0 },
+	-- 				['@parameter'] = { fg = '#8FBCBB', italic = false },
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- },
+
+
+	-- {
+	-- 	'folke/tokyonight.nvim',
+	-- 	opts = {
+	-- 		style = 'storm', --  `moon`, a darker variant `night`,
+	-- 		-- transparent = true,
+	-- 		styles = {
+	-- 			comments = { italic = false },
+	-- 			keywords = { italic = false },
+	-- 			functions = {},
+	-- 			variables = {},
+	-- 			sidebars = 'dark',
+	-- 			floats = 'dark',
+	-- 		},
+	-- 		on_highlights = function(hl, _)
+	-- 			hl['@property'] = { fg = '#C0CAF5' }
+	-- 			hl['@parameter'] = { fg = '#C0CAF5' }
+	-- 		end,
+	-- 	},
+	-- },
 }
