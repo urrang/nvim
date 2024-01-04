@@ -8,6 +8,9 @@ map('n', '<Esc>', ':noh<CR><Esc>', { noremap = true, silent = true })
 -- Stay at word under cursor when using *
 map('n', '*', '*N', { noremap = true, silent = true })
 
+-- Select whole file with C-a
+map('n', '<C-a>', 'ggVG')
+
 -- Save/save all with Ctrl + s/S
 map({ 'n', 'i' }, '<C-s>', '<cmd>w<cr>', { silent = true })
 

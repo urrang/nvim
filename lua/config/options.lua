@@ -3,6 +3,9 @@
 vim.o.cmdheight = 0
 vim.o.pumheight = 15 -- max number of items in popup menus
 
+vim.o.scrolloff = 5
+vim.o.sidescrolloff = 5
+
 vim.wo.wrap = false
 
 vim.o.laststatus = 3 -- status line full width
@@ -30,7 +33,7 @@ vim.o.mouse = 'a'
 vim.o.clipboard = 'unnamedplus'
 
 -- Enable break indent
-vim.o.breakindent = true
+-- vim.o.breakindent = true
 
 -- Save undo history
 vim.o.undofile = true
@@ -52,8 +55,8 @@ vim.o.completeopt = 'menuone,noselect'
 
 vim.o.termguicolors = true
 
-vim.opt.autoindent = true
-vim.opt.smartindent = true
+-- vim.opt.autoindent = true
+-- vim.opt.smartindent = true
 
 vim.diagnostic.config({
 	float = { border = 'rounded' },

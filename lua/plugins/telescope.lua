@@ -24,6 +24,8 @@ return {
 		leader_map('fs', 'Telescope aerial', 'Find symbols'),
 		-- leader_map('fr', require('telescope.builtin').lsp_references(), 'Find references'),
 
+		{ '<C-p>', '<cmd>lua require("telescope").extensions.smart_open.smart_open({cwd_only = true})<cr>', desc = 'Find files' },
+
 		{
 			'<leader>/',
 			function()
@@ -45,8 +47,6 @@ return {
 		telescope.load_extension('smart_open')
 
 		local actions = require('telescope.actions')
-
-		local trouble = require("trouble.providers.telescope")
 
 		return {
 			defaults = {
@@ -80,13 +80,13 @@ return {
 						['<C-p>'] = require('telescope.actions.layout').toggle_preview,
 						['<C-j>'] = actions.move_selection_next,
 						['<C-k>'] = actions.move_selection_previous,
-						['<C-x>'] = trouble.open_with_trouble,
+						['<C-x>'] = require("trouble.providers.telescope").open_with_trouble,
 					},
 					n = {
 						['<C-p>'] = require('telescope.actions.layout').toggle_preview,
 						['<C-j>'] = actions.move_selection_next,
 						['<C-k>'] = actions.move_selection_previous,
-						['<C-x>'] = trouble.open_with_trouble,
+						['<C-x>'] = require("trouble.providers.telescope").open_with_trouble,
 					},
 				},
 			},

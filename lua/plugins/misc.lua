@@ -13,12 +13,6 @@ return {
 			require('vim-fugitive').setup({})
 		end,
 	},
-
-	-- Currently using noice because of some input lag with this one. See:
-	-- https://github.com/ray-x/lsp_signature.nvim/issues/276
-	-- https://github.com/hrsh7th/nvim-cmp/issues/1613
-	-- { 'ray-x/lsp_signature.nvim', config = true },
-
 	{
 		'AckslD/nvim-neoclip.lua',
 		requires = {
