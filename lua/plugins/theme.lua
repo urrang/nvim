@@ -176,6 +176,10 @@ return {
 
 						-- Smart-open file path
 						Directory = { fg = colors.overlay1 },
+
+						-- Trouble.nvim
+						TroubleCount = { bg = 'NONE', fg = colors.base },
+						TroubleLocation = { fg = colors.base },
 					}
 				end,
 				color_overrides = {

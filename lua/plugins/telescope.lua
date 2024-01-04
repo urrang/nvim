@@ -45,40 +45,16 @@ return {
 		telescope.load_extension('smart_open')
 
 		local actions = require('telescope.actions')
-		local colors = require('catppuccin.palettes').get_palette()
 
-		local TelescopeColor = {
-			-- TelescopeMatching = { fg = colors.blue },
-			-- TelescopeSelection = { fg = colors.flamingo, bg = colors.crust, bold = true },
-			TelescopeSelection = { fg = colors.text, bg = colors.surface0, bold = true },
-
-			TelescopePromptTitle = { fg = colors.surface0 },
-			TelescopePromptPrefix = { bg = colors.mantle },
-			TelescopePromptNormal = { bg = colors.mantle },
-			TelescopePromptBorder = { bg = colors.mantle, fg = colors.mantle },
-
-			TelescopeResultsTitle = { fg = colors.mantle },
-			TelescopeResultsNormal = { bg = colors.mantle },
-			TelescopeResultsBorder = { bg = colors.mantle, fg = colors.mantle },
-
-			TelescopePreviewTitle = { fg = colors.crust },
-			TelescopePreviewNormal = { bg = colors.crust },
-			TelescopePreviewBorder = { bg = colors.crust, fg = colors.crust },
-			-- TelescopePromptTitle = { bg = colors.pink, fg = colors.mantle },
-			-- TelescopeResultsTitle = { fg = colors.mantle },
-			-- TelescopePreviewTitle = { bg = colors.green, fg = colors.mantle },
-		}
-
-		-- for hl, col in pairs(TelescopeColor) do
-		-- 	vim.api.nvim_set_hl(0, hl, col)
-		-- end
+		local trouble = require("trouble.providers.telescope")
 
 		return {
 			defaults = {
 				-- border = true,
-				prompt_prefix = '   ',
-				selection_caret = '  ',
-				entry_prefix = '  ',
+				-- prompt_prefix = '   ',
+				prompt_prefix = ' ',
+				selection_caret = ' ',
+				entry_prefix = ' ',
 
 				initial_mode = 'insert',
 				selection_strategy = 'reset',
@@ -104,11 +80,13 @@ return {
 						['<C-p>'] = require('telescope.actions.layout').toggle_preview,
 						['<C-j>'] = actions.move_selection_next,
 						['<C-k>'] = actions.move_selection_previous,
+						['<C-x>'] = trouble.open_with_trouble,
 					},
 					n = {
 						['<C-p>'] = require('telescope.actions.layout').toggle_preview,
 						['<C-j>'] = actions.move_selection_next,
 						['<C-k>'] = actions.move_selection_previous,
+						['<C-x>'] = trouble.open_with_trouble,
 					},
 				},
 			},
