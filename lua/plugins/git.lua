@@ -1,32 +1,32 @@
 return {
-	{
-		'tpope/vim-fugitive',
-		event = 'VeryLazy',
-		setup = function()
-			require('vim-fugitive').setup({})
-		end,
-	},
+	-- {
+	-- 	'tpope/vim-fugitive',
+	-- 	event = 'VeryLazy',
+	-- 	setup = function()
+	-- 		require('vim-fugitive').setup({})
+	-- 	end,
+	-- },
 	{
 		'lewis6991/gitsigns.nvim',
 		event = 'VeryLazy',
 		opts = {
 			signs = {
-				add = { text = '+' },
-				change = { text = '~' },
-				delete = { text = '_' },
-				topdelete = { text = '‾' },
-				changedelete = { text = '~' },
+				add = { text = '▏' },
+				change = { text = '▏' },
+				delete = { text = '▏' },
+				topdelete = { text = '▏' },
+				changedelete = { text = '▏' },
 			},
 		},
 		keys = {
 			{ '<leader>gb', '<cmd>Gitsigns blame_line<cr>', 'Git blame' }
 		}
 	},
-	{
-		'sindrets/diffview.nvim',
-		event = 'VeryLazy',
-		opts = {},
-	},
+	-- {
+	-- 	'sindrets/diffview.nvim',
+	-- 	event = 'VeryLazy',
+	-- 	opts = {},
+	-- },
 	{
 		'NeogitOrg/neogit',
 		dependencies = 'nvim-lua/plenary.nvim',
