@@ -103,6 +103,7 @@ return {
 						['@lsp.type.enumMember'] = { fg = colors.text },
 
 						['@keyword.html'] = { fg = colors.sky },
+						['@text.title'] = { fg = colors.text },
 
 						CmpBorder = { fg = colors.surface2 },
 

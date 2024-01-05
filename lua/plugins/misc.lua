@@ -1,105 +1,28 @@
 return {
-	{ 
+	{
 		'folke/which-key.nvim',
 		event = 'VeryLazy',
-		opts = {} 
+		opts = {},
 	},
-	{ 
+	{
 		'folke/persistence.nvim',
 		lazy = true,
-		-- event = 'VeryLazy',
+		opts = {},
+	},
+	{
+		'laytan/cloak.nvim',
+		event = { 'BufReadPre', 'BufNewFile' },
 		opts = {}
 	},
-	{ 
-		'max397574/better-escape.nvim', 
+	{
+		'max397574/better-escape.nvim',
 		event = 'VeryLazy',
-		opts = {} 
+		opts = {},
 	},
 	{
 		'stevearc/dressing.nvim',
 		event = 'VeryLazy',
 		opts = {},
-	},
-	{
-		'tpope/vim-surround',
-		event = 'VeryLazy',
-		setup = function()
-			require('vim-fugitive').setup({})
-		end,
-	},
-	-- {
-	-- 	'AckslD/nvim-neoclip.lua',
-	-- 	requires = {
-	-- 		{ 'nvim-telescope/telescope.nvim' },
-	-- 	},
-	-- 	event = 'VeryLazy',
-	-- 	keys = {
-	-- 		{ '<leader>cb', '<cmd>Telescope neoclip<cr>', desc = 'Clipboard history' },
-	-- 	},
-	-- 	config = function()
-	-- 		require('neoclip').setup({
-	-- 			default_register = '+',
-	-- 			keys = {
-	-- 				telescope = {
-	-- 					i = {
-	-- 						select = '<c-c>',
-	-- 						paste_behind = '<cr>',
-	-- 					},
-	-- 					n = {
-	-- 						select = '<c-c>',
-	-- 						paste_behind = '<cr>',
-	-- 					},
-	-- 				},
-	-- 			},
-	-- 		})
-	--
-	-- 		require('telescope').load_extension('neoclip')
-	-- 	end,
-	-- },
-
-	{
-		'windwp/nvim-ts-autotag',
-		dependencies = 'nvim-treesitter/nvim-treesitter',
-		config = function()
-			require('nvim-ts-autotag').setup({
-				filetypes = {
-					'html',
-					'javascript',
-					'typescript',
-					'javascriptreact',
-					'typescriptreact',
-					'svelte',
-					'vue',
-					'tsx',
-					'jsx',
-					'rescript',
-					'xml',
-					'markdown',
-				},
-				skip_tags = {
-					'area',
-					'base',
-					'br',
-					'col',
-					'command',
-					'embed',
-					'hr',
-					'img',
-					'slot',
-					'input',
-					'keygen',
-					'link',
-					'meta',
-					'param',
-					'source',
-					'track',
-					'wbr',
-					'menuitem',
-				},
-			})
-		end,
-		lazy = true,
-		event = 'VeryLazy',
 	},
 	{
 		'numToStr/Comment.nvim',
@@ -155,8 +78,8 @@ return {
 					'notify',
 					'toggleterm',
 					'lazyterm',
-				}
-			}
+				},
+			},
 		},
 	},
 }
