@@ -30,6 +30,30 @@ local custom_catppuccin = {
 
 return {
 	{
+		'rose-pine/neovim',
+		name = 'rose-pine',
+		opts = {
+			variant = 'moon',
+			extend_background_behind_borders = false,
+			styles = {
+				bold = true,
+				italic = false,
+				tranparency = true,
+			},
+			highlight_groups = {
+				['@property'] = { fg = 'text' },
+				['@type.qualifier.typescript'] = { fg = 'pine' },
+				['NonText'] = { fg = 'surface' },
+
+				['@method'] = { fg = 'foam' },
+				['Function'] = { fg = 'foam' },
+				Type = { fg = 'iris' },
+				Structure = { fg = 'iris' },
+				['@parameter'] = { fg = 'text' },
+			}
+		}
+	},
+	{
 		'catppuccin/nvim',
 		config = function()
 			require('catppuccin').setup({
