@@ -23,7 +23,7 @@ return {
 		leader_map('fw', 'Telescope grep_string', 'Grep word under cursor'),
 		leader_map('fs', 'Telescope aerial theme=dropdown prompt_title=', 'Find symbols'),
 
-		{ '<C-p>', '<cmd>lua require("telescope").extensions.smart_open.smart_open({cwd_only = true})<cr>', desc = 'Find files' },
+		{ '<C-p>', '<cmd>Telescope smart_open cwd_only=true theme=dropdown prompt_title=<cr>', desc = 'Find files' },
 
 		leader_map('ff', 'Telescope smart_open cwd_only=true theme=dropdown prompt_title=', 'Find files'),
 

@@ -70,6 +70,10 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
   }
 )
 
+-- Open help in tab instead of buffer
+vim.cmd('ca help tab help')
+vim.cmd('ca h tab h')
+
 -- local lsp = vim.lsp
 -- lsp.handlers['textDocument/hover'] = lsp.with(
 --   lsp.handlers.hover,
