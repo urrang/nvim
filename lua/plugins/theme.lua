@@ -40,16 +40,25 @@ return {
 				italic = false,
 				tranparency = true,
 			},
+			-- before_highlight = function(group, highlight, palette)
+			-- 	if highlight.bg == palette.base then
+			-- 		highlight.bg = '#242637'
+			-- 	end
+			-- end,
 			highlight_groups = {
 				['@property'] = { fg = 'text' },
-				['@type.qualifier.typescript'] = { fg = 'pine' },
-				['NonText'] = { fg = 'surface' },
-
-				['@method'] = { fg = 'foam' },
-				['Function'] = { fg = 'foam' },
-				Type = { fg = 'iris' },
-				Structure = { fg = 'iris' },
 				['@parameter'] = { fg = 'text' },
+				NonText = { fg = 'surface' },
+
+				['@type.qualifier.typescript'] = { fg = 'pine' },
+				['Keyword'] = { fg = 'pine' },
+				['Conditional'] = { fg = 'pine' },
+
+				['@method'] = { fg = 'iris' },
+				['Function'] = { fg = 'iris' },
+
+				Type = { fg = 'foam' },
+				Structure = { fg = 'foam' },
 			}
 		}
 	},

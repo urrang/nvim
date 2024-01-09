@@ -62,6 +62,14 @@ vim.diagnostic.config({
 	float = { border = 'rounded' },
 })
 
+vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = {
+      severity_limit = 'Warning',
+    },
+  }
+)
+
 -- local lsp = vim.lsp
 -- lsp.handlers['textDocument/hover'] = lsp.with(
 --   lsp.handlers.hover,
