@@ -9,7 +9,8 @@ return {
 		keymaps = {
 			['<BS>'] = 'actions.parent',
 			['q'] = 'actions.close',
-			['<C-b>'] = 'actions.close'
+			['<C-b>'] = 'actions.close',
+			['<Esc>'] = 'actions.close'
 		}
 	},
 }

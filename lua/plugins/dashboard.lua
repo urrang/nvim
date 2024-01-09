@@ -32,7 +32,7 @@ return {
 			dashboard.button(
 				'f',
 				' ' .. ' Find file',
-				":lua require('telescope').extensions.smart_open.smart_open({cwd_only = true}) <cr>"
+				':Telescope smart_open cwd_only=true theme=dropdown prompt_title=<cr>'
 			),
 
 			-- dashboard.button('n', ' ' .. ' New file', ':ene <BAR> startinsert <CR>'),

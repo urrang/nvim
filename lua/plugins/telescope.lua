@@ -19,13 +19,24 @@ return {
 	keys = {
 		-- leader_map('<space>', 'Telescope buffers', 'Find buffer'),
 		leader_map('?', 'Telescope oldfiles', 'Find recent files'),
-		leader_map('ff', 'lua require("telescope").extensions.smart_open.smart_open({cwd_only = true})', 'Find files'),
 		leader_map('fg', 'Telescope live_grep', 'Find by Grep'),
-		-- leader_map('fs', 'Telescope lsp_document_symbols', 'Find symbols'),
-		leader_map('fs', 'Telescope aerial', 'Find symbols'),
-		-- leader_map('fr', require('telescope.builtin').lsp_references(), 'Find references'),
+		leader_map('fw', 'Telescope grep_string', 'Grep word under cursor'),
+		leader_map('fs', 'Telescope aerial theme=dropdown prompt_title=', 'Find symbols'),
 
 		{ '<C-p>', '<cmd>lua require("telescope").extensions.smart_open.smart_open({cwd_only = true})<cr>', desc = 'Find files' },
+
+		leader_map('ff', 'Telescope smart_open cwd_only=true theme=dropdown prompt_title=', 'Find files'),
+
+		-- {
+		-- 	'<leader>ff',
+		-- 	function()
+		-- 		require('telescope').extensions.smart_open.smart_open({
+		-- 			cwd_only = true,
+		-- 			theme = "dropdown"
+		-- 		})
+		-- 	end,
+		-- 	desc = 'Find files'
+		-- },
 
 		{
 			'<leader>/',
@@ -92,13 +103,18 @@ return {
 				},
 			},
 			pickers = {
-				buffers = {
-					initial_mode = 'normal',
-				},
 				live_grep = {
-					preview = {
-						hide_on_startup = false
-					}
+					preview = { hide_on_startup = false },
+					prompt_title = '',
+					results_title = '',
+					preview_title = '',
+				},
+				grep_string = {
+					initial_mode = 'normal',
+					preview = { hide_on_startup = false },
+					prompt_title = '',
+					results_title = '',
+					preview_title = '',
 				}
 			},
 		}
