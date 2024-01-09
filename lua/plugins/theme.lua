@@ -137,6 +137,7 @@ return {
 
 						['@keyword.html'] = { fg = colors.sky },
 						['@text.title'] = { fg = colors.text },
+						['@text.strong'] = { fg = colors.text },
 
 						CmpBorder = { fg = colors.surface2 },
 
