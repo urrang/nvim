@@ -168,6 +168,17 @@ return {
 						-- Trouble.nvim
 						TroubleCount = { bg = 'NONE', fg = colors.base },
 						TroubleLocation = { fg = colors.base },
+
+						-- Lualine harpoon files
+						HarpoonActive = { bg = colors.base, fg = colors.text },
+						HarpoonNumberActive = { bg = colors.base, fg = colors.text },
+						HarpoonInactive = { bg = colors.mantle, fg = colors.surface2 },
+						HarpoonInactiveBg = { bg = colors.mantle },
+						HarpoonNumberInactive = { bg = colors.mantle, fg = colors.surface2 },
+						-- HarpoonActive = { bg = colors.mantle, fg = colors.blue },
+						-- HarpoonNumberActive = { bg = colors.mantle, fg = colors.blue },
+						-- HarpoonInactive = { bg = colors.mantle, fg = colors.subtext1 },
+						-- HarpoonNumberInactive = { bg = colors.mantle, fg = colors.subtext1 },
 					}
 				end,
 				color_overrides = {

@@ -13,6 +13,60 @@ local function diff_source()
 	end
 end
 
+local hl_cache = {}
+
+local set_icon_highlight = function(highlight, fg, bg)
+	if hl_cache[highlight] then return end
+
+	vim.api.nvim_set_hl(0, highlight, { fg = fg, bg = bg })
+end
+
+local function harpoon_files()
+	local contents = {}
+	local harpoon = require('harpoon');
+	local marks_length = harpoon:list():length()
+	local current_file_path = vim.fn.fnamemodify(vim.fn.expand('%:p'), ':.')
+
+	for index = 1, marks_length do
+		local harpoon_file_path = harpoon:list():get(index).value
+		local file_name = harpoon_file_path == '' and '(empty)' or vim.fn.fnamemodify(harpoon_file_path, ':t')
+		local extension = file_name:match(".*%.([^%.]+)$")
+		-- local filename = vim.fn.expand "%:t"
+		-- local extension = vim.fn.expand "%:e"
+		local label = file_name
+
+		-- local icon, hl = require('nvim-web-devicons').get_icon(file_name, extension, { default = true })
+		local icon, color = require'nvim-web-devicons'.get_icon_color(file_name, extension, { default = true })
+
+		-- local icon_str = ''
+		-- if icon then
+		-- 	local icon_highlight = 'lualine_icon_' .. extension
+		-- 	set_icon_highlight(icon_highlight, color)
+		--
+		-- 	icon_str = string.format('%%#%s#%s', icon_highlight, icon)
+		-- end
+
+		if current_file_path == harpoon_file_path then
+			local icon_hl = 'lualine_icon_' .. extension .. '_active'
+			set_icon_highlight(icon_hl, color, '#242637')
+			local ic = string.format('%%#%s#%s', icon_hl, icon)
+			
+			contents[index] = string.format('%%#HarpoonNumberActive# %s %s %%#HarpoonActive#%s ', index, ic, file_name)
+			-- contents[index] = string.format('%%#HarpoonNumberActive# %s. %%#HarpoonActive#%s ', index, file_name)
+		else
+			local icon_hl = 'lualine_icon_' .. extension .. '_inactive'
+			set_icon_highlight(icon_hl, color, '#1e202d')
+
+			local ic = string.format('%%#%s#%s', icon_hl, icon)
+
+			contents[index] = string.format('%%#HarpoonNumberInactive# %s %s %%#HarpoonInactive#%s ', index, ic, file_name)
+			-- contents[index] = string.format('%%#HarpoonNumberInactive# %s. %%#HarpoonInactive#%s ', index, file_name)
+		end
+	end
+
+	return table.concat(contents)
+end
+
 -- Show lsp status
 -- local function lsp_servers()
 -- 	local lsps = vim.lsp.get_active_clients({ bufnr = vim.fn.bufnr() })
@@ -41,14 +95,6 @@ return {
 		local options = {
 			icons_enabled = false,
 			theme = 'catppuccin',
-			-- https://twitter.com/Adib_Hanna/status/1663056846955991040/photo/1
-			-- custom_areas = {
-			--     left = function ()
-			--         return {
-			--             { text = "  ", = "#ffffff" }
-			--         }
-			--     end
-			-- },
 			component_separators = '',
 			section_separators = '',
 			disabled_filetypes = { 'alpha', 'dashboard' },
@@ -72,6 +118,7 @@ return {
 						'diagnostics',
 						sources = { 'nvim_diagnostic' },
 						separator = '',
+						sections = { 'error', 'warn', 'info' },
 						symbols = {
 							-- error = ' ',
 							-- warn = ' ',
@@ -141,6 +188,14 @@ return {
 					-- },
 					-- },
 				},
+			},
+			tabline = {
+				lualine_a = {},
+				lualine_b = {},
+				lualine_c = { { harpoon_files } },
+				lualine_x = {},
+				lualine_y = {},
+				lualine_z = { 'tabs' },
 			},
 		}
 
