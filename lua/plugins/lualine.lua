@@ -14,22 +14,22 @@ local function diff_source()
 end
 
 -- Show lsp status
-local function lsp_servers()
-	local lsps = vim.lsp.get_active_clients({ bufnr = vim.fn.bufnr() })
-
-	if not lsps or #lsps == 0 then
-		return "󰅡 No Active LSP"
-	end
-
-	local names = {}
-	for _, lsp in ipairs(lsps) do
-		if lsp.name ~= "null-ls" then
-			table.insert(names, lsp.name)
-		end
-	end
-
-	return "󰅡 " .. table.concat(names, ", ")
-end
+-- local function lsp_servers()
+-- 	local lsps = vim.lsp.get_active_clients({ bufnr = vim.fn.bufnr() })
+--
+-- 	if not lsps or #lsps == 0 then
+-- 		return '󰅡 No Active LSP'
+-- 	end
+--
+-- 	local names = {}
+-- 	for _, lsp in ipairs(lsps) do
+-- 		if lsp.name ~= 'null-ls' then
+-- 			table.insert(names, lsp.name)
+-- 		end
+-- 	end
+--
+-- 	return '󰅡 ' .. table.concat(names, ', ')
+-- end
 
 return {
 	'nvim-lualine/lualine.nvim',
@@ -62,6 +62,32 @@ return {
 				lualine_b = {},
 				lualine_c = {
 					{
+						'filename',
+						symbols = {
+							modified = '',
+						},
+						separator = { left = '', right = '' },
+					},
+					{
+						'diagnostics',
+						sources = { 'nvim_diagnostic' },
+						separator = '',
+						symbols = {
+							-- error = ' ',
+							-- warn = ' ',
+							-- info = ' ',
+							-- hint = ' ',
+							error = ' ',
+							warn = ' ',
+							info = ' ',
+							hint = '󱤅 ',
+							other = '󰠠 ',
+						},
+						colored = true,
+					},
+				},
+				lualine_x = {
+					{
 						'branch',
 						icon = {
 							'',
@@ -81,32 +107,30 @@ return {
 							removed = ' ',
 						},
 					},
-				},
-				lualine_x = {
-					{
-						'diagnostics',
-						sources = { 'nvim_diagnostic' },
-						separator = '',
-						symbols = {
-							-- error = ' ',
-							-- warn = ' ',
-							-- info = ' ',
-							-- hint = ' ',
-							error = ' ',
-							warn = ' ',
-							info = ' ',
-							hint = '󱤅 ',
-							other = '󰠠 ',
-						},
-						colored = true,
-					},
-					{
-						lsp_servers,
-						color = function()
-							return { fg = "#8caaee"}
-
-						end
-					}
+					-- {
+					-- 	'diagnostics',
+					-- 	sources = { 'nvim_diagnostic' },
+					-- 	separator = '',
+					-- 	symbols = {
+					-- 		-- error = ' ',
+					-- 		-- warn = ' ',
+					-- 		-- info = ' ',
+					-- 		-- hint = ' ',
+					-- 		error = ' ',
+					-- 		warn = ' ',
+					-- 		info = ' ',
+					-- 		hint = '󱤅 ',
+					-- 		other = '󰠠 ',
+					-- 	},
+					-- 	colored = true,
+					-- },
+					-- {
+					-- 	lsp_servers,
+					-- 	color = function()
+					-- 		return { fg = "#8caaee"}
+					--
+					-- 	end
+					-- }
 				},
 				lualine_y = {},
 				lualine_z = {
