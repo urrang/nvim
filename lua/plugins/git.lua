@@ -6,22 +6,22 @@ return {
 	-- 		require('vim-fugitive').setup({})
 	-- 	end,
 	-- },
-	{
-		'lewis6991/gitsigns.nvim',
-		event = 'VeryLazy',
-		opts = {
-			signs = {
-				add = { text = '▏' },
-				change = { text = '▏' },
-				delete = { text = '▏' },
-				topdelete = { text = '▏' },
-				changedelete = { text = '▏' },
-			},
-		},
-		keys = {
-			{ '<leader>gb', '<cmd>Gitsigns blame_line<cr>', 'Git blame' }
-		}
-	},
+	-- {
+	-- 	'lewis6991/gitsigns.nvim',
+	-- 	event = 'VeryLazy',
+	-- 	opts = {
+	-- 		signs = {
+	-- 			add = { text = '▏' },
+	-- 			change = { text = '▏' },
+	-- 			delete = { text = '▏' },
+	-- 			topdelete = { text = '▏' },
+	-- 			changedelete = { text = '▏' },
+	-- 		},
+	-- 	},
+	-- 	keys = {
+	-- 		{ '<leader>gb', '<cmd>Gitsigns blame_line<cr>', 'Git blame' }
+	-- 	}
+	-- },
 	-- {
 	-- 	'sindrets/diffview.nvim',
 	-- 	event = 'VeryLazy',
