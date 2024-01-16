@@ -6,6 +6,7 @@ return {
 		{ '<C-b>', '<Cmd>Oil<CR>', desc = 'Show file explorer' },
 	},
 	opts = {
+		view_options = { show_hidden = true },
 		keymaps = {
 			['<BS>'] = 'actions.parent',
 			['q'] = 'actions.close',

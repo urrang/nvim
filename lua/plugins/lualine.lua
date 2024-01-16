@@ -1,18 +1,3 @@
--- https://github.com/AlexvZyl/.dotfiles/blob/main/.config/nvim/lua/alex/ui/lualine.lua
--- https://github.com/avocadeys/NVCat/blob/main/lua/plugins/lualine.lua
--- Show git status.
--- Show git status.
-local function diff_source()
-	local gitsigns = vim.b.gitsigns_status_dict
-	if gitsigns then
-		return {
-			added = gitsigns.added,
-			modified = gitsigns.changed,
-			removed = gitsigns.removed,
-		}
-	end
-end
-
 local hl_cache = {}
 
 local set_icon_highlight = function(highlight, fg, bg)
@@ -31,27 +16,16 @@ local function harpoon_files()
 		local harpoon_file_path = harpoon:list():get(index).value
 		local file_name = harpoon_file_path == '' and '(empty)' or vim.fn.fnamemodify(harpoon_file_path, ':t')
 		local extension = file_name:match(".*%.([^%.]+)$")
-		-- local filename = vim.fn.expand "%:t"
-		-- local extension = vim.fn.expand "%:e"
-		local label = file_name
 
 		-- local icon, hl = require('nvim-web-devicons').get_icon(file_name, extension, { default = true })
-		local icon, color = require'nvim-web-devicons'.get_icon_color(file_name, extension, { default = true })
-
-		-- local icon_str = ''
-		-- if icon then
-		-- 	local icon_highlight = 'lualine_icon_' .. extension
-		-- 	set_icon_highlight(icon_highlight, color)
-		--
-		-- 	icon_str = string.format('%%#%s#%s', icon_highlight, icon)
-		-- end
+		local icon, color = require 'nvim-web-devicons'.get_icon_color(file_name, extension, { default = true })
 
 		if current_file_path == harpoon_file_path then
 			local icon_hl = 'lualine_icon_' .. extension .. '_active'
 			set_icon_highlight(icon_hl, color, '#242637')
 			local ic = string.format('%%#%s#%s', icon_hl, icon)
-			
-			contents[index] = string.format('%%#HarpoonNumberActive# %s %s %%#HarpoonActive#%s ', index, ic, file_name)
+
+			contents[index] = string.format(' %%#HarpoonNumberActive# %s %s %%#HarpoonActive#%s ', index, ic, file_name)
 			-- contents[index] = string.format('%%#HarpoonNumberActive# %s. %%#HarpoonActive#%s ', index, file_name)
 		else
 			local icon_hl = 'lualine_icon_' .. extension .. '_inactive'
@@ -59,13 +33,26 @@ local function harpoon_files()
 
 			local ic = string.format('%%#%s#%s', icon_hl, icon)
 
-			contents[index] = string.format('%%#HarpoonNumberInactive# %s %s %%#HarpoonInactive#%s ', index, ic, file_name)
+			contents[index] = string.format(' %%#HarpoonNumberInactive# %s %s %%#HarpoonInactive#%s ', index, ic,
+				file_name)
 			-- contents[index] = string.format('%%#HarpoonNumberInactive# %s. %%#HarpoonInactive#%s ', index, file_name)
 		end
 	end
 
 	return table.concat(contents)
 end
+
+-- Show git status.
+-- local function diff_source()
+-- 	local gitsigns = vim.b.gitsigns_status_dict
+-- 	if gitsigns then
+-- 		return {
+-- 			added = gitsigns.added,
+-- 			modified = gitsigns.changed,
+-- 			removed = gitsigns.removed,
+-- 		}
+-- 	end
+-- end
 
 -- Show lsp status
 -- local function lsp_servers()
@@ -120,15 +107,11 @@ return {
 						separator = '',
 						sections = { 'error', 'warn', 'info' },
 						symbols = {
-							-- error = ' ',
-							-- warn = ' ',
-							-- info = ' ',
-							-- hint = ' ',
 							error = ' ',
 							warn = ' ',
 							info = ' ',
-							hint = '󱤅 ',
-							other = '󰠠 ',
+							-- hint = '󱤅 ',
+							-- other = '󰠠 ',
 						},
 						colored = true,
 					},
@@ -142,17 +125,17 @@ return {
 						separator = ' ',
 					},
 					{
-						'diff',
-						colored = true,
-						source = diff_source,
-						symbols = {
-							-- added = ' ',
-							-- modified = ' ',
-							-- removed = ' ',
-							added = ' ',
-							modified = ' ',
-							removed = ' ',
-						},
+						-- 'diff',
+						-- colored = true,
+						-- source = diff_source,
+						-- symbols = {
+						-- 	-- added = ' ',
+						-- 	-- modified = ' ',
+						-- 	-- removed = ' ',
+						-- 	added = ' ',
+						-- 	modified = ' ',
+						-- 	removed = ' ',
+						-- },
 					},
 					-- {
 					-- 	'diagnostics',
@@ -180,14 +163,7 @@ return {
 					-- }
 				},
 				lualine_y = {},
-				lualine_z = {
-					-- {
-					-- 'location',
-					-- separator = {
-					--     left = '', right = ''
-					-- },
-					-- },
-				},
+				lualine_z = {},
 			},
 			tabline = {
 				lualine_a = {},
@@ -195,7 +171,13 @@ return {
 				lualine_c = { { harpoon_files } },
 				lualine_x = {},
 				lualine_y = {},
-				lualine_z = { 'tabs' },
+				lualine_z = {
+					{
+						'tabs',
+						cond = function() return #vim.fn.gettabinfo() > 1 end,
+						section_separators = { left = '', right = ''},
+					}
+				},
 			},
 		}
 
