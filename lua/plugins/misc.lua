@@ -12,7 +12,7 @@ return {
 	{
 		'laytan/cloak.nvim',
 		event = { 'BufReadPre', 'BufNewFile' },
-		opts = {}
+		opts = {},
 	},
 	{
 		'max397574/better-escape.nvim',
@@ -23,6 +23,15 @@ return {
 		'stevearc/dressing.nvim',
 		event = 'VeryLazy',
 		opts = {},
+	},
+	{
+		'Wansmer/treesj',
+		dependencies = { 'nvim-treesitter/nvim-treesitter' },
+		event = 'VeryLazy',
+		config = function()
+			require('treesj').setup({})
+			vim.keymap.set('n', '<leader>j', require('treesj').toggle)
+		end,
 	},
 	{
 		'numToStr/Comment.nvim',
