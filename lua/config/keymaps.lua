@@ -73,9 +73,11 @@ map('n', '<leader>dn', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic
 -- Tab moves indent
 map('v', '<Tab>', '>gv', { silent = true })
 map('v', '<S-Tab>', '<gv', { silent = true })
--- map('i', '<S-Tab>', '<C-d>', { silent = true })
 map('n', '<Tab>', '>>', { silent = true })
 map('n', '<S-Tab>', '<<', { silent = true })
+
+-- Allow jumplist keymap to function with the tab binds above
+map('n', '<C-i>', '<C-i>', { noremap = true })
 
 -- Window/buffer/tab stuff
 map('n', '<leader>ws', '<cmd>vsplit<CR>', { desc = 'Split window' })
