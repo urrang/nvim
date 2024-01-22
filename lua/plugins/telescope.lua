@@ -101,6 +101,10 @@ return {
 						['<C-x>'] = require("trouble.providers.telescope").open_with_trouble,
 					},
 				},
+				file_ignore_patterns = {
+					'src/assets/pdfjs/*',
+					'src/assets/stimulsoft/*'
+				}
 			},
 			pickers = {
 				live_grep = {
