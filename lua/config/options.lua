@@ -1,5 +1,3 @@
--- See `:help vim.o`
-
 vim.o.cmdheight = 0
 vim.o.pumheight = 15 -- max number of items in popup menus
 
@@ -77,6 +75,10 @@ vim.filetype.add({
 -- Open help in tab instead of buffer
 vim.cmd('ca help tab help')
 vim.cmd('ca h tab h')
+
+-- Correct common typos
+vim.api.nvim_create_user_command('Wa', 'wa', {})
+vim.api.nvim_create_user_command('WA', 'wa', {})
 
 -- local lsp = vim.lsp
 -- lsp.handlers['textDocument/hover'] = lsp.with(
