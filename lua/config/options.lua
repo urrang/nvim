@@ -62,13 +62,17 @@ vim.diagnostic.config({
 	float = { border = 'rounded' },
 })
 
-vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = {
-      severity_limit = 'Warning',
-    },
-  }
-)
+vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+	virtual_text = {
+		severity_limit = 'Warning',
+	},
+})
+
+vim.filetype.add({
+	extension = {
+		mdx = 'markdown',
+	},
+})
 
 -- Open help in tab instead of buffer
 vim.cmd('ca help tab help')
