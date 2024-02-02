@@ -1,31 +1,29 @@
-local leader_map = function(key, cmd, label)
-	return { '<leader>' .. key, '<cmd>' .. cmd .. '<cr>', desc = label }
+local map = function(key, cmd, label)
+	return {  key, '<cmd>' .. cmd .. '<cr>', desc = label }
 end
 
 return {
 	'nvim-telescope/telescope.nvim',
 	event = 'VeryLazy',
 	dependencies = {
-		{
-			'nvim-telescope/telescope-fzy-native.nvim',
-			build = 'make',
-		},
+		{ 'nvim-telescope/telescope-fzy-native.nvim', build = 'make' },
+		{ 'stevearc/aerial.nvim' },
 		{
 			'danielfalk/smart-open.nvim',
 			dependencies = { 'kkharji/sqlite.lua' },
 		},
-		{ 'stevearc/aerial.nvim' },
 	},
 	keys = {
 		-- leader_map('<space>', 'Telescope buffers', 'Find buffer'),
-		leader_map('?', 'Telescope oldfiles', 'Find recent files'),
-		leader_map('fg', 'Telescope live_grep', 'Find by Grep'),
-		leader_map('fw', 'Telescope grep_string', 'Grep word under cursor'),
-		leader_map('fs', 'Telescope aerial theme=dropdown prompt_title=', 'Find symbols'),
+		map('<leader>?', 'Telescope oldfiles', 'Find recent files'),
+		map('<leader>fg', 'Telescope live_grep', 'Find by Grep'),
+		map('<leader>fw', 'Telescope grep_string', 'Grep word under cursor'),
+		map('<leader>fs', 'Telescope aerial theme=dropdown prompt_title=', 'Find symbol'),
+		map('<leader>fb', 'Telescope buffers theme=dropdown prompt_title=', 'Find buffer'),
 
-		{ '<C-p>', '<cmd>Telescope smart_open cwd_only=true theme=dropdown prompt_title=<cr>', desc = 'Find files' },
+		map('<leader>ff', 'Telescope smart_open cwd_only=true theme=dropdown prompt_title=', 'Find file'),
+		map('<C-p>', 'Telescope smart_open cwd_only=true theme=dropdown prompt_title=', 'Find file'),
 
-		leader_map('ff', 'Telescope smart_open cwd_only=true theme=dropdown prompt_title=', 'Find files'),
 
 		-- {
 		-- 	'<leader>ff',

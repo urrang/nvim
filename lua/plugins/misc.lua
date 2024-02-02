@@ -10,6 +10,12 @@ return {
 		opts = {},
 	},
 	{
+		'chrisgrieser/nvim-early-retirement',
+		event = 'VeryLazy',
+		config = true,
+		opts = { retirementAgeMins = 10 }
+	},
+	{
 		'laytan/cloak.nvim',
 		event = { 'BufReadPre', 'BufNewFile' },
 		opts = {},
@@ -24,8 +30,8 @@ return {
 		event = 'VeryLazy',
 		opts = {
 			select = {
-				backend = { 'builtin', 'telescope' }
-			}
+				backend = { 'builtin', 'telescope' },
+			},
 		},
 	},
 	{
