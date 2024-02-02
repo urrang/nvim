@@ -1,67 +1,34 @@
 -- macchiato palette with brightness * 0.94 and hue * 0.9 (hue only changed on some colors)
 local custom_catppuccin = {
-	rosewater = "#e5cec9",
-	flamingo = "#e2baba",
-	pink = "#e6b2d8",
-	mauve = "#ba96e7",
-	maroon = "#e09096",
-	peach = "#e69f77",
-	yellow = "#e0c795",
-	teal = "#83c8be",
-	sky = "#88cad5",
-	sapphire = "#75b8d6",
-	blue = "#82a3e5",
-	lavender = "#acb2e9",
-	green = "#a1cd93",
-	red = "#df8895",
-	text = "#c2cae6",
-	subtext1 = "#b1b7d3",
-	subtext0 = "#9fa5bf",
-	overlay2 = "#8e93ac",
-	overlay1 = "#7c8198",
-	overlay0 = "#6a6f85",
-	surface2 = "#585c71",
-	surface1 = "#474b5e",
-	surface0 = "#35384a",
-	base = "#242637",
-	mantle = "#1e202d",
-	crust = "#181924",
+	rosewater = '#e5cec9',
+	flamingo = '#e2baba',
+	pink = '#e6b2d8',
+	mauve = '#ba96e7',
+	maroon = '#e09096',
+	peach = '#e69f77',
+	yellow = '#e0c795',
+	teal = '#83c8be',
+	sky = '#88cad5',
+	sapphire = '#75b8d6',
+	blue = '#82a3e5',
+	lavender = '#acb2e9',
+	green = '#a1cd93',
+	red = '#df8895',
+	text = '#c2cae6',
+	subtext1 = '#b1b7d3',
+	subtext0 = '#9fa5bf',
+	overlay2 = '#8e93ac',
+	overlay1 = '#7c8198',
+	overlay0 = '#6a6f85',
+	surface2 = '#585c71',
+	surface1 = '#474b5e',
+	surface0 = '#35384a',
+	base = '#242637',
+	mantle = '#1e202d',
+	crust = '#181924',
 }
 
 return {
-	{
-		'rose-pine/neovim',
-		name = 'rose-pine',
-		opts = {
-			variant = 'moon',
-			extend_background_behind_borders = false,
-			styles = {
-				bold = true,
-				italic = false,
-				tranparency = true,
-			},
-			-- before_highlight = function(group, highlight, palette)
-			-- 	if highlight.bg == palette.base then
-			-- 		highlight.bg = '#242637'
-			-- 	end
-			-- end,
-			highlight_groups = {
-				['@property'] = { fg = 'text' },
-				['@parameter'] = { fg = 'text' },
-				NonText = { fg = 'surface' },
-
-				['@type.qualifier.typescript'] = { fg = 'pine' },
-				['Keyword'] = { fg = 'pine' },
-				['Conditional'] = { fg = 'pine' },
-
-				['@method'] = { fg = 'iris' },
-				['Function'] = { fg = 'iris' },
-
-				Type = { fg = 'foam' },
-				Structure = { fg = 'foam' },
-			}
-		}
-	},
 	{
 		'catppuccin/nvim',
 		config = function()
@@ -187,9 +154,80 @@ return {
 				},
 			})
 
-			vim.cmd.colorscheme('catppuccin')
+			-- vim.cmd.colorscheme('catppuccin')
 		end,
 	},
+	{
+		'ellisonleao/gruvbox.nvim',
+		config = function()
+			local gruvbox = require('gruvbox')
+			gruvbox.setup({
+				bold = false,
+				italic = {
+					strings = false,
+					emphasis = false,
+					comments = false,
+					operators = false,
+					folds = false,
+				},
+				palette_overrides = {
+				},
+				overrides = {
+					['@variable.builtin'] = { link = 'GruvboxBlue' },
+					['@keyword'] = { link = 'GruvboxBlue' },
+					['@lsp.typemod.variable.defaultLibrary'] = { link = 'GruvboxBlue' },
+					['@lsp.type.parameter'] = { link = 'GruvboxFg1' },
+					['@property'] = { link = 'GruvboxFg1' },
+					['@punctuation.bracket'] = { link = 'GruvboxFg4' },
+					['@punctuation.delimiter'] = { link = 'GruvboxFg2' },
+					['@operator'] = { link = 'GruvboxAqua' },
+					['@constant.builtin'] = { link = 'GruvboxYellow' },
+					['@type.typescript'] = { link = 'GruvboxFg1' }, -- imports
+
+					-- Experimental
+					['@method.call'] = { link = 'GruvboxAqua' },
+					['@function.call'] = { link = 'GruvboxAqua' },
+					-- ['@string'] = { link = 'GruvboxAqua' },
+				},
+			})
+
+			vim.cmd.colorscheme('gruvbox')
+		end
+	},
+	-- {
+	-- 	'rose-pine/neovim',
+	-- 	name = 'rose-pine',
+	-- 	opts = {
+	-- 		variant = 'moon',
+	-- 		extend_background_behind_borders = false,
+	-- 		styles = {
+	-- 			bold = true,
+	-- 			italic = false,
+	-- 			tranparency = true,
+	-- 		},
+	-- 		-- before_highlight = function(group, highlight, palette)
+	-- 		-- 	if highlight.bg == palette.base then
+	-- 		-- 		highlight.bg = '#242637'
+	-- 		-- 	end
+	-- 		-- end,
+	-- 		highlight_groups = {
+	-- 			['@property'] = { fg = 'text' },
+	-- 			['@parameter'] = { fg = 'text' },
+	-- 			NonText = { fg = 'surface' },
+	--
+	-- 			['@type.qualifier.typescript'] = { fg = 'pine' },
+	-- 			['Keyword'] = { fg = 'pine' },
+	-- 			['Conditional'] = { fg = 'pine' },
+	--
+	-- 			['@method'] = { fg = 'iris' },
+	-- 			['Function'] = { fg = 'iris' },
+	--
+	-- 			Type = { fg = 'foam' },
+	-- 			Structure = { fg = 'foam' },
+	-- 		},
+	-- 	},
+	-- },
+
 	-- {
 	-- 	'Mofiqul/vscode.nvim',
 	-- 	config = function()
@@ -208,7 +246,6 @@ return {
 	-- 		})
 	-- 	end,
 	-- },
-
 
 	-- {
 	-- 	'AlexvZyl/nordic.nvim',
@@ -233,7 +270,6 @@ return {
 	-- 		})
 	-- 	end,
 	-- },
-
 
 	-- {
 	-- 	'folke/tokyonight.nvim',

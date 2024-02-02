@@ -62,37 +62,26 @@ return {
 		},
 	},
 	-- {
-	-- 	'akinsho/toggleterm.nvim',
+	-- 	'lukas-reineke/indent-blankline.nvim',
+	-- 	event = 'VeryLazy',
+	-- 	main = 'ibl',
 	-- 	opts = {
-	-- 		open_mapping = '<c-t>',
-	-- 		direction = 'vertical',
-	-- 		size = 50,
-	-- 		float_opts = {
-	-- 			border = 'rounded',
+	-- 		indent = { char = '▏' },
+	-- 		scope = { enabled = false },
+	-- 		exclude = {
+	-- 			filetypes = {
+	-- 				'help',
+	-- 				'alpha',
+	-- 				'dashboard',
+	-- 				'neo-tree',
+	-- 				'Trouble',
+	-- 				'lazy',
+	-- 				'mason',
+	-- 				'notify',
+	-- 				'toggleterm',
+	-- 				'lazyterm',
+	-- 			},
 	-- 		},
 	-- 	},
 	-- },
-	{
-		'lukas-reineke/indent-blankline.nvim',
-		event = 'VeryLazy',
-		main = 'ibl',
-		opts = {
-			indent = { char = '▏' },
-			scope = { enabled = false },
-			exclude = {
-				filetypes = {
-					'help',
-					'alpha',
-					'dashboard',
-					'neo-tree',
-					'Trouble',
-					'lazy',
-					'mason',
-					'notify',
-					'toggleterm',
-					'lazyterm',
-				},
-			},
-		},
-	},
 }

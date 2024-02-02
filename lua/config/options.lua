@@ -1,5 +1,6 @@
 vim.o.cmdheight = 0
 vim.o.pumheight = 15 -- max number of items in popup menus
+vim.o.cursorline = true
 
 vim.o.scrolloff = 5
 vim.o.sidescrolloff = 5
