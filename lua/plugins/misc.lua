@@ -22,7 +22,11 @@ return {
 	{
 		'stevearc/dressing.nvim',
 		event = 'VeryLazy',
-		opts = {},
+		opts = {
+			select = {
+				backend = { 'builtin', 'telescope' }
+			}
+		},
 	},
 	{
 		'Wansmer/treesj',
