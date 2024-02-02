@@ -154,46 +154,47 @@ return {
 				},
 			})
 
-			-- vim.cmd.colorscheme('catppuccin')
+			vim.cmd.colorscheme('catppuccin')
 		end,
 	},
-	{
-		'ellisonleao/gruvbox.nvim',
-		config = function()
-			local gruvbox = require('gruvbox')
-			gruvbox.setup({
-				bold = false,
-				italic = {
-					strings = false,
-					emphasis = false,
-					comments = false,
-					operators = false,
-					folds = false,
-				},
-				palette_overrides = {
-				},
-				overrides = {
-					['@variable.builtin'] = { link = 'GruvboxBlue' },
-					['@keyword'] = { link = 'GruvboxBlue' },
-					['@lsp.typemod.variable.defaultLibrary'] = { link = 'GruvboxBlue' },
-					['@lsp.type.parameter'] = { link = 'GruvboxFg1' },
-					['@property'] = { link = 'GruvboxFg1' },
-					['@punctuation.bracket'] = { link = 'GruvboxFg4' },
-					['@punctuation.delimiter'] = { link = 'GruvboxFg2' },
-					['@operator'] = { link = 'GruvboxAqua' },
-					['@constant.builtin'] = { link = 'GruvboxYellow' },
-					['@type.typescript'] = { link = 'GruvboxFg1' }, -- imports
+	-- {
+	-- 	'ellisonleao/gruvbox.nvim',
+	-- 	config = function()
+	-- 		local gruvbox = require('gruvbox')
+	-- 		gruvbox.setup({
+	-- 			bold = false,
+	-- 			italic = {
+	-- 				strings = false,
+	-- 				emphasis = false,
+	-- 				comments = false,
+	-- 				operators = false,
+	-- 				folds = false,
+	-- 			},
+	-- 			palette_overrides = {
+	-- 			},
+	-- 			overrides = {
+	-- 				['@variable.builtin'] = { link = 'GruvboxBlue' },
+	-- 				['@keyword'] = { link = 'GruvboxBlue' },
+	-- 				['@lsp.typemod.variable.defaultLibrary'] = { link = 'GruvboxBlue' },
+	-- 				['@lsp.type.parameter'] = { link = 'GruvboxFg1' },
+	-- 				['@property'] = { link = 'GruvboxFg1' },
+	-- 				['@punctuation.bracket'] = { link = 'GruvboxFg4' },
+	-- 				['@punctuation.delimiter'] = { link = 'GruvboxFg2' },
+	-- 				['@operator'] = { link = 'GruvboxAqua' },
+	-- 				['@constant.builtin'] = { link = 'GruvboxYellow' },
+	-- 				['@type.typescript'] = { link = 'GruvboxFg1' }, -- imports
+	--
+	-- 				-- Experimental
+	-- 				['@method.call'] = { link = 'GruvboxAqua' },
+	-- 				['@function.call'] = { link = 'GruvboxAqua' },
+	-- 				-- ['@string'] = { link = 'GruvboxAqua' },
+	-- 			},
+	-- 		})
+	--
+	-- 		vim.cmd.colorscheme('gruvbox')
+	-- 	end
+	-- },
 
-					-- Experimental
-					['@method.call'] = { link = 'GruvboxAqua' },
-					['@function.call'] = { link = 'GruvboxAqua' },
-					-- ['@string'] = { link = 'GruvboxAqua' },
-				},
-			})
-
-			vim.cmd.colorscheme('gruvbox')
-		end
-	},
 	-- {
 	-- 	'rose-pine/neovim',
 	-- 	name = 'rose-pine',
