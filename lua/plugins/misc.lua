@@ -13,7 +13,7 @@ return {
 		'chrisgrieser/nvim-early-retirement',
 		event = 'VeryLazy',
 		config = true,
-		opts = { retirementAgeMins = 10 }
+		opts = { retirementAgeMins = 10 },
 	},
 	{
 		'laytan/cloak.nvim',
@@ -53,20 +53,28 @@ return {
 			})
 		end,
 	},
-	{
-		'petertriho/nvim-scrollbar',
-		event = 'VeryLazy',
-		opts = {
-			handle = {
-				text = ' ',
-				blend = 50,
-				color = '#737994',
-				color_nr = nil,
-				highlight = 'CursorColumn',
-				hide_if_all_visible = true,
-			},
-		},
-	},
+
+	-- {
+	-- 	'petertriho/nvim-scrollbar',
+	-- 	event = 'VeryLazy',
+	-- 	opts = {
+	-- 		handle = {
+	-- 			text = ' ',
+	-- 			blend = 50,
+	-- 			color = '#737994',
+	-- 			color_nr = nil,
+	-- 			highlight = 'CursorColumn',
+	-- 			hide_if_all_visible = true,
+	-- 		},
+	-- 		marks = {
+	-- 			Hint = { text = { '' } },
+	-- 			Warn = { text = { '•' } },
+	-- 			Error = { text = { '•' } },
+	-- 			-- Info = { text = { '' } },
+	-- 		}
+	-- 	},
+	-- },
+
 	-- {
 	-- 	'lukas-reineke/indent-blankline.nvim',
 	-- 	event = 'VeryLazy',

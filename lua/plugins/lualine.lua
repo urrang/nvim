@@ -1,24 +1,26 @@
 local hl_cache = {}
 
 local set_icon_highlight = function(highlight, fg, bg)
-	if hl_cache[highlight] then return end
+	if hl_cache[highlight] then
+		return
+	end
 
 	vim.api.nvim_set_hl(0, highlight, { fg = fg, bg = bg })
 end
 
 local function harpoon_files()
 	local contents = {}
-	local harpoon = require('harpoon');
+	local harpoon = require('harpoon')
 	local marks_length = harpoon:list():length()
 	local current_file_path = vim.fn.fnamemodify(vim.fn.expand('%:p'), ':.')
 
 	for index = 1, marks_length do
 		local harpoon_file_path = harpoon:list():get(index).value
 		local file_name = harpoon_file_path == '' and '(empty)' or vim.fn.fnamemodify(harpoon_file_path, ':t')
-		local extension = file_name:match(".*%.([^%.]+)$")
+		local extension = file_name:match('.*%.([^%.]+)$')
 
 		-- local icon, hl = require('nvim-web-devicons').get_icon(file_name, extension, { default = true })
-		local icon, color = require 'nvim-web-devicons'.get_icon_color(file_name, extension, { default = true })
+		local icon, color = require('nvim-web-devicons').get_icon_color(file_name, extension, { default = true })
 
 		if current_file_path == harpoon_file_path then
 			local icon_hl = 'lualine_icon_' .. extension .. '_active'
@@ -33,26 +35,14 @@ local function harpoon_files()
 
 			local ic = string.format('%%#%s#%s', icon_hl, icon)
 
-			contents[index] = string.format(' %%#HarpoonNumberInactive# %s %s %%#HarpoonInactive#%s ', index, ic,
-				file_name)
+			contents[index] =
+				string.format(' %%#HarpoonNumberInactive# %s %s %%#HarpoonInactive#%s ', index, ic, file_name)
 			-- contents[index] = string.format('%%#HarpoonNumberInactive# %s. %%#HarpoonInactive#%s ', index, file_name)
 		end
 	end
 
 	return table.concat(contents)
 end
-
--- Show git status.
--- local function diff_source()
--- 	local gitsigns = vim.b.gitsigns_status_dict
--- 	if gitsigns then
--- 		return {
--- 			added = gitsigns.added,
--- 			modified = gitsigns.changed,
--- 			removed = gitsigns.removed,
--- 		}
--- 	end
--- end
 
 -- Show lsp status
 -- local function lsp_servers()
@@ -84,7 +74,16 @@ return {
 			theme = 'catppuccin',
 			component_separators = '',
 			section_separators = '',
-			disabled_filetypes = { 'alpha', 'dashboard' },
+			disabled_filetypes = {
+				statusline = {
+					'alpha',
+					'NeogitStatus',
+				},
+				tabline = {
+					'alpha',
+					'NeogitStatus',
+				},
+			},
 			sections = {
 				lualine_a = {
 					{
@@ -98,9 +97,13 @@ return {
 						'filename',
 						symbols = {
 							modified = '',
+							unnamed = '',
+							readonly = '',
 						},
 						separator = { left = '', right = '' },
 					},
+				},
+				lualine_x = {
 					{
 						'diagnostics',
 						sources = { 'nvim_diagnostic' },
@@ -115,52 +118,16 @@ return {
 						},
 						colored = true,
 					},
-				},
-				lualine_x = {
-					{
-						'branch',
-						icon = {
-							'',
-						},
-						separator = ' ',
-					},
-					{
-						-- 'diff',
-						-- colored = true,
-						-- source = diff_source,
-						-- symbols = {
-						-- 	-- added = ' ',
-						-- 	-- modified = ' ',
-						-- 	-- removed = ' ',
-						-- 	added = ' ',
-						-- 	modified = ' ',
-						-- 	removed = ' ',
-						-- },
-					},
+					-- { 'progress', separator = '' },
+					-- { 'location' },
 					-- {
-					-- 	'diagnostics',
-					-- 	sources = { 'nvim_diagnostic' },
-					-- 	separator = '',
-					-- 	symbols = {
-					-- 		-- error = ' ',
-					-- 		-- warn = ' ',
-					-- 		-- info = ' ',
-					-- 		-- hint = ' ',
-					-- 		error = ' ',
-					-- 		warn = ' ',
-					-- 		info = ' ',
-					-- 		hint = '󱤅 ',
-					-- 		other = '󰠠 ',
+					-- 	'branch',
+					-- 	icon = {
+					-- 		'',
 					-- 	},
-					-- 	colored = true,
+					-- 	separator = ' ',
 					-- },
-					-- {
-					-- 	lsp_servers,
-					-- 	color = function()
-					-- 		return { fg = "#8caaee"}
-					--
-					-- 	end
-					-- }
+					{},
 				},
 				lualine_y = {},
 				lualine_z = {},
@@ -174,9 +141,11 @@ return {
 				lualine_z = {
 					{
 						'tabs',
-						cond = function() return #vim.fn.gettabinfo() > 1 end,
-						section_separators = { left = '', right = ''},
-					}
+						cond = function()
+							return #vim.fn.gettabinfo() > 1
+						end,
+						section_separators = { left = '', right = '' },
+					},
 				},
 			},
 		}
