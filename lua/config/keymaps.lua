@@ -99,3 +99,12 @@ map('n', '<S-Up>', '<cmd>resize +2<cr>', { desc = 'Increase window height' })
 map('n', '<S-Down>', '<cmd>resize -2<cr>', { desc = 'Decrease window height' })
 map('n', '<S-Left>', '<cmd>vertical resize -2<cr>', { desc = 'Decrease window width' })
 map('n', '<S-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increase window width' })
+
+-- Go to error
+map(
+	'n', 
+	'ge', 
+	function() require('lspsaga.diagnostic'):goto_next({ severity = vim.diagnostic.severity.ERROR, show_code_action = false }) end,
+	{ desc = 'Jump to error' }
+)
+

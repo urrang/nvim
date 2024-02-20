@@ -80,6 +80,8 @@ vim.cmd('ca h tab h')
 -- Correct common typos
 vim.api.nvim_create_user_command('Wa', 'wa', {})
 vim.api.nvim_create_user_command('WA', 'wa', {})
+vim.api.nvim_create_user_command('Wq', 'wq', {})
+vim.api.nvim_create_user_command('WQ', 'wq', {})
 
 -- local lsp = vim.lsp
 -- lsp.handlers['textDocument/hover'] = lsp.with(
