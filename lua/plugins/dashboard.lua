@@ -1,23 +1,41 @@
 local get_header = function(plugin_text)
 	-- local datetime = os.date(' %d.%m   %H:%M')
 	local v = vim.version()
-	local version_text = '󰘬 ' .. v.major .. '.' .. v.minor .. '.' .. v.patch
-	-- local bottom_text = datetime .. '\t' .. version_text .. '\t' .. (plugin_text or '')
-	local bottom_text = version_text .. '    ' .. (plugin_text or '')
-
+	
 	return {
 		'												   ',
-		'												   ',
-		'												   ',
-		'███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗',
-		'████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║',
-		'██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║',
-		'██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║',
-		'██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║',
-		'╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝',
-		'												   ',
-		bottom_text,
+		'											       ',
+		'											       ',
+		'											       ',
+		'											       ',
+		'       ███╗   ██╗██╗   ██╗██╗███╗   ███╗          ',
+		'       ████╗  ██║██║   ██║██║████╗ ████║          ',
+		'       ██╔██╗ ██║██║   ██║██║██╔████╔██║          ',
+		'       ██║╚██╗██║╚██╗ ██╔╝██║██║╚██╔╝██║          ',
+		'       ██║ ╚████║ ╚████╔╝ ██║██║ ╚═╝ ██║          ',
+		'       ╚═╝  ╚═══╝  ╚═══╝  ╚═╝╚═╝     ╚═╝          ',
+		'											       ',
+		'     󰘬 ' .. v.major .. '.' .. v.minor .. '.' .. v.patch .. '  ' .. (plugin_text or ''),
+		'',
 	}
+
+	-- local version_text = '󰘬 ' .. v.major .. '.' .. v.minor .. '.' .. v.patch
+	-- local bottom_text = datetime .. '\t' .. version_text .. '\t' .. (plugin_text or '')
+	-- local bottom_text = version_text .. '    ' .. (plugin_text or '')
+
+	-- return {
+	-- 	'												   ',
+	-- 	'												   ',
+	-- 	'												   ',
+	-- 	'███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗',
+	-- 	'████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║',
+	-- 	'██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║',
+	-- 	'██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║',
+	-- 	'██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║',
+	-- 	'╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝',
+	-- 	'												   ',
+	-- 	bottom_text,
+	-- }
 end
 
 return {
@@ -32,15 +50,15 @@ return {
 			dashboard.button(
 				'f',
 				' ' .. ' Find file',
+				-- 'Find file',
 				':Telescope smart_open cwd_only=true theme=dropdown prompt_title=<cr>'
 			),
 
-			-- dashboard.button('n', ' ' .. ' New file', ':ene <BAR> startinsert <CR>'),
-			-- dashboard.button('r', ' ' .. ' Recent files', ':Telescope oldfiles <CR>'),
+			-- dashboard.button('g', 'Grep text', ':Telescope live_grep <CR>'),
+			-- dashboard.button('s', 'Restore Session', [[:lua require("persistence").load() <cr>]]),
+			-- dashboard.button('q', 'Quit', ':qa<CR>'),
 			dashboard.button('g', ' ' .. ' Grep text', ':Telescope live_grep <CR>'),
-			-- dashboard.button('c', ' ' .. ' Config', ':e $MYVIMRC <CR>'),
 			dashboard.button('s', ' ' .. ' Restore Session', [[:lua require("persistence").load() <cr>]]),
-			-- dashboard.button('l', '󰒲 ' .. ' Lazy', ':Lazy<CR>'),
 			dashboard.button('q', ' ' .. ' Quit', ':qa<CR>'),
 		}
 
@@ -67,6 +85,7 @@ return {
 				local ms = math.floor(stats.startuptime + 0.5)
 				-- local plugin_text = ' ' .. stats.count .. '     ' .. ms .. 'ms'
 				local plugin_text = ' Loaded ' .. stats.count .. ' plugins in ' .. ms .. 'ms'
+				-- local plugin_text = 'loaded ' .. stats.count .. ' plugins in ' .. ms .. 'ms'
 				dashboard.section.header.val = get_header(plugin_text)
 
 				pcall(vim.cmd.AlphaRedraw)
