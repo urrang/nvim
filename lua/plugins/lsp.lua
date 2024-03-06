@@ -47,11 +47,11 @@ return {
 		dependencies = {
 			{ 'williamboman/mason.nvim', config = true },
 			{ 'williamboman/mason-lspconfig.nvim' },
-			{
-				'ray-x/lsp_signature.nvim',
-				event = 'VeryLazy',
-				opts = { hint_enable = false },
-			},
+			-- {
+			-- 	'ray-x/lsp_signature.nvim',
+			-- 	event = 'VeryLazy',
+			-- 	opts = { hint_enable = false },
+			-- },
 		},
 		config = function()
 			local mason_lspconfig = require('mason-lspconfig')
