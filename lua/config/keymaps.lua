@@ -12,7 +12,8 @@ map('n', '*', '*N', { noremap = true, silent = true })
 map('n', '<C-a>', 'ggVG')
 
 -- Save/save all with Ctrl + s/S
-map({ 'n', 'i' }, '<C-s>', '<cmd>w<cr>', { silent = true })
+map('n', '<C-s>', ':up<cr>')
+map('i', '<C-s>', '<esc>:up<cr>')
 
 -- Change word under cursor with enter
 map('n', '<CR>', '"dciw')
