@@ -29,6 +29,7 @@ return {
 				'vimdoc',
 				'vim',
 				'svelte',
+				'angular'
 			},
 
 			autotag = {

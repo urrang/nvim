@@ -13,6 +13,16 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
 	command = 'silent! normal! g`"zv',
 })
 
+vim.api.nvim_create_autocmd('BufRead', {
+	desc = 'Start treesitter parser for angular on html files in angular project',
+	pattern = '*.html',
+	callback = function()
+		if vim.fn.findfile('angular.json', '.;') ~= '' then
+			vim.treesitter.start(nil, 'angular')
+		end
+	end
+})
+
 vim.api.nvim_create_autocmd('CursorHold', {
 	desc = 'Show diagnostics on CursorHold',
 	callback = function()
