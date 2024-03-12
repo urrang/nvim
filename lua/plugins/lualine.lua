@@ -8,6 +8,15 @@ local set_icon_highlight = function(highlight, fg, bg)
 	vim.api.nvim_set_hl(0, highlight, { fg = fg, bg = bg })
 end
 
+local function macro_recording()
+	local recording_register = vim.fn.reg_recording()
+	if recording_register == '' then
+		return ''
+	else
+		return 'Recording @' .. recording_register
+	end
+end
+
 local function harpoon_files()
 	local contents = {}
 	local harpoon = require('harpoon')
@@ -101,6 +110,10 @@ return {
 							readonly = '',
 						},
 						separator = { left = '', right = '' },
+					},
+					{
+						"macro-recording",
+						fmt = macro_recording,
 					},
 				},
 				lualine_x = {

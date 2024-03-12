@@ -101,6 +101,8 @@ map('n', '<S-Down>', '<cmd>resize -2<cr>', { desc = 'Decrease window height' })
 map('n', '<S-Left>', '<cmd>vertical resize -2<cr>', { desc = 'Decrease window width' })
 map('n', '<S-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increase window width' })
 
+map('i', '<C-k>', vim.lsp.buf.signature_help, { desc = 'Show signature help' });
+
 -- Go to error
 map(
 	'n', 

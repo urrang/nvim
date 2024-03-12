@@ -88,6 +88,12 @@ vim.api.nvim_create_user_command('WQ', 'wq', {})
 --   lsp.handlers.hover,
 --   { border = 'rounded' }
 -- )
+--
+vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+	border = 'rounded',
+	silent = true,
+	focusable = false
+})
 
 -- lsp.handlers['textDocument/signatureHelp'] = lsp.with(lsp.handlers.signature_help, {
 --   border = 'rounded',
