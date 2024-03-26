@@ -36,6 +36,12 @@ return {
 		'L3MON4D3/LuaSnip',
 		'saadparwaiz1/cmp_luasnip',
 		{ 'windwp/nvim-autopairs', opts = {} },
+		-- {
+		-- 	'rafamadriz/friendly-snippets',
+		-- 	config = function()
+		-- 		require('luasnip.loaders.from_vscode').lazy_load()
+		-- 	end,
+		-- },
 	},
 	event = 'InsertEnter',
 	opts = function()
@@ -43,6 +49,7 @@ return {
 		local luasnip = require('luasnip')
 
 		luasnip.config.setup({}) -- opts?
+		require('luasnip.loaders.from_vscode').lazy_load({ paths = './snippets' })
 
 		local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 
@@ -55,7 +62,7 @@ return {
 				['<Esc>'] = cmp.mapping.close(),
 			}),
 			completion = {
-				completeopt = 'menu,menuone,noinsert,noselect'
+				completeopt = 'menu,menuone,noinsert,noselect',
 			},
 			sources = cmp.config.sources({
 				{ name = 'path' },
@@ -132,9 +139,9 @@ return {
 			}),
 			sources = {
 				{ name = 'nvim_lsp', priority = 1000 },
-				{ name = 'luasnip',  priority = 750 },
-				{ name = 'buffer',   priority = 500 },
-				{ name = 'path',     priority = 250 },
+				{ name = 'luasnip', priority = 750 },
+				{ name = 'buffer', priority = 500 },
+				{ name = 'path', priority = 250 },
 			},
 		})
 	end,

@@ -1,0 +1,19 @@
+{
+  "Angular Component": {
+    "prefix": "ng-component",
+    "description": "Angular component",
+    "body": [
+      "import { Component, OnInit } from '@angular/core';",
+      "",
+      "@Component({",
+      "\tselector: '${1:selector-name}',",
+      "\ttemplate: ``",
+      "})",
+      "",
+      "export class ${3:Name} {",
+      "\tconstructor() { }",
+      "",
+      "}"
+    ]
+  }
+}
