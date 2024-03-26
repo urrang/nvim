@@ -33,7 +33,6 @@ local on_attach = function(client, bufnr)
 	end
 
 	nmap('<leader>rn', vim.lsp.buf.rename, 'Rename')
-	nmap('<leader>ca', vim.lsp.buf.code_action, 'Code action')
 	nmap('<c-.>', vim.lsp.buf.code_action, 'Code action')
 	nmap('<leader>gp', '<cmd>Lspsaga peek_definition<cr>', 'Peek Definition')
 	nmap('gd', vim.lsp.buf.definition, 'Goto Definition')

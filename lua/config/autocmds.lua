@@ -1,10 +1,9 @@
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-
 vim.api.nvim_create_autocmd('TextYankPost', {
-	desc = 'Highlight on yank',
-	callback = function() vim.highlight.on_yank() end,
-	group = highlight_group,
-	pattern = '*',
+	desc = 'Highlight when yanking (copying) text',
+	group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
+	callback = function()
+		vim.highlight.on_yank()
+	end,
 })
 
 vim.api.nvim_create_autocmd('BufWinEnter', {
@@ -20,7 +19,7 @@ vim.api.nvim_create_autocmd('BufRead', {
 		if vim.fn.findfile('angular.json', '.;') ~= '' then
 			vim.treesitter.start(nil, 'angular')
 		end
-	end
+	end,
 })
 
 vim.api.nvim_create_autocmd('CursorHold', {
@@ -38,11 +37,3 @@ vim.api.nvim_create_autocmd('CursorHold', {
 	end,
 })
 
--- vim.api.nvim_create_autocmd('BufWinEnter', {
--- 	pattern = '*',
--- 	callback = function(event)
--- 		if vim.bo[event.buf].filetype == 'help' then
--- 			vim.cmd.only()
--- 		end
--- 	end,
--- })

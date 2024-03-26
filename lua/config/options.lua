@@ -21,9 +21,7 @@ vim.opt.shiftwidth = 4
 vim.opt.autoread = true
 
 vim.opt.splitright = true
-
--- Set highlight on search
--- vim.o.hlsearch = false
+vim.opt.splitbelow = true
 
 -- Enable mouse mode
 vim.o.mouse = 'a'

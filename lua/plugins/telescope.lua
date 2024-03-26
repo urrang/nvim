@@ -6,8 +6,8 @@ return {
 	'nvim-telescope/telescope.nvim',
 	event = 'VeryLazy',
 	dependencies = {
+		'nvim-lua/plenary.nvim',
 		{ 'nvim-telescope/telescope-fzy-native.nvim', build = 'make' },
-		{ 'stevearc/aerial.nvim' },
 		{
 			'danielfalk/smart-open.nvim',
 			dependencies = { 'kkharji/sqlite.lua' },
@@ -18,23 +18,12 @@ return {
 		map('<leader>?', 'Telescope oldfiles', 'Find recent files'),
 		map('<leader>fg', 'Telescope live_grep', 'Find by Grep'),
 		map('<leader>fw', 'Telescope grep_string', 'Grep word under cursor'),
-		map('<leader>fs', 'Telescope aerial theme=dropdown prompt_title=', 'Find symbol'),
 		map('<leader>fb', 'Telescope buffers theme=dropdown prompt_title=', 'Find buffer'),
+		map('<leader>fr', 'Telescope resume', 'Resume last search'),
+		map('<leader>fd', 'Telescope diagnostics theme=dropdown severity_limit=WARN initial_mode=normal', 'Find diagnostics'),
 
 		map('<leader>ff', 'Telescope smart_open cwd_only=true theme=dropdown prompt_title=', 'Find file'),
 		map('<C-p>', 'Telescope smart_open cwd_only=true theme=dropdown prompt_title=', 'Find file'),
-
-
-		-- {
-		-- 	'<leader>ff',
-		-- 	function()
-		-- 		require('telescope').extensions.smart_open.smart_open({
-		-- 			cwd_only = true,
-		-- 			theme = "dropdown"
-		-- 		})
-		-- 	end,
-		-- 	desc = 'Find files'
-		-- },
 
 		{
 			'<leader>/',
@@ -46,14 +35,11 @@ return {
 			end,
 			desc = 'Find in current buffer',
 		},
-		-- { '<leader>fs', '<cmd>Telescope lsp_document_symbols ignore_symbols=variable,enum,constant,class,property<cr>', desc = "Find symbols" }
 	},
 	opts = function()
 		local telescope = require('telescope')
-		require('aerial').setup({})
 
 		telescope.load_extension('fzy_native')
-		telescope.load_extension('aerial')
 		telescope.load_extension('smart_open')
 
 		local actions = require('telescope.actions')

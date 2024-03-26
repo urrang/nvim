@@ -1,9 +1,5 @@
 return {
-	-- {
-	-- 	'folke/which-key.nvim',
-	-- 	event = 'VeryLazy',
-	-- 	opts = {},
-	-- },
+	{ 'tpope/vim-sleuth' },
 	{
 		'folke/persistence.nvim',
 		event = 'VeryLazy',
@@ -53,49 +49,4 @@ return {
 			})
 		end,
 	},
-
-	-- {
-	-- 	'petertriho/nvim-scrollbar',
-	-- 	event = 'VeryLazy',
-	-- 	opts = {
-	-- 		handle = {
-	-- 			text = ' ',
-	-- 			blend = 50,
-	-- 			color = '#737994',
-	-- 			color_nr = nil,
-	-- 			highlight = 'CursorColumn',
-	-- 			hide_if_all_visible = true,
-	-- 		},
-	-- 		marks = {
-	-- 			Hint = { text = { '' } },
-	-- 			Warn = { text = { '•' } },
-	-- 			Error = { text = { '•' } },
-	-- 			-- Info = { text = { '' } },
-	-- 		}
-	-- 	},
-	-- },
-
-	-- {
-	-- 	'lukas-reineke/indent-blankline.nvim',
-	-- 	event = 'VeryLazy',
-	-- 	main = 'ibl',
-	-- 	opts = {
-	-- 		indent = { char = '▏' },
-	-- 		scope = { enabled = false },
-	-- 		exclude = {
-	-- 			filetypes = {
-	-- 				'help',
-	-- 				'alpha',
-	-- 				'dashboard',
-	-- 				'neo-tree',
-	-- 				'Trouble',
-	-- 				'lazy',
-	-- 				'mason',
-	-- 				'notify',
-	-- 				'toggleterm',
-	-- 				'lazyterm',
-	-- 			},
-	-- 		},
-	-- 	},
-	-- },
 }
