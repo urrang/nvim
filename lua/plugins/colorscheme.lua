@@ -106,6 +106,13 @@ return {
 						['@text.title'] = { fg = colors.text },
 						['@text.strong'] = { fg = colors.text },
 
+						-- CSS in tagged template literals
+						['@property.styled'] = { link = '@property.css' },
+						['@property.class.styled'] = { link = '@property.class.css' },
+						['@string.plain.styled'] = { link = '@string.plain.css' },
+						['@type.tag.styled'] = { link = '@type.tag.css' },
+						--
+
 						CmpBorder = { fg = colors.surface2 },
 
 						-- CmpItemMenu = { bg = colors.pink },
