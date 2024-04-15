@@ -20,6 +20,7 @@ return {
 				'tsx',
 				'html',
 				'css',
+				'scss',
 				'styled',
 				'json',
 				'markdown',
