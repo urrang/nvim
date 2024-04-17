@@ -14,8 +14,6 @@ return {
 		},
 	},
 	keys = {
-		-- leader_map('<space>', 'Telescope buffers', 'Find buffer'),
-		map('<leader>?', 'Telescope oldfiles', 'Find recent files'),
 		map('<leader>fg', 'Telescope live_grep', 'Find by Grep'),
 		map('<leader>fw', 'Telescope grep_string', 'Grep word under cursor'),
 		map('<leader>fb', 'Telescope buffers theme=dropdown prompt_title=', 'Find buffer'),
