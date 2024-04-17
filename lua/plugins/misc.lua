@@ -1,9 +1,13 @@
 return {
 	{ 'tpope/vim-sleuth' },
 	{
-		'folke/persistence.nvim',
-		event = 'VeryLazy',
-		opts = {},
+		'olimorris/persisted.nvim',
+		lazy = false,
+		config = function()
+			require('persisted').setup({
+				use_git_branch = true,
+			})
+		end
 	},
 	{
 		'chrisgrieser/nvim-early-retirement',

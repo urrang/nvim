@@ -21,6 +21,8 @@ return {
 		map('<leader>fb', 'Telescope buffers theme=dropdown prompt_title=', 'Find buffer'),
 		map('<leader>fr', 'Telescope resume', 'Resume last search'),
 		map('<leader>fd', 'Telescope diagnostics theme=dropdown severity_limit=WARN initial_mode=normal', 'Find diagnostics'),
+		map('<leader>fs', 'Telescope persisted theme=dropdown prompt_title=', 'Find session'),
+		map('<leader>gb', 'Telescope git_branches theme=dropdown prompt_title=', 'Find branch'),
 
 		map('<leader>ff', 'Telescope smart_open cwd_only=true theme=dropdown prompt_title=', 'Find file'),
 		map('<C-p>', 'Telescope smart_open cwd_only=true theme=dropdown prompt_title=', 'Find file'),
@@ -41,6 +43,7 @@ return {
 
 		telescope.load_extension('fzy_native')
 		telescope.load_extension('smart_open')
+		telescope.load_extension('persisted')
 
 		local actions = require('telescope.actions')
 
@@ -105,6 +108,13 @@ return {
 					preview_title = '',
 				}
 			},
+			extensions = {
+				persisted = {
+					layout_config = {
+						initial_mode = 'normal'
+					}
+				}
+			}
 		}
 	end,
 }

@@ -58,7 +58,7 @@ return {
 			-- dashboard.button('s', 'Restore Session', [[:lua require("persistence").load() <cr>]]),
 			-- dashboard.button('q', 'Quit', ':qa<CR>'),
 			dashboard.button('g', ' ' .. ' Grep text', ':Telescope live_grep <CR>'),
-			dashboard.button('s', ' ' .. ' Restore Session', [[:lua require("persistence").load() <cr>]]),
+			dashboard.button('s', ' ' .. ' Restore Session', ':SessionLoad<CR>'),
 			dashboard.button('q', ' ' .. ' Quit', ':qa<CR>'),
 		}
 
