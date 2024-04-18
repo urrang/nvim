@@ -31,7 +31,9 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Load plugins
 local plugins = require('vscode/vscode_plugins')
-require('lazy').setup(plugins)
+require('lazy').setup(plugins, {
+	lockfile = vim.fn.stdpath("config") .. "/lazy-lock-vscode.json"
+})
 
 
 ---------------------------------------------

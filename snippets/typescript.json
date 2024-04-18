@@ -3,16 +3,39 @@
     "prefix": "ng-component",
     "description": "Angular component",
     "body": [
-      "import { Component, OnInit } from '@angular/core';",
+      "import { Component } from '@angular/core';",
       "",
       "@Component({",
-      "\tselector: '${1:selector-name}',",
+      "\tselector: '${1:selector}',",
       "\ttemplate: ``",
       "})",
       "",
-      "export class ${3:Name} {",
-      "\tconstructor() { }",
+      "export class ${3:MyComponent} {",
       "",
+      "}"
+    ]
+  },
+  "Lit component": {
+    "prefix": "lit-component",
+    "description": "Lit component",
+    "body": [
+      "import { LitElement, css, html } from 'lit';",
+      "import { customElement } from 'lit/decorators.js';",
+      "",
+      "@customElement('${1}')",
+      "export class ${2} extends LitElement {",
+      "",
+      "    render() {",
+      "        return html`${3}`;",
+      "    }",
+      "",
+      "    static styles = css``;",
+      "}",
+      "",
+      "declare global {",
+      "    interface HTMLElementTagNameMap {",
+      "        '${1}': ${2};",
+      "    }",
       "}"
     ]
   }
