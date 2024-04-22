@@ -1,5 +1,5 @@
 return {
-	{ 'tpope/vim-sleuth' },
+	-- { 'tpope/vim-sleuth' },
 	{
 		'olimorris/persisted.nvim',
 		lazy = false,

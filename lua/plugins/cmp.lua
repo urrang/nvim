@@ -1,32 +1,19 @@
-local cmp_kinds = {
-	Text = '',
-	Method = '',
-	Function = '',
-	Constructor = '',
-	Field = '',
-	Variable = '',
-	Class = '',
-	Interface = '',
-	Module = '',
-	Property = '',
-	Unit = '',
-	Value = '',
-	Enum = '',
-	Keyword = '',
-	Snippet = '',
-	Color = '',
-	File = '',
-	Reference = '',
-	Folder = '',
-	EnumMember = '',
-	Constant = '',
-	Struct = '',
-	Event = '',
-	Operator = '',
-	TypeParameter = '',
-}
+-- https://github.com/ditsuke/nvim-config/blob/5d22ea749ef64b5d3fec0ad3d6ac457e6dcbeb22/lua/ditsuke/plugins/editor/cmp.lua#L46
+local function get_lsp_completion_context(completion, source)
+	local ok, source_name = pcall(function() return source.source.client.config.name end)
+	if not ok then
+		return nil
+	end
 
--- https://github.com/NavePnow/dotfiles/blob/main/.config/nvim/lua/plugins/cmp.lua
+	if source_name == 'tsserver' then
+		return completion.detail
+	elseif source_name == 'vtsls' then
+		if completion.labelDetails ~= nil then
+			return completion.labelDetails.description
+		end
+	end
+end
+
 return {
 	'hrsh7th/nvim-cmp',
 	dependencies = {
@@ -35,6 +22,7 @@ return {
 		'hrsh7th/cmp-cmdline',
 		'L3MON4D3/LuaSnip',
 		'saadparwaiz1/cmp_luasnip',
+		'onsails/lspkind.nvim',
 		{ 'windwp/nvim-autopairs', opts = {} },
 		-- {
 		-- 	'rafamadriz/friendly-snippets',
@@ -82,9 +70,26 @@ return {
 			},
 			formatting = {
 				fields = { 'kind', 'abbr', 'menu' },
-				format = function(_, vim_item)
-					vim_item.kind = cmp_kinds[vim_item.kind] or ''
-					return vim_item
+				format = function(entry, vim_item)
+					local item_with_kind = require('lspkind').cmp_format({
+						mode = 'symbol',
+						maxwidth = 20,
+					})(entry, vim_item)
+
+					item_with_kind.menu = ''
+
+					local completion_context = get_lsp_completion_context(entry.completion_item, entry.source)
+					if completion_context ~= nil and completion_context ~= '' then
+						local truncated_context = string.sub(completion_context, 1, 25)
+						if truncated_context ~= completion_context then
+							truncated_context = truncated_context .. '… '
+						end
+
+						item_with_kind.menu = item_with_kind.menu .. '    ' .. truncated_context
+					end
+
+					item_with_kind.menu_hl_group = 'CmpItemAbbr'
+					return item_with_kind
 				end,
 			},
 			snippet = {
@@ -139,9 +144,9 @@ return {
 			}),
 			sources = {
 				{ name = 'nvim_lsp', priority = 1000 },
-				{ name = 'luasnip', priority = 750 },
-				{ name = 'buffer', priority = 500 },
-				{ name = 'path', priority = 250 },
+				{ name = 'luasnip',  priority = 750 },
+				{ name = 'buffer',   priority = 500 },
+				{ name = 'path',     priority = 250 },
 			},
 		})
 	end,
