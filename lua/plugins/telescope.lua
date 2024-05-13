@@ -91,16 +91,6 @@ return {
                 file_ignore_patterns = {
                     'src/assets/pdfjs/*',
                     'src/assets/stimulsoft/*'
-                },
-                vimgrep_arguments = {
-                    'rg',
-                    '--color=never',
-                    '--no-heading',
-                    '--with-filename',
-                    '--line-number',
-                    '--column',
-                    '--smart-case',
-                    '--fixed-strings' -- search for literal strings instead of regex
                 }
             },
             pickers = {
@@ -109,6 +99,16 @@ return {
                     prompt_title = '',
                     results_title = '',
                     preview_title = '',
+                    vimgrep_arguments = {
+                        'rg',
+                        '--color=never',
+                        '--no-heading',
+                        '--with-filename',
+                        '--line-number',
+                        '--column',
+                        '--smart-case',
+                        '--fixed-strings' -- search for literal strings instead of regex
+                    }
                 },
                 grep_string = {
                     initial_mode = 'normal',
