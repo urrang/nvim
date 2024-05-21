@@ -57,19 +57,19 @@ vim.o.termguicolors = true
 -- vim.opt.smartindent = true
 
 vim.diagnostic.config({
-	float = { border = 'rounded' },
+    float = { border = 'rounded' },
 })
 
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-	virtual_text = {
-		severity_limit = 'Warning',
-	},
+    virtual_text = {
+        severity = { min = vim.diagnostic.severity.WARN }
+    },
 })
 
 vim.filetype.add({
-	extension = {
-		mdx = 'markdown',
-	},
+    extension = {
+        mdx = 'markdown',
+    },
 })
 
 -- Open help in tab instead of buffer
@@ -89,9 +89,9 @@ vim.api.nvim_create_user_command('WQ', 'wq', {})
 -- )
 --
 vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-	border = 'rounded',
-	silent = true,
-	focusable = false
+    border = 'rounded',
+    silent = true,
+    focusable = false
 })
 
 -- lsp.handlers['textDocument/signatureHelp'] = lsp.with(lsp.handlers.signature_help, {
