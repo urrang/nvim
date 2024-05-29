@@ -40,8 +40,6 @@ return {
 					cmp = true,
 					neogit = true,
 					lsp_saga = true,
-					gitsigns = true,
-					neotree = true,
 					telescope = true,
 					alpha = true,
 					flash = true,
@@ -60,9 +58,6 @@ return {
 							information = { 'undercurl' },
 						},
 					},
-
-					which_key = true,
-					-- harpoon = true,
 				},
 				custom_highlights = function(colors)
 					return {
@@ -115,17 +110,14 @@ return {
 
 						CmpBorder = { fg = colors.surface2 },
 
-						-- CmpItemMenu = { bg = colors.pink },
 						CmpSelectedItem = { fg = colors.crust, bg = colors.blue },
 						CmpItemAbbrMatch = { fg = colors.blue, style = { 'bold' } },
 						CmpItemAbbrMatchFuzzy = { fg = colors.blue, style = { 'bold' } },
 
 						SagaBorder = { fg = colors.surface2 },
-						-- MiniIndentscopeSymbol = { fg = colors.yellow },
 
 						FloatBorder = { fg = colors.surface2, bg = colors.base },
 						NormalFloat = { bg = colors.base },
-						-- NormalFloatBorder = { fg = colors.surface2, bg = colors.base },
 
 						DiagnosticDeprecated = { style = { 'underline' } },
 
@@ -143,16 +135,12 @@ return {
 						TroubleCount = { bg = 'NONE', fg = colors.base },
 						TroubleLocation = { fg = colors.base },
 
-						-- Lualine harpoon files
-						HarpoonActive = { bg = colors.base, fg = colors.text },
-						HarpoonNumberActive = { bg = colors.base, fg = colors.text },
-						HarpoonInactive = { bg = colors.mantle, fg = colors.surface2 },
-						HarpoonInactiveBg = { bg = colors.mantle },
-						HarpoonNumberInactive = { bg = colors.mantle, fg = colors.surface2 },
-						-- HarpoonActive = { bg = colors.mantle, fg = colors.blue },
-						-- HarpoonNumberActive = { bg = colors.mantle, fg = colors.blue },
-						-- HarpoonInactive = { bg = colors.mantle, fg = colors.subtext1 },
-						-- HarpoonNumberInactive = { bg = colors.mantle, fg = colors.subtext1 },
+                        -- Lualine grapple tags
+						GrappleActive = { bg = colors.base, fg = colors.text },
+						GrappleInactive = { bg = colors.mantle, fg = colors.surface2 },
+
+                        -- Lualine macro recording indicator
+                        MacroRecordingWarning = { fg = colors.yellow, bg = colors.mantle },
 					}
 				end,
 				color_overrides = {
@@ -164,138 +152,4 @@ return {
 			vim.cmd.colorscheme('catppuccin')
 		end,
 	},
-	-- {
-	-- 	'ellisonleao/gruvbox.nvim',
-	-- 	config = function()
-	-- 		local gruvbox = require('gruvbox')
-	-- 		gruvbox.setup({
-	-- 			bold = false,
-	-- 			italic = {
-	-- 				strings = false,
-	-- 				emphasis = false,
-	-- 				comments = false,
-	-- 				operators = false,
-	-- 				folds = false,
-	-- 			},
-	-- 			palette_overrides = {
-	-- 			},
-	-- 			overrides = {
-	-- 				['@variable.builtin'] = { link = 'GruvboxBlue' },
-	-- 				['@keyword'] = { link = 'GruvboxBlue' },
-	-- 				['@lsp.typemod.variable.defaultLibrary'] = { link = 'GruvboxBlue' },
-	-- 				['@lsp.type.parameter'] = { link = 'GruvboxFg1' },
-	-- 				['@property'] = { link = 'GruvboxFg1' },
-	-- 				['@punctuation.bracket'] = { link = 'GruvboxFg4' },
-	-- 				['@punctuation.delimiter'] = { link = 'GruvboxFg2' },
-	-- 				['@operator'] = { link = 'GruvboxAqua' },
-	-- 				['@constant.builtin'] = { link = 'GruvboxYellow' },
-	-- 				['@type.typescript'] = { link = 'GruvboxFg1' }, -- imports
-	--
-	-- 				-- Experimental
-	-- 				['@method.call'] = { link = 'GruvboxAqua' },
-	-- 				['@function.call'] = { link = 'GruvboxAqua' },
-	-- 				-- ['@string'] = { link = 'GruvboxAqua' },
-	-- 			},
-	-- 		})
-	--
-	-- 		vim.cmd.colorscheme('gruvbox')
-	-- 	end
-	-- },
-
-	-- {
-	-- 	'rose-pine/neovim',
-	-- 	name = 'rose-pine',
-	-- 	opts = {
-	-- 		variant = 'moon',
-	-- 		extend_background_behind_borders = false,
-	-- 		styles = {
-	-- 			bold = true,
-	-- 			italic = false,
-	-- 			tranparency = true,
-	-- 		},
-	-- 		-- before_highlight = function(group, highlight, palette)
-	-- 		-- 	if highlight.bg == palette.base then
-	-- 		-- 		highlight.bg = '#242637'
-	-- 		-- 	end
-	-- 		-- end,
-	-- 		highlight_groups = {
-	-- 			['@property'] = { fg = 'text' },
-	-- 			['@parameter'] = { fg = 'text' },
-	-- 			NonText = { fg = 'surface' },
-	--
-	-- 			['@type.qualifier.typescript'] = { fg = 'pine' },
-	-- 			['Keyword'] = { fg = 'pine' },
-	-- 			['Conditional'] = { fg = 'pine' },
-	--
-	-- 			['@method'] = { fg = 'iris' },
-	-- 			['Function'] = { fg = 'iris' },
-	--
-	-- 			Type = { fg = 'foam' },
-	-- 			Structure = { fg = 'foam' },
-	-- 		},
-	-- 	},
-	-- },
-
-	-- {
-	-- 	'Mofiqul/vscode.nvim',
-	-- 	config = function()
-	-- 		local c = require('vscode.colors').get_colors()
-	--
-	-- 		require('vscode').setup({
-	-- 			transparent = false,
-	-- 			disable_nvimtree_bg = true,
-	-- 			group_overrides = {
-	-- 				['@variable.builtin'] = { fg = c.vscBlue },
-	-- 				['@keyword'] = { fg = c.vscBlue },
-	-- 				['@keyword.return'] = { fg = c.vscPink },
-	-- 				['@conditional.ternary'] = { fg = c.vscFront },
-	-- 				['@parameter'] = { fg = '#6FBFF9' }, -- c.vscMediumBlue },
-	-- 			},
-	-- 		})
-	-- 	end,
-	-- },
-
-	-- {
-	-- 	'AlexvZyl/nordic.nvim',
-	-- 	lazy = false,
-	-- 	priority = 1000,
-	-- 	config = function()
-	-- 		local palette = require('nordic.colors')
-	--
-	-- 		require('nordic').setup({
-	-- 			transparent_bg = false,
-	-- 			italic_comments = false,
-	-- 			bold_keywords = false,
-	-- 			override = {
-	-- 				['@variable.builtin'] = { italic = false },
-	-- 				['@namespace'] = { italic = false },
-	-- 				['@text.emphasis'] = { italic = false },
-	-- 				-- ['@parameter'] = { italic = false },
-	--
-	-- 				['@property'] = { fg = palette.white0 },
-	-- 				['@parameter'] = { fg = '#8FBCBB', italic = false },
-	-- 			},
-	-- 		})
-	-- 	end,
-	-- },
-
-	-- {
-	-- 	'folke/tokyonight.nvim',
-	-- 	opts = {
-	-- 		style = 'storm', --  `moon`, a darker variant `night`,
-	-- 		-- transparent = true,
-	-- 		styles = {
-	-- 			comments = { italic = false },
-	-- 			keywords = { italic = false },
-	-- 			functions = {},
-	-- 			variables = {},
-	-- 			sidebars = 'dark',
-	-- 			floats = 'dark',
-	-- 		},
-	-- 		on_highlights = function(hl, _)
-	-- 			hl['@property'] = { fg = '#C0CAF5' }
-	-- 			hl['@parameter'] = { fg = '#C0CAF5' }
-	-- 		end,
-	-- 	},
-	-- },
 }
