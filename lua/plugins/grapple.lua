@@ -1,14 +1,13 @@
 local keys = {
     { '<C-Space>', '<cmd>Grapple toggle_tags<cr>', desc = 'Grapple open tags window' },
-    -- { '<leader>m', '<cmd>Grapple toggle<cr>',      desc = 'Grapple toggle tag' },
     {
-        '<C-t>',
+        '<C-m>',
         function()
-            local oil = require('oil')
             local grapple = require('grapple')
 
+            -- Allow tagging directly from the Oil buffer
+            local oil = require('oil')
             local oil_cursor_entry = oil.get_cursor_entry()
-
             if (oil_cursor_entry) then
                 local directory = oil.get_current_dir()
 
@@ -19,12 +18,6 @@ local keys = {
             end
         end
     }
-    -- {
-    --     '<leader>ha',
-    --     function()
-    --         require('grapple').tag({ name = vim.fn.expand('%:t') })
-    --     end
-    -- }
 }
 
 for num = 1, 9 do

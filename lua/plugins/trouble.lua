@@ -1,21 +1,27 @@
+local last_open_view = nil
+
 return {
 	'folke/trouble.nvim',
 	event = 'VeryLazy',
 	dependencies = { 'nvim-tree/nvim-web-devicons' },
 	keys = {
-		{ '<leader>x', '<cmd>TroubleToggle<cr>', 'Toggle trouble.nvim' },
-		{ '<leader>dl', '<cmd>TroubleToggle document_diagnostics<cr>', 'Show problems' },
-		{ '<leader>x', '<cmd>TroubleToggle<cr>', 'Toggle trouble.nvim'},
-		{ 'gr', '<cmd>TroubleToggle lsp_references<cr>', 'LSP References' },
+        -- TODO: how to get the old TroubleToggle (toggle last used view) on <leader>x?
+		-- { '<leader>x', '<cmd>Trouble lsp_references toggle auto_refresh=false focus=true<cr>', 'Toggle trouble.nvim' },
+		{ '<leader>xx', '<cmd>Trouble diagnostics toggle filter.buf=0<cr>', 'Buffer diagnostics (Trouble)' },
+		{ '<leader>xX', '<cmd>Trouble diagnostics toggle<cr>', 'Diagnostics (Trouble)' },
+		{ 'gr', '<cmd>Trouble lsp_references toggle auto_refresh=false focus=true<cr>', 'LSP References (Trouble)' },
 	},
 	cmd = 'Trouble',
 	opts = {
-		position = 'left',
+		-- win = { position = 'left' },
 		auto_close = true,
 		-- height = 15,
 
 		-- group = false,
 		indent_lines = false,
+        win = {
+            position = 'left'
+        }
 	},
 }
 
