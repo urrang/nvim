@@ -6,15 +6,15 @@ map('n', '<Esc>', ':noh<CR><Esc>', { noremap = true, silent = true })
 -- Stay at word under cursor when using *
 map('n', '*', '*N', { noremap = true, silent = true })
 
--- Select whole file with C-a
+-- Select all content in buffer
 map('n', '<C-a>', 'ggVG')
 
--- Save/save all with Ctrl + s/S
+-- Selected text that was just pasted
+map('n', 'gp', '`[V`]')
+
+-- Save with ctrl + s
 map('n', '<C-s>', ':up<cr>')
 map('i', '<C-s>', '<esc>:up<cr>')
-
--- Change word under cursor with enter
-map('n', '<CR>', '"dciw')
 
 -- Move with Ctrl + arrow keys in insert mode
 map('i', '<C-h>', '<Left>')
@@ -22,15 +22,18 @@ map('i', '<C-j>', '<Down>')
 map('i', '<C-k>', '<Up>')
 map('i', '<C-l>', '<Right>')
 
--- Use register d for deleted text to avoid overriding
--- system clipboard. Paste with leader + p
+-- Use register d for deleted text to avoid overriding system clipboard
 local keys = { 'd', 'D', 'c', 'C', 'x', 'X' }
 for _, key in ipairs(keys) do
 	map({  'n', 'v' }, key, '"d' .. key, { noremap = true })
 end
 
+-- Paste from the d register with leader + p
 map('n', '<leader>p', '"dp', { desc = 'Paste deleted text' })
 map('n', '<leader>P', '"dP', { desc = 'Paste deleted text' })
+
+-- Change word under cursor with enter (use register d similar to the mappings above)
+map('n', '<CR>', '"dciw')
 
 -- Show highlight group, for theme overriding
 map('n', '<leader>cg', '<cmd>Inspect<cr>')
