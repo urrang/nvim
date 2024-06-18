@@ -22,18 +22,25 @@ map('i', '<C-j>', '<Down>')
 map('i', '<C-k>', '<Up>')
 map('i', '<C-l>', '<Right>')
 
--- Use register d for deleted text to avoid overriding system clipboard
-local keys = { 'd', 'D', 'c', 'C', 'x', 'X' }
-for _, key in ipairs(keys) do
-	map({  'n', 'v' }, key, '"d' .. key, { noremap = true })
-end
+-- Put deleted content from x/X into black hole register
+map('n', 'x', '"_x', { noremap = true })
+map('n', 'X', '"_X', { noremap = true })
+
+-- Put deleted content from c/d into register d instead of overriding system clipboard
+map({ 'n', 'v' }, 'd', '"dd', { noremap = true })
+map({ 'n', 'v' }, 'D', '"dD', { noremap = true })
+map({ 'n', 'v' }, 'c', '"dc', { noremap = true })
+map({ 'n', 'v' }, 'C', '"dC', { noremap = true })
 
 -- Paste from the d register with leader + p
 map('n', '<leader>p', '"dp', { desc = 'Paste deleted text' })
 map('n', '<leader>P', '"dP', { desc = 'Paste deleted text' })
 
--- Change word under cursor with enter (use register d similar to the mappings above)
-map('n', '<CR>', '"dciw')
+-- Change word under cursor with enter (use black hole register for deleted content)
+map('n', '<CR>', '"_ciw')
+
+-- Don't override clipboard when pasing in visual mode
+map('v', 'p', '"_dP')
 
 -- Show highlight group, for theme overriding
 map('n', '<leader>cg', '<cmd>Inspect<cr>')
