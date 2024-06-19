@@ -41,7 +41,7 @@ return {
     cmd = 'Grapple',
     keys = keys,
     opts = {
-        scope = 'git',
+        scope = 'git_branch',
         style = 'basename',
         tag_title = function() return 'Tags' end,
         win_opts = {
