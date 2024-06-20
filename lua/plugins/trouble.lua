@@ -1,5 +1,3 @@
-local last_open_view = nil
-
 return {
 	'folke/trouble.nvim',
 	event = 'VeryLazy',
@@ -9,19 +7,18 @@ return {
 		-- { '<leader>x', '<cmd>Trouble lsp_references toggle auto_refresh=false focus=true<cr>', 'Toggle trouble.nvim' },
 		{ '<leader>xx', '<cmd>Trouble diagnostics toggle filter.buf=0<cr>', 'Buffer diagnostics (Trouble)' },
 		{ '<leader>xX', '<cmd>Trouble diagnostics toggle<cr>', 'Diagnostics (Trouble)' },
-		{ 'gr', '<cmd>Trouble lsp_references toggle auto_refresh=false focus=true<cr>', 'LSP References (Trouble)' },
+		{ '<leader>gr', '<cmd>Trouble lsp_references toggle auto_refresh=false focus=true<cr>', 'LSP References (Trouble)' },
 	},
 	cmd = 'Trouble',
 	opts = {
 		-- win = { position = 'left' },
 		auto_close = true,
-		-- height = 15,
 
 		-- group = false,
 		indent_lines = false,
-        win = {
-            position = 'left'
-        }
+        -- win = {
+        --     position = 'left'
+        -- }
 	},
 }
 

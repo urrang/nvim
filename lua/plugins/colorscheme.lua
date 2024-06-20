@@ -141,6 +141,10 @@ return {
 
                         -- Lualine macro recording indicator
                         MacroRecordingWarning = { fg = colors.yellow, bg = colors.mantle },
+
+                        -- Telescope
+                        -- TelescopeFileName = { fg = colors.blue },
+                        TelescopeRelativePath = { fg = colors.overlay1 },
                     }
                 end,
                 color_overrides = {

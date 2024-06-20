@@ -24,8 +24,9 @@ return {
         map('<leader>gb', 'Telescope git_branches theme=dropdown show_remote_tracking_branches=false  prompt_title=',
             'Find branch'),
 
-        map('<leader>ff', 'Telescope smart_open cwd_only=true theme=dropdown prompt_title=', 'Find file'),
         map('<C-p>', 'Telescope smart_open cwd_only=true theme=dropdown prompt_title=', 'Find file'),
+
+        map('gr', 'Telescope lsp_references', 'LSP references'),
 
         {
             '<leader>/',
@@ -68,8 +69,24 @@ return {
                     },
                 },
                 path_display = function(opts, path)
-                    local tail = require('telescope.utils').path_tail(path)
-                    return string.format('%s (%s)', tail, path), { { { 1, #tail }, 'Constant' } }
+                    local filename = require('telescope.utils').path_tail(path)
+
+                    -- Remove everything up to and including cwd from the path
+                    local cwd = vim.fn.getcwd()
+                    path = string.gsub(path, cwd .. '/', '')
+
+                    vim.print(path)
+                    -- Remove location and code preview from the path
+                    -- path = path:match("(.-)%).*")
+
+                    -- local relative_path = remove_cwd_from_path(path)
+                    return string.format('%s (%s)', filename, path), {
+                        { { 1, #filename }, 'TelescopeFileName' },
+                        { { #filename, 999 }, 'TelescopeRelativePath' }
+                        -- { { #filename + 1, #filename + #path + 1 }, 'TelescopeRelativePath' }
+                    }
+
+                    -- return string.format(' %%#TelescopeFileName# %s %%#TelescopeRelativePath# %s', filename, path)
                 end,
                 preview = {
                     hide_on_startup = true, -- hide previewer when picker starts
@@ -116,6 +133,13 @@ return {
                     prompt_title = '',
                     results_title = '',
                     preview_title = '',
+                },
+                lsp_references = {
+                    initial_mode = 'normal',
+                    preview = { hide_on_startup = false },
+                    layout_config = {
+                        width = 0.75
+                    }
                 }
             },
             extensions = {

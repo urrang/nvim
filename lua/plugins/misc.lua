@@ -19,6 +19,14 @@ return {
         end,
     },
     {
+        'folke/todo-comments.nvim',
+        dependencies = { 'nvim-lua/plenary.nvim' },
+        event = { 'BufReadPre', 'BufNewFile' },
+        opts = {
+            TODO = { icon = ' ', color = 'info', alt = { 'REVISIT' } },
+        }
+    },
+    {
         'chrisgrieser/nvim-early-retirement',
         event = 'VeryLazy',
         config = true,
@@ -53,13 +61,23 @@ return {
         end,
     },
     {
-        'numToStr/Comment.nvim',
-        dependencies = { 'JoosepAlviste/nvim-ts-context-commentstring' },
+        'folke/ts-comments.nvim',
         event = 'VeryLazy',
-        config = function()
-            require('Comment').setup({
-                pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
-            })
-        end,
+        opts = {
+            lang = {
+                styled = '/* %s */',
+                angular = '<!-- %s -->'
+            }
+        },
     },
+    -- {
+    --     'numToStr/Comment.nvim',
+    --     dependencies = { 'JoosepAlviste/nvim-ts-context-commentstring' },
+    --     event = 'VeryLazy',
+    --     config = function()
+    --         require('Comment').setup({
+    --             pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+    --         })
+    --     end,
+    -- },
 }

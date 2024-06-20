@@ -1,5 +1,3 @@
-vim.g.skip_ts_context_commentstring_module = true
-
 return {
     {
         'nvim-treesitter/nvim-treesitter',
@@ -8,7 +6,6 @@ return {
         dependencies = {
             'nvim-treesitter/nvim-treesitter-textobjects',
             'nvim-treesitter/playground',
-            'JoosepAlviste/nvim-ts-context-commentstring',
         },
         opts = {
             highlight = { enable = true },
@@ -92,11 +89,6 @@ return {
         },
         config = function(_, opts)
             require('nvim-treesitter.configs').setup(opts)
-
-            require('ts_context_commentstring').setup({
-                enable_autocmd = false
-            })
-
             require('nvim-ts-autotag').setup({})
         end,
     },
