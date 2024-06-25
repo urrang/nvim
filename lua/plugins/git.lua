@@ -23,6 +23,7 @@ return {
 	-- },
 	{
 		'NeogitOrg/neogit',
+        commit = 'b93316d15c590377f50ca61e70e9129e4aa9b848',
 		dependencies = 'nvim-lua/plenary.nvim',
 		opts = {
             -- mappings = {
