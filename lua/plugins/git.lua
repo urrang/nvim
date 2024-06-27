@@ -16,25 +16,17 @@ return {
 			{ '<leader>gB', '<cmd>Gitsigns blame_line<cr>', 'Git blame' }
 		}
 	},
-	-- {
-	-- 	'sindrets/diffview.nvim',
-	-- 	event = 'VeryLazy',
-	-- 	opts = {},
-	-- },
+	{
+		'sindrets/diffview.nvim',
+		event = 'VeryLazy',
+		opts = {
+            enhanced_diff_hl = true,
+        },
+	},
 	{
 		'NeogitOrg/neogit',
-        commit = 'b93316d15c590377f50ca61e70e9129e4aa9b848',
 		dependencies = 'nvim-lua/plenary.nvim',
-		opts = {
-            -- mappings = {
-            --     status = {
-            --         -- Rebind untrack so it stops stealing my K keymap
-            --         -- https://github.com/NeogitOrg/neogit/issues/1314
-            --         ['K'] = false,
-            --         -- ['<C-Z>'] = 'Untrack',
-            --     }
-            -- }
-        },
+        opts = {},
 		keys = {
 			{ '<leader>gg', '<cmd>Neogit<cr>', 'Neogit' },
 		}
