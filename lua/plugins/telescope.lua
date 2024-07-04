@@ -75,7 +75,6 @@ return {
                     local cwd = vim.fn.getcwd()
                     path = string.gsub(path, cwd .. '/', '')
 
-                    vim.print(path)
                     -- Remove location and code preview from the path
                     -- path = path:match("(.-)%).*")
 

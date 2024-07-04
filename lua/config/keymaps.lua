@@ -1,4 +1,7 @@
+local utils = require('utils')
 local map = vim.keymap.set
+
+map({ 'n', 'v' }, '<leader>go', utils.open_in_github)
 
 -- Clear search highlight on escape
 map('n', '<Esc>', ':noh<CR><Esc>', { noremap = true, silent = true })

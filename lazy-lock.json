@@ -36,6 +36,7 @@
   "persisted.nvim": { "branch": "main", "commit": "0a9eebf5cc92b1113a382a660ee73f21ffd62ae7" },
   "playground": { "branch": "master", "commit": "ba48c6a62a280eefb7c85725b0915e021a1a0749" },
   "plenary.nvim": { "branch": "master", "commit": "a3e3bc82a3f95c5ed0d7201546d5d2c19b20d683" },
+  "poimandres.nvim": { "branch": "main", "commit": "77635055e686ae3c8a519198006ff0b43b6b2eae" },
   "smart-open.nvim": { "branch": "main", "commit": "f4e39e9a1b05a6b82b1182a013677acc44b27abb" },
   "sqlite.lua": { "branch": "master", "commit": "d0ffd703b56d090d213b497ed4eb840495f14a11" },
   "tabout.nvim": { "branch": "master", "commit": "3d7fbc7f5e91ef0f96b4d787c78ad9f8820de3ec" },
