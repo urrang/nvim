@@ -16,8 +16,8 @@ map('n', '<C-a>', 'ggVG')
 map('n', 'gp', '`[V`]')
 
 -- Save with ctrl + s
-map('n', '<C-s>', ':up<cr>')
-map('i', '<C-s>', '<esc>:up<cr>')
+map('n', '<C-s>', ':silent up<cr>', { silent = true })
+map('i', '<C-s>', '<esc>:silent up<cr>', { silent = true })
 
 -- Move with Ctrl + arrow keys in insert mode
 map('i', '<C-h>', '<Left>')

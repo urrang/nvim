@@ -16,13 +16,16 @@ return {
 				css = { 'prettier' },
 				json = { 'prettier' },
 				markdown = { 'prettier' },
-			}
+			},
+            format_on_save = {
+                timeout_ms = 500,
+            }
 		})
 
 		vim.keymap.set(
 			{ 'n', 'v' },
 			'<leader>fo',
-			function() conform.format({ lsp_fallback = true }) end,
+			function() conform.format() end,
 			{ desc = 'Format file' }
 		)
 	end

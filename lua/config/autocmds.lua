@@ -12,11 +12,16 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
 	command = 'silent! normal! g`"zv',
 })
 
+local is_angular_project = nil;
 vim.api.nvim_create_autocmd('BufRead', {
 	desc = 'Start treesitter parser for angular on html files in angular project',
 	pattern = '*.html',
 	callback = function()
-		if vim.fn.findfile('angular.json', '.;') ~= '' then
+        if is_angular_project == nil then
+            is_angular_project = vim.fn.findfile('angular.json', '.;') ~= '';
+        end
+
+		if is_angular_project then
 			vim.treesitter.start(nil, 'angular')
 		end
 	end,
