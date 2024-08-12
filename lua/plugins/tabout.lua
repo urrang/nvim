@@ -13,7 +13,7 @@ return {
 		tabouts = {
 			{ open = "'", close = "'" },
 			{ open = '"', close = '"' },
-			{ open = '`', close = '`' },
+			-- { open = '`', close = '`' },
 			{ open = '(', close = ')' },
 			{ open = '[', close = ']' },
 			{ open = '{', close = '}' },

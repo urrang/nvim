@@ -1,42 +1,62 @@
 {
-  "Angular Component": {
-    "prefix": "ng-component",
-    "description": "Angular component",
-    "body": [
-      "import { Component } from '@angular/core';",
-      "",
-      "@Component({",
-      "\tselector: '${1:selector}',",
-      "\ttemplate: ``",
-      "})",
-      "",
-      "export class ${3:MyComponent} {",
-      "",
-      "}"
-    ]
-  },
-  "Lit component": {
-    "prefix": "lit-component",
-    "description": "Lit component",
-    "body": [
-      "import { LitElement, css, html } from 'lit';",
-      "import { customElement } from 'lit/decorators.js';",
-      "",
-      "@customElement('${1}')",
-      "export class ${2} extends LitElement {",
-      "",
-      "    render() {",
-      "        return html`${3}`;",
-      "    }",
-      "",
-      "    static styles = css``;",
-      "}",
-      "",
-      "declare global {",
-      "    interface HTMLElementTagNameMap {",
-      "        '${1}': ${2};",
-      "    }",
-      "}"
-    ]
-  }
+    "Angular Component": {
+        "prefix":"ng-component",
+        "description":"Angular component",
+        "body": [
+            "import { Component } from '@angular/core';",
+            "",
+            "@Component({",
+            "\tselector: '${1:selector}',",
+            "\ttemplate: ``",
+            "})",
+            "",
+            "export class ${3:MyComponent} {",
+            "",
+            "}"
+        ]
+    },
+    "Lit component": {
+        "prefix":"lit-component",
+        "description":"Lit component",
+        "body": [
+            "import { LitElement, css, html } from 'lit';",
+            "import { customElement } from 'lit/decorators.js';",
+            "",
+            "@customElement('${1}')",
+            "export class ${2} extends LitElement {",
+            "",
+            "    render() {",
+            "        return html`${3}`;",
+            "    }",
+            "",
+            "    static styles = css``;",
+            "}",
+            "",
+            "declare global {",
+            "    interface HTMLElementTagNameMap {",
+            "        '${1}': ${2};",
+            "    }",
+            "}"
+        ]
+    },
+    "Design system stories": {
+        "prefix": "design-system-stories",
+        "description": "Design system stories",
+        "body": [
+            "import type { Meta, StoryObj } from '@storybook/web-components';",
+            "import { html } from 'lit-html';",
+            "",
+            "import './${1}';",
+            "",
+            "export default {",
+            "    title: '${2}',",
+            "    component: '${3}',",
+            "    tags: ['autodocs']",
+            "} satisfies Meta;",
+            "",
+            "export const Usage = () => html`",
+            "    ${4}",
+            "`;"
+        ]
+    }
 }
