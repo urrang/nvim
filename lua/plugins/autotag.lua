@@ -17,6 +17,7 @@ return {
 				'rescript',
 				'xml',
 				'markdown',
+				'astro',
 			},
 			skip_tags = {
 				'area',

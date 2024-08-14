@@ -2,7 +2,7 @@ return {
 	'stevearc/conform.nvim',
 	event = { 'BufReadPre', 'BufNewFile' },
 	config = function()
-		local conform = require('conform');
+		local conform = require('conform')
 
 		conform.setup({
 			formatters_by_ft = {
@@ -16,17 +16,15 @@ return {
 				css = { 'prettier' },
 				json = { 'prettier' },
 				markdown = { 'prettier' },
+				astro = { 'prettier' },
 			},
-            format_on_save = {
-                timeout_ms = 500,
-            }
+			format_on_save = {
+				timeout_ms = 500,
+			},
 		})
 
-		vim.keymap.set(
-			{ 'n', 'v' },
-			'<leader>fo',
-			function() conform.format() end,
-			{ desc = 'Format file' }
-		)
-	end
+		vim.keymap.set({ 'n', 'v' }, '<leader>fo', function()
+			conform.format()
+		end, { desc = 'Format file' })
+	end,
 }

@@ -4,6 +4,7 @@ local servers = {
 	cssls = {},
 	html = {},
 	svelte = {},
+	astro = {},
 	emmet_language_server = {},
 	lua_ls = {
 		Lua = {
@@ -66,7 +67,7 @@ return {
 						require('lspconfig')[server_name].setup({
 							capabilities = capabilities,
 							on_attach = on_attach,
-							settings = servers[server_name] or {}
+							settings = servers[server_name] or {},
 						})
 					end,
 				},
