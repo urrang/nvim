@@ -1,5 +1,5 @@
 local servers = {
-	tsserver = {},
+	ts_ls = {},
 	jsonls = {},
 	cssls = {},
 	html = {},
@@ -16,19 +16,6 @@ local servers = {
 }
 
 local on_attach = function(client, bufnr)
-	-- Update Svelte language server when js/ts file changes
-	-- https://github.com/neovim/nvim-lspconfig/issues/725
-	-- https://github.com/sveltejs/language-tools/issues/2008
-	if client.name == 'svelte' then
-		vim.api.nvim_create_autocmd('BufWritePost', {
-			pattern = { '*.js', '*.ts' },
-			callback = function(ctx)
-				client.notify('$/onDidChangeTsOrJsFile', { uri = ctx.match })
-			end,
-			group = vim.api.nvim_create_augroup('svelte_ondidchangetsorjsfile', { clear = true }),
-		})
-	end
-
 	local nmap = function(keys, func, desc)
 		vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
 	end

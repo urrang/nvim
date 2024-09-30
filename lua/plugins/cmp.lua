@@ -24,12 +24,6 @@ return {
 		'onsails/lspkind.nvim',
         { 'L3MON4D3/LuaSnip', build = 'make install_jsregexp' },
 		{ 'windwp/nvim-autopairs', opts = {} },
-		-- {
-		-- 	'rafamadriz/friendly-snippets',
-		-- 	config = function()
-		-- 		require('luasnip.loaders.from_vscode').lazy_load()
-		-- 	end,
-		-- },
 	},
 	event = 'InsertEnter',
 	opts = function()
