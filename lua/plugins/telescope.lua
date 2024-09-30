@@ -21,8 +21,7 @@ return {
         map('<leader>fd', 'Telescope diagnostics theme=dropdown severity_limit=WARN initial_mode=normal',
             'Find diagnostics'),
         map('<leader>fs', 'Telescope persisted theme=dropdown prompt_title=', 'Find session'),
-        map('<leader>gb', 'Telescope git_branches theme=dropdown show_remote_tracking_branches=false  prompt_title=',
-            'Find branch'),
+        map('<leader>gb', 'Telescope git_branches prompt_title=', 'Find branch'),
 
         map('<C-p>', 'Telescope smart_open cwd_only=true theme=dropdown prompt_title=', 'Find file'),
 
@@ -110,6 +109,10 @@ return {
                 }
             },
             pickers = {
+                git_branches = {
+                    layout_strategy = 'bottom_pane',
+                    show_remote_tracking_branches = false,
+                },
                 live_grep = {
                     preview = { hide_on_startup = false },
                     prompt_title = '',
