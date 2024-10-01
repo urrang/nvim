@@ -3,29 +3,93 @@ local servers = {
 	jsonls = {},
 	cssls = {},
 	html = {},
-	svelte = {},
 	astro = {},
 	emmet_language_server = {},
+    svelte = {
+        capabilities = {
+            workspace = {
+                didChangeWatchedFiles = { dynamicRegistration = true }
+            }
+        }
+    },
 	lua_ls = {
-		Lua = {
-			workspace = { checkThirdParty = false },
-			telemetry = { enable = false },
-			diagnostics = { globals = { 'vim' } },
-		},
-	},
+        settings = {
+            Lua = {
+                workspace = { checkThirdParty = false },
+                telemetry = { enable = false },
+                diagnostics = { globals = { 'vim' } },
+            },
+        }
+	}
 }
 
-local on_attach = function(client, bufnr)
-	local nmap = function(keys, func, desc)
-		vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
-	end
+vim.api.nvim_create_autocmd('LspAttach', {
+    group = vim.api.nvim_create_augroup('au-lsp-attach', { clear = true }),
+    callback = function(event)
+        local client = vim.lsp.get_client_by_id(event.data.client_id)
 
-	nmap('<leader>rn', vim.lsp.buf.rename, 'Rename')
-	nmap('<c-.>', vim.lsp.buf.code_action, 'Code action')
-	nmap('<leader>gp', '<cmd>Lspsaga peek_definition<cr>', 'Peek Definition')
-	nmap('gd', vim.lsp.buf.definition, 'Goto Definition')
-	nmap('gh', '<cmd>Lspsaga hover_doc<CR>', 'Hover Documentation')
-end
+        -- Set keymaps
+        local map = function(keys, func, desc)
+            vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+        end
+
+        map('<leader>rn', vim.lsp.buf.rename, 'Rename')
+        map('<c-.>', vim.lsp.buf.code_action, 'Code action')
+        map('gd', vim.lsp.buf.definition, 'Goto definition')
+        map('gh', vim.lsp.buf.hover, 'Hover docs')
+
+        if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+            map(
+                '<leader>th',
+                function()
+                    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
+                end,
+                'Toggle Inlay Hints'
+            )
+        end
+
+        -- Highlight references of word under cursor
+        if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+            local highlight_augroup = vim.api.nvim_create_augroup('au-lsp-highlight', { clear = false })
+
+            -- vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+            vim.api.nvim_create_autocmd({ 'CursorHold' }, {
+                buffer = event.buf,
+                group = highlight_augroup,
+                callback = vim.lsp.buf.document_highlight,
+            })
+
+            -- vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+            vim.api.nvim_create_autocmd({ 'CursorMoved' }, {
+                buffer = event.buf,
+                group = highlight_augroup,
+                callback = vim.lsp.buf.clear_references,
+            })
+
+            vim.api.nvim_create_autocmd('LspDetach', {
+                group = vim.api.nvim_create_augroup('au-lsp-detach', { clear = true }),
+                callback = function(event2)
+                    vim.lsp.buf.clear_references()
+                    vim.api.nvim_clear_autocmds { group = 'au-lsp-highlight', buffer = event2.buf }
+                end,
+            })
+        end
+
+		-- Show diagnostics under cursor
+		vim.api.nvim_create_autocmd('CursorHold', {
+			desc = 'Show diagnostics on CursorHold',
+			callback = function()
+				local opts = {
+					focusable = false,
+					close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter' },
+					border = 'rounded',
+					scope = 'cursor',
+				}
+				vim.diagnostic.open_float(nil, opts)
+			end,
+		})
+    end
+})
 
 return {
 	{
@@ -34,6 +98,7 @@ return {
 		dependencies = {
 			{ 'williamboman/mason.nvim' },
 			{ 'williamboman/mason-lspconfig.nvim' },
+            { 'WhoIsSethDaniel/mason-tool-installer.nvim' },
 			-- {
 			-- 	'ray-x/lsp_signature.nvim',
 			-- 	event = 'VeryLazy',
@@ -43,36 +108,25 @@ return {
 		config = function()
 			require('mason').setup()
 
-			-- Extends default capabilities with completion
-			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+            local capabilities = vim.lsp.protocol.make_client_capabilities()
+            capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+
+            local ensure_installed = vim.list_extend(vim.tbl_keys(servers), {
+                'stylua'
+            })
+
+            require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
 
 			require('mason-lspconfig').setup({
-				ensure_installed = vim.tbl_keys(servers),
 				handlers = {
 					function(server_name)
-						require('lspconfig')[server_name].setup({
-							capabilities = capabilities,
-							on_attach = on_attach,
-							settings = servers[server_name] or {},
-						})
+                        local server = servers[server_name] or {}
+                        server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+
+                        require('lspconfig')[server_name].setup(server)
 					end,
 				},
 			})
 		end,
-	},
-	{
-		'glepnir/lspsaga.nvim',
-		event = 'LspAttach',
-		dependencies = {
-			{ 'catppuccin/nvim' },
-			{ 'nvim-tree/nvim-web-devicons' },
-			{ 'nvim-treesitter/nvim-treesitter' },
-		},
-		opts = {
-			symbol_in_winbar = { enable = false },
-			lightbulb = { enable = false },
-			ui = { title = false },
-		},
 	},
 }

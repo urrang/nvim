@@ -60,12 +60,6 @@ vim.diagnostic.config({
     float = { border = 'rounded' },
 })
 
-vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = {
-        severity = { min = vim.diagnostic.severity.WARN }
-    },
-})
-
 vim.filetype.add({
     extension = {
         mdx = 'markdown',
@@ -82,23 +76,19 @@ vim.api.nvim_create_user_command('WA', 'wa', {})
 vim.api.nvim_create_user_command('Wq', 'wq', {})
 vim.api.nvim_create_user_command('WQ', 'wq', {})
 
--- local lsp = vim.lsp
--- lsp.handlers['textDocument/hover'] = lsp.with(
---   lsp.handlers.hover,
---   { border = 'rounded' }
--- )
---
+-- LSP
+vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = {
+        severity = { min = vim.diagnostic.severity.WARN }
+    },
+})
+
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
+    border = 'rounded'
+})
+
 vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
     border = 'rounded',
     silent = true,
     focusable = false
 })
-
--- lsp.handlers['textDocument/signatureHelp'] = lsp.with(lsp.handlers.signature_help, {
---   border = 'rounded',
--- })
-
--- vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
---     vim.lsp.handlers['signature_help'], {
---         border = 'single',
---         close_events = {"CursorMoved", "BufHidden", "InsertCharPre"}, })

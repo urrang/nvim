@@ -1,5 +1,5 @@
 vim.api.nvim_create_autocmd('TextYankPost', {
-	desc = 'Highlight when yanking (copying) text',
+	desc = 'Highlight when yanking text',
 	group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
 	callback = function()
 		vim.highlight.on_yank()
@@ -24,39 +24,5 @@ vim.api.nvim_create_autocmd('BufRead', {
 		if is_angular_project then
 			vim.treesitter.start(nil, 'angular')
 		end
-	end,
-})
-
-vim.api.nvim_create_autocmd('LspAttach', {
-	group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
-	callback = function(event)
-		-- Highlight references of the word under cursor
-		local client = vim.lsp.get_client_by_id(event.data.client_id)
-
-		if client and client.server_capabilities.documentHighlightProvider then
-			vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-				buffer = event.buf,
-				callback = vim.lsp.buf.document_highlight,
-			})
-
-			vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
-				buffer = event.buf,
-				callback = vim.lsp.buf.clear_references,
-			})
-		end
-
-		-- Show diagnostics under cursor
-		vim.api.nvim_create_autocmd('CursorHold', {
-			desc = 'Show diagnostics on CursorHold',
-			callback = function()
-				local opts = {
-					focusable = false,
-					close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter' },
-					border = 'rounded',
-					scope = 'cursor',
-				}
-				vim.diagnostic.open_float(nil, opts)
-			end,
-		})
 	end,
 })
