@@ -1,13 +1,5 @@
 return {
     -- { 'tpope/vim-sleuth' },
-    -- {
-    -- 	'declancm/maximize.nvim',
-    -- 	config = true,
-    --        event = 'VeryLazy',
-    --        keys = {
-    --            { '<C-m>', '<cmd>Maximize<cr>' }
-    --        }
-    -- },
     {
         'olimorris/persisted.nvim',
         lazy = false,
@@ -21,9 +13,12 @@ return {
     {
         'folke/todo-comments.nvim',
         dependencies = { 'nvim-lua/plenary.nvim' },
-        event = { 'BufReadPre', 'BufNewFile' },
+        event = { 'BufReadPost', 'BufNewFile' },
         opts = {
-            TODO = { icon = ' ', color = 'info', alt = { 'REVISIT' } },
+            keywords = {
+                TODO = { icon = ' ', color = 'warning' },
+                REVISIT = { icon = ' ', color = 'info' },
+            },
         },
     },
     {
