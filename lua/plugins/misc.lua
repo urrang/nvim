@@ -24,7 +24,7 @@ return {
         event = { 'BufReadPre', 'BufNewFile' },
         opts = {
             TODO = { icon = ' ', color = 'info', alt = { 'REVISIT' } },
-        }
+        },
     },
     {
         'chrisgrieser/nvim-early-retirement',
@@ -66,8 +66,8 @@ return {
         opts = {
             lang = {
                 styled = '/* %s */',
-                angular = '<!-- %s -->'
-            }
+                angular = '<!-- %s -->',
+            },
         },
     },
     -- {

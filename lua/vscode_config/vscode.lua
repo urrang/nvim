@@ -9,7 +9,6 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.undofile = true
 
-
 ---------------------------------------------
 -- Plugins
 ---------------------------------------------
@@ -35,13 +34,12 @@ vim.o.undofile = true
 -- 	lockfile = vim.fn.stdpath("config") .. "/lazy-lock-vscode.json"
 -- })
 
-
 ---------------------------------------------
 -- Keymaps
 ---------------------------------------------
 local map = vim.keymap.set
 local vscode_cmd = function(cmd)
-	return '<Cmd>call VSCodeCall("' .. cmd .. '")<CR>'
+    return '<Cmd>call VSCodeCall("' .. cmd .. '")<CR>'
 end
 
 -- Clear search highlight when pressing escape
@@ -85,11 +83,11 @@ map({ 'n', 'v' }, '<C-j>', 'J', { noremap = true })
 map('n', '<C-a>', '0ggvG')
 
 -- Console log variable under cursor
-map('n', '<leader>cl', "yiwoconsole.log('<Esc>pa', <Esc>pa);<Esc>", { desc = 'Log variable under cursor'})
+map('n', '<leader>cl', "yiwoconsole.log('<Esc>pa', <Esc>pa);<Esc>", { desc = 'Log variable under cursor' })
 
 -- VS Code commands
 for i = 1, 9 do
-	map('n', '<leader>' .. i, vscode_cmd('workbench.action.openEditorAtIndex' .. i))
+    map('n', '<leader>' .. i, vscode_cmd('workbench.action.openEditorAtIndex' .. i))
 end
 
 map('n', '<leader>G', vscode_cmd('workbench.scm.focus'))
@@ -100,12 +98,11 @@ map('n', '<leader>x', vscode_cmd('editor.action.marker.next'), { desc = 'Go to n
 map('n', '<leader>X', vscode_cmd('editor.action.marker.prev'), { desc = 'Go to previous error' })
 
 map('n', 'gh', vscode_cmd('editor.action.showHover'))
-map('n', 'gr', vscode_cmd('references-view.findReferences'));
-map('n', 'gd', vscode_cmd('editor.action.revealDefinition'));
+map('n', 'gr', vscode_cmd('references-view.findReferences'))
+map('n', 'gd', vscode_cmd('editor.action.revealDefinition'))
 
 map({ 'n', 'v' }, '<A-j>', vscode_cmd('editor.action.moveLinesDownAction'))
 map({ 'n', 'v' }, '<A-j>', vscode_cmd('editor.action.moveLinesDownAction'))
-
 
 --[[
 	The following keymaps are a bit weird. 
@@ -124,13 +121,12 @@ map({ 'n', 'v' }, '<A-j>', vscode_cmd('editor.action.moveLinesDownAction'))
 -- Use register d for deleted text to avoid overriding system clipboard
 local keys = { 'd', 'D', 'c', 'C', 'x', 'X' }
 for _, key in ipairs(keys) do
-	map({  'n', 'v' }, key, '"d' .. key, { noremap = true })
+    map({ 'n', 'v' }, key, '"d' .. key, { noremap = true })
 end
 
 -- Paste from register d (deleted text)
 map('n', '<leader>p', '"dp', { desc = 'Paste deleted text' })
 map('n', '<leader>P', '"dP', { desc = 'Paste deleted text' })
-
 
 ---------------------------------------------
 -- Autocmd
@@ -139,9 +135,9 @@ map('n', '<leader>P', '"dP', { desc = 'Paste deleted text' })
 -- Highlight copied text for a short duration after a yank operation
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
-	callback = function()
-		vim.highlight.on_yank()
-	end,
-	group = highlight_group,
-	pattern = '*',
+    callback = function()
+        vim.highlight.on_yank()
+    end,
+    group = highlight_group,
+    pattern = '*',
 })

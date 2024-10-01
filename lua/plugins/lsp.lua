@@ -1,26 +1,26 @@
 local servers = {
-	ts_ls = {},
-	jsonls = {},
-	cssls = {},
-	html = {},
-	astro = {},
-	emmet_language_server = {},
+    ts_ls = {},
+    jsonls = {},
+    cssls = {},
+    html = {},
+    astro = {},
+    emmet_language_server = {},
     svelte = {
         capabilities = {
             workspace = {
-                didChangeWatchedFiles = { dynamicRegistration = true }
-            }
-        }
+                didChangeWatchedFiles = { dynamicRegistration = true },
+            },
+        },
     },
-	lua_ls = {
+    lua_ls = {
         settings = {
             Lua = {
                 workspace = { checkThirdParty = false },
                 telemetry = { enable = false },
                 diagnostics = { globals = { 'vim' } },
             },
-        }
-	}
+        },
+    },
 }
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -39,13 +39,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
         map('gh', vim.lsp.buf.hover, 'Hover docs')
 
         if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-            map(
-                '<leader>th',
-                function()
-                    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
-                end,
-                'Toggle Inlay Hints'
-            )
+            map('<leader>th', function()
+                vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
+            end, 'Toggle Inlay Hints')
         end
 
         -- Highlight references of word under cursor
@@ -70,63 +66,63 @@ vim.api.nvim_create_autocmd('LspAttach', {
                 group = vim.api.nvim_create_augroup('au-lsp-detach', { clear = true }),
                 callback = function(event2)
                     vim.lsp.buf.clear_references()
-                    vim.api.nvim_clear_autocmds { group = 'au-lsp-highlight', buffer = event2.buf }
+                    vim.api.nvim_clear_autocmds({ group = 'au-lsp-highlight', buffer = event2.buf })
                 end,
             })
         end
 
-		-- Show diagnostics under cursor
-		vim.api.nvim_create_autocmd('CursorHold', {
-			desc = 'Show diagnostics on CursorHold',
-			callback = function()
-				local opts = {
-					focusable = false,
-					close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter' },
-					border = 'rounded',
-					scope = 'cursor',
-				}
-				vim.diagnostic.open_float(nil, opts)
-			end,
-		})
-    end
+        -- Show diagnostics under cursor
+        vim.api.nvim_create_autocmd('CursorHold', {
+            desc = 'Show diagnostics on CursorHold',
+            callback = function()
+                local opts = {
+                    focusable = false,
+                    close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter' },
+                    border = 'rounded',
+                    scope = 'cursor',
+                }
+                vim.diagnostic.open_float(nil, opts)
+            end,
+        })
+    end,
 })
 
 return {
-	{
-		'neovim/nvim-lspconfig',
-		event = { 'BufReadPre', 'BufNewFile' },
-		dependencies = {
-			{ 'williamboman/mason.nvim' },
-			{ 'williamboman/mason-lspconfig.nvim' },
+    {
+        'neovim/nvim-lspconfig',
+        event = { 'BufReadPre', 'BufNewFile' },
+        dependencies = {
+            { 'williamboman/mason.nvim' },
+            { 'williamboman/mason-lspconfig.nvim' },
             { 'WhoIsSethDaniel/mason-tool-installer.nvim' },
-			-- {
-			-- 	'ray-x/lsp_signature.nvim',
-			-- 	event = 'VeryLazy',
-			-- 	opts = { hint_enable = false },
-			-- },
-		},
-		config = function()
-			require('mason').setup()
+            -- {
+            -- 	'ray-x/lsp_signature.nvim',
+            -- 	event = 'VeryLazy',
+            -- 	opts = { hint_enable = false },
+            -- },
+        },
+        config = function()
+            require('mason').setup()
 
             local capabilities = vim.lsp.protocol.make_client_capabilities()
             capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
             local ensure_installed = vim.list_extend(vim.tbl_keys(servers), {
-                'stylua'
+                'stylua',
             })
 
             require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
 
-			require('mason-lspconfig').setup({
-				handlers = {
-					function(server_name)
+            require('mason-lspconfig').setup({
+                handlers = {
+                    function(server_name)
                         local server = servers[server_name] or {}
                         server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
 
                         require('lspconfig')[server_name].setup(server)
-					end,
-				},
-			})
-		end,
-	},
+                    end,
+                },
+            })
+        end,
+    },
 }

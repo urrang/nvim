@@ -25,9 +25,9 @@ return {
                 -- https://github.com/echasnovski/mini.hipatterns?tab=readme-ov-file#example-usage
                 hex_color = hipatterns.gen_highlighter.hex_color({
                     style = 'inline',
-                    inline_text = ' '
+                    inline_text = ' ',
                 }),
-            }
+            },
         })
     end,
     keys = {
@@ -36,7 +36,8 @@ return {
             function()
                 local bd = require('mini.bufremove').delete
                 if vim.bo.modified then
-                    local choice = vim.fn.confirm(('Save changes to %q?'):format(vim.fn.bufname()), '&Yes\n&No\n&Cancel')
+                    local choice =
+                        vim.fn.confirm(('Save changes to %q?'):format(vim.fn.bufname()), '&Yes\n&No\n&Cancel')
                     if choice == 1 then
                         vim.cmd.write()
                         bd(0)
@@ -47,7 +48,7 @@ return {
                     bd(0)
                 end
             end,
-            desc = 'Close buffer'
+            desc = 'Close buffer',
         },
     },
 }

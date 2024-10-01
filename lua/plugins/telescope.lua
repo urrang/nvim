@@ -18,8 +18,11 @@ return {
         map('<leader>fw', 'Telescope grep_string', 'Grep word under cursor'),
         map('<leader>fb', 'Telescope buffers theme=dropdown prompt_title=', 'Find buffer'),
         map('<leader>fr', 'Telescope resume', 'Resume last search'),
-        map('<leader>fd', 'Telescope diagnostics theme=dropdown severity_limit=WARN initial_mode=normal',
-            'Find diagnostics'),
+        map(
+            '<leader>fd',
+            'Telescope diagnostics theme=dropdown severity_limit=WARN initial_mode=normal',
+            'Find diagnostics'
+        ),
         map('<leader>fs', 'Telescope persisted theme=dropdown prompt_title=', 'Find session'),
         map('<leader>gb', 'Telescope git_branches prompt_title=', 'Find branch'),
 
@@ -78,11 +81,12 @@ return {
                     -- path = path:match("(.-)%).*")
 
                     -- local relative_path = remove_cwd_from_path(path)
-                    return string.format('%s (%s)', filename, path), {
-                        { { 1, #filename }, 'TelescopeFileName' },
-                        { { #filename, 999 }, 'TelescopeRelativePath' }
-                        -- { { #filename + 1, #filename + #path + 1 }, 'TelescopeRelativePath' }
-                    }
+                    return string.format('%s (%s)', filename, path),
+                        {
+                            { { 1, #filename }, 'TelescopeFileName' },
+                            { { #filename, 999 }, 'TelescopeRelativePath' },
+                            -- { { #filename + 1, #filename + #path + 1 }, 'TelescopeRelativePath' }
+                        }
 
                     -- return string.format(' %%#TelescopeFileName# %s %%#TelescopeRelativePath# %s', filename, path)
                 end,
@@ -94,19 +98,19 @@ return {
                         ['<C-p>'] = require('telescope.actions.layout').toggle_preview,
                         ['<C-j>'] = actions.move_selection_next,
                         ['<C-k>'] = actions.move_selection_previous,
-                        ['<C-x>'] = require('trouble.sources.telescope').open
+                        ['<C-x>'] = require('trouble.sources.telescope').open,
                     },
                     n = {
                         ['<C-p>'] = require('telescope.actions.layout').toggle_preview,
                         ['<C-j>'] = actions.move_selection_next,
                         ['<C-k>'] = actions.move_selection_previous,
-                        ['<C-x>'] = require('trouble.sources.telescope').open
+                        ['<C-x>'] = require('trouble.sources.telescope').open,
                     },
                 },
                 file_ignore_patterns = {
                     'src/assets/pdfjs/*',
-                    'src/assets/stimulsoft/*'
-                }
+                    'src/assets/stimulsoft/*',
+                },
             },
             pickers = {
                 git_branches = {
@@ -126,8 +130,8 @@ return {
                         '--line-number',
                         '--column',
                         '--smart-case',
-                        '--fixed-strings' -- search for literal strings instead of regex
-                    }
+                        '--fixed-strings', -- search for literal strings instead of regex
+                    },
                 },
                 grep_string = {
                     initial_mode = 'normal',
@@ -140,17 +144,17 @@ return {
                     initial_mode = 'normal',
                     preview = { hide_on_startup = false },
                     layout_config = {
-                        width = 0.75
-                    }
-                }
+                        width = 0.75,
+                    },
+                },
             },
             extensions = {
                 persisted = {
                     layout_config = {
-                        initial_mode = 'normal'
-                    }
-                }
-            }
+                        initial_mode = 'normal',
+                    },
+                },
+            },
         }
     end,
 }

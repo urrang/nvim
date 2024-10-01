@@ -79,16 +79,16 @@ vim.api.nvim_create_user_command('WQ', 'wq', {})
 -- LSP
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     virtual_text = {
-        severity = { min = vim.diagnostic.severity.WARN }
+        severity = { min = vim.diagnostic.severity.WARN },
     },
 })
 
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = 'rounded'
+    border = 'rounded',
 })
 
 vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
     border = 'rounded',
     silent = true,
-    focusable = false
+    focusable = false,
 })

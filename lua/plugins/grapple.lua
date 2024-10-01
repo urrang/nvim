@@ -8,7 +8,7 @@ local keys = {
             -- Allow tagging directly from the Oil buffer
             local oil = require('oil')
             local oil_cursor_entry = oil.get_cursor_entry()
-            if (oil_cursor_entry) then
+            if oil_cursor_entry then
                 local directory = oil.get_current_dir()
 
                 local path = require('grapple.path')
@@ -16,8 +16,8 @@ local keys = {
             else
                 grapple.toggle()
             end
-        end
-    }
+        end,
+    },
 }
 
 for num = 1, 9 do
@@ -28,14 +28,14 @@ for num = 1, 9 do
             if grapple.exists({ index = num }) then
                 grapple.select({ index = num })
             end
-        end
+        end,
     })
 end
 
 return {
     'cbochs/grapple.nvim',
     dependencies = {
-        { 'nvim-tree/nvim-web-devicons', lazy = true }
+        { 'nvim-tree/nvim-web-devicons', lazy = true },
     },
     event = { 'BufReadPost', 'BufNewFile' },
     cmd = 'Grapple',
@@ -43,18 +43,20 @@ return {
     opts = {
         scope = 'git_branch',
         style = 'basename',
-        tag_title = function() return 'Tags' end,
+        tag_title = function()
+            return 'Tags'
+        end,
         win_opts = {
             width = 60,
             height = 8,
             border = 'rounded',
-        }
+        },
         -- statusline = {
         --     icon = '',
         --     active = '%%#GrappleActive# %s ',
         --     inactive = '%%#GrappleInactive# %s '
         -- }
-    }
+    },
 }
 
 -- return {

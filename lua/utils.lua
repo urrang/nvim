@@ -15,7 +15,7 @@ local get_repo_url = function()
     if ok then
         if output:find('git@') then
             -- Output is git@github.com:<repo>.git
-            local repo = output:match("github.com:(.+)%.git")
+            local repo = output:match('github.com:(.+)%.git')
             return 'https://github.com/' .. repo
         else
             -- Output is https://gitub.com/<repo>.git
@@ -59,11 +59,11 @@ M.open_in_github = function()
         url = url .. '#L' .. current_line
     end
 
-     if jit.os == 'Windows' then
-         os.execute('start ' .. url)
-     else
-         os.execute('open ' .. url)
-     end
+    if jit.os == 'Windows' then
+        os.execute('start ' .. url)
+    else
+        os.execute('open ' .. url)
+    end
 end
 
 return M

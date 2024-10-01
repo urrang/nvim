@@ -61,6 +61,6 @@ return {
             ['q'] = 'actions.close',
             ['<C-b>'] = 'actions.close',
             ['<Esc>'] = 'actions.close',
-        }
+        },
     },
 }

@@ -47,7 +47,6 @@ local function grapple_tags()
     return table.concat(contents)
 end
 
-
 return {
     'nvim-lualine/lualine.nvim',
     event = 'VeryLazy',
@@ -138,19 +137,19 @@ return {
                 lualine_z = {},
             },
             tabline = {
-            --     lualine_a = {},
-            --     lualine_b = {},
-            --     lualine_c = {
-            --         { 'grapple', separator = '' },
-            --         {
-            --             "filename",
-            --             fmt = filename,
-            --             separator = ''
-            --         },
-            --     },
-            --     -- lualine_c = { { harpoon_files } },
-            --     lualine_x = {},
-            --     lualine_y = {},
+                --     lualine_a = {},
+                --     lualine_b = {},
+                --     lualine_c = {
+                --         { 'grapple', separator = '' },
+                --         {
+                --             "filename",
+                --             fmt = filename,
+                --             separator = ''
+                --         },
+                --     },
+                --     -- lualine_c = { { harpoon_files } },
+                --     lualine_x = {},
+                --     lualine_y = {},
                 lualine_c = {
                     -- { 'grapple', separator = '' },
                     { grapple_tags },

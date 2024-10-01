@@ -50,7 +50,6 @@ map('n', '<leader>cg', '<cmd>Inspect<cr>')
 
 map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
-
 -- Center when moving half a page down/up
 map('n', '<C-d>', '<C-d>zz')
 map('n', '<C-u>', '<C-u>zz')
@@ -91,9 +90,12 @@ map('n', '<S-Down>', '<cmd>resize -2<cr>', { desc = 'Decrease window height' })
 map('n', '<S-Left>', '<cmd>vertical resize -2<cr>', { desc = 'Decrease window width' })
 map('n', '<S-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increase window width' })
 
-map('i', '<C-k>', vim.lsp.buf.signature_help, { desc = 'Show signature help' });
+map('i', '<C-k>', vim.lsp.buf.signature_help, { desc = 'Show signature help' })
 
 -- Jump between lsp diagnostics
-map('n', '[e', function() vim.diagnostic.goto_prev({ severity = { min = vim.diagnostic.severity.WARN } }) end)
-map('n', ']e', function() vim.diagnostic.goto_next({ severity = { min = vim.diagnostic.severity.WARN } }) end)
-
+map('n', '[e', function()
+    vim.diagnostic.goto_prev({ severity = { min = vim.diagnostic.severity.WARN } })
+end)
+map('n', ']e', function()
+    vim.diagnostic.goto_next({ severity = { min = vim.diagnostic.severity.WARN } })
+end)
