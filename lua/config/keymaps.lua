@@ -78,10 +78,6 @@ map('n', '<C-i>', '<C-i>', { noremap = true })
 map('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 map('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 
--- Cycle buffers
-map('n', '[b', '<cmd>bprevious<CR>', { desc = 'Previous buffer' })
-map('n', ']b', '<cmd>bnext<CR>', { desc = 'Next buffer' })
-
 map('n', '<leader>tt', '<cmd>tabNext<CR>', { desc = 'Cycle tabs' })
 map('n', '<leader>tc', '<cmd>tabclose<CR>', { desc = 'Close tab' })
 
@@ -93,10 +89,47 @@ map('n', '<S-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increase window w
 
 map('i', '<C-k>', vim.lsp.buf.signature_help, { desc = 'Show signature help' })
 
--- Jump between lsp diagnostics
+-- Bracket jumps
+map('n', '[b', '<cmd>bprevious<CR>', { desc = 'Previous buffer' })
+map('n', ']b', '<cmd>bnext<CR>', { desc = 'Next buffer' })
+
+map('n', '[w', '<C-w><C-h>', { desc = 'Previous window' })
+map('n', ']w', '<C-w><C-l>', { desc = 'Next window' })
+
+map('n', '[t', '<cmd>tabprevious<cr>', { desc = 'Previous tab' })
+map('n', ']t', '<cmd>tabnext<cr>', { desc = 'Next tab' })
+
+map('n', '[q', '<cmd>cprev<cr>', { desc = 'Previous quickfix entry', silent = true })
+map('n', ']q', '<cmd>cnext<cr>', { desc = 'Next quickfix entry', silent = true })
+
+map('n', '[x', function()
+    require('trouble').prev()
+    require('trouble').jump()
+end, { desc = 'Previous trouble entry', silent = true })
+
+map('n', ']x', function()
+    require('trouble').next()
+    require('trouble').jump()
+end, { desc = 'Next trouble entry', silent = true })
+
 map('n', '[e', function()
     vim.diagnostic.goto_prev({ severity = { min = vim.diagnostic.severity.WARN } })
-end)
+end, { desc = 'Previous diagnostic' })
+
 map('n', ']e', function()
     vim.diagnostic.goto_next({ severity = { min = vim.diagnostic.severity.WARN } })
-end)
+end, { desc = 'Next diagnostic' })
+
+map(
+    'n',
+    '[c',
+    ':lua require("gitsigns").prev_hunk({navigation_message = false})<CR>',
+    { desc = 'Previous conflict marker' }
+)
+
+map(
+    'n',
+    ']c',
+    ':lua require("gitsigns").next_hunk({navigation_message = false})<CR>',
+    { desc = 'Next conflict marker' }
+)

@@ -4,7 +4,6 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
         require('mini.move').setup()
-        require('mini.ai').setup()
 
         local hipatterns = require('mini.hipatterns')
         hipatterns.setup({
