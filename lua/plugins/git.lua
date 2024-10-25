@@ -1,7 +1,7 @@
 return {
     {
         'lewis6991/gitsigns.nvim',
-        event = 'VeryLazy',
+        -- event = 'VeryLazy',
         opts = {
             signs = {
                 add = { text = '▏' },
@@ -16,17 +16,21 @@ return {
             { '<leader>gB', '<cmd>Gitsigns blame_line<cr>', 'Git blame' },
         },
     },
-    {
-        'sindrets/diffview.nvim',
-        event = 'VeryLazy',
-        opts = {
-            enhanced_diff_hl = true,
-        },
-    },
+    -- {
+    --     'sindrets/diffview.nvim',
+    --     event = 'VeryLazy',
+    --     opts = {
+    --         enhanced_diff_hl = true,
+    --     },
+    -- },
     {
         'NeogitOrg/neogit',
         dependencies = 'nvim-lua/plenary.nvim',
-        opts = {},
+        opts = {
+            commit_editor = {
+                spell_check = false,
+            },
+        },
         keys = {
             { '<leader>gg', '<cmd>Neogit<cr>', 'Neogit' },
         },
