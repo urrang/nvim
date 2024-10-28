@@ -5,6 +5,7 @@ local servers = {
     html = {},
     astro = {},
     emmet_language_server = {},
+    lexical = {},
     svelte = {
         capabilities = {
             workspace = {

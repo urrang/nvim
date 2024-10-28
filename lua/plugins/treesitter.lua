@@ -30,6 +30,7 @@ return {
                 'svelte',
                 'angular',
                 'astro',
+                'elixir',
             },
 
             auto_install = false,

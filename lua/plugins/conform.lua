@@ -18,6 +18,10 @@ return {
                 markdown = { 'prettier' },
                 astro = { 'prettier' },
                 prisma = { lsp_format = 'prefer' },
+                elixir = { 'mix' },
+                eelixir = { 'mix' },
+                heex = { 'mix' },
+                surface = { 'mix' },
             },
             format_on_save = {
                 timeout_ms = 500,
