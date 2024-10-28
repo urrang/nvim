@@ -30,6 +30,9 @@ map('i', '<C-j>', '<Down>')
 map('i', '<C-k>', '<Up>')
 map('i', '<C-l>', '<Right>')
 
+-- Paste over entire file
+map('n', '<leader>pa', 'ggVG"_dP', { desc = 'Paste over entire file' })
+
 -- Put deleted content from x/X into black hole register
 map('n', 'x', '"_x', { noremap = true })
 map('n', 'X', '"_X', { noremap = true })
