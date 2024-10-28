@@ -17,6 +17,7 @@ return {
                 json = { 'prettier' },
                 markdown = { 'prettier' },
                 astro = { 'prettier' },
+                prisma = { lsp_format = 'prefer' },
             },
             format_on_save = {
                 timeout_ms = 500,
