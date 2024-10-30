@@ -16,6 +16,13 @@ return {
             { '<leader>gB', '<cmd>Gitsigns blame_line<cr>', 'Git blame' },
         },
     },
+    -- { 'tpope/vim-fugitive', cmd = 'G' },
+    {
+        'akinsho/git-conflict.nvim',
+        event = 'BufReadPre',
+        config = true,
+        keys = { { '<leader>gx', '<cmd>GitConflictListQf<CR>', 'Add git conflicts to quickfix' } },
+    },
     -- {
     --     'sindrets/diffview.nvim',
     --     event = 'VeryLazy',

@@ -145,6 +145,9 @@ return {
                         -- Telescope
                         -- TelescopeFileName = { fg = colors.blue },
                         TelescopeRelativePath = { fg = colors.overlay1 },
+
+                        GitConflictAncestorLabel = { fg = colors.text, bg = colors.surface0 },
+                        GitConflictAncestor = { bg = colors.surface0 },
                     }
                 end,
                 color_overrides = {
