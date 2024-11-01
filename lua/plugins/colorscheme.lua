@@ -97,9 +97,17 @@ return {
                         ['@lsp.type.class.typescript'] = { link = 'Type' },
                         ['@lsp.type.enumMember'] = { fg = colors.text },
 
-                        ['@keyword.html'] = { fg = colors.sky },
                         ['@text.title'] = { fg = colors.text },
                         ['@text.strong'] = { fg = colors.text },
+
+                        -- Angular and html
+                        ['@tag'] = { fg = colors.blue },
+                        ['@tag.delimiter'] = { fg = colors.subtext0 },
+                        ['@tag.attribute'] = { fg = colors.sky },
+                        ['@keyword.html'] = { fg = colors.sky },
+                        ['@keyword.angular'] = { fg = colors.sky },
+                        ['@keyword.conditional.ternary.angular'] = { fg = colors.subtext1 },
+                        ['@markup.heading'] = { fg = colors.text },
 
                         -- CSS in tagged template literals
                         ['@property.styled'] = { link = '@property.css' },
