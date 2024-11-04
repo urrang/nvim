@@ -16,6 +16,8 @@ map('n', '*', '*N', { noremap = true, silent = true })
 -- Select all content in buffer
 map('n', '<C-a>', 'ggVG')
 
+map('n', '<C-n>', ':enew<cr>', { desc = 'New empty buffer' })
+
 -- Selected text that was just pasted
 map('n', 'gp', '`[V`]')
 
