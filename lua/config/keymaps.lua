@@ -21,6 +21,10 @@ map('n', '<C-n>', ':enew<cr>', { desc = 'New empty buffer' })
 -- Selected text that was just pasted
 map('n', 'gp', '`[V`]')
 
+-- Comment below/above current line
+map('n', 'gco', 'o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>', { desc = 'Add Comment Below' })
+map('n', 'gcO', 'O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>', { desc = 'Add Comment Above' })
+
 -- Save with ctrl + s
 map('n', '<C-s>', ':silent up<cr>', { silent = true })
 map('i', '<C-s>', '<esc>:silent up<cr>', { silent = true })
