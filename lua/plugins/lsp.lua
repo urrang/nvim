@@ -6,6 +6,7 @@ local servers = {
     astro = {},
     emmet_language_server = {},
     elixirls = {},
+    omnisharp = {},
     svelte = {
         capabilities = {
             workspace = {

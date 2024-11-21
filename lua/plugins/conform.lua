@@ -22,9 +22,16 @@ return {
                 eelixir = { 'mix' },
                 heex = { 'mix' },
                 surface = { 'mix' },
+                cs = { 'csharpier' },
             },
             format_on_save = {
                 timeout_ms = 500,
+            },
+            formatters = {
+                csharpier = {
+                    command = 'dotnet-csharpier',
+                    args = { '--write-stdout' },
+                },
             },
         })
 
