@@ -16,7 +16,10 @@ map('n', '*', '*N', { noremap = true, silent = true })
 -- Select all content in buffer
 map('n', '<C-a>', 'ggVG')
 
-map('n', '<C-n>', ':enew<cr>', { desc = 'New empty buffer' })
+map('n', '<C-n>', function()
+    vim.api.nvim_command('enew')
+    require('telescope.builtin').filetypes()
+end, { desc = 'New empty buffer' })
 
 -- Selected text that was just pasted
 map('n', 'gp', '`[V`]')

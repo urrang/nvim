@@ -50,10 +50,6 @@ return {
 
         local actions = require('telescope.actions')
 
-        vim.api.nvim_create_user_command('FT', function()
-            require('telescope.builtin').filetypes()
-        end, {})
-
         return {
             defaults = {
                 -- border = true,
