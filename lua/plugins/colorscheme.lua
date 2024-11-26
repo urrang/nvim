@@ -24,7 +24,7 @@ local custom_catppuccin = {
     surface1 = '#474b5e',
     surface0 = '#35384a',
     base = '#232534',
-    mantle = '#1e202d',
+    mantle = '#1b1d27',
     crust = '#181924',
 }
 
