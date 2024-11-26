@@ -1,21 +1,3 @@
--- https://github.com/ditsuke/nvim-config/blob/5d22ea749ef64b5d3fec0ad3d6ac457e6dcbeb22/lua/ditsuke/plugins/editor/cmp.lua#L46
--- local function get_lsp_completion_context(completion, source)
---     local ok, source_name = pcall(function()
---         return source.source.client.config.name
---     end)
---     if not ok then
---         return nil
---     end
---
---     if source_name == 'tsserver' then
---         return completion.detail
---     elseif source_name == 'vtsls' then
---         if completion.labelDetails ~= nil then
---             return completion.labelDetails.description
---         end
---     end
--- end
-
 return {
     'hrsh7th/nvim-cmp',
     dependencies = {
@@ -82,30 +64,20 @@ return {
                         maxwidth = 30,
                     })(entry, vim_item)
 
-                    -- item_with_kind.menu = ''
+                    item_with_kind.menu = ''
 
-                    -- if entry.completion_item.detail ~= nil and entry.completion_item.detail ~= '' then
-                    --     local detail = '  ' .. entry.completion_item.detail
-                    --     local length = string.len(detail)
-                    --     if length > 25 then
-                    --         detail = string.sub(detail, 1, 24) .. '…'
-                    --     elseif length < 25 then
-                    --         local padding = string.rep(' ', 25 - length)
-                    --         detail = padding .. detail
-                    --     end
-                    --
-                    --     item_with_kind.menu = detail
-                    -- end
+                    if entry.completion_item.detail ~= nil and entry.completion_item.detail ~= '' then
+                        local detail = '  ' .. entry.completion_item.detail
+                        local length = string.len(detail)
+                        if length > 22 then
+                            detail = string.sub(detail, 1, 21) .. '…'
+                        elseif length < 22 then
+                            local padding = string.rep(' ', 22 - length)
+                            detail = padding .. detail
+                        end
 
-                    -- local completion_context = get_lsp_completion_context(entry.completion_item, entry.source)
-                    -- if completion_context ~= nil and completion_context ~= '' then
-                    --     local truncated_context = string.sub(completion_context, 1, 25)
-                    --     if truncated_context ~= completion_context then
-                    --         truncated_context = truncated_context .. '… '
-                    --     end
-                    --
-                    --     item_with_kind.menu = item_with_kind.menu .. '    ' .. truncated_context
-                    -- end
+                        item_with_kind.menu = detail
+                    end
 
                     item_with_kind.menu_hl_group = 'CmpItemAbbr'
                     return item_with_kind
