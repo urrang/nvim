@@ -34,6 +34,7 @@ return {
         'NeogitOrg/neogit',
         dependencies = 'nvim-lua/plenary.nvim',
         opts = {
+            process_spinner = false,
             commit_editor = {
                 spell_check = false,
             },
