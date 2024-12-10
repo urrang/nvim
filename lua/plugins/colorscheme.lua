@@ -29,6 +29,26 @@ local custom_catppuccin = {
 }
 
 return {
+    -- {
+    --     'AlexvZyl/nordic.nvim',
+    --     config = function()
+    --         require('nordic').setup({
+    --             italic_comments = false,
+    --         })
+    --     end,
+    -- },
+    {
+        'crispybaccoon/aki',
+        config = function()
+            require('aki').setup({
+                contrast_dark = 'hard',
+                -- overrides = {
+                --     ['@punctuation.bracket'] = { '#D1CEC9' },
+                -- },
+            })
+        end,
+    },
+
     {
         'catppuccin/nvim',
         config = function()
