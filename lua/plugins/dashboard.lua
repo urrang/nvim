@@ -18,7 +18,7 @@ return {
         }
 
         dashboard.section.buttons.val = {
-            dashboard.button('f', 'Files', ':lua require("oil").open()<cr>'),
+            dashboard.button('f', 'Find file', ':Telescope smart_open cwd_only=true theme=dropdown prompt_title=<cr>'),
             dashboard.button('s', 'Restore Session', ':SessionLoad<CR>'),
             dashboard.button('q', 'Quit', ':qa<CR>'),
         }
