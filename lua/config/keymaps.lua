@@ -1,7 +1,9 @@
 local utils = require('utils')
 local map = vim.keymap.set
 
-map('t', '<Esc>', '<C-\\><C-n>')
+map('n', '<leader>so', ':source %<cr>', { desc = 'Source current file' })
+
+map('t', '<Esc>', '<C-\\><C-n>', { desc = 'Switch from terminal mode to normal mode' })
 
 map({ 'n', 'v' }, '<leader>go', utils.open_in_github)
 
@@ -94,7 +96,7 @@ map('n', '<C-i>', '<C-i>', { noremap = true })
 map('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 map('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 
-map('n', '<leader>tt', '<cmd>tabNext<CR>', { desc = 'Cycle tabs' })
+map('n', '<leader>tn', '<cmd>tabnew<CR>', { desc = 'Cycle tabs' })
 map('n', '<leader>tc', '<cmd>tabclose<CR>', { desc = 'Close tab' })
 
 -- Resize windows using shift + arrow keys
