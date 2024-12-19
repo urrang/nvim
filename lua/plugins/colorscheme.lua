@@ -209,6 +209,8 @@ return {
 
                         GitConflictAncestorLabel = { fg = colors.text, bg = colors.surface0 },
                         GitConflictAncestor = { bg = colors.surface0 },
+
+                        qfLineNr = { fg = colors.subtext0 },
                     }
                 end,
                 color_overrides = {

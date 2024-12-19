@@ -1,4 +1,5 @@
 return {
+    { 'kevinhwang91/nvim-bqf', event = 'VeryLazy' },
     {
         'olimorris/persisted.nvim',
         lazy = false,
@@ -31,11 +32,6 @@ return {
         event = { 'BufReadPre', 'BufNewFile' },
         opts = {},
     },
-    -- {
-    --     'max397574/better-escape.nvim',
-    --     event = 'VeryLazy',
-    --     opts = {},
-    -- },
     {
         'stevearc/dressing.nvim',
         event = 'VeryLazy',
@@ -52,15 +48,10 @@ return {
             { '<leader>j', '<cmd>TSJToggle<cr>', desc = 'Treesj toggle' },
         },
         opts = { use_default_keymaps = false, max_join_length = 150 },
-        -- event = 'VeryLazy',
-        -- config = function()
-        --     require('treesj').setup({ use_default_keymaps = false })
-        --     vim.keymap.set('n', '<leader>j', require('treesj').toggle)
-        -- end,
     },
     {
         'folke/ts-comments.nvim',
-        event = 'VeryLazy',
+        event = { 'BufReadPost', 'BufNewFile' },
         opts = {
             lang = {
                 styled = '/* %s */',
@@ -68,14 +59,4 @@ return {
             },
         },
     },
-    -- {
-    --     'numToStr/Comment.nvim',
-    --     dependencies = { 'JoosepAlviste/nvim-ts-context-commentstring' },
-    --     event = 'VeryLazy',
-    --     config = function()
-    --         require('Comment').setup({
-    --             pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
-    --         })
-    --     end,
-    -- },
 }
