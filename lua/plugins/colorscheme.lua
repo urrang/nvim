@@ -30,24 +30,56 @@ local custom_catppuccin = {
 
 return {
     -- {
-    --     'AlexvZyl/nordic.nvim',
+    --     'datsfilipe/vesper.nvim',
     --     config = function()
-    --         require('nordic').setup({
-    --             italic_comments = false,
+    --         local colors = vim.tbl_extend('force', require('vesper.colors'), {
+    --             bg = '#212121',
+    --             red = '#f8a997',
+    --             redDark = '#f8a997',
     --         })
+    --
+    --         require('vesper').setup({
+    --             italics = {
+    --                 comments = false,
+    --                 keywords = false,
+    --                 functions = false,
+    --                 strings = false,
+    --                 variables = false,
+    --             },
+    --             palette_overrides = colors,
+    --             overrides = {
+    --                 Parameter = { link = '@variable' },
+    --                 ['@type'] = { fg = colors.red },
+    --                 ['@lsp.type.property.typescript'] = { link = '@variable' },
+    --                 ['@variable.builtin'] = { fg = colors.primary },
+    --                 ['@keyword.conditional.typescript'] = { fg = colors.orangeLight },
+    --             },
+    --         })
+    --
+    --         vim.cmd.colorscheme('vesper')
     --     end,
     -- },
-    {
-        'crispybaccoon/aki',
-        config = function()
-            require('aki').setup({
-                contrast_dark = 'hard',
-                -- overrides = {
-                --     ['@punctuation.bracket'] = { '#D1CEC9' },
-                -- },
-            })
-        end,
-    },
+    -- {
+    --     'crispybaccoon/aki',
+    --     config = function()
+    --         local colors = require('aki.colors').colors()
+    --
+    --         require('aki').setup({
+    --             contrast_dark = 'medium',
+    --             overrides = {
+    --                 -- ['@punctuation.bracket'] = { '#D1CEC9' },
+    --                 ['@constructor'] = { colors.purple },
+    --                 ['@keyword'] = { colors.purple },
+    --                 ['@constant'] = { colors.red },
+    --                 ['@lsp.type.enumMember'] = { colors.fg1 },
+    --                 ['@boolean'] = { colors.yellow },
+    --                 ['@number'] = { colors.yellow },
+    --             },
+    --         })
+    --
+    --         -- vim.cmd.colorscheme('aki')
+    --     end,
+    -- },
 
     {
         'catppuccin/nvim',
