@@ -196,10 +196,6 @@ return {
                         -- Smart-open file path
                         Directory = { fg = colors.overlay1 },
 
-                        -- Trouble.nvim
-                        TroubleCount = { bg = 'NONE', fg = colors.base },
-                        TroubleLocation = { fg = colors.base },
-
                         -- Lualine grapple tags
                         GrappleActive = { bg = colors.base, fg = colors.text },
                         GrappleInactive = { bg = colors.mantle, fg = colors.surface2 },

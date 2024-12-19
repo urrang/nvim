@@ -120,16 +120,6 @@ map('n', ']t', '<cmd>tabnext<cr>', { desc = 'Next tab' })
 map('n', '[q', '<cmd>cprev<cr>', { desc = 'Previous quickfix entry', silent = true })
 map('n', ']q', '<cmd>cnext<cr>', { desc = 'Next quickfix entry', silent = true })
 
-map('n', '[x', function()
-    require('trouble').prev()
-    require('trouble').jump()
-end, { desc = 'Previous trouble entry', silent = true })
-
-map('n', ']x', function()
-    require('trouble').next()
-    require('trouble').jump()
-end, { desc = 'Next trouble entry', silent = true })
-
 map('n', '[e', function()
     vim.diagnostic.goto_prev({ severity = { min = vim.diagnostic.severity.WARN } })
 end, { desc = 'Previous diagnostic' })

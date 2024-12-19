@@ -99,13 +99,11 @@ return {
                         ['<C-p>'] = require('telescope.actions.layout').toggle_preview,
                         ['<C-j>'] = actions.move_selection_next,
                         ['<C-k>'] = actions.move_selection_previous,
-                        ['<C-x>'] = require('trouble.sources.telescope').open,
                     },
                     n = {
                         ['<C-p>'] = require('telescope.actions.layout').toggle_preview,
                         ['<C-j>'] = actions.move_selection_next,
                         ['<C-k>'] = actions.move_selection_previous,
-                        ['<C-x>'] = require('trouble.sources.telescope').open,
                     },
                 },
                 file_ignore_patterns = {
