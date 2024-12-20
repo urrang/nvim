@@ -1,7 +1,7 @@
 return {
     'saghen/blink.cmp',
     version = 'v0.*',
-    event = 'InsertEnter',
+    event = { 'InsertEnter', 'CmdlineEnter' },
     opts = {
         sources = {
             default = { 'lsp', 'path', 'snippets', 'buffer' },
