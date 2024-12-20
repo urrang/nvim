@@ -1,0 +1,17 @@
+{
+    "if": {
+        "prefix": "s-if",
+        "body": ["{#if ${1:condition}}", "\t$TM_SELECTED_TEXT$0", "{/if}"],
+        "description": "svelte if block"
+    },
+    "each": {
+        "prefix": "s-for",
+        "body": ["{#each ${1:array} as ${2:item}}", "\t$TM_SELECTED_TEXT$0", "{/each}"],
+        "description": "svelte for each block"
+    },
+    "snippet": {
+        "prefix": "s-snip",
+        "body": ["{#snippet ${1:snippet}(${2:parameter})}", "\t$TM_SELECTED_TEXT$0", "{/snippet}"],
+        "description": "svelte snippet block"
+    }
+}

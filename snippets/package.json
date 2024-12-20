@@ -9,7 +9,11 @@
 			{
 				"language": ["typescript"],
 				"path": "./typescript.json"
-			}
+			},
+            {
+                "language": ["svelte"],
+                "path": "./svelte.json"
+            }
 		]
 	}
 }
