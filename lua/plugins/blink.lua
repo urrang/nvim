@@ -5,15 +5,28 @@ return {
     opts = {
         sources = {
             default = { 'lsp', 'path', 'snippets', 'buffer' },
+            min_keyword_length = function()
+                return vim.bo.filetype == 'css' and 1 or 0
+            end,
         },
         keymap = {
             preset = 'super-tab',
             ['<C-k>'] = { 'select_prev', 'fallback' },
             ['<C-j>'] = { 'select_next', 'fallback' },
             ['<CR>'] = { 'accept', 'fallback' },
+            cmdline = {
+                ['<Tab>'] = { 'select_next' },
+                ['<S-Tab>'] = { 'select_prev' },
+                ['<CR>'] = { 'accept', 'fallback' },
+            },
         },
         completion = {
-            list = { max_items = 50 },
+            list = {
+                max_items = 50,
+                selection = function(ctx)
+                    return ctx.mode == 'cmdline' and 'auto_insert' or 'preselect'
+                end,
+            },
             accept = { auto_brackets = { enabled = true } },
             menu = {
                 border = 'rounded',

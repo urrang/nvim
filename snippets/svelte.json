@@ -1,17 +1,22 @@
 {
     "if": {
         "prefix": "s-if",
-        "body": ["{#if ${1:condition}}", "\t$TM_SELECTED_TEXT$0", "{/if}"],
-        "description": "svelte if block"
+        "description": "svelte if block",
+        "body": ["{#if ${1:condition}}", "\t$TM_SELECTED_TEXT$0", "{/if}"]
     },
     "each": {
         "prefix": "s-for",
-        "body": ["{#each ${1:array} as ${2:item}}", "\t$TM_SELECTED_TEXT$0", "{/each}"],
-        "description": "svelte for each block"
+        "description": "svelte for each block",
+        "body": ["{#each ${1:array} as ${2:item}}", "\t$TM_SELECTED_TEXT$0", "{/each}"]
     },
     "snippet": {
         "prefix": "s-snip",
-        "body": ["{#snippet ${1:snippet}(${2:parameter})}", "\t$TM_SELECTED_TEXT$0", "{/snippet}"],
-        "description": "svelte snippet block"
+        "description": "svelte snippet block",
+        "body": ["{#snippet ${1:snippet}(${2:parameter})}", "\t$TM_SELECTED_TEXT$0", "{/snippet}"]
+    },
+    "component": {
+        "prefix": "s-cmp",
+        "description": "svelte component",
+        "body": ["<script lang=\"ts\">", "\t${1}", "</script>", "", "<div></div>", "", "<style></style>"]
     }
 }
