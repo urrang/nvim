@@ -51,12 +51,14 @@ return {
     },
     {
         'folke/ts-comments.nvim',
-        event = { 'BufReadPost', 'BufNewFile' },
-        opts = {
-            lang = {
-                styled = '/* %s */',
-                angular = '<!-- %s -->',
-            },
-        },
+        event = 'VeryLazy',
+        opts = {},
+        -- event = { 'BufReadPost', 'BufNewFile' },
+        -- opts = {
+        --     lang = {
+        --         styled = '/*%s*/',
+        --         angular = '<!-- %s -->',
+        --     },
+        -- },
     },
 }

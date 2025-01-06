@@ -89,7 +89,7 @@ return {
                 no_italic = true,
                 no_bold = true,
                 integrations = {
-                    cmp = true,
+                    -- cmp = true,
                     blink_cmp = true,
                     neogit = true,
                     -- lsp_saga = true,

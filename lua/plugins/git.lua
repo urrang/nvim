@@ -38,6 +38,11 @@ return {
             commit_editor = {
                 spell_check = false,
             },
+            mappings = {
+                status = {
+                    ['K'] = false,
+                },
+            },
         },
         keys = {
             { '<leader>gg', '<cmd>Neogit<cr>', 'Neogit' },
