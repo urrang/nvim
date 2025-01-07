@@ -5,6 +5,11 @@ local disabled_filetypes = {
     'gitcommit',
 }
 
+local disabled_nodes = {
+    'comment_content',
+    'string_content',
+}
+
 local import_source_component = {
     highlight = 'BlinkCmpSource',
     width = { max = 22 },
@@ -31,7 +36,16 @@ return {
             return not vim.tbl_contains(disabled_filetypes, vim.bo.filetype) and vim.b.completion ~= false
         end,
         sources = {
-            default = { 'lsp', 'path', 'snippets', 'buffer' },
+            -- default = { 'lsp', 'path', 'snippets', 'buffer' },
+            default = function(ctx)
+                local success, node = pcall(vim.treesitter.get_node({ ignore_injections = false }))
+                if success and vim.tbl_contains(disabled_nodes, node:type()) then
+                    print(ctx)
+                    return {}
+                end
+
+                return { 'lsp', 'path', 'snippets', 'buffer' }
+            end,
             min_keyword_length = function()
                 return vim.bo.filetype == 'css' and 1 or 0
             end,
@@ -43,6 +57,12 @@ return {
             ['<CR>'] = { 'accept', 'fallback' },
             -- ['<Esc>'] = { 'hide', 'fallback' },
             ['<C-y>'] = { 'accept', 'fallback' },
+            ['>'] = {
+                function(cmp)
+                    cmp.hide()
+                end,
+                'fallback',
+            },
             cmdline = {
                 ['<Tab>'] = { 'select_next' },
                 ['<S-Tab>'] = { 'select_prev' },
@@ -52,7 +72,6 @@ return {
         completion = {
             list = {
                 max_items = 50,
-                -- selection = 'auto_insert',
                 selection = function(ctx)
                     return ctx.mode == 'cmdline' and 'auto_insert' or 'preselect'
                 end,
