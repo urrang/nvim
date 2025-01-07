@@ -29,6 +29,18 @@ local custom_catppuccin = {
 }
 
 return {
+    -- { 'gmr458/cold.nvim' },
+    -- {
+    --     'rose-pine/neovim',
+    --     name = 'rose-pine',
+    --     opts = {
+    --         palette = {
+    --             main = {
+    --                 base = '#000000',
+    --             },
+    --         },
+    --     },
+    -- },
     -- {
     --     'datsfilipe/vesper.nvim',
     --     config = function()
