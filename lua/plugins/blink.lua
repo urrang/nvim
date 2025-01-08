@@ -87,6 +87,9 @@ return {
             menu = {
                 border = 'rounded',
                 scrollbar = false,
+                auto_show = function(ctx)
+                    return ctx.mode ~= 'cmdline' or not vim.tbl_contains({ '/', '?' }, vim.fn.getcmdtype())
+                end,
                 draw = {
                     columns = {
                         { 'kind_icon' },
