@@ -1,6 +1,25 @@
 local servers = {
     ts_ls = {},
-    jsonls = {},
+    jsonls = {
+        settings = {
+            json = {
+                schemas = {
+                    {
+                        fileMatch = { 'package.json' },
+                        url = 'https://json.schemastore.org/package.json',
+                    },
+                    {
+                        fileMatch = { 'tsconfig*.json' },
+                        url = 'https://json.schemastore.org/tsconfig.json',
+                    },
+                    {
+                        fileMatch = { '.prettierrc' },
+                        url = 'https://json.schemastore.org/prettierrc.json',
+                    },
+                },
+            },
+        },
+    },
     cssls = {},
     html = {},
     astro = {},
@@ -17,6 +36,7 @@ local servers = {
             })
         end,
         settings = {
+            svelte = { defaultScriptingLanguage = 'ts' },
             typescript = {
                 updateImportsOnFileMove = { enabled = 'always' },
                 inlayHints = {

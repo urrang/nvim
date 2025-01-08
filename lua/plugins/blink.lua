@@ -3,10 +3,15 @@ local disabled_filetypes = {
     'TelescopePrompt',
     'DressingInput',
     'gitcommit',
+    'oil',
+    'buffer_manager',
+    'grapple',
 }
 
 local disabled_nodes = {
+    'comment',
     'comment_content',
+    'string',
     'string_content',
 }
 
@@ -33,14 +38,16 @@ return {
     event = { 'InsertEnter', 'CmdlineEnter' },
     opts = {
         enabled = function()
-            return not vim.tbl_contains(disabled_filetypes, vim.bo.filetype) and vim.b.completion ~= false
+            return not vim.tbl_contains(disabled_filetypes, vim.bo.filetype)
+                and vim.bo.buftype ~= 'prompt'
+                and vim.b.completion ~= false
         end,
         sources = {
             -- default = { 'lsp', 'path', 'snippets', 'buffer' },
-            default = function(ctx)
-                local success, node = pcall(vim.treesitter.get_node({ ignore_injections = false }))
-                if success and vim.tbl_contains(disabled_nodes, node:type()) then
-                    print(ctx)
+            default = function()
+                local success, node = pcall(vim.treesitter.get_node, { ignore_injections = false })
+
+                if not success or not node or vim.tbl_contains(disabled_nodes, node:type()) then
                     return {}
                 end
 
