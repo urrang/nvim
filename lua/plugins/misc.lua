@@ -1,5 +1,18 @@
 return {
-    { 'kevinhwang91/nvim-bqf', event = 'VeryLazy' },
+    -- { 'kevinhwang91/nvim-bqf', event = 'VeryLazy' },
+    {
+        'stevearc/quicker.nvim',
+        event = 'FileType qf',
+        config = function()
+            local quicker = require('quicker')
+
+            vim.keymap.set('n', '<leader>q', function()
+                quicker.toggle({ focus = true })
+            end)
+
+            quicker.setup({ follow = { enabled = true } })
+        end,
+    },
     {
         'olimorris/persisted.nvim',
         lazy = false,
