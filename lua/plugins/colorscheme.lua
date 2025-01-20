@@ -14,7 +14,7 @@ local custom_catppuccin = {
     lavender = '#acb2e9',
     green = '#a1cd93',
     red = '#df8895',
-    text = '#c2cae6',
+    text = '#c0caf5',
     subtext1 = '#b1b7d3',
     subtext0 = '#9fa5bf',
     overlay2 = '#8e93ac',
@@ -28,49 +28,84 @@ local custom_catppuccin = {
     crust = '#181924',
 }
 
+local kanappuccin = {
+    rosewater = '#e5cec9',
+    flamingo = '#e2baba',
+    pink = '#e6b2d8',
+    mauve = '#957FB8',
+    maroon = '#e09096',
+    peach = '#e69f77',
+    yellow = '#e0c795',
+    teal = '#7AA89F',
+    sky = '#7FB4CA',
+    sapphire = '#7FB4CA',
+    blue = '#7E9CD8',
+    lavender = '#acb2e9',
+    green = '#8a9a7b',
+    red = '#E46876',
+    -- text = '#c2cae6',
+    text = '#b8b4d0',
+    subtext1 = '#b1b7d3',
+    subtext0 = '#9fa5bf',
+    overlay2 = '#8e93ac',
+    overlay1 = '#7c8198',
+    overlay0 = '#6a6f85',
+    surface2 = '#585c71',
+    surface1 = '#474b5e',
+    surface0 = '#35384a',
+    base = '#1F1F28',
+    mantle = '#181820',
+    crust = '#16161D',
+}
+
 return {
-    -- { 'gmr458/cold.nvim' },
-    -- {
-    --     'rose-pine/neovim',
-    --     name = 'rose-pine',
-    --     opts = {
-    --         palette = {
-    --             main = {
-    --                 base = '#000000',
-    --             },
-    --         },
-    --     },
-    -- },
-    -- {
-    --     'datsfilipe/vesper.nvim',
-    --     config = function()
-    --         local colors = vim.tbl_extend('force', require('vesper.colors'), {
-    --             bg = '#212121',
-    --             red = '#f8a997',
-    --             redDark = '#f8a997',
-    --         })
-    --
-    --         require('vesper').setup({
-    --             italics = {
-    --                 comments = false,
-    --                 keywords = false,
-    --                 functions = false,
-    --                 strings = false,
-    --                 variables = false,
-    --             },
-    --             palette_overrides = colors,
-    --             overrides = {
-    --                 Parameter = { link = '@variable' },
-    --                 ['@type'] = { fg = colors.red },
-    --                 ['@lsp.type.property.typescript'] = { link = '@variable' },
-    --                 ['@variable.builtin'] = { fg = colors.primary },
-    --                 ['@keyword.conditional.typescript'] = { fg = colors.orangeLight },
-    --             },
-    --         })
-    --
-    --         vim.cmd.colorscheme('vesper')
-    --     end,
-    -- },
+    {
+        'gmr458/cold.nvim',
+        config = function()
+            require('cold').setup({})
+        end,
+    },
+    {
+        'sho-87/kanagawa-paper.nvim',
+        config = function()
+            require('kanagawa-paper').setup({
+                commentStyle = { italic = false },
+                overrides = function(colors)
+                    local theme = colors.theme
+                    local c = colors.palette
+                    return {
+                        ['@variable.parameter'] = { fg = theme.ui.fg },
+                        ['@keyword.return'] = { fg = c.dragonPink },
+                    }
+                end,
+            })
+        end,
+    },
+
+    {
+        'rebelot/kanagawa.nvim',
+        config = function()
+            require('kanagawa').setup({
+                commentStyle = { italic = false },
+                keywordStyle = { italic = false },
+                overrides = function(colors)
+                    local palette = colors.palette
+                    return {
+                        Constant = { fg = palette.oniViolet2 },
+                        Identifier = { fg = palette.oniViolet2 },
+                        Operator = { fg = palette.oniViolet2 },
+                        String = { fg = palette.dragonGreen2 },
+                        ['@variable'] = { fg = palette.oniViolet2 },
+                        ['@variable.member'] = { fg = palette.oniViolet2 },
+                        ['@type.builtin'] = { fg = palette.dragonYellow },
+                        ['@keyword.return'] = { fg = palette.oniViolet },
+                    }
+                end,
+                theme = 'dragon',
+            })
+        end,
+    },
+
     -- {
     --     'crispybaccoon/aki',
     --     config = function()
@@ -78,18 +113,26 @@ return {
     --
     --         require('aki').setup({
     --             contrast_dark = 'medium',
+    --             style = {
+    --                 types = { italic = false },
+    --                 keyword = { italic = false },
+    --             },
     --             overrides = {
-    --                 -- ['@punctuation.bracket'] = { '#D1CEC9' },
+    --                 -- ['@punctuation.bracket'] = { colors.bg3 },
+    --                 ['@punctuation.bracket'] = { { '#5F6170', 8 } },
+    --                 ['@punctuation.special'] = { { '#5F6170', 8 } },
+    --                 ['@punctuation.delimited'] = { { '#5F6170', 8 } },
+    --                 ['@operator'] = { { '#5F6170', 8 } },
+    --
     --                 ['@constructor'] = { colors.purple },
     --                 ['@keyword'] = { colors.purple },
     --                 ['@constant'] = { colors.red },
     --                 ['@lsp.type.enumMember'] = { colors.fg1 },
     --                 ['@boolean'] = { colors.yellow },
     --                 ['@number'] = { colors.yellow },
+    --                 ['@function'] = { colors.blue },
     --             },
     --         })
-    --
-    --         -- vim.cmd.colorscheme('aki')
     --     end,
     -- },
 
@@ -106,7 +149,7 @@ return {
                     neogit = true,
                     -- lsp_saga = true,
                     telescope = true,
-                    alpha = true,
+                    -- alpha = true,
                     flash = true,
                     native_lsp = {
                         enabled = true,
@@ -205,11 +248,14 @@ return {
 
                         MsgArea = { bg = colors.mantle }, -- cmdline
 
+                        SnacksDashboardDesc = { fg = colors.text },
+
                         -- Smart-open file path
                         Directory = { fg = colors.overlay1 },
 
                         -- Lualine grapple tags
-                        GrappleActive = { bg = colors.base, fg = colors.text },
+                        -- GrappleActive = { bg = colors.base, fg = colors.text },
+                        GrappleActive = { bg = colors.mantle, fg = colors.text },
                         GrappleInactive = { bg = colors.mantle, fg = colors.surface2 },
 
                         -- Lualine macro recording indicator
@@ -226,8 +272,8 @@ return {
                     }
                 end,
                 color_overrides = {
-                    all = { text = '#c0caf5' },
                     macchiato = custom_catppuccin,
+                    -- macchiato = kanappuccin,
                 },
             })
 

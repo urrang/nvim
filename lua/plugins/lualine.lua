@@ -47,6 +47,23 @@ end
 --     return table.concat(contents)
 -- end
 
+local function grapple_tags()
+    local current_file_path = vim.fn.expand('%:p')
+    local tags = require('grapple').tags()
+
+    local contents = {}
+    for i, tag in ipairs(tags) do
+        local file_name = tag.path == '' and '(empty)' or vim.fn.fnamemodify(tag.path, ':t')
+        if current_file_path == tag.path then
+            contents[i] = string.format(' %%#GrappleActive# %s: %s ', i, file_name)
+        else
+            contents[i] = string.format(' %%#GrappleInactive# %s: %s ', i, file_name)
+        end
+    end
+
+    return table.concat(contents)
+end
+
 return {
     'nvim-lualine/lualine.nvim',
     event = 'VeryLazy',
@@ -55,8 +72,9 @@ return {
     },
     opts = function()
         local options = {
-            icons_enabled = false,
             theme = 'catppuccin',
+            icons_enabled = false,
+            globalstatus = true,
             component_separators = '',
             section_separators = '',
             disabled_filetypes = {
@@ -94,6 +112,7 @@ return {
                         },
                         separator = { left = '', right = '' },
                     },
+                    -- { grapple_tags },
                     {
                         'macro-recording',
                         fmt = macro_recording,
@@ -125,15 +144,36 @@ return {
                     -- { 'progress', separator = '' },
                     -- { 'location' },
                     -- {
-                    -- 	'branch',
-                    -- 	icon = {
-                    -- 		'',
-                    -- 	},
-                    -- 	separator = ' ',
+                    --     'branch',
+                    --     icon = {
+                    --         '',
+                    --     },
+                    --     separator = '',
                     -- },
                     {},
                 },
                 lualine_y = {},
+                lualine_z = {},
+            },
+            tabline = {
+                lualine_c = {
+                    -- {
+                    --     'filetype',
+                    --     colored = true,
+                    --     icon_only = true,
+                    --     separator = '',
+                    -- },
+                    -- {
+                    --     'filename',
+                    --     symbols = {
+                    --         modified = '',
+                    --         unnamed = '',
+                    --         readonly = '',
+                    --     },
+                    --     separator = { left = '', right = '' },
+                    -- },
+                    { grapple_tags },
+                },
                 lualine_z = {
                     {
                         'tabs',
@@ -144,20 +184,6 @@ return {
                     },
                 },
             },
-            -- tabline = {
-            --     lualine_c = {
-            --         { grapple_tags },
-            --     },
-            --     lualine_z = {
-            --         {
-            --             'tabs',
-            --             cond = function()
-            --                 return #vim.fn.gettabinfo() > 1
-            --             end,
-            --             section_separators = { left = '', right = '' },
-            --         },
-            --     },
-            -- },
         }
 
         return options

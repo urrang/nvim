@@ -1,4 +1,5 @@
 return {
+    -- enabled = false,
     'goolord/alpha-nvim',
     event = 'VimEnter',
     opts = function()
@@ -8,6 +9,9 @@ return {
         local version = v.major .. '.' .. v.minor .. '.' .. v.patch
         dashboard.section.header.opts.hl = 'AlphaHeader'
         dashboard.section.header.val = {
+            '',
+            '',
+            '',
             '',
             '',
             '',

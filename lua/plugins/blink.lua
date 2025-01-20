@@ -54,7 +54,7 @@ return {
                 return { 'lsp', 'path', 'snippets', 'buffer' }
             end,
             min_keyword_length = function()
-                return vim.bo.filetype == 'css' and 1 or 0
+                return vim.bo.filetype == 'css' or vim.bo.filetype == 'html' and 1 or 0
             end,
         },
         keymap = {
