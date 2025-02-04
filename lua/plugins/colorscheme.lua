@@ -144,12 +144,9 @@ return {
                 no_italic = true,
                 no_bold = true,
                 integrations = {
-                    -- cmp = true,
                     blink_cmp = true,
                     neogit = true,
-                    -- lsp_saga = true,
                     telescope = true,
-                    -- alpha = true,
                     flash = true,
                     native_lsp = {
                         enabled = true,
@@ -227,14 +224,6 @@ return {
                         BlinkCmpMenu = { bg = colors.base },
                         BlinkCmpMenuBorder = { fg = colors.surface2, bg = colors.base },
                         BlinkCmpMenuSelection = { fg = colors.crust, bg = colors.blue },
-                        -- CmpBorder = { fg = colors.surface2 },
-                        -- CmpSelectedItem = { fg = colors.crust, bg = colors.blue },
-                        -- CmpItemAbbrMatch = { fg = colors.blue, style = { 'bold' } },
-                        -- CmpItemAbbrMatchFuzzy = { fg = colors.blue, style = { 'bold' } },
-                        -- CmpItemAbbrMatch = { fg = colors.blue, style = { 'bold' } },
-                        -- CmpItemAbbrMatchFuzzy = { fg = colors.blue, style = { 'bold' } },
-
-                        -- SagaBorder = { fg = colors.surface2 },
 
                         FloatBorder = { fg = colors.surface2, bg = colors.base },
                         NormalFloat = { bg = colors.base },

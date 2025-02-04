@@ -1,6 +1,11 @@
 return {
     -- { 'kevinhwang91/nvim-bqf', event = 'VeryLazy' },
     {
+        'windwp/nvim-autopairs',
+        event = 'InsertEnter',
+        config = true,
+    },
+    {
         'stevearc/quicker.nvim',
         event = 'FileType qf',
         config = function()

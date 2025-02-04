@@ -11,13 +11,12 @@ local disabled_filetypes = {
 local disabled_nodes = {
     'comment',
     'comment_content',
-    'string',
-    'string_content',
 }
 
 local path_only_nodes = {
     'string',
     'string_content',
+    'string_fragment',
 }
 
 local import_source_component = {
@@ -48,7 +47,6 @@ return {
                 and vim.b.completion ~= false
         end,
         sources = {
-            -- default = { 'lsp', 'path', 'snippets', 'buffer' },
             default = function()
                 local success, node = pcall(vim.treesitter.get_node, { ignore_injections = false })
 

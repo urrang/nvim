@@ -4,7 +4,6 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
         require('mini.move').setup()
-        require('mini.pairs').setup()
 
         require('mini.surround').setup({
             mappings = {
