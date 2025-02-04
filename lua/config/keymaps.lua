@@ -5,8 +5,6 @@ map('n', '<leader>so', ':source %<cr>', { desc = 'Source current file' })
 
 map('t', '<Esc>', '<C-\\><C-n>', { desc = 'Switch from terminal mode to normal mode' })
 
-map({ 'n', 'v' }, '<leader>go', utils.open_in_github)
-
 map('n', '<C-f>', ':%s/')
 
 -- Clear search highlight on escape
@@ -128,16 +126,12 @@ map('n', ']e', function()
     vim.diagnostic.goto_next({ severity = { min = vim.diagnostic.severity.WARN } })
 end, { desc = 'Next diagnostic' })
 
-map(
-    'n',
-    '[c',
-    ':lua require("gitsigns").prev_hunk({navigation_message = false})<CR>',
-    { desc = 'Previous conflict marker' }
-)
+-- Open selection in github
+map({ 'n', 'v' }, '<leader>goo', function()
+    utils.open_in_github(false)
+end)
 
-map(
-    'n',
-    ']c',
-    ':lua require("gitsigns").next_hunk({navigation_message = false})<CR>',
-    { desc = 'Next conflict marker' }
-)
+-- Open blame view on selection in github
+map({ 'n', 'v' }, '<leader>gob', function()
+    utils.open_in_github(true)
+end)

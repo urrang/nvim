@@ -15,6 +15,11 @@ local disabled_nodes = {
     'string_content',
 }
 
+local path_only_nodes = {
+    'string',
+    'string_content',
+}
+
 local import_source_component = {
     highlight = 'BlinkCmpSource',
     width = { max = 22 },
@@ -51,10 +56,19 @@ return {
                     return {}
                 end
 
+                if vim.tbl_contains(path_only_nodes, node:type()) then
+                    return { 'path' }
+                end
+
                 return { 'lsp', 'path', 'snippets', 'buffer' }
             end,
             min_keyword_length = function()
-                return vim.bo.filetype == 'css' or vim.bo.filetype == 'html' and 1 or 0
+                if vim.bo.filetype == 'css' or vim.bo.filetype == 'html' then
+                    return 1
+                else
+                    return 0
+                end
+                -- return vim.bo.filetype == 'css' or vim.bo.filetype == 'html' and 1 or 0
             end,
         },
         keymap = {

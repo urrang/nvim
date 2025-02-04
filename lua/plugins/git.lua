@@ -1,4 +1,13 @@
 return {
+    -- {
+    --     'tanvirtin/vgit.nvim',
+    --     branch = 'v1.0.x',
+    --     event = 'VimEnter',
+    --     dependencies = { 'nvim-lua/plenary.nvim', 'nvim-tree/nvim-web-devicons' },
+    --     config = function()
+    --         require('vgit').setup()
+    --     end,
+    -- },
     {
         'lewis6991/gitsigns.nvim',
         -- event = 'VeryLazy',
@@ -28,6 +37,9 @@ return {
     --     event = 'VeryLazy',
     --     opts = {
     --         enhanced_diff_hl = true,
+    --         file_panel = {
+    --             listing_style = 'list',
+    --         },
     --     },
     -- },
     {
