@@ -93,9 +93,14 @@ return {
         completion = {
             list = {
                 max_items = 50,
-                selection = function(ctx)
-                    return ctx.mode == 'cmdline' and 'auto_insert' or 'preselect'
-                end,
+                selection = {
+                    preselect = function(ctx)
+                        return ctx.mode ~= 'cmdline'
+                    end,
+                    auto_insert = function(ctx)
+                        return ctx.mode == 'cmdline'
+                    end,
+                },
             },
             accept = { auto_brackets = { enabled = true } },
             menu = {
