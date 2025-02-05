@@ -28,6 +28,7 @@ return {
         map('<leader>gb', 'Telescope git_branches', 'Find branch'),
 
         -- map('<C-p>', 'Telescope smart_open cwd_only=true theme=dropdown prompt_title=', 'Find file'),
+        map('<leader>ff', 'Telescope smart_open cwd_only=true theme=dropdown prompt_title=', 'Find file'),
 
         map('gr', 'Telescope lsp_references', 'LSP references'),
 

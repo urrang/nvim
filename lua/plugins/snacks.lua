@@ -9,7 +9,8 @@ return {
             '<C-p>',
             function()
                 Snacks.picker.smart({
-                    multi = { 'buffers', 'files' },
+                    -- multi = { 'buffers', 'files' },
+                    filter = { cwd = true },
                     layout = {
                         preview = false,
                         layout = {
@@ -20,7 +21,7 @@ return {
                             min_height = 3,
                             box = 'vertical',
                             border = OPTS.float_border,
-                            title = '{title}',
+                            title = 'Files',
                             title_pos = 'center',
                             { win = 'input', height = 1, border = 'bottom' },
                             { win = 'list', border = 'none' },

@@ -1,5 +1,23 @@
 local servers = {
-    ts_ls = {},
+    ts_ls = {
+        handlers = {
+            ['textDocument/definition'] = function(err, result, method, ...)
+                -- https://github.com/typescript-language-server/typescript-language-server/issues/216
+                if vim.tbl_islist(result) and #result > 1 then
+                    local filtered = {}
+                    for _, v in pairs(result) do
+                        if string.match(v.targetUri, '%.d.ts') == nil then
+                            table.insert(filtered, v)
+                        end
+                    end
+
+                    return vim.lsp.handlers['textDocument/definition'](err, filtered, method, ...)
+                end
+
+                vim.lsp.handlers['textDocument/definition'](err, result, method, ...)
+            end,
+        },
+    },
     jsonls = {
         settings = {
             json = {

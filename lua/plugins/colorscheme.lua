@@ -238,6 +238,9 @@ return {
                         MsgArea = { bg = colors.mantle }, -- cmdline
 
                         SnacksDashboardDesc = { fg = colors.text },
+                        SnacksPickerListCursorLine = { bg = colors.surface0 },
+                        SnacksPickerRow = { link = 'NonText' },
+                        SnacksPickerMatch = { fg = colors.blue },
 
                         -- Smart-open file path
                         Directory = { fg = colors.overlay1 },
