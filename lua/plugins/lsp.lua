@@ -67,6 +67,15 @@ local servers = {
                 },
             },
         },
+        handlers = {
+            ['textDocument/definition'] = function(err, result, method, ...)
+                if vim.tbl_islist(result) and #result > 1 then
+                    return vim.lsp.handlers['textDocument/definition'](err, result[1], method, ...)
+                end
+
+                vim.lsp.handlers['textDocument/definition'](err, result, method, ...)
+            end,
+        },
     },
     lua_ls = {
         settings = {
