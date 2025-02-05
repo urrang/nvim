@@ -102,7 +102,8 @@ return {
             },
             accept = { auto_brackets = { enabled = true } },
             menu = {
-                border = 'rounded',
+                border = OPTS.float_border,
+                winblend = OPTS.winblend,
                 scrollbar = false,
                 auto_show = function(ctx)
                     return ctx.mode ~= 'cmdline' or not vim.tbl_contains({ '/', '?' }, vim.fn.getcmdtype())

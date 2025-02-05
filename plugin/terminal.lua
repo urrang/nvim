@@ -28,7 +28,7 @@ local function create_floating_window(opts)
         col = col,
         row = row,
         style = 'minimal', -- No borders or extra UI elements
-        border = 'rounded',
+        border = OPTS.float_border,
     }
 
     -- Create the floating window

@@ -81,7 +81,7 @@ return {
         win_opts = {
             width = 60,
             height = 8,
-            border = 'rounded',
+            border = OPTS.float_border,
         },
         -- statusline = {
         --     icon = '',

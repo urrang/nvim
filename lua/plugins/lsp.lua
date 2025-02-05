@@ -116,7 +116,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
                 local opts = {
                     focusable = false,
                     close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter' },
-                    border = 'rounded',
+                    border = OPTS.float_border,
                     scope = 'cursor',
                 }
                 vim.diagnostic.open_float(nil, opts)
