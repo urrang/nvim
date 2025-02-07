@@ -58,7 +58,8 @@ return {
                     return { 'path' }
                 end
 
-                return { 'lsp', 'path', 'snippets', 'buffer' }
+                -- return { 'lsp', 'path', 'snippets', 'buffer' }
+                return { 'lsp', 'path', 'snippets' }
             end,
             min_keyword_length = function()
                 if vim.bo.filetype == 'css' or vim.bo.filetype == 'html' then
