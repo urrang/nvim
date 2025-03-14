@@ -28,37 +28,84 @@ local custom_catppuccin = {
     crust = '#181924',
 }
 
--- local kanappuccin = {
---     rosewater = '#e5cec9',
---     flamingo = '#e2baba',
---     pink = '#e6b2d8',
---     mauve = '#957FB8',
---     maroon = '#e09096',
---     peach = '#e69f77',
---     yellow = '#e0c795',
---     teal = '#7AA89F',
---     sky = '#7FB4CA',
---     sapphire = '#7FB4CA',
---     blue = '#7E9CD8',
---     lavender = '#acb2e9',
---     green = '#8a9a7b',
---     red = '#E46876',
---     -- text = '#c2cae6',
---     text = '#b8b4d0',
---     subtext1 = '#b1b7d3',
---     subtext0 = '#9fa5bf',
---     overlay2 = '#8e93ac',
---     overlay1 = '#7c8198',
---     overlay0 = '#6a6f85',
---     surface2 = '#585c71',
---     surface1 = '#474b5e',
---     surface0 = '#35384a',
---     base = '#1F1F28',
---     mantle = '#181820',
---     crust = '#16161D',
--- }
+local kanappuccin = {
+    rosewater = '#e5cec9',
+    flamingo = '#e2baba',
+    pink = '#e6b2d8',
+    mauve = '#957FB8',
+    maroon = '#e09096',
+    peach = '#e69f77',
+    yellow = '#e0c795',
+    teal = '#7AA89F',
+    sky = '#7FB4CA',
+    sapphire = '#7FB4CA',
+    blue = '#7E9CD8',
+    lavender = '#acb2e9',
+    green = '#8a9a7b',
+    red = '#E46876',
+    -- text = '#c2cae6',
+    text = '#b8b4d0',
+    subtext1 = '#b1b7d3',
+    subtext0 = '#9fa5bf',
+    overlay2 = '#8e93ac',
+    overlay1 = '#7c8198',
+    overlay0 = '#6a6f85',
+    surface2 = '#585c71',
+    surface1 = '#474b5e',
+    surface0 = '#35384a',
+    base = '#1F1F28',
+    mantle = '#181820',
+    crust = '#16161D',
+}
+
+local catppuccin_aki = {
+    rosewater = '#e5cec9',
+    flamingo = '#e2baba',
+    pink = '#e6b2d8',
+    mauve = '#ad8dbd',
+    maroon = '#e09096',
+    peach = '#e09f87',
+    yellow = '#e6c193',
+    teal = '#83c8be',
+    sky = '#88cad5',
+    sapphire = '#75b8d6',
+    blue = '#939dbd',
+    lavender = '#acb2e9',
+    green = '#a1cd93',
+    red = '#df8895',
+    text = '#d1cec9',
+    subtext1 = '#b1b7d3',
+    subtext0 = '#9fa5bf',
+    overlay2 = '#8e93ac',
+    overlay1 = '#7c8198',
+    overlay0 = '#58596e',
+    surface2 = '#454756',
+    surface1 = '#373846',
+    surface0 = '#2c2d39',
+    base = '#292a36',
+    mantle = '#22232e',
+    crust = '#1a1b24',
+}
 
 return {
+    {
+        'aktersnurra/no-clown-fiesta.nvim',
+        config = function()
+            require('no-clown-fiesta').setup({
+                transparent = false, -- Enable this to disable the bg color
+                styles = {
+                    -- You can set any of the style values specified for `:h nvim_set_hl`
+                    comments = {},
+                    functions = {},
+                    keywords = {},
+                    lsp = {},
+                    match_paren = {},
+                    type = {},
+                    variables = {},
+                },
+            })
+        end,
+    },
     {
         'gmr458/cold.nvim',
         config = function()
@@ -75,10 +122,14 @@ return {
                     local c = colors.palette
                     return {
                         ['@variable.parameter'] = { fg = theme.ui.fg },
+                        ['@variable.builtin'] = { italic = false },
                         ['@keyword.return'] = { fg = c.dragonPink },
+                        ['@lsp.type.property'] = { fg = theme.ui.fg },
                     }
                 end,
             })
+
+            -- vim.cmd.colorscheme('kanagawa-paper')
         end,
     },
 
@@ -106,35 +157,38 @@ return {
         end,
     },
 
-    -- {
-    --     'crispybaccoon/aki',
-    --     config = function()
-    --         local colors = require('aki.colors').colors()
-    --
-    --         require('aki').setup({
-    --             contrast_dark = 'medium',
-    --             style = {
-    --                 types = { italic = false },
-    --                 keyword = { italic = false },
-    --             },
-    --             overrides = {
-    --                 -- ['@punctuation.bracket'] = { colors.bg3 },
-    --                 ['@punctuation.bracket'] = { { '#5F6170', 8 } },
-    --                 ['@punctuation.special'] = { { '#5F6170', 8 } },
-    --                 ['@punctuation.delimited'] = { { '#5F6170', 8 } },
-    --                 ['@operator'] = { { '#5F6170', 8 } },
-    --
-    --                 ['@constructor'] = { colors.purple },
-    --                 ['@keyword'] = { colors.purple },
-    --                 ['@constant'] = { colors.red },
-    --                 ['@lsp.type.enumMember'] = { colors.fg1 },
-    --                 ['@boolean'] = { colors.yellow },
-    --                 ['@number'] = { colors.yellow },
-    --                 ['@function'] = { colors.blue },
-    --             },
-    --         })
-    --     end,
-    -- },
+    {
+        'crispybaccoon/aki',
+        config = function()
+            local colors = require('aki.colors').colors()
+
+            require('aki').setup({
+                contrast_dark = 'medium',
+                style = {
+                    types = { italic = false },
+                    keyword = { italic = false },
+                },
+                overrides = {
+                    -- ['@punctuation.bracket'] = { colors.bg3 },
+                    ['@punctuation.bracket'] = { { '#5F6170', 8 } },
+                    ['@punctuation.special'] = { { '#5F6170', 8 } },
+                    ['@punctuation.delimited'] = { { '#5F6170', 8 } },
+                    ['@operator'] = { { '#5F6170', 8 } },
+
+                    ['@constructor'] = { colors.purple },
+                    ['@keyword'] = { colors.purple },
+                    ['@constant'] = { colors.red },
+                    ['@lsp.type.enumMember'] = { colors.fg1 },
+                    ['@boolean'] = { colors.yellow },
+                    ['@number'] = { colors.yellow },
+                    ['@function'] = { colors.blue },
+
+                    --
+                    ['@type.builtin.typescript'] = { colors.blue },
+                },
+            })
+        end,
+    },
 
     {
         'catppuccin/nvim',
@@ -265,7 +319,7 @@ return {
                 end,
                 color_overrides = {
                     macchiato = custom_catppuccin,
-                    -- macchiato = kanappuccin,
+                    mocha = catppuccin_aki,
                 },
             })
 
