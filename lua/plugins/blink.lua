@@ -20,7 +20,9 @@ local path_only_nodes = {
 }
 
 local import_source_component = {
-    highlight = 'BlinkCmpSource',
+    highlight = function()
+        return 'BlinkCmpLabelDescription'
+    end,
     width = { max = 22 },
     text = function(ctx)
         local src = ctx.item.detail
@@ -58,7 +60,6 @@ return {
                     return { 'path' }
                 end
 
-                -- return { 'lsp', 'path', 'snippets', 'buffer' }
                 return { 'lsp', 'path', 'snippets' }
             end,
             min_keyword_length = function()
@@ -67,7 +68,6 @@ return {
                 else
                     return 0
                 end
-                -- return vim.bo.filetype == 'css' or vim.bo.filetype == 'html' and 1 or 0
             end,
         },
         keymap = {
@@ -75,7 +75,6 @@ return {
             ['<C-k>'] = { 'select_prev', 'fallback' },
             ['<C-j>'] = { 'select_next', 'fallback' },
             ['<CR>'] = { 'accept', 'fallback' },
-            -- ['<Esc>'] = { 'hide', 'fallback' },
             ['<C-y>'] = { 'accept', 'fallback' },
             ['>'] = {
                 function(cmp)
@@ -83,35 +82,17 @@ return {
                 end,
                 'fallback',
             },
-            cmdline = {
-                ['<Tab>'] = { 'select_next' },
-                ['<S-Tab>'] = { 'select_prev' },
-                ['<Esc>'] = { 'hide', 'fallback' },
-            },
         },
         completion = {
             trigger = {
                 show_on_insert_on_trigger_character = false,
             },
-            list = {
-                max_items = 50,
-                selection = {
-                    preselect = function(ctx)
-                        return ctx.mode ~= 'cmdline'
-                    end,
-                    auto_insert = function(ctx)
-                        return ctx.mode == 'cmdline'
-                    end,
-                },
-            },
+            list = { max_items = 50 },
             accept = { auto_brackets = { enabled = true } },
             menu = {
                 border = OPTS.float_border,
                 winblend = OPTS.winblend,
                 scrollbar = false,
-                auto_show = function(ctx)
-                    return ctx.mode ~= 'cmdline' or not vim.tbl_contains({ '/', '?' }, vim.fn.getcmdtype())
-                end,
                 draw = {
                     columns = {
                         { 'kind_icon' },
@@ -125,7 +106,13 @@ return {
                 },
             },
         },
+        cmdline = {
+            keymap = {
+                ['<CR>'] = { 'accept', 'fallback' },
+            },
+        },
         appearance = {
+            use_nvim_cmp_as_default = true,
             kind_icons = {
                 Text = '',
                 Method = '',
