@@ -11,6 +11,8 @@ local disabled_filetypes = {
 local disabled_nodes = {
     'comment',
     'comment_content',
+    'line_comment',
+    'block_comment',
 }
 
 local path_only_nodes = {
@@ -18,6 +20,16 @@ local path_only_nodes = {
     'string_content',
     'string_fragment',
 }
+
+local check_enabled = function()
+    local success, node = pcall(vim.treesitter.get_node, { ignore_injections = false })
+    return success and node and not vim.tbl_contains(disabled_nodes, node:type())
+end
+
+local check_path_enabled = function()
+    local success, node = pcall(vim.treesitter.get_node, { ignore_injections = false })
+    return success and node and vim.tbl_contains(path_only_nodes, node:type())
+end
 
 local import_source_component = {
     highlight = function()
@@ -49,26 +61,19 @@ return {
                 and vim.b.completion ~= false
         end,
         sources = {
-            default = function()
-                local success, node = pcall(vim.treesitter.get_node, { ignore_injections = false })
-
-                if not success or not node or vim.tbl_contains(disabled_nodes, node:type()) then
-                    return {}
-                end
-
-                if vim.tbl_contains(path_only_nodes, node:type()) then
-                    return { 'path' }
-                end
-
-                return { 'lsp', 'path', 'snippets' }
-            end,
-            min_keyword_length = function()
-                if vim.bo.filetype == 'css' or vim.bo.filetype == 'html' then
-                    return 1
-                else
-                    return 0
-                end
-            end,
+            default = { 'lsp', 'path', 'snippets' },
+            providers = {
+                snippets = { enabled = check_enabled },
+                path = { enabled = check_path_enabled },
+                lsp = { enabled = check_enabled },
+            },
+            -- min_keyword_length = function()
+            --     if vim.bo.filetype == 'css' or vim.bo.filetype == 'html' then
+            --         return 1
+            --     else
+            --         return 0
+            --     end
+            -- end,
         },
         keymap = {
             preset = 'super-tab',
@@ -110,6 +115,12 @@ return {
             keymap = {
                 ['<CR>'] = { 'accept', 'fallback' },
             },
+        },
+        fuzzy = {
+            'exact',
+            -- defaults
+            'score',
+            'sort_text',
         },
         appearance = {
             use_nvim_cmp_as_default = true,
