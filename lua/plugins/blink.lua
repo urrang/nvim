@@ -117,10 +117,12 @@ return {
             },
         },
         fuzzy = {
-            'exact',
-            -- defaults
-            'score',
-            'sort_text',
+            sorts = {
+                'exact',
+                -- defaults
+                'score',
+                'sort_text',
+            },
         },
         appearance = {
             use_nvim_cmp_as_default = true,
