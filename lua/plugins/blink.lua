@@ -52,7 +52,8 @@ local import_source_component = {
 
 return {
     'saghen/blink.cmp',
-    version = 'v0.*',
+    version = '1.*',
+    dependencies = { 'rafamadriz/friendly-snippets' },
     event = { 'InsertEnter', 'CmdlineEnter' },
     opts = {
         enabled = function()
@@ -112,8 +113,16 @@ return {
             },
         },
         cmdline = {
+            completion = {
+                menu = { auto_show = true },
+                list = {
+                    selection = {
+                        preselect = false,
+                    },
+                },
+            },
             keymap = {
-                ['<CR>'] = { 'accept', 'fallback' },
+                ['<CR>'] = { 'accept_and_enter', 'fallback' },
             },
         },
         fuzzy = {
