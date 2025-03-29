@@ -67,13 +67,13 @@ return {
                 path = { enabled = check_path_enabled },
                 lsp = { enabled = check_enabled },
             },
-            -- min_keyword_length = function()
-            --     if vim.bo.filetype == 'css' or vim.bo.filetype == 'html' then
-            --         return 1
-            --     else
-            --         return 0
-            --     end
-            -- end,
+            min_keyword_length = function()
+                if vim.bo.filetype == 'css' or vim.bo.filetype == 'html' then
+                    return 1
+                else
+                    return 0
+                end
+            end,
         },
         keymap = {
             preset = 'super-tab',
