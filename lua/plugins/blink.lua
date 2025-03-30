@@ -62,7 +62,24 @@ return {
                 and vim.b.completion ~= false
         end,
         sources = {
-            default = { 'lsp', 'path', 'snippets' },
+            -- default = { 'lsp', 'path', 'snippets' },
+            default = function(ctx)
+                local success, node = pcall(vim.treesitter.get_node)
+                if not success or not node or vim.tbl_contains(disabled_nodes, node:type()) then
+                    return {}
+                end
+
+                if vim.tbl_contains(path_only_nodes, node:type()) then
+                    return { 'path' }
+                end
+
+                return { 'lsp', 'path', 'snippets' }
+            end,
+            -- transform_items = function(_, items)
+            --     return vim.tbl_filter(function(item)
+            --         return item.kind ~= require('blink.cmp.types').CompletionItemKind.Snippet
+            --     end, items)
+            -- end,
             providers = {
                 snippets = { enabled = check_enabled },
                 path = { enabled = check_path_enabled },
@@ -114,7 +131,11 @@ return {
         },
         cmdline = {
             completion = {
-                menu = { auto_show = true },
+                menu = {
+                    auto_show = function()
+                        return vim.fn.getcmdtype() == ':'
+                    end,
+                },
                 list = {
                     selection = {
                         preselect = false,
