@@ -88,107 +88,73 @@ local catppuccin_aki = {
 }
 
 return {
-    {
-        'aktersnurra/no-clown-fiesta.nvim',
-        config = function()
-            require('no-clown-fiesta').setup({
-                transparent = false, -- Enable this to disable the bg color
-                styles = {
-                    -- You can set any of the style values specified for `:h nvim_set_hl`
-                    comments = {},
-                    functions = {},
-                    keywords = {},
-                    lsp = {},
-                    match_paren = {},
-                    type = {},
-                    variables = {},
-                },
-            })
-        end,
-    },
-    {
-        'gmr458/cold.nvim',
-        config = function()
-            require('cold').setup({})
-        end,
-    },
-    {
-        'sho-87/kanagawa-paper.nvim',
-        config = function()
-            require('kanagawa-paper').setup({
-                commentStyle = { italic = false },
-                overrides = function(colors)
-                    local theme = colors.theme
-                    local c = colors.palette
-                    return {
-                        ['@variable.parameter'] = { fg = theme.ui.fg },
-                        ['@variable.builtin'] = { italic = false },
-                        ['@keyword.return'] = { fg = c.dragonPink },
-                        ['@lsp.type.property'] = { fg = theme.ui.fg },
-                    }
-                end,
-            })
-
-            -- vim.cmd.colorscheme('kanagawa-paper')
-        end,
-    },
-
-    {
-        'rebelot/kanagawa.nvim',
-        config = function()
-            require('kanagawa').setup({
-                commentStyle = { italic = false },
-                keywordStyle = { italic = false },
-                overrides = function(colors)
-                    local palette = colors.palette
-                    return {
-                        Constant = { fg = palette.oniViolet2 },
-                        Identifier = { fg = palette.oniViolet2 },
-                        Operator = { fg = palette.oniViolet2 },
-                        String = { fg = palette.dragonGreen2 },
-                        ['@variable'] = { fg = palette.oniViolet2 },
-                        ['@variable.member'] = { fg = palette.oniViolet2 },
-                        ['@type.builtin'] = { fg = palette.dragonYellow },
-                        ['@keyword.return'] = { fg = palette.oniViolet },
-                    }
-                end,
-                theme = 'dragon',
-            })
-        end,
-    },
-
-    {
-        'crispybaccoon/aki',
-        config = function()
-            local colors = require('aki.colors').colors()
-
-            require('aki').setup({
-                contrast_dark = 'medium',
-                style = {
-                    types = { italic = false },
-                    keyword = { italic = false },
-                },
-                overrides = {
-                    -- ['@punctuation.bracket'] = { colors.bg3 },
-                    ['@punctuation.bracket'] = { { '#5F6170', 8 } },
-                    ['@punctuation.special'] = { { '#5F6170', 8 } },
-                    ['@punctuation.delimited'] = { { '#5F6170', 8 } },
-                    ['@operator'] = { { '#5F6170', 8 } },
-
-                    ['@constructor'] = { colors.purple },
-                    ['@keyword'] = { colors.purple },
-                    ['@constant'] = { colors.red },
-                    ['@lsp.type.enumMember'] = { colors.fg1 },
-                    ['@boolean'] = { colors.yellow },
-                    ['@number'] = { colors.yellow },
-                    ['@function'] = { colors.blue },
-
-                    --
-                    ['@type.builtin.typescript'] = { colors.blue },
-                },
-            })
-        end,
-    },
+    -- {
+    --     'aktersnurra/no-clown-fiesta.nvim',
+    --     config = function()
+    --         require('no-clown-fiesta').setup({
+    --             transparent = false, -- Enable this to disable the bg color
+    --             styles = {
+    --                 -- You can set any of the style values specified for `:h nvim_set_hl`
+    --                 comments = {},
+    --                 functions = {},
+    --                 keywords = {},
+    --                 lsp = {},
+    --                 match_paren = {},
+    --                 type = {},
+    --                 variables = {},
+    --             },
+    --         })
+    --     end,
+    -- },
+    -- {
+    --     'gmr458/cold.nvim',
+    --     config = function()
+    --         require('cold').setup({})
+    --     end,
+    -- },
+    -- {
+    --     'sho-87/kanagawa-paper.nvim',
+    --     config = function()
+    --         require('kanagawa-paper').setup({
+    --             commentStyle = { italic = false },
+    --             overrides = function(colors)
+    --                 local theme = colors.theme
+    --                 local c = colors.palette
+    --                 return {
+    --                     ['@variable.parameter'] = { fg = theme.ui.fg },
+    --                     ['@variable.builtin'] = { italic = false },
+    --                     ['@keyword.return'] = { fg = c.dragonPink },
+    --                     ['@lsp.type.property'] = { fg = theme.ui.fg },
+    --                 }
+    --             end,
+    --         })
+    --
+    --         -- vim.cmd.colorscheme('kanagawa-paper')
+    --     end,
+    -- },
+    -- {
+    --     'rebelot/kanagawa.nvim',
+    --     config = function()
+    --         require('kanagawa').setup({
+    --             commentStyle = { italic = false },
+    --             keywordStyle = { italic = false },
+    --             overrides = function(colors)
+    --                 local palette = colors.palette
+    --                 return {
+    --                     Constant = { fg = palette.oniViolet2 },
+    --                     Identifier = { fg = palette.oniViolet2 },
+    --                     Operator = { fg = palette.oniViolet2 },
+    --                     String = { fg = palette.dragonGreen2 },
+    --                     ['@variable'] = { fg = palette.oniViolet2 },
+    --                     ['@variable.member'] = { fg = palette.oniViolet2 },
+    --                     ['@type.builtin'] = { fg = palette.dragonYellow },
+    --                     ['@keyword.return'] = { fg = palette.oniViolet },
+    --                 }
+    --             end,
+    --             theme = 'dragon',
+    --         })
+    --     end,
+    -- },
 
     {
         'catppuccin/nvim',

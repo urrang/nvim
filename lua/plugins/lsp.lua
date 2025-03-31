@@ -1,5 +1,12 @@
 local servers = {
     vtsls = {},
+    cssls = {},
+    html = {},
+    svelte = {},
+    astro = {},
+    emmet_language_server = {},
+    elixirls = {},
+    omnisharp = {},
     jsonls = {
         settings = {
             json = {
@@ -20,13 +27,6 @@ local servers = {
             },
         },
     },
-    cssls = {},
-    html = {},
-    astro = {},
-    emmet_language_server = {},
-    elixirls = {},
-    omnisharp = {},
-    svelte = {},
     lua_ls = {
         settings = {
             Lua = {
@@ -55,7 +55,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
         map('n', 'gd', function()
             vim.lsp.buf.definition({
-                -- Automatically open first if multiple options are returned (svelte)
                 on_list = function(result)
                     -- vim.fn.setqflist({}, ' ', options)
                     -- vim.cmd.cfirst()
