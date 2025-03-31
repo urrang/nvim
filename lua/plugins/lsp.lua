@@ -1,23 +1,5 @@
 local servers = {
-    ts_ls = {
-        handlers = {
-            ['textDocument/definition'] = function(err, result, method, ...)
-                -- https://github.com/typescript-language-server/typescript-language-server/issues/216
-                if vim.tbl_islist(result) and #result > 1 then
-                    local filtered = {}
-                    for _, v in pairs(result) do
-                        if string.match(v.targetUri, '%.d.ts') == nil then
-                            table.insert(filtered, v)
-                        end
-                    end
-
-                    return vim.lsp.handlers['textDocument/definition'](err, filtered, method, ...)
-                end
-
-                vim.lsp.handlers['textDocument/definition'](err, result, method, ...)
-            end,
-        },
-    },
+    vtsls = {},
     jsonls = {
         settings = {
             json = {
@@ -44,39 +26,7 @@ local servers = {
     emmet_language_server = {},
     elixirls = {},
     omnisharp = {},
-    svelte = {
-        on_attach = function(client)
-            vim.api.nvim_create_autocmd('BufWritePost', {
-                pattern = { '*.js', '*.ts' },
-                callback = function(ctx)
-                    client.notify('$/onDidChangeTsOrJsFile', { uri = ctx.match })
-                end,
-            })
-        end,
-        settings = {
-            svelte = { defaultScriptingLanguage = 'ts' },
-            typescript = {
-                updateImportsOnFileMove = { enabled = 'always' },
-                inlayHints = {
-                    parameterNames = { enabled = 'all' },
-                    parameterTypes = { enabled = true },
-                    variableTypes = { enabled = true },
-                    propertyDeclarationTypes = { enabled = true },
-                    functionLikeReturnTypes = { enabled = true },
-                    enumMemberValues = { enabled = true },
-                },
-            },
-        },
-        handlers = {
-            ['textDocument/definition'] = function(err, result, method, ...)
-                if vim.tbl_islist(result) and #result > 1 then
-                    return vim.lsp.handlers['textDocument/definition'](err, result[1], method, ...)
-                end
-
-                vim.lsp.handlers['textDocument/definition'](err, result, method, ...)
-            end,
-        },
-    },
+    svelte = {},
     lua_ls = {
         settings = {
             Lua = {
@@ -94,17 +44,38 @@ vim.api.nvim_create_autocmd('LspAttach', {
         local client = vim.lsp.get_client_by_id(event.data.client_id)
 
         -- Set keymaps
-        local map = function(keys, func, desc)
-            vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+        local map = function(mode, keys, func, desc)
+            vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
         end
 
-        map('<leader>rn', vim.lsp.buf.rename, 'Rename')
-        map('<c-.>', vim.lsp.buf.code_action, 'Code action')
-        map('gd', vim.lsp.buf.definition, 'Goto definition')
-        map('gh', vim.lsp.buf.hover, 'Hover docs')
+        map('n', '<leader>rn', vim.lsp.buf.rename, 'Rename')
+        map('n', '<c-.>', vim.lsp.buf.code_action, 'Code action')
+        map('n', 'gh', vim.lsp.buf.hover, 'Hover docs')
+        map('i', '<C-k>', vim.lsp.buf.signature_help, 'Signature help')
+
+        map('n', 'gd', function()
+            vim.lsp.buf.definition({
+                -- Automatically open first if multiple options are returned (svelte)
+                on_list = function(result)
+                    -- vim.fn.setqflist({}, ' ', options)
+                    -- vim.cmd.cfirst()
+
+                    if vim.tbl_islist(result.items) and #result.items > 0 then
+                        vim.lsp.util.show_document(result.items[1].user_data, 'utf-8')
+                    end
+
+                    -- local filtered_items = {}
+                    -- for _, v in ipairs(result.items) do
+                    --     if string.match(v.user_data.targetUri, '%.d.ts') == nil then
+                    --         table.insert(filtered_items, v)
+                    --     end
+                    -- end
+                end,
+            })
+        end, 'Go to definition')
 
         if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-            map('<leader>th', function()
+            map('n', '<leader>th', function()
                 vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
             end, 'Toggle Inlay Hints')
         end
@@ -140,13 +111,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.api.nvim_create_autocmd('CursorHold', {
             desc = 'Show diagnostics on CursorHold',
             callback = function()
-                local opts = {
+                vim.diagnostic.open_float(nil, {
                     focusable = false,
                     close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter' },
                     border = OPTS.float_border,
                     scope = 'cursor',
-                }
-                vim.diagnostic.open_float(nil, opts)
+                })
             end,
         })
     end,

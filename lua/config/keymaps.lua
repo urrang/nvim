@@ -103,20 +103,12 @@ map('n', '<S-Down>', '<cmd>resize -2<cr>', { desc = 'Decrease window height' })
 map('n', '<S-Left>', '<cmd>vertical resize -2<cr>', { desc = 'Decrease window width' })
 map('n', '<S-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increase window width' })
 
-map('i', '<C-k>', vim.lsp.buf.signature_help, { desc = 'Show signature help' })
-
 -- Bracket jumps
-map('n', '[b', '<cmd>bprevious<CR>', { desc = 'Previous buffer' })
-map('n', ']b', '<cmd>bnext<CR>', { desc = 'Next buffer' })
-
 map('n', '[w', '<C-w><C-h>', { desc = 'Previous window' })
 map('n', ']w', '<C-w><C-l>', { desc = 'Next window' })
 
 map('n', '[t', '<cmd>tabprevious<cr>', { desc = 'Previous tab' })
 map('n', ']t', '<cmd>tabnext<cr>', { desc = 'Next tab' })
-
-map('n', '[q', '<cmd>cprev<cr>', { desc = 'Previous quickfix entry', silent = true })
-map('n', ']q', '<cmd>cnext<cr>', { desc = 'Next quickfix entry', silent = true })
 
 map('n', '[e', function()
     vim.diagnostic.goto_prev({ severity = { min = vim.diagnostic.severity.WARN } })
