@@ -1,12 +1,23 @@
 local servers = {
-    vtsls = {},
+    ts_ls = {},
+    -- vtsls = {},
     cssls = {},
     html = {},
-    svelte = {},
     astro = {},
     emmet_language_server = {},
     elixirls = {},
     omnisharp = {},
+    svelte = {
+        on_attach = function(client)
+            vim.api.nvim_create_autocmd('BufWritePost', {
+                pattern = { '*.js', '*.ts' },
+                callback = function(ctx)
+                    vim.print('ts file changed')
+                    client.notify('$/onDidChangeTsOrJsFile', { uri = ctx.match })
+                end,
+            })
+        end,
+    },
     jsonls = {
         settings = {
             json = {
