@@ -12,7 +12,6 @@ local servers = {
             vim.api.nvim_create_autocmd('BufWritePost', {
                 pattern = { '*.js', '*.ts' },
                 callback = function(ctx)
-                    vim.print('ts file changed')
                     client.notify('$/onDidChangeTsOrJsFile', { uri = ctx.match })
                 end,
             })
@@ -147,9 +146,7 @@ return {
 
             local capabilities = require('blink.cmp').get_lsp_capabilities()
 
-            local ensure_installed = vim.list_extend(vim.tbl_keys(servers), {
-                'stylua',
-            })
+            local ensure_installed = vim.list_extend(vim.tbl_keys(servers), { 'stylua' })
 
             require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
 

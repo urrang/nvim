@@ -8,28 +8,28 @@ local disabled_filetypes = {
     'grapple',
 }
 
-local disabled_nodes = {
+local comment_nodes = {
     'comment',
     'comment_content',
     'line_comment',
     'block_comment',
 }
 
-local path_only_nodes = {
+local string_nodes = {
     'string',
     'string_content',
     'string_fragment',
 }
 
-local check_enabled = function()
-    local success, node = pcall(vim.treesitter.get_node, { ignore_injections = false })
-    return success and node and not vim.tbl_contains(disabled_nodes, node:type())
-end
-
-local check_path_enabled = function()
-    local success, node = pcall(vim.treesitter.get_node, { ignore_injections = false })
-    return success and node and vim.tbl_contains(path_only_nodes, node:type())
-end
+-- local check_enabled = function()
+--     local success, node = pcall(vim.treesitter.get_node, { ignore_injections = false })
+--     return success and node and not vim.tbl_contains(comment_nodes, node:type())
+-- end
+--
+-- local check_path_enabled = function()
+--     local success, node = pcall(vim.treesitter.get_node, { ignore_injections = false })
+--     return success and node and vim.tbl_contains(string_nodes, node:type())
+-- end
 
 local import_source_component = {
     highlight = function()
@@ -50,6 +50,23 @@ local import_source_component = {
     end,
 }
 
+local print_type = function()
+    local success, node = pcall(vim.treesitter.get_node, { ignore_injections = false })
+    if success and node then
+        vim.print(node:type())
+    else
+        vim.print('parent?')
+        vim.prrint(node:parent():type())
+    end
+end
+
+vim.keymap.set('n', '<C-]>', function()
+    print_type()
+end)
+vim.keymap.set('i', '<C-]>', function()
+    print_type()
+end)
+
 return {
     'saghen/blink.cmp',
     version = '1.*',
@@ -64,27 +81,22 @@ return {
         sources = {
             -- default = { 'lsp', 'path', 'snippets' },
             default = function(ctx)
-                local success, node = pcall(vim.treesitter.get_node)
-                if not success or not node or vim.tbl_contains(disabled_nodes, node:type()) then
+                local success, node = pcall(vim.treesitter.get_node, { ignore_injections = false })
+                if not success or not node or vim.tbl_contains(comment_nodes, node:type()) then
                     return {}
                 end
 
-                if vim.tbl_contains(path_only_nodes, node:type()) then
+                if vim.tbl_contains(string_nodes, node:type()) then
                     return { 'path' }
                 end
 
                 return { 'lsp', 'path', 'snippets' }
             end,
-            -- transform_items = function(_, items)
-            --     return vim.tbl_filter(function(item)
-            --         return item.kind ~= require('blink.cmp.types').CompletionItemKind.Snippet
-            --     end, items)
-            -- end,
-            providers = {
-                snippets = { enabled = check_enabled },
-                path = { enabled = check_path_enabled },
-                lsp = { enabled = check_enabled },
-            },
+            -- providers = {
+            --     snippets = { enabled = check_enabled },
+            --     path = { enabled = check_path_enabled },
+            --     lsp = { enabled = check_enabled },
+            -- },
             min_keyword_length = function()
                 if vim.bo.filetype == 'css' or vim.bo.filetype == 'html' then
                     return 1
@@ -99,18 +111,20 @@ return {
             ['<C-j>'] = { 'select_next', 'fallback' },
             ['<CR>'] = { 'accept', 'fallback' },
             ['<C-y>'] = { 'accept', 'fallback' },
-            ['>'] = {
-                function(cmp)
-                    cmp.hide()
-                end,
-                'fallback',
-            },
+            -- ['>'] = {
+            --     function(cmp)
+            --         cmp.hide()
+            --     end,
+            --     'fallback',
+            -- },
         },
         completion = {
             trigger = {
                 show_on_insert_on_trigger_character = false,
             },
-            list = { max_items = 50 },
+            list = {
+                max_items = 30,
+            },
             accept = { auto_brackets = { enabled = true } },
             menu = {
                 border = OPTS.float_border,
