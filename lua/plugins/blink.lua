@@ -70,7 +70,10 @@ end)
 return {
     'saghen/blink.cmp',
     version = '1.*',
-    dependencies = { 'rafamadriz/friendly-snippets' },
+    dependencies = {
+        'rafamadriz/friendly-snippets',
+        'xzbdmw/colorful-menu.nvim',
+    },
     event = { 'InsertEnter', 'CmdlineEnter' },
     opts = {
         enabled = function()
@@ -137,7 +140,15 @@ return {
                         { 'import_source' },
                     },
                     components = {
-                        label = { width = { fill = true, max = 35 } },
+                        label = {
+                            text = function(ctx)
+                                return require('colorful-menu').blink_components_text(ctx)
+                            end,
+                            highlight = function(ctx)
+                                return require('colorful-menu').blink_components_highlight(ctx)
+                            end,
+                        },
+                        -- label = { width = { fill = true, max = 35 } },
                         import_source = import_source_component,
                     },
                 },
