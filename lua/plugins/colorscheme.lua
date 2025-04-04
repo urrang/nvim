@@ -158,32 +158,6 @@ return {
         end,
     },
 
-    -- {
-    --     'gmr458/cold.nvim',
-    --     config = function()
-    --         require('cold').setup({})
-    --     end,
-    -- },
-    -- {
-    --     'sho-87/kanagawa-paper.nvim',
-    --     config = function()
-    --         require('kanagawa-paper').setup({
-    --             commentStyle = { italic = false },
-    --             overrides = function(colors)
-    --                 local theme = colors.theme
-    --                 local c = colors.palette
-    --                 return {
-    --                     ['@variable.parameter'] = { fg = theme.ui.fg },
-    --                     ['@variable.builtin'] = { italic = false },
-    --                     ['@keyword.return'] = { fg = c.dragonPink },
-    --                     ['@lsp.type.property'] = { fg = theme.ui.fg },
-    --                 }
-    --             end,
-    --         })
-    --
-    --     end,
-    -- },
-
     {
         'rebelot/kanagawa.nvim',
         config = function()
@@ -215,6 +189,8 @@ return {
 
                         GrappleActive = { bg = palette.sumiInk4, fg = palette.oniViolet2 },
                         GrappleInactive = { bg = palette.sumiInk4, fg = palette.sumiInk6 },
+
+                        MacroRecordingWarning = { fg = palette.surimiOrange, bg = palette.sumiInk4 },
 
                         SignColumn = { bg = palette.sumiInk3 },
                         LineNr = { bg = palette.sumiInk3 },
