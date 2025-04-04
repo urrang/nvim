@@ -159,6 +159,43 @@ return {
     },
 
     {
+        'thesimonho/kanagawa-paper.nvim',
+        lazy = false,
+        priority = 1000,
+        opts = {
+            colors = {
+                palette = {
+                    -- oldWhite = '#b7b7c8',
+                    -- fujiWhite = '#b7b7c8',
+                    oldWhite = '#c2c1bc',
+                    fujiWhite = '#c2c1bc',
+                    fujiGray = '#727169',
+                    -- dragonPink = '#957FB8',
+                },
+                theme = {
+                    ink = {},
+                },
+            },
+            overrides = function(colors)
+                local palette = colors.palette
+                return {
+                    -- Normal = { bg = '#1f1f1f' },
+                    Identifier = { fg = palette.oldWhite },
+                    ['@lsp.mod.readonly'] = { fg = palette.oldWhite },
+                    ['@lsp.mod.defaultLibrary'] = { fg = palette.dragonBlue2 },
+                    ['@lsp.type.parameter'] = { fg = palette.oldWhite },
+                    ['@variable.parameter'] = { fg = palette.oldWhite },
+                    ['@variable.builtin'] = { italic = false },
+                    ['@operator'] = { fg = palette.dragonGray2 },
+
+                    ['@tag.html'] = { fg = palette.dragonPink },
+                    -- Identifier = { fg = '#c0c0ce' },
+                    -- ['@variable'] = { fg = '#c0c0ce' },
+                }
+            end,
+        },
+    },
+    {
         'rebelot/kanagawa.nvim',
         config = function()
             require('kanagawa').setup({
@@ -169,10 +206,17 @@ return {
                     palette = {
                         waveRed = '#c2707a',
                         springGreen = '#97b474',
-                        fujiWhite = '#b8b4d0',
+                        -- fujiWhite = '#b8b4d0',
+                        fujiWhite = '#C5C9C5',
+                        oniViolet2 = '#C5C9C5',
+                        -- #C5C9C5
                     },
                     theme = {
-                        wave = {},
+                        wave = {
+                            syn = {
+                                punct = '#73738c',
+                            },
+                        },
                         dragon = {},
                     },
                 },
@@ -183,8 +227,9 @@ return {
                         Identifier = { fg = palette.oniViolet2 },
                         Operator = { fg = palette.oniViolet2 },
                         Boolean = { bold = false },
-                        Special = { fg = palette.crystalBlue },
+                        Special = { fg = palette.surimiOrange },
                         PreProc = { fg = palette.oniViolet },
+
                         -- String = { fg = palette.dragonGreen2 },
 
                         GrappleActive = { bg = palette.sumiInk4, fg = palette.oniViolet2 },
@@ -203,11 +248,18 @@ return {
                         ['@variable'] = { fg = palette.oniViolet2 },
                         ['@variable.member'] = { fg = palette.oniViolet2 },
                         ['@variable.builtin'] = { fg = palette.waveRed, italic = false },
-                        ['@lsp.typemod.variable.defaultLibrary.typescript'] = { fg = palette.oniViolet2 },
+                        -- ['@variable.builtin'] = { fg = '#b6927b', italic = false },
+                        ['@lsp.typemod.variable.defaultLibrary'] = { fg = palette.oniViolet2 },
 
+                        ['@type.builtin'] = { fg = palette.waveAqua2 },
                         ['@function.builtin'] = { fg = palette.crystalBlue },
                         -- ['@type.builtin'] = { fg = palette.dragonYellow },
                         ['@keyword.return'] = { fg = palette.oniViolet },
+                        ['@keyword.exception'] = { fg = palette.oniViolet },
+                        ['@punctuation.special'] = { fg = palette.waveRed },
+
+                        ['@tag'] = { fg = palette.crystalBlue },
+                        ['@tag.attribute'] = { fg = palette.waveAqua2 },
                     }
                 end,
                 theme = 'dragon',
