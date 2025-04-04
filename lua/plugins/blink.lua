@@ -72,7 +72,6 @@ return {
     version = '1.*',
     dependencies = {
         'rafamadriz/friendly-snippets',
-        'xzbdmw/colorful-menu.nvim',
     },
     event = { 'InsertEnter', 'CmdlineEnter' },
     opts = {
@@ -135,20 +134,12 @@ return {
                 scrollbar = false,
                 draw = {
                     columns = {
-                        { 'kind_icon' },
-                        { 'label', 'label_description', gap = 1 },
+                        -- { 'kind_icon', gap = 5 },
+                        { 'kind_icon', 'label', 'label_description', gap = 2 },
                         { 'import_source' },
                     },
                     components = {
-                        label = {
-                            text = function(ctx)
-                                return require('colorful-menu').blink_components_text(ctx)
-                            end,
-                            highlight = function(ctx)
-                                return require('colorful-menu').blink_components_highlight(ctx)
-                            end,
-                        },
-                        -- label = { width = { fill = true, max = 35 } },
+                        label = { width = { fill = true, max = 35 } },
                         import_source = import_source_component,
                     },
                 },
@@ -180,33 +171,8 @@ return {
             },
         },
         appearance = {
-            use_nvim_cmp_as_default = true,
-            kind_icons = {
-                Text = '',
-                Method = '',
-                Function = '',
-                Constructor = '',
-                Field = '',
-                Variable = '',
-                Class = '',
-                Interface = '',
-                Module = '',
-                Property = '',
-                Unit = '',
-                Value = '',
-                Enum = '',
-                Keyword = '',
-                Color = '',
-                File = '',
-                Reference = '',
-                Folder = '',
-                EnumMember = '',
-                Constant = '',
-                Struct = '',
-                Event = '',
-                Operator = '',
-                TypeParameter = '',
-            },
+            highlight_ns = vim.api.nvim_create_namespace('blink_cmp'),
+            use_nvim_cmp_as_default = false,
         },
     },
     opts_extend = { 'sources.default' },

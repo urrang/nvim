@@ -72,7 +72,8 @@ return {
     },
     opts = function()
         local options = {
-            theme = 'catppuccin',
+            -- theme = 'catppuccin',
+            -- theme = theme(),
             icons_enabled = false,
             globalstatus = true,
             component_separators = '',

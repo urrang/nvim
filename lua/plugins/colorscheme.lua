@@ -28,72 +28,6 @@ local custom_catppuccin = {
     crust = '#181924',
 }
 
--- local custom_theme = {
---     rosewater = '#e5cec9',
---     flamingo = '#e2baba',
---     pink = '#e6b2d8',
---     peach = '#e69f77',
---     overlay2 = '#8e93ac',
---     overlay1 = '#7c8198',
---     overlay0 = '#6a6f85',
---     surface2 = '#585c71',
---     surface1 = '#474b5e',
---     surface0 = '#35384a',
---
---     -- DONE
---     text = '#d8dde5',
---     subtext1 = '#8f97a8', -- '#b1b7d3',
---     subtext0 = '#8f97a8', --'#9fa5bf',
---
---     maroon = '#e4797e',
---     red = '#e4797e',
---     mauve = '#c396c3',
---     green = '#9eca99',
---     yellow = '#ecc285',
---
---     -- REVISIT:
---     teal = '#7ec2c2',
---     sky = '#7ec2c2',
---     sapphire = '#7ec2c2',
---     blue = '#7ec2c2',
---     lavender = '#c396c3', -- '#acb2e9',
---
---     base = '#1C1F21',
---     mantle = '#2A2E31',
---     crust = '#2A2E31',
--- }
-
-local kanappuccin = {
-    rosewater = '#e5cec9',
-    flamingo = '#e2baba',
-    pink = '#e6b2d8',
-    -- pink = '#c4b28a',
-    mauve = '#957FB8',
-    maroon = '#e09096',
-    peach = '#FFA066',
-    yellow = '#c4b28a',
-    teal = '#7AA89F',
-    sky = '#7FB4CA',
-    sapphire = '#7FB4CA',
-    blue = '#7E9CD8',
-    lavender = '#acb2e9',
-    green = '#8a9a7b',
-    red = '#E46876',
-    -- text = '#c2cae6',
-    text = '#b8b4d0',
-    subtext1 = '#b1b7d3',
-    subtext0 = '#9fa5bf',
-    overlay2 = '#8e93ac',
-    overlay1 = '#7c8198',
-    overlay0 = '#6a6f85',
-    surface2 = '#363646',
-    surface1 = '#363646',
-    surface0 = '#2A2A37',
-    base = '#1F1F28',
-    mantle = '#181820',
-    crust = '#16161D',
-}
-
 return {
     {
         'vague2k/vague.nvim',
@@ -114,9 +48,12 @@ return {
         config = function()
             require('no-clown-fiesta').setup({
                 transparent = false,
+                styles = {
+                    lsp = { undercurl = true },
+                },
             })
 
-            vim.cmd.colorscheme('no-clown-fiesta')
+            -- vim.cmd.colorscheme('no-clown-fiesta')
         end,
     },
     {
@@ -139,25 +76,27 @@ return {
                     -- String = { fg = '#88afa2' },
                     -- Number = { fg = mix('#99FFE4', '#000000', math.abs(0.85)) },
 
-                    -- String = { fg = '' },
-                    Number = { fg = '#FFCFA8', bold = false },
-                    Boolean = { fg = '#FFCFA8' },
-                    Function = { fg = '#88afa2' },
-
-                    ['@keyword'] = { fg = '#7E97AB' },
-                    Statement = { fg = '#7E97AB' },
-
-                    FloatBorder = { fg = '#505050' },
-                    BlinkCmpMenuBorder = { fg = '#505050' },
-                    BlinkCmpMenuSelection = { bg = '#343434' },
-                    BlinkCmpLabelDescription = { fg = '#65737E' },
-
-                    CmpItemAbbrMatch = { bold = true },
-                    CmpItemAbbrMatchFuzzy = { bold = true },
-
-                    ['@variable.builtin'] = { fg = '#A0A0A0' },
-                    ['@property'] = { fg = mix('#FFFFFF', '#000000', math.abs(0.80)) },
-                    ['@lsp.type.property.typescript'] = { fg = '#E1E1E1' },
+                    -- String = { fg = '#A2B5C1' },
+                    -- Number = { fg = '#FFCFA8', bold = false },
+                    -- Boolean = { fg = '#FFCFA8' },
+                    -- Function = { fg = '#88afa2' },
+                    --
+                    -- ['@keyword'] = { fg = '#7E97AB' },
+                    -- Statement = { fg = '#7E97AB' },
+                    --
+                    -- FloatBorder = { fg = '#505050' },
+                    -- BlinkCmpMenuBorder = { fg = '#505050' },
+                    -- BlinkCmpMenuSelection = { bg = '#343434' },
+                    -- BlinkCmpLabelDescription = { fg = '#65737E' },
+                    --
+                    -- CmpItemAbbrMatch = { bold = true },
+                    -- CmpItemAbbrMatchFuzzy = { bold = true },
+                    --
+                    -- DiagnosticUnderlineError = { undercurl = true, sp = '#FF8080' },
+                    --
+                    -- ['@variable.builtin'] = { fg = '#A0A0A0' },
+                    -- ['@property'] = { fg = mix('#FFFFFF', '#000000', math.abs(0.80)) },
+                    -- ['@lsp.type.property.typescript'] = { fg = '#E1E1E1' },
                 },
                 palette_overrides = {
                     white = '#E1E1E1',
@@ -178,15 +117,16 @@ return {
                     purple = '#FFCFA8', -- functions etc
                     -- purple = '#88cad5', -- functions etc
                     redDark = '#FF8080',
-                    orange = '#FFCFA8',
+                    orange = '#7E97AB',
                     primary = '#A0A0A0',
                     -- comment = mix("#8b8b8b", "#000000", math.abs(0.90)),
-                    orangeLight = '#FFCFA8',
+                    orangeLight = '#7E97AB',
                     -- green = mix("#99FFE4", "#000000", math.abs(0.85)),
                     -- green = '#a1cd93',
                     -- green = '#88cad5',
-                    green = '#A2B5C1',
-                    yellowDark = '#FFC799',
+                    -- green = '#A2B5C1',
+                    green = '#88afa2',
+                    yellowDark = '#7E97AB',
 
                     -- purpleDark = mix("#65737E", "#000000", math.abs(0.80)),
                     symbol = '#65737E',
@@ -250,29 +190,61 @@ return {
             require('kanagawa').setup({
                 commentStyle = { italic = false },
                 keywordStyle = { italic = false },
+                statementStyle = { bold = false },
+                colors = {
+                    palette = {
+                        waveRed = '#c2707a',
+                        springGreen = '#97b474',
+                        fujiWhite = '#b8b4d0',
+                    },
+                    theme = {
+                        wave = {},
+                        dragon = {},
+                    },
+                },
                 overrides = function(colors)
                     local palette = colors.palette
                     return {
                         Constant = { fg = palette.oniViolet2 },
                         Identifier = { fg = palette.oniViolet2 },
                         Operator = { fg = palette.oniViolet2 },
-                        String = { fg = palette.dragonGreen2 },
+                        Boolean = { bold = false },
+                        Special = { fg = palette.crystalBlue },
+                        PreProc = { fg = palette.oniViolet },
+                        -- String = { fg = palette.dragonGreen2 },
+
+                        GrappleActive = { bg = palette.sumiInk4, fg = palette.oniViolet2 },
+                        GrappleInactive = { bg = palette.sumiInk4, fg = palette.sumiInk6 },
+
+                        SignColumn = { bg = palette.sumiInk3 },
+                        LineNr = { bg = palette.sumiInk3 },
+                        CursorLineNr = {
+                            fg = palette.oniViolet2,
+                            bg = palette.sumiInk3,
+                            bold = true,
+                        },
+
                         ['@variable'] = { fg = palette.oniViolet2 },
                         ['@variable.member'] = { fg = palette.oniViolet2 },
-                        ['@type.builtin'] = { fg = palette.dragonYellow },
+                        ['@variable.builtin'] = { fg = palette.waveRed, italic = false },
+                        ['@lsp.typemod.variable.defaultLibrary.typescript'] = { fg = palette.oniViolet2 },
+
+                        ['@function.builtin'] = { fg = palette.crystalBlue },
+                        -- ['@type.builtin'] = { fg = palette.dragonYellow },
                         ['@keyword.return'] = { fg = palette.oniViolet },
                     }
                 end,
                 theme = 'dragon',
             })
+
+            vim.cmd('colorscheme kanagawa')
         end,
     },
     {
         'catppuccin/nvim',
         config = function()
             require('catppuccin').setup({
-                -- flavour = 'macchiato',
-                flavour = 'mocha',
+                flavour = 'macchiato',
                 no_italic = true,
                 no_bold = true,
                 integrations = {
@@ -398,7 +370,6 @@ return {
                 end,
                 color_overrides = {
                     macchiato = custom_catppuccin,
-                    mocha = kanappuccin,
                 },
             })
 
