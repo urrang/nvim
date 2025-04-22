@@ -45,6 +45,7 @@ return {
     {
         dir = '~/git/no-clown-fiesta.nvim',
         -- 'urrang/no-clown-fiesta.nvim',
+        -- 'aktersnurra/no-clown-fiesta.nvim',
         config = function()
             require('no-clown-fiesta').setup({
                 transparent = false,
@@ -170,7 +171,6 @@ return {
                     oldWhite = '#c2c1bc',
                     fujiWhite = '#c2c1bc',
                     fujiGray = '#727169',
-                    -- dragonPink = '#957FB8',
                 },
                 theme = {
                     ink = {},
@@ -207,9 +207,22 @@ return {
                         waveRed = '#c2707a',
                         springGreen = '#97b474',
                         -- fujiWhite = '#b8b4d0',
-                        fujiWhite = '#C5C9C5',
-                        oniViolet2 = '#C5C9C5',
+                        -- fujiWhite = '#C5C9C5',
+                        -- oniViolet2 = '#C5C9C5',
+                        oldWhite = '#c2c1bc',
+                        fujiWhite = '#c2c1bc',
+                        fujiGray = '#727169',
                         -- #C5C9C5
+
+                        --paper
+                        sumiInkn1 = '#0f0f15',
+                        sumiInk0 = '#16161D',
+                        sumiInk1 = '#181820',
+                        sumiInk2 = '#1a1a22',
+                        sumiInk3 = '#1F1F28',
+                        sumiInk4 = '#2A2A37',
+                        sumiInk5 = '#363646',
+                        sumiInk6 = '#54546D',
                     },
                     theme = {
                         wave = {
@@ -265,7 +278,7 @@ return {
                 theme = 'dragon',
             })
 
-            vim.cmd('colorscheme kanagawa')
+            -- vim.cmd('colorscheme kanagawa')
         end,
     },
     {
@@ -401,7 +414,7 @@ return {
                 },
             })
 
-            -- vim.cmd.colorscheme('catppuccin')
+            vim.cmd.colorscheme('catppuccin')
         end,
     },
 }
