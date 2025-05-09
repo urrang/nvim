@@ -65,85 +65,7 @@ local kanappuccin = {
     -- crust = '#181820',
 }
 
-local custom_catppuccin2 = {
-    rosewater = '#e5cec9',
-    flamingo = '#e2baba',
-    pink = '#e6b2d8',
-    mauve = '#B391D0',
-    maroon = '#e09096',
-    peach = '#E09F87',
-    -- orange   = { "#E09F87", 11 },
-    yellow = '#e0c795',
-    teal = '#83c8be',
-    sky = '#88cad5',
-    sapphire = '#75b8d6',
-    blue = '#88A1D6',
-    lavender = '#acb2e9',
-    green = '#ABCA9E',
-    red = '#d98c98',
-    text = '#C8CCE1',
-    subtext1 = '#b1b7d3',
-    subtext0 = '#9fa5bf',
-    overlay2 = '#8e93ac',
-    overlay1 = '#7c8198',
-    overlay0 = '#6a6f85',
-    surface2 = '#585c71',
-    surface1 = '#474b5e',
-    surface0 = '#35384a',
-    base = '#292A36',
-    mantle = '#22232E',
-    crust = '#1A1B24',
-}
-
-local custom_catppuccin3 = {
-    rosewater = '#e5cec9',
-    flamingo = '#e2baba',
-    pink = '#e6b2d8',
-    mauve = '#AA749F',
-    maroon = '#e09096',
-    peach = '#E09F87',
-    -- orange   = { "#E09F87", 11 },
-    yellow = '#e0c795',
-    teal = '#88afa2',
-    sky = '#88afa2',
-    sapphire = '#88afa2',
-    blue = '#7E97AB',
-    lavender = '#acb2e9',
-    green = '#A2B5C1',
-    red = '#d98c98',
-    text = '#C8CCE1',
-    subtext1 = '#b1b7d3',
-    subtext0 = '#9fa5bf',
-    overlay2 = '#8e93ac',
-    overlay1 = '#7c8198',
-    overlay0 = '#6a6f85',
-    surface2 = '#585c71',
-    surface1 = '#474b5e',
-    surface0 = '#35384a',
-    base = '#1f1f1f',
-    mantle = '#171717',
-    crust = '#171717',
-}
-
 return {
-    {
-        'vague2k/vague.nvim',
-        config = function()
-            require('vague').setup({
-                -- optional configuration here
-            })
-        end,
-    },
-    {
-        'bettervim/yugen.nvim',
-        config = function() end,
-    },
-    {
-        'kvrohit/rasmus.nvim',
-        priority = 1000,
-        config = function() end,
-    },
-
     {
         dir = '~/git/no-clown-fiesta.nvim',
         config = function()
@@ -173,95 +95,6 @@ return {
     --                 variables = {},
     --             },
     --         })
-    --     end,
-    -- },
-    {
-        'gmr458/cold.nvim',
-        config = function()
-            require('cold').setup({})
-        end,
-    },
-    {
-        'Mofiqul/vscode.nvim',
-        config = function()
-            local c = require('vscode.colors').get_colors()
-            -- c.vscLightBlue = '#D4D4D4'
-            require('vscode').setup({
-                italic_comments = false,
-                color_overrides = c,
-                group_overrides = {
-                    ['@constant'] = { fg = c.vscLightBlue },
-                    ['@type.builtin'] = { fg = c.vscBlueGreen },
-                    ['@comment'] = { fg = '#808080' },
-                    -- ['@lsp.typemod.variable.readonly.typescript'] = { fg = c.vscLightBlue },
-                },
-            })
-
-            -- vim.cmd.colorscheme('vscode')
-        end,
-    },
-    {
-        'thesimonho/kanagawa-paper.nvim',
-        lazy = false,
-        priority = 1000,
-        opts = {
-            colors = {
-                palette = {
-                    -- oldWhite = '#b7b7c8',
-                    -- fujiWhite = '#b7b7c8',
-                    oldWhite = '#c2c1bc',
-                    fujiWhite = '#c2c1bc',
-                    fujiGray = '#727169',
-
-                    --
-                    sumiInk3 = '#1F1F1F',
-                },
-                theme = {
-                    ink = {},
-                },
-            },
-            overrides = function(colors)
-                local palette = colors.palette
-                return {
-                    -- Normal = { bg = '#1f1f1f' },
-                    Identifier = { fg = palette.oldWhite },
-                    ['@lsp.mod.readonly'] = { fg = palette.oldWhite },
-                    ['@lsp.mod.defaultLibrary'] = { fg = palette.dragonBlue2 },
-                    ['@lsp.type.parameter'] = { fg = palette.oldWhite },
-                    ['@variable.parameter'] = { fg = palette.oldWhite },
-                    ['@variable.builtin'] = { italic = false },
-                    ['@operator'] = { fg = palette.dragonGray2 },
-
-                    ['@tag.html'] = { fg = palette.dragonPink },
-
-                    Type = { fg = palette.dragonYellow },
-
-                    -- ['@function'] = { fg = palette.dragonYellow },
-                    -- Identifier = { fg = '#c0c0ce' },
-                    -- ['@variable'] = { fg = '#c0c0ce' },
-                }
-            end,
-        },
-    },
-
-    -- {
-    --     'sho-87/kanagawa-paper.nvim',
-    --     config = function()
-    --         require('kanagawa-paper').setup({
-    --             commentStyle = { italic = false },
-    --             overrides = function(colors)
-    --                 local theme = colors.theme
-    --                 local c = colors.palette
-    --                 return {
-    --                     ['@variable.parameter'] = { fg = theme.ui.fg },
-    --                     ['@variable.builtin'] = { italic = false },
-    --                     ['@keyword.return'] = { fg = c.dragonPink },
-    --                     ['@lsp.type.property'] = { fg = theme.ui.fg },
-    --                 }
-    --             end,
-    --         })
-    --
-    --         -- vim.cmd.colorscheme('kanagawa-paper')
     --     end,
     -- },
     {
@@ -419,19 +252,11 @@ return {
                 end,
                 color_overrides = {
                     macchiato = custom_catppuccin,
-                    frappe = custom_catppuccin2,
                     mocha = kanappuccin,
-                    -- mocha = catppuccin_aki,
                 },
             })
 
             vim.cmd.colorscheme('catppuccin')
         end,
-    },
-    {
-        'folke/tokyonight.nvim',
-        lazy = false,
-        priority = 1000,
-        opts = {},
     },
 }

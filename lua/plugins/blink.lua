@@ -6,6 +6,7 @@ local disabled_filetypes = {
     'oil',
     'buffer_manager',
     'grapple',
+    'markdown',
 }
 
 local comment_nodes = {
@@ -161,6 +162,10 @@ return {
             },
         },
         fuzzy = {
+            max_typos = function(keyword)
+                return 0
+            end,
+            -- max_typos = function(keyword) return math.floor(#keyword / 4) end,
             sorts = {
                 'exact',
                 -- defaults
