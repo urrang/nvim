@@ -22,7 +22,29 @@ return {
         }
 
         dashboard.section.buttons.val = {
-            dashboard.button('f', 'Find file', ':Telescope smart_open cwd_only=true theme=dropdown prompt_title=<cr>'),
+            -- dashboard.button('f', 'Find file', ':Telescope smart_open cwd_only=true theme=dropdown prompt_title=<cr>'),
+            dashboard.button('f', 'Find file', function()
+                Snacks.picker.smart({
+                    filter = { cwd = true },
+                    layout = {
+                        preview = false,
+                        layout = {
+                            backdrop = false,
+                            width = 0.3,
+                            min_width = 40,
+                            height = 0.3,
+                            min_height = 3,
+                            box = 'vertical',
+                            border = OPTS.float_border,
+                            title = '',
+                            title_pos = 'center',
+                            { win = 'input', height = 1, border = 'bottom' },
+                            { win = 'list', border = 'none' },
+                            { win = 'preview', title = '{preview}', height = 0.3, border = 'top' },
+                        },
+                    },
+                })
+            end),
             dashboard.button('s', 'Restore Session', ':SessionLoad<CR>'),
             dashboard.button('q', 'Quit', ':qa<CR>'),
         }

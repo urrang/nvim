@@ -4,6 +4,7 @@ local servers = {
     cssls = {},
     html = {},
     astro = {},
+    volar = {}, -- vue
     emmet_language_server = {},
     elixirls = {},
     omnisharp = {},
@@ -66,19 +67,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
         map('n', 'gd', function()
             vim.lsp.buf.definition({
                 on_list = function(result)
-                    -- vim.fn.setqflist({}, ' ', options)
-                    -- vim.cmd.cfirst()
-
                     if vim.tbl_islist(result.items) and #result.items > 0 then
                         vim.lsp.util.show_document(result.items[1].user_data, 'utf-8')
                     end
-
-                    -- local filtered_items = {}
-                    -- for _, v in ipairs(result.items) do
-                    --     if string.match(v.user_data.targetUri, '%.d.ts') == nil then
-                    --         table.insert(filtered_items, v)
-                    --     end
-                    -- end
                 end,
             })
         end, 'Go to definition')

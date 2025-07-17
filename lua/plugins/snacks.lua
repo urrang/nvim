@@ -1,5 +1,3 @@
----@diagnostic disable: undefined-global
-
 return {
     'folke/snacks.nvim',
     priority = 1000,
@@ -21,41 +19,45 @@ return {
                             min_height = 3,
                             box = 'vertical',
                             border = OPTS.float_border,
-                            title = 'Files',
+                            title = '',
                             title_pos = 'center',
                             { win = 'input', height = 1, border = 'bottom' },
                             { win = 'list', border = 'none' },
                             { win = 'preview', title = '{preview}', height = 0.3, border = 'top' },
                         },
-                        -- layout = {
-                        --     backdrop = false,
-                        --     row = 1,
-                        --     width = 0.4,
-                        --     min_width = 80,
-                        --     height = 0.4,
-                        --     border = 'none',
-                        --     box = 'vertical',
-                        --     {
-                        --         win = 'input',
-                        --         height = 1,
-                        --         border = 'rounded',
-                        --         title = '{title} {live} {flags}',
-                        --         title_pos = 'center',
-                        --     },
-                        --     { win = 'list', border = 'rounded' },
-                        --     { win = 'preview', title = '{preview}', border = 'rounded' },
-                        -- },
                     },
                 })
             end,
             desc = 'Smart Find Files',
         },
         {
-            '<leader>/',
+            '<leader>fg',
             function()
-                Snacks.picker.grep()
+                Snacks.picker.grep({
+                    regex = false,
+                    layout = {
+                        layout = {
+                            backdrop = false,
+                        },
+                    },
+                })
             end,
-            desc = 'Grep',
+        },
+        {
+            '<leader>fb',
+            function()
+                Snacks.picker.buffers({
+                    layout = {
+                        preset = 'select',
+                        layout = {
+                            width = 0.3,
+                            height = 0.3,
+                            min_width = 40,
+                        },
+                        -- preview = false,
+                    },
+                })
+            end,
         },
         {
             '<leader>e',
@@ -65,11 +67,12 @@ return {
             desc = 'File Explorer',
         },
         {
-            '<leader>q',
+            'gr',
             function()
-                Snacks.picker.qflist()
+                Snacks.picker.lsp_references()
             end,
-            desc = 'Quickfix List',
+            nowait = true,
+            desc = 'References',
         },
     },
     opts = {

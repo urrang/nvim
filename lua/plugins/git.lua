@@ -22,7 +22,7 @@ return {
             signcolumn = false,
         },
         keys = {
-            { '<leader>gB', '<cmd>Gitsigns blame_line<cr>', 'Git blame' },
+            { '<leader>gb', '<cmd>Gitsigns blame_line<cr>', 'Git blame' },
         },
     },
     -- { 'tpope/vim-fugitive', cmd = 'G' },

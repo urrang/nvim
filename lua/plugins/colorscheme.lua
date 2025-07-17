@@ -35,7 +35,8 @@ local kanappuccin = {
     mauve = '#957FB8',
     maroon = '#e09096',
     peach = '#e69f77',
-    yellow = '#e0c795',
+    -- yellow = '#e0c795',
+    yellow = '#c4b28a',
     teal = '#7AA89F',
     sky = '#7AA89F',
     sapphire = '#7FB4CA',
@@ -67,36 +68,103 @@ local kanappuccin = {
 
 return {
     {
-        dir = '~/git/no-clown-fiesta.nvim',
+        dir = '~/git/vscode.nvim',
         config = function()
-            require('no-clown-fiesta').setup({
-                transparent = false,
-                styles = {
-                    lsp = { undercurl = true },
+            require('vscode').setup({
+                group_overrides = {
+                    GrappleActive = { bg = '#181818', fg = '#ffffff' },
+                    GrappleInactive = { bg = '#181818', fg = '#808080' },
                 },
             })
 
-            -- vim.cmd.colorscheme('no-clown-fiesta')
+            vim.cmd.colorscheme('vscode')
         end,
     },
     -- {
-    --     'aktersnurra/no-clown-fiesta.nvim',
+    --     'Mofiqul/vscode.nvim',
     --     config = function()
-    --         require('no-clown-fiesta').setup({
-    --             transparent = false, -- Enable this to disable the bg color
-    --             styles = {
-    --                 -- You can set any of the style values specified for `:h nvim_set_hl`
-    --                 comments = {},
-    --                 functions = {},
-    --                 keywords = {},
-    --                 lsp = {},
-    --                 match_paren = {},
-    --                 type = {},
-    --                 variables = {},
-    --             },
+    --         require('vscode').setup({
+    --             group_overrides = {},
     --         })
     --     end,
     -- },
+    {
+        'gbprod/nord.nvim',
+        lazy = false,
+        priority = 1000,
+        config = function()
+            require('nord').setup({
+                on_colors = function(colors)
+                    -- colors.polar_night.origin = '#14171D'
+                    colors.polar_night.origin = '#1E2127'
+                    colors.polar_night.bright = '#22262C'
+                    colors.polar_night.brighter = '#22262C'
+                end,
+                on_highlights = function(highlights, colors)
+                    local subdued = '#9da3af'
+
+                    highlights['@variable.parameter'] = { fg = colors.snow_storm.origin }
+                    highlights['@punctuation.bracket'] = { fg = subdued }
+                    highlights['@punctuation.delimiter'] = { fg = subdued }
+                end,
+            })
+            -- vim.cmd.colorscheme('nord')
+        end,
+    },
+    {
+        'felipeagc/fleet-theme-nvim',
+        config = function()
+            -- vim.cmd('colorscheme fleet')
+        end,
+    },
+    {
+        'thesimonho/kanagawa-paper.nvim',
+        lazy = false,
+        priority = 1000,
+        opts = {
+            overrides = function(colors)
+                -- local palette = colors.palette
+                return {
+                    Identifier = { fg = '#DCD7BA' },
+                    ['@variable'] = { fg = '#DCD7BA' },
+                    ['@variable.parameter'] = { fg = '#DCD7BA' },
+                    ['@lsp.mod.readonly'] = { fg = '#DCD7BA' },
+                    ['@lsp.mod.defaultLibrary'] = { fg = colors.theme.syn.fun },
+                }
+            end,
+        },
+    },
+    -- {
+    --     dir = '~/git/no-clown-fiesta.nvim',
+    --     config = function()
+    --         require('no-clown-fiesta').setup({
+    --             transparent = false,
+    --             styles = {
+    --                 lsp = { undercurl = true },
+    --             },
+    --         })
+    --
+    --         -- vim.cmd.colorscheme('no-clown-fiesta')
+    --     end,
+    -- },
+    {
+        'aktersnurra/no-clown-fiesta.nvim',
+        config = function()
+            require('no-clown-fiesta').setup({
+                transparent = false, -- Enable this to disable the bg color
+                styles = {
+                    -- You can set any of the style values specified for `:h nvim_set_hl`
+                    comments = {},
+                    functions = {},
+                    keywords = {},
+                    lsp = {},
+                    match_paren = {},
+                    type = {},
+                    variables = {},
+                },
+            })
+        end,
+    },
     {
         'rebelot/kanagawa.nvim',
         config = function()
@@ -164,7 +232,8 @@ return {
                         ['@constructor.typescript'] = { fg = colors.mauve },
                         ['@type.typescript'] = { fg = colors.text }, -- imports, anything else?
 
-                        ['@variable.builtin'] = { fg = colors.red },
+                        -- ['@variable.builtin'] = { fg = colors.red },
+                        -- ['@variable.builtin'] = { fg = '#707fc2' },
                         ['@constant.builtin'] = { fg = colors.peach },
                         ['@constant.falsy'] = { fg = colors.peach },
                         ['@function.builtin'] = { fg = colors.blue },
@@ -184,6 +253,8 @@ return {
                         ['cssFunction'] = { fg = colors.text },
                         ['Constant'] = { fg = colors.maroon },
 
+                        ['@lsp.typemod.variable.defaultLibrary.typescript'] = { link = '@variable' },
+                        ['@lsp.type.variable'] = { link = '@variable' },
                         ['@lsp.type.interface'] = { link = 'Type' },
                         ['@lsp.type.class.typescript'] = { link = 'Type' },
                         ['@lsp.type.enumMember'] = { fg = colors.text },
@@ -256,7 +327,7 @@ return {
                 },
             })
 
-            vim.cmd.colorscheme('catppuccin')
+            -- vim.cmd.colorscheme('catppuccin')
         end,
     },
 }

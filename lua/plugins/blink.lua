@@ -162,10 +162,12 @@ return {
             },
         },
         fuzzy = {
+            -- max_typos = function(keyword)
+            --     return 0
+            -- end,
             max_typos = function(keyword)
-                return 0
+                return math.floor(#keyword / 4)
             end,
-            -- max_typos = function(keyword) return math.floor(#keyword / 4) end,
             sorts = {
                 'exact',
                 -- defaults
