@@ -28,6 +28,35 @@ local custom_catppuccin = {
     crust = '#181924',
 }
 
+local custom_catppuccin2 = {
+    rosewater = '#e5cec9',
+    flamingo = '#e2baba',
+    pink = '#e6b2d8',
+    mauve = '#ba96e7',
+    maroon = '#e09096',
+    peach = '#e69f77',
+    yellow = '#e0c795',
+    teal = '#83c8be',
+    sky = '#88cad5',
+    sapphire = '#75b8d6',
+    blue = '#82a3e5',
+    lavender = '#acb2e9',
+    green = '#a1cd93',
+    red = '#df8895',
+    text = '#c0caf5',
+    subtext1 = '#b1b7d3',
+    subtext0 = '#9fa5bf',
+    overlay2 = '#8e93ac',
+    overlay1 = '#7c8198',
+    overlay0 = '#6a6f85',
+    surface2 = '#585c71',
+    surface1 = '#474b5e',
+    surface0 = '#2B2E34', -- this
+    base = '#21242A',
+    mantle = '#1C1F25',
+    crust = '#1C1F25',
+}
+
 local kanappuccin = {
     rosewater = '#e5cec9',
     flamingo = '#e2baba',
@@ -42,10 +71,11 @@ local kanappuccin = {
     sapphire = '#7FB4CA',
     blue = '#7E9CD8',
     lavender = '#acb2e9',
-    green = '#8a9a7b',
+    -- green = '#8a9a7b',
+    green = '#98BB6C',
     red = '#df8895',
-    -- text = '#b8b4d0',
-    text = '#c0caf5',
+    -- text = '#c0caf5',
+    text = '#C5C8C6',
     subtext1 = '#b1b7d3',
     subtext0 = '#9fa5bf',
     -- text = '#CFCFCF',
@@ -77,7 +107,7 @@ return {
                 },
             })
 
-            vim.cmd.colorscheme('vscode')
+            -- vim.cmd.colorscheme('vscode')
         end,
     },
     -- {
@@ -88,6 +118,7 @@ return {
     --         })
     --     end,
     -- },
+
     {
         'gbprod/nord.nvim',
         lazy = false,
@@ -99,22 +130,45 @@ return {
                     colors.polar_night.origin = '#1E2127'
                     colors.polar_night.bright = '#22262C'
                     colors.polar_night.brighter = '#22262C'
+
+                    colors.frost.polar_water = '#7dcbc0'
                 end,
-                on_highlights = function(highlights, colors)
+                on_highlights = function(hl, c)
                     local subdued = '#9da3af'
 
-                    highlights['@variable.parameter'] = { fg = colors.snow_storm.origin }
-                    highlights['@punctuation.bracket'] = { fg = subdued }
-                    highlights['@punctuation.delimiter'] = { fg = subdued }
+                    hl['@type.builtin'] = { link = '@type' }
+
+                    hl['@variable.parameter'] = { fg = c.snow_storm.origin }
+
+                    hl['@operator'] = { fg = subdued }
+                    hl['@keyword.conditional.ternary'] = { fg = '#b48ead' }
+                    hl['@punctuation.separator.keyvalue'] = { fg = subdued }
+                    hl['@punctuation.bracket'] = { fg = subdued }
+                    hl['@punctuation.delimiter'] = { fg = subdued }
+                    hl['@tag.delimiter'] = { fg = subdued }
+
+                    -- new
+                    -- hl['@type'] = { fg = '#7DCBC0' }
+
+                    hl['@boolean'] = { fg = '#d08770' }
+                    hl['@number'] = { fg = '#d08770' }
+                    -- hl['@boolean'] = { fg = '#81a1c1' }
+                    hl['@constant.falsy'] = { link = '@boolean' }
+
+                    hl['@keyword.angular'] = { fg = c.frost.polar_water }
+                    hl['@keyword.conditional.angular'] = { fg = '#b48ead' }
+                    hl['@keyword.repeat.angular'] = { fg = '#b48ead' }
+
+                    -- local fn = '#81a1c1'
+                    -- hl['@function'] = { fg = fn }
+                    -- hl['@function.call'] = { fg = fn }
+                    -- hl['@function.method'] = { fg = fn }
+                    -- hl['@function.method.call'] = { fg = fn }
+                    --
+                    -- hl['@keyword'] = { fg = '#88c0d0' }
+                    -- hl['@variable.builtin'] = { fg = '#88c0d0' }
                 end,
             })
-            -- vim.cmd.colorscheme('nord')
-        end,
-    },
-    {
-        'felipeagc/fleet-theme-nvim',
-        config = function()
-            -- vim.cmd('colorscheme fleet')
         end,
     },
     {
@@ -134,19 +188,6 @@ return {
             end,
         },
     },
-    -- {
-    --     dir = '~/git/no-clown-fiesta.nvim',
-    --     config = function()
-    --         require('no-clown-fiesta').setup({
-    --             transparent = false,
-    --             styles = {
-    --                 lsp = { undercurl = true },
-    --             },
-    --         })
-    --
-    --         -- vim.cmd.colorscheme('no-clown-fiesta')
-    --     end,
-    -- },
     {
         'aktersnurra/no-clown-fiesta.nvim',
         config = function()
@@ -174,14 +215,14 @@ return {
                 overrides = function(colors)
                     local palette = colors.palette
                     return {
-                        Constant = { fg = palette.oniViolet2 },
-                        Identifier = { fg = palette.oniViolet2 },
-                        Operator = { fg = palette.oniViolet2 },
-                        String = { fg = palette.dragonGreen2 },
-                        ['@variable'] = { fg = palette.oniViolet2 },
-                        ['@variable.member'] = { fg = palette.oniViolet2 },
-                        ['@type.builtin'] = { fg = palette.dragonYellow },
-                        ['@keyword.return'] = { fg = palette.oniViolet },
+                        Constant = { fg = 'none' },
+                        Identifier = { fg = 'none' },
+                        Operator = { fg = 'none' },
+                        -- String = { fg = palette.dragonGreen2 },
+                        -- ['@variable'] = { fg = palette.oniViolet2 },
+                        ['@variable.member'] = { fg = 'none' },
+                        -- ['@type.builtin'] = { fg = palette.dragonYellow },
+                        -- ['@keyword.return'] = { fg = palette.oniViolet },
                     }
                 end,
                 theme = 'dragon',
@@ -323,11 +364,11 @@ return {
                 end,
                 color_overrides = {
                     macchiato = custom_catppuccin,
-                    mocha = kanappuccin,
+                    mocha = custom_catppuccin2,
                 },
             })
 
-            -- vim.cmd.colorscheme('catppuccin')
+            vim.cmd.colorscheme('catppuccin-mocha')
         end,
     },
 }
