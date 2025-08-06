@@ -51,23 +51,6 @@ local import_source_component = {
     end,
 }
 
-local print_type = function()
-    local success, node = pcall(vim.treesitter.get_node, { ignore_injections = false })
-    if success and node then
-        vim.print(node:type())
-    else
-        vim.print('parent?')
-        vim.prrint(node:parent():type())
-    end
-end
-
-vim.keymap.set('n', '<C-]>', function()
-    print_type()
-end)
-vim.keymap.set('i', '<C-]>', function()
-    print_type()
-end)
-
 return {
     'saghen/blink.cmp',
     version = '1.*',

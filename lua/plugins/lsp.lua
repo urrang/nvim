@@ -1,10 +1,9 @@
 local servers = {
     ts_ls = {},
-    -- vtsls = {},
     cssls = {},
     html = {},
     astro = {},
-    volar = {}, -- vue
+    vue_ls = {},
     emmet_language_server = {},
     elixirls = {},
     omnisharp = {},
