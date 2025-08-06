@@ -1,12 +1,3 @@
-vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
-    desc = 'Runs when a file is changed',
-    group = vim.api.nvim_create_augroup('file-change-augroup', { clear = false }),
-    -- pattern = { '*.js', '*.ts' },
-    callback = function(ctx)
-        vim.print('FILE CHANGED 123')
-    end,
-})
-
 vim.api.nvim_create_autocmd('TextYankPost', {
     desc = 'Highlight when yanking text',
     group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
