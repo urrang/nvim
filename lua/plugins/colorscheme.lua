@@ -234,7 +234,7 @@ return {
         'catppuccin/nvim',
         config = function()
             require('catppuccin').setup({
-                flavour = 'macchiato',
+                flavour = 'mocha',
                 no_italic = true,
                 no_bold = true,
                 integrations = {
@@ -260,66 +260,42 @@ return {
                 },
                 custom_highlights = function(colors)
                     return {
+                        ['Type'] = { fg = colors.teal },
+                        ['Constant'] = { fg = colors.maroon },
+                        ['StorageClass'] = { fg = colors.text },
+
+                        ['@type'] = { fg = colors.teal },
+                        ['@type.builtin'] = { fg = colors.yellow },
                         ['@type.qualifier'] = { fg = colors.mauve },
+                        ['@type.typescript'] = { fg = colors.text }, -- imports, anything else?
+                        ['@operator'] = { fg = colors.subtext1 },
                         ['@parameter'] = { fg = colors.text },
                         ['@property'] = { fg = colors.text },
-                        ['@operator'] = { fg = colors.subtext1 },
-                        ['@type'] = { fg = colors.teal },
-                        ['Type'] = { fg = colors.teal },
-
-                        ['@conditional'] = { fg = colors.mauve },
-                        ['@keyword'] = { fg = colors.mauve },
-                        ['@keyword.export'] = { fg = colors.mauve },
+                        ['@variable.parameter'] = { fg = colors.text },
                         ['@constructor.typescript'] = { fg = colors.mauve },
-                        ['@type.typescript'] = { fg = colors.text }, -- imports, anything else?
-
-                        -- ['@variable.builtin'] = { fg = colors.red },
-                        -- ['@variable.builtin'] = { fg = '#707fc2' },
-                        ['@constant.builtin'] = { fg = colors.peach },
-                        ['@constant.falsy'] = { fg = colors.peach },
                         ['@function.builtin'] = { fg = colors.blue },
 
-                        ['@number'] = { fg = colors.peach },
-                        ['@boolean'] = { fg = colors.peach },
-
-                        ['cssDefinition'] = { fg = colors.text },
-                        ['StorageClass'] = { fg = colors.text },
-                        ['cssCustomProp'] = { fg = colors.text },
-                        ['cssValueLength'] = { fg = colors.green },
-                        ['cssUnitDecorators'] = { fg = colors.green },
-                        ['cssColor'] = { fg = colors.green },
-
-                        ['cssValueNumber'] = { fg = colors.maroon },
-                        ['cssAttrRegion'] = { fg = colors.maroon },
-                        ['cssFunction'] = { fg = colors.text },
-                        ['Constant'] = { fg = colors.maroon },
-
-                        ['@lsp.typemod.variable.defaultLibrary.typescript'] = { link = '@variable' },
-                        ['@lsp.type.variable'] = { link = '@variable' },
-                        ['@lsp.type.interface'] = { link = 'Type' },
-                        ['@lsp.type.class.typescript'] = { link = 'Type' },
-                        ['@lsp.type.enumMember'] = { fg = colors.text },
-
-                        ['@text.title'] = { fg = colors.text },
-                        ['@text.strong'] = { fg = colors.text },
+                        -- CSS
+                        ['@property.css'] = { fg = colors.text },
+                        ['@string.plain.css'] = { fg = colors.peach },
+                        ['@type.tag.css'] = { fg = colors.mauve },
+                        -- CSS in tagged template literals
+                        ['@property.class.styled'] = { link = '@property.class.css' },
+                        ['@string.plain.styled'] = { link = '@string.plain.css' },
+                        ['@type.tag.styled'] = { link = '@type.tag.css' },
 
                         -- Angular and html
-                        ['@tag'] = { fg = colors.blue },
                         ['@tag.delimiter'] = { fg = colors.subtext0 },
                         ['@tag.attribute'] = { fg = colors.sky },
                         ['@keyword.html'] = { fg = colors.sky },
                         ['@keyword.angular'] = { fg = colors.sky },
                         ['@keyword.conditional.ternary.angular'] = { fg = colors.subtext1 },
+
                         ['@markup.heading'] = { fg = colors.text },
+                        ['@text.title'] = { fg = colors.text },
+                        ['@text.strong'] = { fg = colors.text },
 
-                        -- CSS in tagged template literals
-                        ['@property.styled'] = { link = '@property.css' },
-                        ['@property.class.styled'] = { link = '@property.class.css' },
-                        ['@string.plain.styled'] = { link = '@string.plain.css' },
-                        ['@type.tag.styled'] = { link = '@type.tag.css' },
-                        --
-
-                        BlinkCmpMenu = { bg = colors.base },
+                        -- BlinkCmpMenu = { bg = colors.base },
                         BlinkCmpMenuBorder = { fg = colors.surface2, bg = colors.base },
                         BlinkCmpMenuSelection = { fg = colors.crust, bg = colors.blue },
                         BlinkCmpLabelDescription = { fg = colors.overlay2 },
@@ -341,11 +317,7 @@ return {
                         SnacksPickerRow = { link = 'NonText' },
                         SnacksPickerMatch = { fg = colors.blue },
 
-                        -- Smart-open file path
-                        Directory = { fg = colors.overlay1 },
-
                         -- Lualine grapple tags
-                        -- GrappleActive = { bg = colors.base, fg = colors.text },
                         GrappleActive = { bg = colors.mantle, fg = colors.text },
                         GrappleInactive = { bg = colors.mantle, fg = colors.surface2 },
 
@@ -353,7 +325,6 @@ return {
                         MacroRecordingWarning = { fg = colors.yellow, bg = colors.mantle },
 
                         -- Telescope
-                        -- TelescopeFileName = { fg = colors.blue },
                         TelescopeRelativePath = { fg = colors.overlay1 },
 
                         GitConflictAncestorLabel = { fg = colors.text, bg = colors.surface0 },
