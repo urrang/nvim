@@ -77,6 +77,20 @@ vim.api.nvim_create_autocmd('LspAttach', {
             })
         end, 'Go to definition')
 
+        -- if client then
+        --     vim.print(client.name)
+        -- end
+        --
+        -- if client and client.name == 'svelte' then
+        --     vim.api.nvim_create_autocmd('BufWritePost', {
+        --         pattern = { '*.js', '*.ts' },
+        --         callback = function(ctx)
+        --             vim.print('changed file')
+        --             client.notify('$/onDidChangeTsOrJsFile', { uri = ctx.match })
+        --         end,
+        --     })
+        -- end
+
         if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
             map('n', '<leader>th', function()
                 vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
@@ -125,6 +139,19 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end,
 })
 
+local servers2 = {
+    'ts_ls',
+    'html',
+    'cssls',
+    'jsonls',
+    'svelte',
+    'astro',
+    'prismals',
+    'vue_ls',
+    'lua_ls',
+    'emmet_language_server',
+}
+
 return {
     {
         'neovim/nvim-lspconfig',
@@ -132,49 +159,11 @@ return {
         event = 'VeryLazy',
         cmd = { 'LspInfo', 'LspInstall', 'LspUninstall' },
         dependencies = {
-            -- { 'williamboman/mason.nvim' },
-            -- { 'williamboman/mason-lspconfig.nvim' },
-            -- 'mason-org/mason.nvim',
             { 'mason-org/mason.nvim', opts = {} },
             'mason-org/mason-lspconfig.nvim',
-            'WhoIsSethDaniel/mason-tool-installer.nvim',
-            'saghen/blink.cmp',
         },
         config = function()
-            local capabilities = require('blink.cmp').get_lsp_capabilities()
-
-            local ensure_installed = vim.list_extend(vim.tbl_keys(servers), { 'stylua' })
-
-            require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
-
-            -- for s_name, s_config in pairs(servers) do
-            --     s_config.capabilities = vim.tbl_deep_extend('force', {}, capabilities, s_config.capabilities or {})
-            --     require('lspconfig')[s_name].setup(s_config or {})
-            -- end
-
-            for server, config in pairs(servers) do
-                if not vim.tbl_isempty(config) then
-                    config.capabilities = vim.tbl_deep_extend('force', {}, capabilities, config.capabilities or {})
-                    vim.lsp.config(server, config)
-                end
-            end
-
-            require('mason-lspconfig').setup({
-                ensure_installed = {},
-                automatic_enable = true,
-            })
-
-            -- require('mason-lspconfig').setup({
-            --     ensure_installed = {},
-            --     automatic_installation = false,
-            --     handlers = {
-            --         function(server_name)
-            --             local server = servers[server_name] or {}
-            --             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            --             require('lspconfig')[server_name].setup(server)
-            --         end,
-            --     },
-            -- })
+            require('mason-lspconfig').setup({ ensure_installed = servers2 })
         end,
     },
 }
