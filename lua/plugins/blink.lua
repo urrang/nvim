@@ -76,18 +76,17 @@ return {
 
                 return { 'lsp', 'path', 'snippets' }
             end,
-            -- providers = {
-            --     snippets = { enabled = check_enabled },
-            --     path = { enabled = check_path_enabled },
-            --     lsp = { enabled = check_enabled },
-            -- },
-            min_keyword_length = function()
-                if vim.bo.filetype == 'css' or vim.bo.filetype == 'html' then
-                    return 1
-                else
-                    return 0
-                end
-            end,
+            providers = {
+                lsp = {
+                    min_keyword_length = function()
+                        if vim.bo.filetype == 'css' or vim.bo.filetype == 'html' then
+                            return 1
+                        else
+                            return 0
+                        end
+                    end,
+                },
+            },
         },
         keymap = {
             preset = 'super-tab',
@@ -95,21 +94,16 @@ return {
             ['<C-j>'] = { 'select_next', 'fallback' },
             ['<CR>'] = { 'accept', 'fallback' },
             ['<C-y>'] = { 'accept', 'fallback' },
-            -- ['>'] = {
-            --     function(cmp)
-            --         cmp.hide()
-            --     end,
-            --     'fallback',
-            -- },
         },
         completion = {
             trigger = {
                 show_on_insert_on_trigger_character = false,
+                show_in_snippet = false,
             },
             list = {
                 max_items = 30,
             },
-            accept = { auto_brackets = { enabled = true } },
+            -- accept = { auto_brackets = { enabled = true } },
             menu = {
                 border = OPTS.float_border,
                 winblend = OPTS.winblend,

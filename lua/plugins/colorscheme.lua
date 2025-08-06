@@ -295,7 +295,7 @@ return {
                         ['@text.title'] = { fg = colors.text },
                         ['@text.strong'] = { fg = colors.text },
 
-                        -- BlinkCmpMenu = { bg = colors.base },
+                        BlinkCmpMenu = { bg = colors.base },
                         BlinkCmpMenuBorder = { fg = colors.surface2, bg = colors.base },
                         BlinkCmpMenuSelection = { fg = colors.crust, bg = colors.blue },
                         BlinkCmpLabelDescription = { fg = colors.overlay2 },

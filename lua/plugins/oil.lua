@@ -17,7 +17,7 @@ vim.api.nvim_create_autocmd('User', {
             if action.type == 'delete' and action.entry_type == 'file' then
                 local bufnr = get_buf_nr(action.url)
                 if bufnr ~= -1 then
-                    -- vim.cmd('bdelete ' .. bufnr)
+                    vim.cmd('bdelete ' .. bufnr)
                     if grapple.exists({ buffer = bufnr }) then
                         grapple.untag({ buffer = bufnr })
                     end
