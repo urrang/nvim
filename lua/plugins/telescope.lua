@@ -15,33 +15,16 @@ return {
         -- },
     },
     keys = {
-        -- map('<leader>fg', 'Telescope live_grep', 'Find by Grep'),
-        -- map('<leader>fw', 'Telescope grep_string', 'Grep word under cursor'),
-        -- map('<leader>fb', 'Telescope buffers theme=dropdown prompt_title=', 'Find buffer'),
         map('<leader>fr', 'Telescope resume', 'Resume last search'),
-        map(
-            '<leader>fd',
-            'Telescope diagnostics theme=dropdown severity_limit=WARN initial_mode=normal',
-            'Find diagnostics'
-        ),
-        map('<leader>fs', 'Telescope persisted theme=dropdown prompt_title=', 'Find session'),
+        map('<leader>fg', 'Telescope live_grep', 'Find by Grep'),
+        map('<leader>fb', 'Telescope buffers theme=dropdown initial_mode=normal prompt_title=', 'Find buffer'),
+        -- map('<leader>fs', 'Telescope persisted theme=dropdown prompt_title=', 'Find session'),
         map('<leader>gB', 'Telescope git_branches', 'Find branch'),
 
         -- map('<C-p>', 'Telescope smart_open cwd_only=true theme=dropdown prompt_title=', 'Find file'),
         -- map('<leader>ff', 'Telescope smart_open cwd_only=true theme=dropdown prompt_title=', 'Find file'),
 
         map('gr', 'Telescope lsp_references', 'LSP references'),
-
-        {
-            '<leader>/',
-            function()
-                require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown({
-                    winblend = 5,
-                    previewer = false,
-                }))
-            end,
-            desc = 'Find in current buffer',
-        },
     },
     opts = function()
         local telescope = require('telescope')
@@ -119,29 +102,22 @@ return {
                     prompt_title = '',
                     show_remote_tracking_branches = false,
                 },
-                -- live_grep = {
-                --     preview = { hide_on_startup = false },
-                --     prompt_title = '',
-                --     results_title = '',
-                --     preview_title = '',
-                --     vimgrep_arguments = {
-                --         'rg',
-                --         '--color=never',
-                --         '--no-heading',
-                --         '--with-filename',
-                --         '--line-number',
-                --         '--column',
-                --         '--smart-case',
-                --         '--fixed-strings', -- search for literal strings instead of regex
-                --     },
-                -- },
-                -- grep_string = {
-                --     initial_mode = 'normal',
-                --     preview = { hide_on_startup = false },
-                --     prompt_title = '',
-                --     results_title = '',
-                --     preview_title = '',
-                -- },
+                live_grep = {
+                    preview = { hide_on_startup = false },
+                    prompt_title = '',
+                    results_title = '',
+                    preview_title = '',
+                    vimgrep_arguments = {
+                        'rg',
+                        '--color=never',
+                        '--no-heading',
+                        '--with-filename',
+                        '--line-number',
+                        '--column',
+                        '--smart-case',
+                        '--fixed-strings', -- search for literal strings instead of regex
+                    },
+                },
                 lsp_references = {
                     initial_mode = 'normal',
                     preview = { hide_on_startup = false },

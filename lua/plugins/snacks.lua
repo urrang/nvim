@@ -30,50 +30,35 @@ return {
             end,
             desc = 'Smart Find Files',
         },
-        {
-            '<leader>fg',
-            function()
-                Snacks.picker.grep({
-                    regex = false,
-                    layout = {
-                        layout = {
-                            backdrop = false,
-                        },
-                    },
-                })
-            end,
-        },
-        {
-            '<leader>fb',
-            function()
-                Snacks.picker.buffers({
-                    layout = {
-                        preset = 'select',
-                        layout = {
-                            width = 0.3,
-                            height = 0.3,
-                            min_width = 40,
-                        },
-                        -- preview = false,
-                    },
-                })
-            end,
-        },
-        {
-            '<leader>e',
-            function()
-                Snacks.explorer()
-            end,
-            desc = 'File Explorer',
-        },
-        {
-            'gr',
-            function()
-                Snacks.picker.lsp_references()
-            end,
-            nowait = true,
-            desc = 'References',
-        },
+        -- {
+        --     '<leader>fg',
+        --     function()
+        --         Snacks.picker.grep({
+        --             regex = false,
+        --             layout = {
+        --                 layout = {
+        --                     backdrop = false,
+        --                 },
+        --             },
+        --         })
+        --     end,
+        -- },
+        -- {
+        --     '<leader>fb',
+        --     function()
+        --         Snacks.picker.buffers({
+        --             layout = {
+        --                 preset = 'select',
+        --                 layout = {
+        --                     width = 0.3,
+        --                     height = 0.3,
+        --                     min_width = 40,
+        --                 },
+        --                 -- preview = false,
+        --             },
+        --         })
+        --     end,
+        -- },
     },
     opts = {
         picker = {
@@ -86,16 +71,5 @@ return {
         },
 
         bigfile = { enabled = true },
-
-        -- REVISIT: are these enabled by default?
-
-        -- dashboard = { enabled = false },
-        -- indent = { enabled = false },
-        -- input = { enabled = false },
-        -- notifier = { enabled = false },
-        -- quickfile = { enabled = false },
-        -- scroll = { enabled = false },
-        -- statuscolumn = { enabled = false },
-        -- words = { enabled = false },
     },
 }
