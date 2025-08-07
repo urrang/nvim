@@ -6,8 +6,15 @@ return {
     'nvim-telescope/telescope.nvim',
     event = 'VeryLazy',
     dependencies = {
+        {
+            'nvim-telescope/telescope-fzf-native.nvim',
+            build = 'make',
+            cond = function()
+                return vim.fn.executable('make') == 1
+            end,
+        },
         'nvim-lua/plenary.nvim',
-        { 'nvim-telescope/telescope-fzy-native.nvim', build = 'make' },
+        -- { 'nvim-telescope/telescope-fzy-native.nvim', build = 'make' },
         -- {
         --     'danielfalk/smart-open.nvim',
         --     branch = '0.3.x',
@@ -26,19 +33,12 @@ return {
 
         map('gr', 'Telescope lsp_references', 'LSP references'),
     },
-    opts = function()
+    config = function()
         local telescope = require('telescope')
-
-        telescope.load_extension('fzy_native')
-        -- telescope.load_extension('smart_open')
-        telescope.load_extension('persisted')
-
         local actions = require('telescope.actions')
 
-        return {
+        telescope.setup({
             defaults = {
-                -- border = true,
-                -- prompt_prefix = '   ',
                 prompt_prefix = ' ',
                 selection_caret = ' ',
                 entry_prefix = ' ',
@@ -130,13 +130,131 @@ return {
                     promp_title = '',
                 },
             },
-            extensions = {
-                persisted = {
-                    layout_config = {
-                        initial_mode = 'normal',
-                    },
-                },
-            },
-        }
+            -- extensions = {
+            --     persisted = {
+            --         layout_config = {
+            --             initial_mode = 'normal',
+            --         },
+            --     },
+            -- },
+        })
+
+        -- Enable Telescope extensions if they are installed
+        pcall(telescope.load_extension, 'fzf')
+        -- pcall(telescope.load_extension('smart_open'))
+        -- pcall(telescope.load_extension('persisted'))
     end,
+    -- opts = function()
+    --     local telescope = require('telescope')
+    --
+    --     telescope.load_extension('fzy_native')
+    --     -- telescope.load_extension('smart_open')
+    --     telescope.load_extension('persisted')
+    --
+    --     local actions = require('telescope.actions')
+    --
+    --     return {
+    --         defaults = {
+    --             -- border = true,
+    --             -- prompt_prefix = '   ',
+    --             prompt_prefix = ' ',
+    --             selection_caret = ' ',
+    --             entry_prefix = ' ',
+    --
+    --             initial_mode = 'insert',
+    --             selection_strategy = 'reset',
+    --             sorting_strategy = 'ascending',
+    --             layout_strategy = 'horizontal',
+    --             layout_config = {
+    --                 horizontal = {
+    --                     prompt_position = 'top',
+    --                 },
+    --                 vertical = {
+    --                     mirror = false,
+    --                 },
+    --             },
+    --             path_display = function(opts, path)
+    --                 local filename = require('telescope.utils').path_tail(path)
+    --
+    --                 -- Remove everything up to and including cwd from the path
+    --                 local cwd = vim.fn.getcwd()
+    --                 path = string.gsub(path, cwd .. '/', '')
+    --
+    --                 -- Remove location and code preview from the path
+    --                 -- path = path:match("(.-)%).*")
+    --
+    --                 -- local relative_path = remove_cwd_from_path(path)
+    --                 return string.format('%s (%s)', filename, path),
+    --                     {
+    --                         { { 1, #filename }, 'TelescopeFileName' },
+    --                         { { #filename, 999 }, 'TelescopeRelativePath' },
+    --                         -- { { #filename + 1, #filename + #path + 1 }, 'TelescopeRelativePath' }
+    --                     }
+    --
+    --                 -- return string.format(' %%#TelescopeFileName# %s %%#TelescopeRelativePath# %s', filename, path)
+    --             end,
+    --             preview = {
+    --                 hide_on_startup = true, -- hide previewer when picker starts
+    --             },
+    --             mappings = {
+    --                 i = {
+    --                     ['<C-p>'] = require('telescope.actions.layout').toggle_preview,
+    --                     ['<C-j>'] = actions.move_selection_next,
+    --                     ['<C-k>'] = actions.move_selection_previous,
+    --                 },
+    --                 n = {
+    --                     ['<C-p>'] = require('telescope.actions.layout').toggle_preview,
+    --                     ['<C-j>'] = actions.move_selection_next,
+    --                     ['<C-k>'] = actions.move_selection_previous,
+    --                 },
+    --             },
+    --             file_ignore_patterns = {
+    --                 'src/assets/pdfjs/*',
+    --                 'src/assets/stimulsoft/*',
+    --             },
+    --         },
+    --         pickers = {
+    --             git_branches = {
+    --                 initial_mode = 'normal',
+    --                 layout_strategy = 'bottom_pane',
+    --                 prompt_title = '',
+    --                 show_remote_tracking_branches = false,
+    --             },
+    --             live_grep = {
+    --                 preview = { hide_on_startup = false },
+    --                 prompt_title = '',
+    --                 results_title = '',
+    --                 preview_title = '',
+    --                 vimgrep_arguments = {
+    --                     'rg',
+    --                     '--color=never',
+    --                     '--no-heading',
+    --                     '--with-filename',
+    --                     '--line-number',
+    --                     '--column',
+    --                     '--smart-case',
+    --                     '--fixed-strings', -- search for literal strings instead of regex
+    --                 },
+    --             },
+    --             lsp_references = {
+    --                 initial_mode = 'normal',
+    --                 preview = { hide_on_startup = false },
+    --                 layout_config = {
+    --                     width = 0.75,
+    --                 },
+    --             },
+    --             filetypes = {
+    --                 theme = 'dropdown',
+    --                 promp_title = '',
+    --             },
+    --         },
+    --         -- extensions = {
+    --         --     persisted = {
+    --         --         layout_config = {
+    --         --             initial_mode = 'normal',
+    --         --         },
+    --         --     },
+    --         -- },
+    --     }
+    -- end,
 }
