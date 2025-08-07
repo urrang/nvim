@@ -1,59 +1,8 @@
-local servers = {
-    ts_ls = {},
-    cssls = {},
-    html = {},
-    astro = {},
-    vue_ls = {},
-    emmet_language_server = {},
-    elixirls = {},
-    omnisharp = {},
-    svelte = {
-        on_attach = function(client)
-            vim.api.nvim_create_autocmd('BufWritePost', {
-                pattern = { '*.js', '*.ts' },
-                callback = function(ctx)
-                    client.notify('$/onDidChangeTsOrJsFile', { uri = ctx.match })
-                end,
-            })
-        end,
-    },
-    jsonls = {
-        settings = {
-            json = {
-                schemas = {
-                    {
-                        fileMatch = { 'package.json' },
-                        url = 'https://json.schemastore.org/package.json',
-                    },
-                    {
-                        fileMatch = { 'tsconfig*.json' },
-                        url = 'https://json.schemastore.org/tsconfig.json',
-                    },
-                    {
-                        fileMatch = { '.prettierrc' },
-                        url = 'https://json.schemastore.org/prettierrc.json',
-                    },
-                },
-            },
-        },
-    },
-    lua_ls = {
-        settings = {
-            Lua = {
-                workspace = { checkThirdParty = false },
-                telemetry = { enable = false },
-                diagnostics = { globals = { 'vim' } },
-            },
-        },
-    },
-}
-
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('au-lsp-attach', { clear = true }),
     callback = function(event)
         local client = vim.lsp.get_client_by_id(event.data.client_id)
 
-        -- Set keymaps
         local map = function(mode, keys, func, desc)
             vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
         end
@@ -73,24 +22,16 @@ vim.api.nvim_create_autocmd('LspAttach', {
             })
         end, 'Go to definition')
 
-        if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-            map('n', '<leader>th', function()
-                vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
-            end, 'Toggle Inlay Hints')
-        end
-
         -- Highlight references of word under cursor
-        if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+        if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
             local highlight_augroup = vim.api.nvim_create_augroup('au-lsp-highlight', { clear = false })
 
-            -- vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
             vim.api.nvim_create_autocmd({ 'CursorHold' }, {
                 buffer = event.buf,
                 group = highlight_augroup,
                 callback = vim.lsp.buf.document_highlight,
             })
 
-            -- vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
             vim.api.nvim_create_autocmd({ 'CursorMoved' }, {
                 buffer = event.buf,
                 group = highlight_augroup,
@@ -106,47 +47,53 @@ vim.api.nvim_create_autocmd('LspAttach', {
             })
         end
 
+        vim.keymap.set('n', 'ge', function()
+            vim.diagnostic.open_float(nil, {
+                focusable = true,
+                -- close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter' },
+                border = OPTS.float_border,
+                scope = 'cursor',
+            })
+        end)
+
         -- Show diagnostics under cursor
-        vim.api.nvim_create_autocmd('CursorHold', {
-            desc = 'Show diagnostics on CursorHold',
-            callback = function()
-                vim.diagnostic.open_float(nil, {
-                    focusable = false,
-                    close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter' },
-                    border = OPTS.float_border,
-                    scope = 'cursor',
-                })
-            end,
-        })
+        -- vim.api.nvim_create_autocmd('CursorHold', {
+        --     desc = 'Show diagnostics on CursorHold',
+        --     callback = function()
+        --         vim.diagnostic.open_float(nil, {
+        --             focusable = false,
+        --             close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter' },
+        --             border = OPTS.float_border,
+        --             scope = 'cursor',
+        --         })
+        --     end,
+        -- })
     end,
 })
 
 return {
     {
         'neovim/nvim-lspconfig',
-        event = { 'BufReadPre', 'BufNewFile' },
+        -- event = { 'BufReadPre', 'BufNewFile' },
+        event = 'VeryLazy',
+        cmd = { 'LspInfo', 'LspInstall', 'LspUninstall' },
         dependencies = {
-            { 'williamboman/mason.nvim' },
-            { 'williamboman/mason-lspconfig.nvim' },
-            { 'WhoIsSethDaniel/mason-tool-installer.nvim' },
-            { 'saghen/blink.cmp' },
+            { 'mason-org/mason.nvim', opts = {} },
+            'mason-org/mason-lspconfig.nvim',
         },
         config = function()
-            require('mason').setup()
-
-            local capabilities = require('blink.cmp').get_lsp_capabilities()
-
-            local ensure_installed = vim.list_extend(vim.tbl_keys(servers), { 'stylua' })
-
-            require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
-
             require('mason-lspconfig').setup({
-                handlers = {
-                    function(server_name)
-                        local server = servers[server_name] or {}
-                        server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-                        require('lspconfig')[server_name].setup(server)
-                    end,
+                ensure_installed = {
+                    'ts_ls',
+                    'html',
+                    'cssls',
+                    'jsonls',
+                    'svelte',
+                    'astro',
+                    'prismals',
+                    'vue_ls',
+                    'lua_ls',
+                    'emmet_language_server',
                 },
             })
         end,
