@@ -328,9 +328,11 @@ return {
                         MacroRecordingWarning = { fg = colors.yellow, bg = colors.mantle },
 
                         -- Telescope
-                        TelescopeRelativePath = { fg = colors.overlay1 },
+                        -- TelescopeRelativePath = { fg = colors.overlay1 },
                         TelescopePathSeparator = { fg = colors.overlay1 },
+                        TelescopeResultsComment = { fg = colors.overlay1 },
                         TelescopeSelection = { fg = colors.text },
+                        TelescopeBufferLoaded = { fg = colors.text },
 
                         GitConflictAncestorLabel = { fg = colors.text, bg = colors.surface0 },
                         GitConflictAncestor = { bg = colors.surface0 },

@@ -23,7 +23,8 @@ return {
         map('<leader>gB', 'Telescope git_branches', 'Find branch'),
 
         map('gr', 'Telescope lsp_references', 'LSP references'),
-        map('<leader>ft', 'Telescope frecency workspace=CWD theme=dropdown', 'Find filed (frecency)'),
+
+        map('<C-p>', 'Telescope frecency workspace=CWD theme=dropdown', 'Find filed (frecency)'),
     },
     config = function()
         local telescope = require('telescope')
@@ -70,7 +71,7 @@ return {
                 --     -- return string.format('%s (%s)', filename, path),
                 --     --     {
                 --     --         { { 1, #filename }, 'TelescopeFileName' },
-                --     --         { { #filename, 999 }, 'TelescopeRelativePath' },
+                --     --         { { #filename, 999 }, 'TelescopeResultsComment' },
                 --     --     }
                 -- end,
                 mappings = {
@@ -128,7 +129,7 @@ return {
                             return grep_entry_displayer({
                                 { icon, iconhl },
                                 filename,
-                                { relative_path, 'TelescopeRelativePath' },
+                                { relative_path, 'TelescopeResultsComment' },
                             })
                         end
 

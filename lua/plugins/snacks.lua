@@ -3,33 +3,34 @@ return {
     priority = 1000,
     lazy = false,
     keys = {
-        {
-            '<C-p>',
-            function()
-                Snacks.picker.smart({
-                    -- multi = { 'buffers', 'files' },
-                    filter = { cwd = true },
-                    layout = {
-                        preview = false,
-                        layout = {
-                            backdrop = false,
-                            width = 0.3,
-                            min_width = 40,
-                            height = 0.3,
-                            min_height = 3,
-                            box = 'vertical',
-                            border = OPTS.float_border,
-                            title = '',
-                            title_pos = 'center',
-                            { win = 'input', height = 1, border = 'bottom' },
-                            { win = 'list', border = 'none' },
-                            { win = 'preview', title = '{preview}', height = 0.3, border = 'top' },
-                        },
-                    },
-                })
-            end,
-            desc = 'Smart Find Files',
-        },
+        -- {
+        --     -- '<C-p>',
+        --     '<leader>fo',
+        --     function()
+        --         Snacks.picker.smart({
+        --             -- multi = { 'buffers', 'files' },
+        --             filter = { cwd = true },
+        --             layout = {
+        --                 preview = false,
+        --                 layout = {
+        --                     backdrop = false,
+        --                     width = 0.3,
+        --                     min_width = 40,
+        --                     height = 0.3,
+        --                     min_height = 3,
+        --                     box = 'vertical',
+        --                     border = OPTS.float_border,
+        --                     title = '',
+        --                     title_pos = 'center',
+        --                     { win = 'input', height = 1, border = 'bottom' },
+        --                     { win = 'list', border = 'none' },
+        --                     { win = 'preview', title = '{preview}', height = 0.3, border = 'top' },
+        --                 },
+        --             },
+        --         })
+        --     end,
+        --     desc = 'Smart Find Files',
+        -- },
         -- {
         --     '<leader>fg',
         --     function()
@@ -61,14 +62,14 @@ return {
         -- },
     },
     opts = {
-        picker = {
-            enabled = true,
-            formatters = {
-                file = {
-                    filename_first = true,
-                },
-            },
-        },
+        -- picker = {
+        --     enabled = true,
+        --     formatters = {
+        --         file = {
+        --             filename_first = true,
+        --         },
+        --     },
+        -- },
 
         bigfile = { enabled = true },
     },
