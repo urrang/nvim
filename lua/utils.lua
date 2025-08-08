@@ -92,4 +92,46 @@ M.auto_await = function()
     vim.api.nvim_buf_set_text(0, start_row, start_col, start_row, start_col, { 'async ' })
 end
 
+M.git_blame = function()
+    local api = vim.api
+    local bufnr = api.nvim_get_current_buf()
+    local linenr = api.nvim_win_get_cursor(0)[1]
+
+    -- Run git blame on the current line
+    local cmd = string.format('git blame -L %d,%d --porcelain %s', linenr, linenr, vim.fn.expand('%'))
+    local handle = io.popen(cmd)
+    if not handle then
+        print('Failed to run git blame')
+        return
+    end
+
+    local result = handle:read('*a')
+    handle:close()
+
+    -- Parse author and summary
+    local author = result:match('author (.-)\n') or 'Unknown'
+    local summary = result:match('summary (.-)\n') or 'No summary'
+    local time = result:match('author-time (%d+)\n')
+    local date = time and os.date('%Y-%m-%d %H:%M:%S', tonumber(time)) or 'Unknown date'
+
+    local blame_text = string.format('Author: %s\nDate: %s\nSummary: %s', author, date, summary)
+
+    -- Create floating window
+    local width = 50
+    local height = 5
+    local opts = {
+        relative = 'cursor',
+        width = width,
+        height = height,
+        col = 1,
+        row = 1,
+        style = 'minimal',
+        border = 'rounded',
+    }
+
+    local buf = api.nvim_create_buf(false, true)
+    api.nvim_buf_set_lines(buf, 0, -1, false, vim.split(blame_text, '\n'))
+    api.nvim_open_win(buf, true, opts)
+end
+
 return M

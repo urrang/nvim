@@ -127,3 +127,8 @@ end)
 map({ 'n', 'v' }, '<leader>gob', function()
     utils.open_in_github(true)
 end)
+
+-- Show git blame in floating panel
+map('n', '<leader>gb', function()
+    utils.git_blame()
+end)
