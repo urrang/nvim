@@ -303,6 +303,7 @@ return {
                         BlinkCmpLabelDescription = { fg = colors.overlay2 },
 
                         FloatBorder = { fg = colors.surface2, bg = colors.base },
+                        FloatTitle = { bg = colors.base },
                         NormalFloat = { bg = colors.base },
 
                         DiagnosticDeprecated = { style = { 'underline' } },
@@ -328,6 +329,8 @@ return {
 
                         -- Telescope
                         TelescopeRelativePath = { fg = colors.overlay1 },
+                        TelescopePathSeparator = { fg = colors.overlay1 },
+                        TelescopeSelection = { fg = colors.text },
 
                         GitConflictAncestorLabel = { fg = colors.text, bg = colors.surface0 },
                         GitConflictAncestor = { bg = colors.surface0 },
