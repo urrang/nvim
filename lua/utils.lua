@@ -5,15 +5,13 @@ local get_cmd_output = function(cmd)
     if process ~= nil then
         local output = process:read('*a')
         process:close()
-        return output:match('^%s*(.-)%s*$'):gsub('[\n\r]+', ' ')
+        return output
     end
 end
 
 local get_repo_url = function()
-    local ok, output = pcall(get_cmd_output, 'git config --get remote.origin.url')
-    if not ok then
-        return ''
-    end
+    local cmd = 'git config --get remote.origin.url'
+    local output = get_cmd_output(cmd):match('^%s*(.-)%s*$'):gsub('[\n\r]+', ' ')
 
     if output:find('git@') then
         -- Repo url is git@github.com:<repo>.git
@@ -27,7 +25,9 @@ end
 
 M.open_in_github = function(blame)
     local repo_url = get_repo_url()
-    local branch = get_cmd_output('git branch --show-current')
+    local cmd = 'git branch --show-current'
+    local branch = get_cmd_output(cmd):match('^%s*(.-)%s*$'):gsub('[\n\r]+', ' ')
+
     local file_path = string.gsub(vim.api.nvim_buf_get_name(0), vim.loop.cwd(), '')
 
     if repo_url == '' or file_path == '' then
@@ -90,6 +90,52 @@ M.auto_await = function()
 
     local start_row, start_col = function_node:start()
     vim.api.nvim_buf_set_text(0, start_row, start_col, start_row, start_col, { 'async ' })
+end
+
+M.git_blame = function()
+    local linenr = vim.api.nvim_win_get_cursor(0)[1]
+
+    -- Run git blame on the current line
+    local cmd = string.format('git blame -L %d,%d --porcelain %s', linenr, linenr, vim.fn.expand('%'))
+    local output = get_cmd_output(cmd)
+
+    -- Parse author and summary
+    local author = output:match('author (.-)\n') or 'Unknown'
+    local summary = output:match('summary (.-)\n') or 'No summary'
+    local time = output:match('author%-time (%d+)')
+    local date = time and os.date('%Y-%m-%d %H:%M:%S', tonumber(time)) or 'Unknown date'
+
+    local blame_text = string.format('%s (%s)\n%s', author, date, summary)
+
+    -- Create buffer, set text and add highlight
+    local buf = vim.api.nvim_create_buf(false, true)
+    vim.api.nvim_buf_set_lines(buf, 0, -1, false, vim.split(blame_text, '\n'))
+
+    vim.api.nvim_buf_add_highlight(buf, -1, 'GitBlameAuthor', 0, 0, #author)
+    vim.api.nvim_buf_add_highlight(buf, -1, 'GitBlameDate', 0, #author, #author + #date + 3)
+
+    vim.api.nvim_set_hl(0, 'GitBlameAuthor', { link = 'Title' })
+    vim.api.nvim_set_hl(0, 'GitBlameDate', { link = 'Comment' })
+
+    -- Open floating window
+    local win = vim.api.nvim_open_win(buf, true, {
+        relative = 'cursor',
+        width = math.min(summary:len(), 80),
+        height = 2,
+        col = 1,
+        row = 1,
+        style = 'minimal',
+        border = OPTS.float_border,
+    })
+
+    local close_win = function()
+        if vim.api.nvim_win_is_valid(win) then
+            vim.api.nvim_win_close(win, true)
+        end
+    end
+
+    vim.keymap.set('n', 'q', close_win, { buffer = buf })
+    vim.keymap.set('n', '<Esc>', close_win, { buffer = buf })
 end
 
 return M

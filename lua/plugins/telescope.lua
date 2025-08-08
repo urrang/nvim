@@ -7,104 +7,83 @@ return {
     event = 'VeryLazy',
     dependencies = {
         'nvim-lua/plenary.nvim',
-        { 'nvim-telescope/telescope-fzy-native.nvim', build = 'make' },
-        -- {
-        --     'danielfalk/smart-open.nvim',
-        --     branch = '0.3.x',
-        --     dependencies = { 'kkharji/sqlite.lua' },
-        -- },
+        'nvim-telescope/telescope-frecency.nvim',
+        {
+            'nvim-telescope/telescope-fzf-native.nvim',
+            build = 'make',
+            cond = function()
+                return vim.fn.executable('make') == 1
+            end,
+        },
     },
     keys = {
-        -- map('<leader>fg', 'Telescope live_grep', 'Find by Grep'),
-        -- map('<leader>fw', 'Telescope grep_string', 'Grep word under cursor'),
-        -- map('<leader>fb', 'Telescope buffers theme=dropdown prompt_title=', 'Find buffer'),
         map('<leader>fr', 'Telescope resume', 'Resume last search'),
-        map(
-            '<leader>fd',
-            'Telescope diagnostics theme=dropdown severity_limit=WARN initial_mode=normal',
-            'Find diagnostics'
-        ),
-        map('<leader>fs', 'Telescope persisted theme=dropdown prompt_title=', 'Find session'),
+        map('<leader>fg', 'Telescope live_grep', 'Find by Grep'),
+        map('<leader>fb', 'Telescope buffers theme=dropdown initial_mode=normal prompt_title=', 'Find buffer'),
         map('<leader>gB', 'Telescope git_branches', 'Find branch'),
-
-        -- map('<C-p>', 'Telescope smart_open cwd_only=true theme=dropdown prompt_title=', 'Find file'),
-        -- map('<leader>ff', 'Telescope smart_open cwd_only=true theme=dropdown prompt_title=', 'Find file'),
 
         map('gr', 'Telescope lsp_references', 'LSP references'),
 
-        {
-            '<leader>/',
-            function()
-                require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown({
-                    winblend = 5,
-                    previewer = false,
-                }))
-            end,
-            desc = 'Find in current buffer',
-        },
+        map('<C-p>', 'Telescope frecency workspace=CWD theme=dropdown', 'Find filed (frecency)'),
     },
-    opts = function()
+    config = function()
         local telescope = require('telescope')
 
-        telescope.load_extension('fzy_native')
-        -- telescope.load_extension('smart_open')
-        telescope.load_extension('persisted')
+        local make_entry = require('telescope.make_entry')
+        local entry_display = require('telescope.pickers.entry_display')
+        local devicons = require('nvim-web-devicons')
 
-        local actions = require('telescope.actions')
+        local grep_entry_displayer = entry_display.create({
+            separator = ' ',
+            items = { { width = 2 }, {}, { remaining = true } }, -- icon, name, path
+        })
 
-        return {
+        telescope.setup({
             defaults = {
-                -- border = true,
-                -- prompt_prefix = '   ',
+                results_title = '',
+                preview_title = '',
                 prompt_prefix = ' ',
                 selection_caret = ' ',
                 entry_prefix = ' ',
 
-                initial_mode = 'insert',
-                selection_strategy = 'reset',
                 sorting_strategy = 'ascending',
-                layout_strategy = 'horizontal',
                 layout_config = {
                     horizontal = {
                         prompt_position = 'top',
                     },
-                    vertical = {
-                        mirror = false,
-                    },
                 },
-                path_display = function(opts, path)
-                    local filename = require('telescope.utils').path_tail(path)
-
-                    -- Remove everything up to and including cwd from the path
-                    local cwd = vim.fn.getcwd()
-                    path = string.gsub(path, cwd .. '/', '')
-
-                    -- Remove location and code preview from the path
-                    -- path = path:match("(.-)%).*")
-
-                    -- local relative_path = remove_cwd_from_path(path)
-                    return string.format('%s (%s)', filename, path),
-                        {
-                            { { 1, #filename }, 'TelescopeFileName' },
-                            { { #filename, 999 }, 'TelescopeRelativePath' },
-                            -- { { #filename + 1, #filename + #path + 1 }, 'TelescopeRelativePath' }
-                        }
-
-                    -- return string.format(' %%#TelescopeFileName# %s %%#TelescopeRelativePath# %s', filename, path)
-                end,
-                preview = {
-                    hide_on_startup = true, -- hide previewer when picker starts
-                },
+                preview = { hide_on_startup = true },
+                path_display = { 'filename_first' },
+                -- path_display = function(_, path)
+                --     local filename = require('telescope.utils').path_tail(path)
+                --
+                --     -- Remove everything up to and including cwd from the path
+                --     local cwd = vim.fn.getcwd()
+                --     path = string.gsub(path, cwd .. '/', '')
+                --
+                --     -- Remove the first colon and everything after it
+                --     path = string.gsub(path, ':.*$', '')
+                --
+                --     local transformed_path = vim.trim(filename .. ' ' .. path)
+                --     local path_style = { { { #filename, #transformed_path }, 'TelescopeResultsComment' } }
+                --     return transformed_path, path_style
+                --
+                --     -- return string.format('%s (%s)', filename, path),
+                --     --     {
+                --     --         { { 1, #filename }, 'TelescopeFileName' },
+                --     --         { { #filename, 999 }, 'TelescopeResultsComment' },
+                --     --     }
+                -- end,
                 mappings = {
                     i = {
                         ['<C-p>'] = require('telescope.actions.layout').toggle_preview,
-                        ['<C-j>'] = actions.move_selection_next,
-                        ['<C-k>'] = actions.move_selection_previous,
+                        ['<C-j>'] = require('telescope.actions').move_selection_next,
+                        ['<C-k>'] = require('telescope.actions').move_selection_previous,
                     },
                     n = {
                         ['<C-p>'] = require('telescope.actions.layout').toggle_preview,
-                        ['<C-j>'] = actions.move_selection_next,
-                        ['<C-k>'] = actions.move_selection_previous,
+                        ['<C-j>'] = require('telescope.actions').move_selection_next,
+                        ['<C-k>'] = require('telescope.actions').move_selection_previous,
                     },
                 },
                 file_ignore_patterns = {
@@ -119,31 +98,52 @@ return {
                     prompt_title = '',
                     show_remote_tracking_branches = false,
                 },
-                -- live_grep = {
-                --     preview = { hide_on_startup = false },
-                --     prompt_title = '',
-                --     results_title = '',
-                --     preview_title = '',
-                --     vimgrep_arguments = {
-                --         'rg',
-                --         '--color=never',
-                --         '--no-heading',
-                --         '--with-filename',
-                --         '--line-number',
-                --         '--column',
-                --         '--smart-case',
-                --         '--fixed-strings', -- search for literal strings instead of regex
-                --     },
-                -- },
-                -- grep_string = {
-                --     initial_mode = 'normal',
-                --     preview = { hide_on_startup = false },
-                --     prompt_title = '',
-                --     results_title = '',
-                --     preview_title = '',
-                -- },
+                live_grep = {
+                    preview = { hide_on_startup = false },
+                    prompt_title = 'Grep',
+                    preview_title = '',
+                    vimgrep_arguments = {
+                        'rg',
+                        '--color=never',
+                        '--no-heading',
+                        '--with-filename',
+                        '--line-number',
+                        '--column',
+                        '--smart-case',
+                        '--fixed-strings', -- search for literal strings instead of regex
+                    },
+                    -- https://github.com/nvim-telescope/telescope.nvim/issues/2507#issuecomment-2841001631
+                    entry_maker = function(entry)
+                        local item = make_entry.gen_from_vimgrep({})(entry)
+
+                        if not item or not item.filename or not item.lnum then
+                            return item
+                        end
+
+                        local filename = require('telescope.utils').path_tail(item.filename)
+                        local relative_path = string.gsub(item.filename, vim.fn.getcwd() .. '/', '')
+
+                        local icon, iconhl = devicons.get_icon(filename, nil, { default = true })
+
+                        item.display = function()
+                            return grep_entry_displayer({
+                                { icon, iconhl },
+                                filename,
+                                { relative_path, 'TelescopeResultsComment' },
+                            })
+                        end
+
+                        item.ordinal = filename
+                        item.value = entry
+
+                        return item
+                    end,
+                },
                 lsp_references = {
                     initial_mode = 'normal',
+                    preview_title = '',
+
+                    show_line = false,
                     preview = { hide_on_startup = false },
                     layout_config = {
                         width = 0.75,
@@ -151,16 +151,26 @@ return {
                 },
                 filetypes = {
                     theme = 'dropdown',
-                    promp_title = '',
+                    prompt_title = '',
                 },
             },
             extensions = {
-                persisted = {
-                    layout_config = {
-                        initial_mode = 'normal',
-                    },
+                frecency = {
+                    prompt_title = '',
+                    auto_validate = false,
+                    -- matcher = 'fuzzy',
+                    path_display = { 'filename_first' },
+                    show_filter_column = false,
+                    workspace = 'CWD',
                 },
             },
-        }
+        })
+
+        -- Enable Telescope extensions if they are installed
+        pcall(telescope.load_extension, 'fzf')
+        pcall(telescope.load_extension, 'frecency')
+        -- telescope.load_extension('frecency')
+
+        -- pcall(telescope.load_extension('smart_open'))
     end,
 }
