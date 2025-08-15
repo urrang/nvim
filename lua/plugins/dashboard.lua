@@ -22,7 +22,9 @@ return {
         }
 
         dashboard.section.buttons.val = {
-            dashboard.button('f', 'Find file', ':Telescope frecency workspace=CWD theme=dropdown<cr>'),
+            -- dashboard.button('f', 'Find file', ':Telescope frecency workspace=CWD theme=dropdown<CR>'),
+            -- dashboard.button('f', 'Find file', ':lua require("telescope")<CR>:Telescope frecency theme=dropdown<CR>'),
+            dashboard.button('f', 'Find file', ':Telescope find_files<CR>'),
             dashboard.button('s', 'Restore Session', ':SessionLoad<CR>'),
             dashboard.button('q', 'Quit', ':qa<CR>'),
         }

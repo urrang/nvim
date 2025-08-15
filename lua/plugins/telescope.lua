@@ -7,7 +7,7 @@ return {
     event = 'VeryLazy',
     dependencies = {
         'nvim-lua/plenary.nvim',
-        'nvim-telescope/telescope-frecency.nvim',
+        -- 'nvim-telescope/telescope-frecency.nvim',
         {
             'nvim-telescope/telescope-fzf-native.nvim',
             build = 'make',
@@ -24,7 +24,8 @@ return {
 
         map('gr', 'Telescope lsp_references', 'LSP references'),
 
-        map('<C-p>', 'Telescope frecency workspace=CWD theme=dropdown', 'Find filed (frecency)'),
+        -- map('<C-p>', 'Telescope frecency workspace=CWD theme=dropdown', 'Find filed (frecency)'),
+        map('<C-p>', 'Telescope find_files', 'Find filed'),
     },
     config = function()
         local telescope = require('telescope')
@@ -153,24 +154,34 @@ return {
                     theme = 'dropdown',
                     prompt_title = '',
                 },
-            },
-            extensions = {
-                frecency = {
+                find_files = {
+                    theme = 'dropdown',
                     prompt_title = '',
-                    auto_validate = false,
-                    -- matcher = 'fuzzy',
-                    path_display = { 'filename_first' },
-                    show_filter_column = false,
-                    workspace = 'CWD',
                 },
             },
+            -- extensions = {
+            --     frecency = {
+            --         prompt_title = '',
+            --         -- auto_validate = false,
+            --         matcher = 'fuzzy',
+            --         path_display = { 'filename_first' },
+            --         show_filter_column = false,
+            --         default_workspace = 'CWD',
+            --         ignore_patterns = {
+            --             '*/.git',
+            --             '*/.git/*',
+            --             '*/.DS_Store',
+            --             'node_modules',
+            --             'node_modules/*',
+            --             '*/node_modules/*',
+            --         },
+            --     },
+            -- },
         })
 
         -- Enable Telescope extensions if they are installed
         pcall(telescope.load_extension, 'fzf')
-        pcall(telescope.load_extension, 'frecency')
-        -- telescope.load_extension('frecency')
-
+        -- pcall(telescope.load_extension, 'frecency')
         -- pcall(telescope.load_extension('smart_open'))
     end,
 }
