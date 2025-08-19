@@ -26,10 +26,39 @@ vim.api.nvim_create_autocmd('LspAttach', {
         if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
             local highlight_augroup = vim.api.nvim_create_augroup('au-lsp-highlight', { clear = false })
 
+            -- Skip highlighting if we're in a css block in a typescript file.
+            -- Because ts_ls highglights the entire style block in angular decorators.
+            local function should_highlight()
+                if vim.bo.filetype ~= 'typescript' then
+                    return true
+                end
+
+                -- Get the language at cursor position
+                local cursor = vim.api.nvim_win_get_cursor(0)
+                local row, col = cursor[1] - 1, cursor[2]
+
+                local lang_tree = vim.treesitter.get_parser(0)
+                if not lang_tree then
+                    return true
+                end
+
+                local current_tree = lang_tree:language_for_range({ row, col, row, col })
+                if not current_tree then
+                    return true
+                end
+
+                return current_tree:lang() ~= 'css'
+            end
+
             vim.api.nvim_create_autocmd({ 'CursorHold' }, {
                 buffer = event.buf,
                 group = highlight_augroup,
-                callback = vim.lsp.buf.document_highlight,
+                callback = function()
+                    if should_highlight() then
+                        vim.lsp.buf.document_highlight()
+                    end
+                end,
+                -- callback = vim.lsp.buf.document_highlight,
             })
 
             vim.api.nvim_create_autocmd({ 'CursorMoved' }, {

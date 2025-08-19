@@ -18,17 +18,17 @@ vim.api.nvim_create_autocmd('VimResized', {
     command = 'wincmd =',
 })
 
-local is_angular_project = nil
-vim.api.nvim_create_autocmd('BufRead', {
-    desc = 'Start treesitter parser for angular on html files in angular project',
-    pattern = '*.html',
-    callback = function()
-        if is_angular_project == nil then
-            is_angular_project = vim.fn.findfile('angular.json', '.;') ~= ''
-        end
-
-        if is_angular_project then
-            vim.treesitter.start(nil, 'angular')
-        end
-    end,
-})
+-- local is_angular_project = nil
+-- vim.api.nvim_create_autocmd('BufRead', {
+--     desc = 'Start treesitter parser for angular on html files in angular project',
+--     pattern = '*.html',
+--     callback = function()
+--         if is_angular_project == nil then
+--             is_angular_project = vim.fn.findfile('angular.json', '.;') ~= ''
+--         end
+--
+--         if is_angular_project then
+--             vim.treesitter.start(nil, 'angular')
+--         end
+--     end,
+-- })
