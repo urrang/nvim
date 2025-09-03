@@ -13,6 +13,7 @@ return {
                 typescriptreact = { 'prettier' },
                 svelte = { 'prettier' },
                 html = { 'prettier' },
+                htmlangular = { 'prettier' },
                 css = { 'prettier' },
                 json = { 'prettier' },
                 markdown = { 'prettier' },
