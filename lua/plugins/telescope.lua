@@ -20,7 +20,7 @@ return {
         map('<leader>fr', 'Telescope resume', 'Resume last search'),
         map('<leader>fg', 'Telescope live_grep', 'Find by Grep'),
         map('<leader>fb', 'Telescope buffers theme=dropdown initial_mode=normal prompt_title=', 'Find buffer'),
-        map('<leader>gB', 'Telescope git_branches', 'Find branch'),
+        map('<leader>gb', 'Telescope git_branches', 'Find branch'),
 
         map('gr', 'Telescope lsp_references', 'LSP references'),
 
@@ -157,6 +157,13 @@ return {
                 find_files = {
                     theme = 'dropdown',
                     prompt_title = '',
+                },
+                buffers = {
+                    mappings = {
+                        n = {
+                            ['<C-d>'] = require('telescope.actions').delete_buffer,
+                        },
+                    },
                 },
             },
             -- extensions = {

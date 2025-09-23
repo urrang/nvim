@@ -129,6 +129,6 @@ map({ 'n', 'v' }, '<leader>gob', function()
 end)
 
 -- Show git blame in floating panel
-map('n', '<leader>gb', function()
+map('n', '<leader>gB', function()
     utils.git_blame()
 end)
