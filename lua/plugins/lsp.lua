@@ -26,8 +26,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
         if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
             local highlight_augroup = vim.api.nvim_create_augroup('au-lsp-highlight', { clear = false })
 
-            -- Skip highlighting if we're in a css block in a typescript file.
-            -- Because ts_ls highglights the entire style block in angular decorators.
+            -- Skip highlighting if we're in a css or angular block in a typescript file,
+            -- due to a bug that causes the entire block to be highlighted
             local function should_highlight()
                 if vim.bo.filetype ~= 'typescript' then
                     return true
@@ -47,7 +47,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
                     return true
                 end
 
-                return current_tree:lang() ~= 'css'
+                return current_tree:lang() ~= 'css' and current_tree:lang() ~= 'angular'
             end
 
             vim.api.nvim_create_autocmd({ 'CursorHold' }, {
@@ -118,11 +118,11 @@ return {
                     'cssls',
                     'jsonls',
                     'svelte',
-                    'astro',
                     'prismals',
-                    'vue_ls',
                     'lua_ls',
                     'emmet_language_server',
+                    -- 'astro',
+                    -- 'vue_ls',
                 },
             })
         end,
