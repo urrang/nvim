@@ -79,7 +79,11 @@ return {
             providers = {
                 lsp = {
                     min_keyword_length = function()
-                        if vim.bo.filetype == 'css' or vim.bo.filetype == 'html' then
+                        if
+                            vim.bo.filetype == 'css'
+                            or vim.bo.filetype == 'html'
+                            or vim.bo.filetype == 'typescriptreact'
+                        then
                             return 1
                         else
                             return 0
