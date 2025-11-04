@@ -22,16 +22,6 @@ local string_nodes = {
     'string_fragment',
 }
 
--- local check_enabled = function()
---     local success, node = pcall(vim.treesitter.get_node, { ignore_injections = false })
---     return success and node and not vim.tbl_contains(comment_nodes, node:type())
--- end
---
--- local check_path_enabled = function()
---     local success, node = pcall(vim.treesitter.get_node, { ignore_injections = false })
---     return success and node and vim.tbl_contains(string_nodes, node:type())
--- end
-
 local import_source_component = {
     highlight = function()
         return 'BlinkCmpLabelDescription'
@@ -54,7 +44,7 @@ local import_source_component = {
 return {
     'saghen/blink.cmp',
     version = '1.*',
-    dependencies = { 'rafamadriz/friendly-snippets' },
+    -- dependencies = { 'rafamadriz/friendly-snippets' },
     event = { 'InsertEnter', 'CmdlineEnter' },
     opts = {
         enabled = function()
@@ -63,9 +53,9 @@ return {
                 and vim.b.completion ~= false
         end,
         sources = {
-            -- default = { 'lsp', 'path', 'snippets' },
             default = function(ctx)
                 local success, node = pcall(vim.treesitter.get_node, { ignore_injections = false })
+
                 if not success or not node or vim.tbl_contains(comment_nodes, node:type()) then
                     return {}
                 end
@@ -74,7 +64,7 @@ return {
                     return { 'path' }
                 end
 
-                return { 'lsp', 'path', 'snippets' }
+                return { 'lsp', 'snippets' }
             end,
             providers = {
                 lsp = {
