@@ -9,12 +9,12 @@ local disabled_filetypes = {
     'markdown',
 }
 
-local comment_nodes = {
-    'comment',
-    'comment_content',
-    'line_comment',
-    'block_comment',
-}
+-- local comment_nodes = {
+--     'comment',
+--     'comment_content',
+--     'line_comment',
+--     'block_comment',
+-- }
 
 local string_nodes = {
     'string',
@@ -41,7 +41,39 @@ local import_source_component = {
     end,
 }
 
+-- https://github.com/hrsh7th/nvim-cmp/blob/106c4bcc053a5da783bf4a9d907b6f22485c2ea0/lua/cmp/config/context.lua#L30
+local in_treesitter_capture = function(capture)
+    local buf = vim.api.nvim_get_current_buf()
+    local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+    row = row - 1
+    if vim.api.nvim_get_mode().mode == 'i' then
+        col = col - 1
+    end
+
+    local get_captures_at_pos = -- See neovim/neovim#20331
+        require('vim.treesitter').get_captures_at_pos -- for neovim >= 0.8 or require('vim.treesitter').get_captures_at_position -- for neovim < 0.8
+
+    local captures_at_cursor = vim.tbl_map(function(x)
+        return x.capture
+    end, get_captures_at_pos(buf, row, col))
+
+    if vim.tbl_isempty(captures_at_cursor) then
+        return false
+    elseif type(capture) == 'string' and vim.tbl_contains(captures_at_cursor, capture) then
+        return true
+    elseif type(capture) == 'table' then
+        for _, v in ipairs(capture) do
+            if vim.tbl_contains(captures_at_cursor, v) then
+                return true
+            end
+        end
+    end
+
+    return false
+end
+
 return {
+    enabled = true,
     'saghen/blink.cmp',
     version = '1.*',
     -- dependencies = { 'rafamadriz/friendly-snippets' },
@@ -51,16 +83,17 @@ return {
             return not vim.tbl_contains(disabled_filetypes, vim.bo.filetype)
                 and vim.bo.buftype ~= 'prompt'
                 and vim.b.completion ~= false
+                and not in_treesitter_capture('comment')
         end,
         sources = {
-            default = function(ctx)
-                local success, node = pcall(vim.treesitter.get_node, { ignore_injections = false })
+            default = function()
+                local _, node = pcall(vim.treesitter.get_node, { ignore_injections = false })
 
-                if not success or not node or vim.tbl_contains(comment_nodes, node:type()) then
-                    return {}
-                end
+                -- if not success or not node or vim.tbl_contains(comment_nodes, node:type()) then
+                --     return {}
+                -- end
 
-                if vim.tbl_contains(string_nodes, node:type()) then
+                if node and vim.tbl_contains(string_nodes, node:type()) then
                     return { 'path' }
                 end
 
