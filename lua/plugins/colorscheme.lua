@@ -1,33 +1,3 @@
--- macchiato palette with brightness * 0.94 and hue * 0.9 (hue only changed on some colors)
-local custom_catppuccin = {
-    rosewater = '#e5cec9',
-    flamingo = '#e2baba',
-    pink = '#e6b2d8',
-    mauve = '#ba96e7',
-    maroon = '#e09096',
-    peach = '#e69f77',
-    yellow = '#e0c795',
-    teal = '#83c8be',
-    sky = '#88cad5',
-    sapphire = '#75b8d6',
-    blue = '#82a3e5',
-    lavender = '#acb2e9',
-    green = '#a1cd93',
-    red = '#df8895',
-    text = '#c0caf5',
-    subtext1 = '#b1b7d3',
-    subtext0 = '#9fa5bf',
-    overlay2 = '#8e93ac',
-    overlay1 = '#7c8198',
-    overlay0 = '#6a6f85',
-    surface2 = '#585c71',
-    surface1 = '#474b5e',
-    surface0 = '#35384a',
-    base = '#262836',
-    mantle = '#1d1f2a',
-    crust = '#181924',
-}
-
 local custom_catppuccin2 = {
     rosewater = '#e5cec9',
     flamingo = '#e2baba',
@@ -58,28 +28,6 @@ local custom_catppuccin2 = {
 }
 
 return {
-    {
-        dir = '~/git/vscode.nvim',
-        config = function()
-            require('vscode').setup({
-                group_overrides = {
-                    GrappleActive = { bg = '#181818', fg = '#ffffff' },
-                    GrappleInactive = { bg = '#181818', fg = '#808080' },
-                },
-            })
-
-            -- vim.cmd.colorscheme('vscode')
-        end,
-    },
-    -- {
-    --     'Mofiqul/vscode.nvim',
-    --     config = function()
-    --         require('vscode').setup({
-    --             group_overrides = {},
-    --         })
-    --     end,
-    -- },
-
     {
         'catppuccin/nvim',
         config = function()
@@ -191,64 +139,11 @@ return {
                     }
                 end,
                 color_overrides = {
-                    macchiato = custom_catppuccin,
                     mocha = custom_catppuccin2,
                 },
             })
 
             vim.cmd.colorscheme('catppuccin-mocha')
-        end,
-    },
-    {
-        'gbprod/nord.nvim',
-        lazy = false,
-        priority = 1000,
-        config = function()
-            require('nord').setup({
-                on_colors = function(colors)
-                    -- colors.polar_night.origin = '#14171D'
-                    colors.polar_night.origin = '#1E2127'
-                    colors.polar_night.bright = '#22262C'
-                    colors.polar_night.brighter = '#22262C'
-
-                    colors.frost.polar_water = '#7dcbc0'
-                end,
-                on_highlights = function(hl, c)
-                    local subdued = '#9da3af'
-
-                    hl['@type.builtin'] = { link = '@type' }
-
-                    hl['@variable.parameter'] = { fg = c.snow_storm.origin }
-
-                    hl['@operator'] = { fg = subdued }
-                    hl['@keyword.conditional.ternary'] = { fg = '#b48ead' }
-                    hl['@punctuation.separator.keyvalue'] = { fg = subdued }
-                    hl['@punctuation.bracket'] = { fg = subdued }
-                    hl['@punctuation.delimiter'] = { fg = subdued }
-                    hl['@tag.delimiter'] = { fg = subdued }
-
-                    -- new
-                    -- hl['@type'] = { fg = '#7DCBC0' }
-
-                    hl['@boolean'] = { fg = '#d08770' }
-                    hl['@number'] = { fg = '#d08770' }
-                    -- hl['@boolean'] = { fg = '#81a1c1' }
-                    hl['@constant.falsy'] = { link = '@boolean' }
-
-                    hl['@keyword.angular'] = { fg = c.frost.polar_water }
-                    hl['@keyword.conditional.angular'] = { fg = '#b48ead' }
-                    hl['@keyword.repeat.angular'] = { fg = '#b48ead' }
-
-                    -- local fn = '#81a1c1'
-                    -- hl['@function'] = { fg = fn }
-                    -- hl['@function.call'] = { fg = fn }
-                    -- hl['@function.method'] = { fg = fn }
-                    -- hl['@function.method.call'] = { fg = fn }
-                    --
-                    -- hl['@keyword'] = { fg = '#88c0d0' }
-                    -- hl['@variable.builtin'] = { fg = '#88c0d0' }
-                end,
-            })
         end,
     },
 }
