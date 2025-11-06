@@ -67,14 +67,6 @@ return {
                         [']F'] = '@function.outer',
                         [']A'] = '@parameter.inner',
                     },
-                    goto_previous_start = {
-                        ['[f'] = '@function.outer',
-                        ['[a'] = '@parameter.inner',
-                    },
-                    goto_previous_end = {
-                        ['[F'] = '@function.outer',
-                        ['[A'] = '@parameter.inner',
-                    },
                 },
                 swap = {
                     enable = true,

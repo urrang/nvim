@@ -25,7 +25,8 @@ return {
         map('gr', 'Telescope lsp_references', 'LSP references'),
 
         -- map('<C-p>', 'Telescope frecency workspace=CWD theme=dropdown', 'Find filed (frecency)'),
-        map('<C-p>', 'Telescope find_files', 'Find filed'),
+        -- map('<C-p>', 'Telescope find_files', 'Find filed'),
+        map('<leader><space>', 'Telescope find_files', 'Find filed'),
     },
     config = function()
         local telescope = require('telescope')
