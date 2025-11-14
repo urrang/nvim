@@ -121,6 +121,7 @@ return {
                     'prismals',
                     'lua_ls',
                     'emmet_language_server',
+                    'csharp_ls',
                     -- 'astro',
                     -- 'vue_ls',
                 },

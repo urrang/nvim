@@ -4,6 +4,23 @@ return {
         event = 'InsertEnter',
         config = true,
     },
+    {
+        'A7Lavinraj/fyler.nvim',
+        branch = 'stable',
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        opts = {
+            icon_provider = 'nvim_web_devicons',
+            views = {
+                finder = {
+                    confirm_simple = false,
+                    mappings = {
+                        ['<Esc>'] = 'CloseView',
+                        ['<BS>'] = 'GotoParent',
+                    },
+                },
+            },
+        },
+    },
     { 'yorickpeterse/nvim-pqf', config = true },
     {
         'olimorris/persisted.nvim',
