@@ -1,23 +1,10 @@
 return {
-    -- { 'kevinhwang91/nvim-bqf', event = 'VeryLazy' },
     {
         'windwp/nvim-autopairs',
         event = 'InsertEnter',
         config = true,
     },
-    {
-        'stevearc/quicker.nvim',
-        event = 'FileType qf',
-        config = function()
-            local quicker = require('quicker')
-
-            vim.keymap.set('n', '<leader>q', function()
-                quicker.toggle({ focus = true })
-            end)
-
-            quicker.setup({ follow = { enabled = true } })
-        end,
-    },
+    { 'yorickpeterse/nvim-pqf', config = true },
     {
         'olimorris/persisted.nvim',
         lazy = false,
