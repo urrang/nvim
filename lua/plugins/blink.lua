@@ -118,9 +118,9 @@ return {
         keymap = {
             preset = 'super-tab',
             ['<Tab>'] = {
-                function() -- sidekick next edit suggestion
-                    return require('sidekick').nes_jump_or_apply()
-                end,
+                -- function() -- sidekick next edit suggestion
+                --     return require('sidekick').nes_jump_or_apply()
+                -- end,
                 -- function(cmp)
                 --     if cmp.snippet_active() then
                 --         return cmp.accept()
