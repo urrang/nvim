@@ -10,6 +10,15 @@ map('n', '<C-f>', ':%s/')
 -- Clear search highlight on escape
 map('n', '<Esc>', ':noh<CR><Esc>', { noremap = true, silent = true })
 
+-- Dismiss copilot suggestion with escape
+map('i', '<Esc>', function()
+    if require('copilot.suggestion').is_visible() then
+        require('copilot.suggestion').dismiss()
+    else
+        return '<Esc>'
+    end
+end, { expr = true, noremap = true, silent = true })
+
 -- Stay at word under cursor when using *
 map('n', '*', '*N', { noremap = true, silent = true })
 
