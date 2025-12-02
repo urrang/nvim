@@ -118,26 +118,17 @@ return {
         keymap = {
             preset = 'super-tab',
             ['<Tab>'] = {
-                -- function() -- sidekick next edit suggestion
-                --     return require('sidekick').nes_jump_or_apply()
-                -- end,
-                -- function(cmp)
-                --     if cmp.snippet_active() then
-                --         return cmp.accept()
-                --     else
-                --         return cmp.select_and_accept()
-                --     end
-                -- end,
                 'snippet_forward',
+                'fallback',
+            },
+            ['<C-y>'] = {
                 function()
                     require('copilot.suggestion').accept()
                 end,
-                'fallback',
             },
             ['<C-k>'] = { 'select_prev', 'fallback' },
             ['<C-j>'] = { 'select_next', 'fallback' },
             ['<CR>'] = { 'accept', 'fallback' },
-            ['<C-y>'] = { 'accept', 'fallback' },
         },
         completion = {
             trigger = {

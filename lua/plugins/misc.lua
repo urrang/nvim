@@ -21,6 +21,12 @@ return {
             },
         },
     },
+    {
+        'davidmh/mdx.nvim',
+        event = 'BufEnter *.mdx',
+        dependencies = 'nvim-treesitter/nvim-treesitter',
+        config = true,
+    },
     { 'yorickpeterse/nvim-pqf', config = true },
     {
         'olimorris/persisted.nvim',
