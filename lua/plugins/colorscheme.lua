@@ -29,6 +29,11 @@ local custom_catppuccin2 = {
 
 return {
     {
+        'nendix/zen.nvim',
+        lazy = false,
+        priority = 1000,
+    },
+    {
         'catppuccin/nvim',
         config = function()
             require('catppuccin').setup({

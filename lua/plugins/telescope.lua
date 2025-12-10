@@ -104,6 +104,7 @@ return {
                     preview = { hide_on_startup = false },
                     prompt_title = 'Grep',
                     preview_title = '',
+                    file_ignore_patterns = { 'node_modules', '.git', '*-lock.json' },
                     vimgrep_arguments = {
                         'rg',
                         '--color=never',
@@ -113,6 +114,7 @@ return {
                         '--column',
                         '--smart-case',
                         '--fixed-strings', -- search for literal strings instead of regex
+                        '--hidden', -- include hidden files
                     },
                     -- https://github.com/nvim-telescope/telescope.nvim/issues/2507#issuecomment-2841001631
                     entry_maker = function(entry)

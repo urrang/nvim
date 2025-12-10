@@ -12,6 +12,9 @@ return {
                 smart = {
                     multi = { 'buffers', 'files' },
                     prompt = ' ',
+                    exclude = { 'node_modules', '.git', '*-lock.json', '!.env' },
+                    hidden = true,
+                    ignored = false,
                     layout = {
                         preview = false,
                         layout = {
@@ -37,24 +40,6 @@ return {
             '<C-p>',
             function()
                 Snacks.picker.smart()
-                -- Snacks.picker.smart({
-                --     multi = { 'buffers', 'files' },
-                --     layout = {
-                --         preview = false,
-                --         layout = {
-                --             backdrop = false,
-                --             width = 80,
-                --             height = 0.3,
-                --             min_height = 3,
-                --             box = 'vertical',
-                --             border = OPTS.float_border,
-                --             title = '',
-                --             { win = 'input', height = 1, border = 'bottom' },
-                --             { win = 'list', border = 'none' },
-                --             { win = 'preview', title = '{preview}', height = 0.3, border = 'top' },
-                --         },
-                --     },
-                -- })
             end,
             desc = 'Smart Find Files',
         },
