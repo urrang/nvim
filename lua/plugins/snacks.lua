@@ -12,7 +12,8 @@ return {
                 smart = {
                     multi = { 'buffers', 'files' },
                     prompt = ' ',
-                    exclude = { 'node_modules', '.git', '*-lock.json', '!.env' },
+                    exclude = { 'node_modules', '.git', '*-lock.json' },
+                    include = { '.env' },
                     hidden = true,
                     ignored = false,
                     layout = {

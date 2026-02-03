@@ -26,7 +26,7 @@ return {
             -- dashboard.button('f', 'Find file', ':lua require("telescope")<CR>:Telescope frecency theme=dropdown<CR>'),
             -- dashboard.button('f', 'Find file', ':Telescope find_files<CR>'),
             dashboard.button('f', 'Find file', ':lua require("snacks").picker.smart()<CR>'),
-            dashboard.button('s', 'Restore Session', ':SessionLoad<CR>'),
+            dashboard.button('s', 'Restore Session', ':Persisted load<CR>'),
             dashboard.button('q', 'Quit', ':qa<CR>'),
         }
 

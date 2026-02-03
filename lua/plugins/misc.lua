@@ -59,6 +59,9 @@ return {
         'laytan/cloak.nvim',
         event = { 'BufReadPre', 'BufNewFile' },
         opts = {},
+        keys = {
+            { '<leader>ct', '<cmd>CloakToggle<cr>', desc = 'Cloak Toggle' },
+        },
     },
     {
         'stevearc/dressing.nvim',
