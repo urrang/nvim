@@ -9,13 +9,6 @@ local disabled_filetypes = {
     'markdown',
 }
 
--- local comment_nodes = {
---     'comment',
---     'comment_content',
---     'line_comment',
---     'block_comment',
--- }
-
 local string_nodes = {
     'string',
     'string_content',
@@ -76,7 +69,6 @@ return {
     enabled = true,
     'saghen/blink.cmp',
     version = '1.*',
-    -- dependencies = { 'rafamadriz/friendly-snippets' },
     event = { 'InsertEnter', 'CmdlineEnter' },
     opts = {
         enabled = function()
@@ -88,10 +80,6 @@ return {
         sources = {
             default = function()
                 local _, node = pcall(vim.treesitter.get_node, { ignore_injections = false })
-
-                -- if not success or not node or vim.tbl_contains(comment_nodes, node:type()) then
-                --     return {}
-                -- end
 
                 if node and vim.tbl_contains(string_nodes, node:type()) then
                     return { 'path' }
@@ -138,7 +126,6 @@ return {
             list = {
                 max_items = 30,
             },
-            -- accept = { auto_brackets = { enabled = true } },
             menu = {
                 border = OPTS.float_border,
                 winblend = OPTS.winblend,
@@ -174,15 +161,11 @@ return {
             },
         },
         fuzzy = {
-            -- max_typos = function(keyword)
-            --     return 0
-            -- end,
             max_typos = function(keyword)
                 return math.floor(#keyword / 4)
             end,
             sorts = {
                 'exact',
-                -- defaults
                 'score',
                 'sort_text',
             },
