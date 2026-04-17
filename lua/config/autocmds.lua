@@ -18,6 +18,20 @@ vim.api.nvim_create_autocmd('VimResized', {
     command = 'wincmd =',
 })
 
+vim.api.nvim_create_autocmd('VimEnter', {
+    desc = 'Set keymaps for start screen',
+    callback = function()
+        if vim.fn.argc() == 0 then
+            local buf = vim.api.nvim_get_current_buf()
+            local opts = { buffer = buf, noremap = true, silent = true }
+
+            vim.keymap.set('n', 'f', ':lua require("snacks").picker.smart()<CR>', opts)
+            vim.keymap.set('n', 's', ':Persisted load<CR>', opts)
+            vim.keymap.set('n', 'q', ':qa<CR>', opts)
+        end
+    end,
+})
+
 -- local is_angular_project = nil
 -- vim.api.nvim_create_autocmd('BufRead', {
 --     desc = 'Start treesitter parser for angular on html files in angular project',
