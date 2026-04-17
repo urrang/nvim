@@ -5,30 +5,6 @@ return {
         config = true,
     },
     {
-        'A7Lavinraj/fyler.nvim',
-        branch = 'stable',
-        dependencies = { 'nvim-tree/nvim-web-devicons' },
-        opts = {
-            icon_provider = 'nvim_web_devicons',
-            views = {
-                finder = {
-                    confirm_simple = false,
-                    mappings = {
-                        ['<Esc>'] = 'CloseView',
-                        ['<BS>'] = 'GotoParent',
-                    },
-                },
-            },
-        },
-    },
-    {
-        'davidmh/mdx.nvim',
-        event = 'BufEnter *.mdx',
-        dependencies = 'nvim-treesitter/nvim-treesitter',
-        config = true,
-    },
-    { 'yorickpeterse/nvim-pqf', config = true },
-    {
         'olimorris/persisted.nvim',
         lazy = false,
         config = function()
@@ -48,12 +24,6 @@ return {
                 REVISIT = { icon = ' ', color = 'info' },
             },
         },
-    },
-    {
-        'chrisgrieser/nvim-early-retirement',
-        event = 'VeryLazy',
-        config = true,
-        opts = { retirementAgeMins = 10 },
     },
     {
         'laytan/cloak.nvim',
