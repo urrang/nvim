@@ -1,88 +1,63 @@
+local parsers = {
+    'typescript',
+    'javascript',
+    'tsx',
+    'html',
+    'css',
+    'scss',
+    'styled',
+    'json',
+    'markdown',
+    'markdown_inline',
+    'go',
+    'rust',
+    'lua',
+    'vimdoc',
+    'vim',
+    'svelte',
+    'angular',
+    'astro',
+    'elixir',
+}
+
 return {
     {
         'nvim-treesitter/nvim-treesitter',
+        branch = 'main',
         build = ':TSUpdate',
         event = { 'BufReadPost', 'BufNewFile' },
-        dependencies = {
-            'nvim-treesitter/nvim-treesitter-textobjects',
-        },
-        opts = {
-            highlight = { enable = true },
-            indent = { enable = true },
+        config = function()
+            local treesitter = require('nvim-treesitter')
 
-            ensure_installed = {
-                'typescript',
-                'javascript',
-                'tsx',
-                'html',
-                'css',
-                'scss',
-                'styled',
-                'json',
-                'markdown',
-                'markdown_inline',
-                'go',
-                'rust',
-                'lua',
-                'vimdoc',
-                'vim',
-                'svelte',
-                'angular',
-                'astro',
-                'elixir',
-            },
+            local installed = require('nvim-treesitter.config').get_installed()
+            local not_installed = vim.tbl_filter(function(p)
+                return not vim.tbl_contains(installed, p)
+            end, parsers)
 
-            auto_install = false,
+            treesitter.install(not_installed)
 
-            incremental_selection = {
-                enable = true,
-                keymaps = {
-                    node_incremental = 'v',
-                    node_decremental = 'V',
-                },
-            },
-
-            textobjects = {
-                select = {
-                    enable = true,
-                    lookahead = true,
-                    keymaps = {
-                        -- You can use the capture groups defined in textobjects.scm
-                        ['aa'] = '@parameter.outer',
-                        ['ia'] = '@parameter.inner',
-                        ['af'] = '@function.outer',
-                        ['if'] = '@function.inner',
-                        ['ac'] = '@class.outer',
-                        ['ic'] = '@class.inner',
-                    },
-                },
-                move = {
-                    enable = true,
-                    set_jumps = true, -- whether to set jumps in the jumplist
-                    goto_next_start = {
-                        [']f'] = '@function.outer',
-                        [']a'] = '@parameter.inner',
-                    },
-                    goto_next_end = {
-                        [']F'] = '@function.outer',
-                        [']A'] = '@parameter.inner',
-                    },
-                },
-                swap = {
-                    enable = true,
-                    swap_next = {
-                        ['<leader>an'] = '@parameter.inner',
-                    },
-                    swap_previous = {
-                        ['<leader>aN'] = '@parameter.inner',
-                    },
-                },
-            },
-        },
-        config = function(_, opts)
-            require('nvim-treesitter.configs').setup(opts)
+            vim.api.nvim_create_autocmd('FileType', {
+                callback = function()
+                    pcall(vim.treesitter.start)
+                    -- Enable treesitter-based indentation
+                    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                end,
+            })
         end,
     },
+    -- {
+    --     'nvim-treesitter/nvim-treesitter-textobjects',
+    --     event = 'VeryLazy',
+    --     branch = 'main',
+    --     init = function()
+    --         -- Disable entire built-in ftplugin mappings to avoid conflicts.
+    --         -- See https://github.com/neovim/neovim/tree/master/runtime/ftplugin for built-in ftplugins.
+    --         vim.g.no_plugin_maps = true
+    --     end,
+    --     config = function()
+    --         require('config.treesitter-textobjects')
+    --     end,
+    -- },
     {
         'windwp/nvim-ts-autotag',
         event = { 'BufReadPost', 'BufNewFile' },
@@ -93,44 +68,5 @@ return {
                 },
             })
         end,
-        -- config = function()
-        --     require('nvim-ts-autotag').setup({
-        --         filetypes = {
-        --             'html',
-        --             'javascript',
-        --             'typescript',
-        --             'javascriptreact',
-        --             'typescriptreact',
-        --             'svelte',
-        --             'vue',
-        --             'tsx',
-        --             'jsx',
-        --             'rescript',
-        --             'xml',
-        --             'markdown',
-        --             'astro',
-        --         },
-        --         skip_tags = {
-        --             'area',
-        --             'base',
-        --             'br',
-        --             'col',
-        --             'command',
-        --             'embed',
-        --             'hr',
-        --             'img',
-        --             'slot',
-        --             'input',
-        --             'keygen',
-        --             'link',
-        --             'meta',
-        --             'param',
-        --             'source',
-        --             'track',
-        --             'wbr',
-        --             'menuitem',
-        --         },
-        --     })
-        -- end,
     },
 }

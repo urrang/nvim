@@ -1,3 +1,4 @@
+vim.o.winborder = 'rounded'
 vim.o.cmdheight = 0
 vim.o.pumheight = 15 -- max number of items in popup menus
 vim.o.cursorline = true
@@ -60,17 +61,9 @@ vim.o.termguicolors = true
 
 vim.diagnostic.config({
     severity_sort = true,
-    float = { border = OPTS.float_border },
     signs = false,
-    -- signs = {
-    --     text = {
-    --         [vim.diagnostic.severity.ERROR] = '󰅚 ',
-    --         [vim.diagnostic.severity.WARN] = '󰀪 ',
-    --         [vim.diagnostic.severity.INFO] = '󰋽 ',
-    --         [vim.diagnostic.severity.HINT] = '󰌶 ',
-    --     },
-    -- },
     virtual_text = {
+        severity = { min = vim.diagnostic.severity.WARN },
         source = 'if_many',
         spacing = 2,
         format = function(diagnostic)
@@ -83,9 +76,7 @@ vim.diagnostic.config({
 })
 
 vim.filetype.add({
-    extension = {
-        mdx = 'markdown',
-    },
+    extension = { mdx = 'markdown' },
 })
 
 -- Open help in tab instead of buffer
@@ -97,29 +88,3 @@ vim.api.nvim_create_user_command('Wa', 'wa', {})
 vim.api.nvim_create_user_command('WA', 'wa', {})
 vim.api.nvim_create_user_command('Wq', 'wq', {})
 vim.api.nvim_create_user_command('WQ', 'wq', {})
-
--- LSP
-vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = {
-        severity = { min = vim.diagnostic.severity.WARN },
-    },
-})
-
--- Add border to floating windows (https://github.com/neovim/neovim/issues/32242)
-local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-
-function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-    opts = opts or {}
-    opts.border = OPTS.float_border
-    return orig_util_open_floating_preview(contents, syntax, opts, ...)
-end
-
--- vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
---     border = OPTS.float_border,
--- })
-
-vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    -- border = OPTS.float_border,
-    silent = true,
-    focusable = false,
-})
