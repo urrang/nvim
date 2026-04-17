@@ -5,6 +5,10 @@ return {
     config = function()
         require('mini.move').setup()
 
+        require('mini.jump').setup({
+            delay = { highlight = 0 },
+        })
+
         require('mini.splitjoin').setup({
             mappings = {
                 toggle = '<leader>j',

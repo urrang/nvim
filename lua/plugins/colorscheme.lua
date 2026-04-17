@@ -40,7 +40,6 @@ return {
                     blink_cmp = true,
                     neogit = true,
                     telescope = true,
-                    flash = true,
                     native_lsp = {
                         enabled = true,
                         virtual_text = {
@@ -137,6 +136,8 @@ return {
                         GitConflictAncestor = { bg = colors.surface0 },
 
                         qfLineNr = { fg = colors.subtext0 },
+
+                        MiniJump = { fg = colors.text, bg = colors.surface1 },
                     }
                 end,
                 color_overrides = {
