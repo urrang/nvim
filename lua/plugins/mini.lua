@@ -5,6 +5,12 @@ return {
     config = function()
         require('mini.move').setup()
 
+        require('mini.splitjoin').setup({
+            mappings = {
+                toggle = '<leader>j',
+            },
+        })
+
         require('mini.surround').setup({
             mappings = {
                 add = 'sa', -- Add surrounding in Normal and Visual modes
